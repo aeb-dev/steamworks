@@ -1,6 +1,6 @@
-import 'package:steamworks/steamworks.dart';
+import "package:steamworks/steamworks.dart";
 
 void main() {
   var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  print("awesome: ${awesome.isAwesome}");
 }
