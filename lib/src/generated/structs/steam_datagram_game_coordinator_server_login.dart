@@ -1,7 +1,9 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../structs/steam_networking_identity.dart";
+
 import "../structs/steam_datagram_hosted_address.dart";
+import "../structs/steam_networking_identity.dart";
 import "../typedefs.dart";
 
 @Packed(4)

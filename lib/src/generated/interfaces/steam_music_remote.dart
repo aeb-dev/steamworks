@@ -1,7 +1,9 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+
 import "../enums/audio_playback_status.dart";
+import "../steam_api.dart";
 
 class SteamMusicRemote extends Opaque {
   static Pointer<SteamMusicRemote> steamMusicRemote() => nullptr;

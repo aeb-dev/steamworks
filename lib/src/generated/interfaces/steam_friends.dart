@@ -1,12 +1,14 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../enums/e_persona_state.dart";
-import "../enums/e_friend_relationship.dart";
-import "../structs/friend_game_info.dart";
+
 import "../enums/e_activate_game_overlay_to_web_page_mode.dart";
+import "../enums/e_friend_relationship.dart";
 import "../enums/e_overlay_to_store_flag.dart";
+import "../enums/e_persona_state.dart";
+import "../steam_api.dart";
+import "../structs/friend_game_info.dart";
+import "../typedefs.dart";
 
 class SteamFriends extends Opaque {
   static Pointer<SteamFriends> steamFriends() => nullptr;

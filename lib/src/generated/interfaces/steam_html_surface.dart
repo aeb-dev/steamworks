@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_html_key_modifiers.dart";
+import "../enums/e_html_mouse_button.dart";
 import "../steam_api.dart";
 import "../typedefs.dart";
-import "../enums/e_html_mouse_button.dart";
-import "../enums/e_html_key_modifiers.dart";
 
 class SteamHtmlSurface extends Opaque {
   static Pointer<SteamHtmlSurface> steamHtmlSurface() => nullptr;

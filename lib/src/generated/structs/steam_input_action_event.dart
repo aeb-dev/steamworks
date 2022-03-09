@@ -1,5 +1,7 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_steam_input_action_event_type.dart";
 import "../structs/analog_action.dart";
 import "../typedefs.dart";

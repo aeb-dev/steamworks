@@ -1,4 +1,5 @@
 import "dart:ffi";
+
 import "../structs/steam_ugc_details.dart";
 
 @Packed(4)

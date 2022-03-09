@@ -1,24 +1,26 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../callback_structs/steam_net_authentication_status.dart";
+import "../callback_structs/steam_networking_fake_ip_result.dart";
+import "../enums/e_result.dart";
+import "../enums/e_steam_networking_availability.dart";
+import "../interfaces/steam_networking_connection_signaling.dart";
+import "../interfaces/steam_networking_fake_udp_port.dart";
+import "../interfaces/steam_networking_signaling_recv_context.dart";
 import "../steam_api.dart";
-import "../typedefs.dart";
-import "../structs/steam_networking_ip_addr.dart";
+import "../structs/steam_datagram_game_coordinator_server_login.dart";
+import "../structs/steam_datagram_hosted_address.dart";
+import "../structs/steam_datagram_relay_auth_ticket.dart";
+import "../structs/steam_net_connection_info.dart";
+import "../structs/steam_net_connection_real_time_lane_status.dart";
+import "../structs/steam_net_connection_real_time_status.dart";
 import "../structs/steam_networking_config_value.dart";
 import "../structs/steam_networking_identity.dart";
-import "../enums/e_result.dart";
+import "../structs/steam_networking_ip_addr.dart";
 import "../structs/steam_networking_message.dart";
-import "../structs/steam_net_connection_info.dart";
-import "../structs/steam_net_connection_real_time_status.dart";
-import "../structs/steam_net_connection_real_time_lane_status.dart";
-import "../enums/e_steam_networking_availability.dart";
-import "../callback_structs/steam_net_authentication_status.dart";
-import "../structs/steam_datagram_relay_auth_ticket.dart";
-import "../structs/steam_datagram_hosted_address.dart";
-import "../structs/steam_datagram_game_coordinator_server_login.dart";
-import "../interfaces/steam_networking_connection_signaling.dart";
-import "../interfaces/steam_networking_signaling_recv_context.dart";
-import "../callback_structs/steam_networking_fake_ip_result.dart";
-import "../interfaces/steam_networking_fake_udp_port.dart";
+import "../typedefs.dart";
 
 class SteamNetworkingSockets extends Opaque {
   static Pointer<SteamNetworkingSockets> steamNetworkingSocketsSteamApi() =>

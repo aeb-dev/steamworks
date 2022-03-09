@@ -1,5 +1,7 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../steam_api.dart";
 
 @Packed(4)

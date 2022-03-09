@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
+
 import "../enums/e_game_search_error_code.dart";
 import "../enums/e_player_result.dart";
+import "../steam_api.dart";
+import "../typedefs.dart";
 
 class SteamGameSearch extends Opaque {
   static Pointer<SteamGameSearch> steamGameSearch() => nullptr;

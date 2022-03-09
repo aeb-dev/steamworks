@@ -1,12 +1,14 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../enums/e_leaderboard_sort_method.dart";
-import "../enums/e_leaderboard_display_type.dart";
+
 import "../enums/e_leaderboard_data_request.dart";
-import "../structs/leaderboard_entry.dart";
+import "../enums/e_leaderboard_display_type.dart";
+import "../enums/e_leaderboard_sort_method.dart";
 import "../enums/e_leaderboard_upload_score_method.dart";
+import "../steam_api.dart";
+import "../structs/leaderboard_entry.dart";
+import "../typedefs.dart";
 
 class SteamUserStats extends Opaque {
   static Pointer<SteamUserStats> steamUserStats() => nullptr;

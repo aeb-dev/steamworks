@@ -1,7 +1,9 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../enums/e_result.dart";
+
 import "../enums/e_remote_storage_published_file_visibility.dart";
+import "../enums/e_result.dart";
 import "../enums/e_workshop_file_type.dart";
 import "../typedefs.dart";
 

@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../structs/steam_party_beacon_location.dart";
+
 import "../enums/e_steam_party_beacon_location_data.dart";
+import "../steam_api.dart";
+import "../structs/steam_party_beacon_location.dart";
+import "../typedefs.dart";
 
 class SteamParties extends Opaque {
   static Pointer<SteamParties> steamParties() => nullptr;

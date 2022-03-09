@@ -1,11 +1,13 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
+
 import "../enums/e_p2p_send.dart";
+import "../enums/e_snet_socket_connection_type.dart";
+import "../steam_api.dart";
 import "../structs/p2p_session_state.dart";
 import "../structs/steam_ip_address.dart";
-import "../enums/e_snet_socket_connection_type.dart";
+import "../typedefs.dart";
 
 class SteamNetworking extends Opaque {
   static Pointer<SteamNetworking> steamNetworking() => nullptr;

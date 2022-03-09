@@ -1,16 +1,18 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../structs/input_digital_action_data.dart";
-import "../enums/e_input_action_origin.dart";
-import "../structs/input_analog_action_data.dart";
-import "../enums/e_steam_input_glyph_size.dart";
-import "../structs/input_motion_data.dart";
+
 import "../enums/e_controller_haptic_location.dart";
+import "../enums/e_input_action_origin.dart";
 import "../enums/e_steam_controller_pad.dart";
+import "../enums/e_steam_input_glyph_size.dart";
 import "../enums/e_steam_input_type.dart";
 import "../enums/e_xbox_origin.dart";
+import "../steam_api.dart";
+import "../structs/input_analog_action_data.dart";
+import "../structs/input_digital_action_data.dart";
+import "../structs/input_motion_data.dart";
+import "../typedefs.dart";
 
 class SteamInput extends Opaque {
   static Pointer<SteamInput> steamInput() => nullptr;

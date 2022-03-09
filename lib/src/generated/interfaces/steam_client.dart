@@ -1,35 +1,37 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
+
 import "../enums/e_account_type.dart";
-import "../interfaces/steam_user.dart";
-import "../interfaces/steam_game_server.dart";
-import "../structs/steam_ip_address.dart";
+import "../interfaces/steam_app_list.dart";
+import "../interfaces/steam_apps.dart";
+import "../interfaces/steam_controller.dart";
 import "../interfaces/steam_friends.dart";
-import "../interfaces/steam_utils.dart";
+import "../interfaces/steam_game_search.dart";
+import "../interfaces/steam_game_server.dart";
+import "../interfaces/steam_game_server_stats.dart";
+import "../interfaces/steam_html_surface.dart";
+import "../interfaces/steam_http.dart";
+import "../interfaces/steam_input.dart";
+import "../interfaces/steam_inventory.dart";
 import "../interfaces/steam_matchmaking.dart";
 import "../interfaces/steam_matchmaking_servers.dart";
-import "../interfaces/steam_user_stats.dart";
-import "../interfaces/steam_game_server_stats.dart";
-import "../interfaces/steam_apps.dart";
-import "../interfaces/steam_networking.dart";
-import "../interfaces/steam_remote_storage.dart";
-import "../interfaces/steam_screenshots.dart";
-import "../interfaces/steam_game_search.dart";
-import "../interfaces/steam_http.dart";
-import "../interfaces/steam_controller.dart";
-import "../interfaces/steam_ugc.dart";
-import "../interfaces/steam_app_list.dart";
 import "../interfaces/steam_music.dart";
 import "../interfaces/steam_music_remote.dart";
-import "../interfaces/steam_html_surface.dart";
-import "../interfaces/steam_inventory.dart";
-import "../interfaces/steam_video.dart";
+import "../interfaces/steam_networking.dart";
 import "../interfaces/steam_parental_settings.dart";
-import "../interfaces/steam_input.dart";
 import "../interfaces/steam_parties.dart";
 import "../interfaces/steam_remote_play.dart";
+import "../interfaces/steam_remote_storage.dart";
+import "../interfaces/steam_screenshots.dart";
+import "../interfaces/steam_ugc.dart";
+import "../interfaces/steam_user.dart";
+import "../interfaces/steam_user_stats.dart";
+import "../interfaces/steam_utils.dart";
+import "../interfaces/steam_video.dart";
+import "../steam_api.dart";
+import "../structs/steam_ip_address.dart";
+import "../typedefs.dart";
 
 class SteamClient extends Opaque {}
 

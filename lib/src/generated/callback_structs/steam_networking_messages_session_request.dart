@@ -1,4 +1,5 @@
 import "dart:ffi";
+
 import "../structs/steam_networking_identity.dart";
 
 @Packed(4)

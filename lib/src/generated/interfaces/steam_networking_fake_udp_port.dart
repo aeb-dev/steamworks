@@ -1,7 +1,9 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+
 import "../enums/e_result.dart";
+import "../steam_api.dart";
 import "../structs/steam_networking_ip_addr.dart";
 import "../structs/steam_networking_message.dart";
 

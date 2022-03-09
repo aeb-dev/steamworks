@@ -1,4 +1,5 @@
 import "dart:ffi";
+
 import "../steam_api.dart";
 import "../structs/game_server_item.dart";
 

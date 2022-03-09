@@ -1,16 +1,18 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../enums/e_universe.dart";
+
+import "../enums/e_floating_gamepad_text_input_mode.dart";
+import "../enums/e_gamepad_text_input_line_mode.dart";
+import "../enums/e_gamepad_text_input_mode.dart";
 import "../enums/e_notification_position.dart";
 import "../enums/e_steam_api_call_failure.dart";
-import "../enums/e_gamepad_text_input_mode.dart";
-import "../enums/e_gamepad_text_input_line_mode.dart";
-import "../enums/e_text_filtering_context.dart";
-import "../enums/e_steam_ipv6_connectivity_state.dart";
 import "../enums/e_steam_ipv6_connectivity_protocol.dart";
-import "../enums/e_floating_gamepad_text_input_mode.dart";
+import "../enums/e_steam_ipv6_connectivity_state.dart";
+import "../enums/e_text_filtering_context.dart";
+import "../enums/e_universe.dart";
+import "../steam_api.dart";
+import "../typedefs.dart";
 
 class SteamUtils extends Opaque {
   static Pointer<SteamUtils> steamUtils() => nullptr;

@@ -1,7 +1,9 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../enums/e_steam_networking_config_value.dart";
+
 import "../enums/e_steam_networking_config_data_type.dart";
+import "../enums/e_steam_networking_config_value.dart";
 import "../steam_api.dart";
 
 @Packed(4)

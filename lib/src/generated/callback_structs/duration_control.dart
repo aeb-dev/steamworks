@@ -1,8 +1,10 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../enums/e_result.dart";
-import "../enums/e_duration_control_progress.dart";
+
 import "../enums/e_duration_control_notification.dart";
+import "../enums/e_duration_control_progress.dart";
+import "../enums/e_result.dart";
 import "../typedefs.dart";
 
 @Packed(4)

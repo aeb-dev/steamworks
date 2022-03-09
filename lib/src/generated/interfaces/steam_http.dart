@@ -1,8 +1,10 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_http_method.dart";
 import "../steam_api.dart";
 import "../typedefs.dart";
-import "../enums/e_http_method.dart";
 
 class SteamHttp extends Opaque {
   static Pointer<SteamHttp> steamHttp() => nullptr;

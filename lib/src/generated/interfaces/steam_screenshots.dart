@@ -1,8 +1,10 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_vr_screenshot_type.dart";
 import "../steam_api.dart";
 import "../typedefs.dart";
-import "../enums/e_vr_screenshot_type.dart";
 
 class SteamScreenshots extends Opaque {
   static Pointer<SteamScreenshots> steamScreenshots() => nullptr;

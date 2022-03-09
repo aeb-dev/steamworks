@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
+
 import "../enums/e_result.dart";
+import "../steam_api.dart";
 import "../structs/steam_item_details.dart";
+import "../typedefs.dart";
 
 class SteamInventory extends Opaque {
   static Pointer<SteamInventory> steamInventory() => nullptr;

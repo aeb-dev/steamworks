@@ -1,10 +1,12 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
+
 import "../enums/e_lobby_comparison.dart";
 import "../enums/e_lobby_distance_filter.dart";
 import "../enums/e_lobby_type.dart";
+import "../steam_api.dart";
+import "../typedefs.dart";
 
 class SteamMatchmaking extends Opaque {
   static Pointer<SteamMatchmaking> steamMatchmaking() => nullptr;

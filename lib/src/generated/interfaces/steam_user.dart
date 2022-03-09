@@ -1,11 +1,13 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_begin_auth_session_result.dart";
+import "../enums/e_duration_control_online_state.dart";
+import "../enums/e_user_has_license_for_app_result.dart";
+import "../enums/e_voice_result.dart";
 import "../steam_api.dart";
 import "../typedefs.dart";
-import "../enums/e_voice_result.dart";
-import "../enums/e_begin_auth_session_result.dart";
-import "../enums/e_user_has_license_for_app_result.dart";
-import "../enums/e_duration_control_online_state.dart";
 
 class SteamUser extends Opaque {
   static Pointer<SteamUser> steamUser() => nullptr;

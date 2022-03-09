@@ -1,8 +1,10 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_steam_device_form_factor.dart";
 import "../steam_api.dart";
 import "../typedefs.dart";
-import "../enums/e_steam_device_form_factor.dart";
 
 class SteamRemotePlay extends Opaque {
   static Pointer<SteamRemotePlay> steamRemotePlay() => nullptr;

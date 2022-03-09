@@ -1,5 +1,7 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_steam_networking_fake_ip_type.dart";
 import "../steam_api.dart";
 

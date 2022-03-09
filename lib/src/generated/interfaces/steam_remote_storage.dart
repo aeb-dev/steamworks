@@ -1,15 +1,17 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
+
 import "../enums/e_remote_storage_platform.dart";
-import "../enums/e_ugc_read_action.dart";
 import "../enums/e_remote_storage_published_file_visibility.dart";
-import "../structs/steam_param_string_array.dart";
+import "../enums/e_ugc_read_action.dart";
+import "../enums/e_workshop_enumeration_type.dart";
+import "../enums/e_workshop_file_action.dart";
 import "../enums/e_workshop_file_type.dart";
 import "../enums/e_workshop_video_provider.dart";
-import "../enums/e_workshop_file_action.dart";
-import "../enums/e_workshop_enumeration_type.dart";
+import "../steam_api.dart";
+import "../structs/steam_param_string_array.dart";
+import "../typedefs.dart";
 
 class SteamRemoteStorage extends Opaque {
   static Pointer<SteamRemoteStorage> steamRemoteStorage() => nullptr;

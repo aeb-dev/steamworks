@@ -1,20 +1,22 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../structs/steam_networking_message.dart";
-import "../enums/e_steam_networking_availability.dart";
+
 import "../callback_structs/steam_relay_network_status.dart";
-import "../structs/steam_network_ping_location.dart";
-import "../enums/e_steam_networking_fake_ip_type.dart";
 import "../enums/e_result.dart";
-import "../structs/steam_networking_ip_addr.dart";
-import "../structs/steam_networking_identity.dart";
-import "../enums/e_steam_networking_config_value.dart";
-import "../enums/e_steam_networking_config_scope.dart";
+import "../enums/e_steam_networking_availability.dart";
 import "../enums/e_steam_networking_config_data_type.dart";
-import "../structs/steam_networking_config_value.dart";
+import "../enums/e_steam_networking_config_scope.dart";
+import "../enums/e_steam_networking_config_value.dart";
+import "../enums/e_steam_networking_fake_ip_type.dart";
 import "../enums/e_steam_networking_get_config_value_result.dart";
+import "../steam_api.dart";
+import "../structs/steam_network_ping_location.dart";
+import "../structs/steam_networking_config_value.dart";
+import "../structs/steam_networking_identity.dart";
+import "../structs/steam_networking_ip_addr.dart";
+import "../structs/steam_networking_message.dart";
+import "../typedefs.dart";
 
 class SteamNetworkingUtils extends Opaque {
   static Pointer<SteamNetworkingUtils> steamNetworkingUtilsSteamApi() =>

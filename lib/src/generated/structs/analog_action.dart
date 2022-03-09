@@ -1,5 +1,7 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../structs/input_analog_action_data.dart";
 import "../typedefs.dart";
 

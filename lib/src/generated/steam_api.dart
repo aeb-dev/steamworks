@@ -11,9 +11,11 @@ final _shutdown =
 void shutdown() => _shutdown.call();
 final _getHSteamPipe =
     dl.lookupFunction<Int32 Function(), HSteamPipe Function()>(
-        "SteamAPI_GetHSteamPipe");
+  "SteamAPI_GetHSteamPipe",
+);
 HSteamPipe getHSteamPipe() => _getHSteamPipe.call();
 final _restartAppIfNecessary =
     dl.lookupFunction<Bool Function(Int32), bool Function(int)>(
-        "SteamAPI_RestartAppIfNecessary");
+  "SteamAPI_RestartAppIfNecessary",
+);
 bool restartAppIfNecessary(int appId) => _restartAppIfNecessary.call(appId);

@@ -1,13 +1,15 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../structs/match_making_key_value_pair.dart";
-import "../interfaces/steam_matchmaking_server_list_response.dart";
-import "../structs/game_server_item.dart";
+
 import "../interfaces/steam_matchmaking_ping_response.dart";
 import "../interfaces/steam_matchmaking_players_response.dart";
 import "../interfaces/steam_matchmaking_rules_response.dart";
+import "../interfaces/steam_matchmaking_server_list_response.dart";
+import "../steam_api.dart";
+import "../structs/game_server_item.dart";
+import "../structs/match_making_key_value_pair.dart";
+import "../typedefs.dart";
 
 class SteamMatchmakingServers extends Opaque {
   static Pointer<SteamMatchmakingServers> steamMatchmakingServers() => nullptr;

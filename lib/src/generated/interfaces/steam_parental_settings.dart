@@ -1,8 +1,10 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_parental_feature.dart";
 import "../steam_api.dart";
 import "../typedefs.dart";
-import "../enums/e_parental_feature.dart";
 
 class SteamParentalSettings extends Opaque {
   static Pointer<SteamParentalSettings> steamParentalSettings() => nullptr;

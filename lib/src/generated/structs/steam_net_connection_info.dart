@@ -1,8 +1,10 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_steam_networking_connection_state.dart";
 import "../structs/steam_networking_identity.dart";
 import "../structs/steam_networking_ip_addr.dart";
-import "../enums/e_steam_networking_connection_state.dart";
 import "../typedefs.dart";
 
 @Packed(4)

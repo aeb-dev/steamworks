@@ -1,12 +1,14 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+
 import "../enums/e_result.dart";
-import "../structs/steam_networking_identity.dart";
-import "../structs/steam_networking_message.dart";
 import "../enums/e_steam_networking_connection_state.dart";
+import "../steam_api.dart";
 import "../structs/steam_net_connection_info.dart";
 import "../structs/steam_net_connection_real_time_status.dart";
+import "../structs/steam_networking_identity.dart";
+import "../structs/steam_networking_message.dart";
 
 class SteamNetworkingMessages extends Opaque {
   static Pointer<SteamNetworkingMessages> steamNetworkingMessagesSteamApi() =>

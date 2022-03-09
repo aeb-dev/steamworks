@@ -1,18 +1,20 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
-import "../enums/e_user_ugc_list.dart";
-import "../enums/e_ugc_matching_ugc_type.dart";
-import "../enums/e_user_ugc_list_sort_order.dart";
-import "../enums/e_ugc_query.dart";
-import "../structs/steam_ugc_details.dart";
-import "../enums/e_item_statistic.dart";
+
 import "../enums/e_item_preview_type.dart";
-import "../structs/steam_param_string_array.dart";
-import "../enums/e_workshop_file_type.dart";
-import "../enums/e_remote_storage_published_file_visibility.dart";
+import "../enums/e_item_statistic.dart";
 import "../enums/e_item_update_status.dart";
+import "../enums/e_remote_storage_published_file_visibility.dart";
+import "../enums/e_ugc_matching_ugc_type.dart";
+import "../enums/e_ugc_query.dart";
+import "../enums/e_user_ugc_list.dart";
+import "../enums/e_user_ugc_list_sort_order.dart";
+import "../enums/e_workshop_file_type.dart";
+import "../steam_api.dart";
+import "../structs/steam_param_string_array.dart";
+import "../structs/steam_ugc_details.dart";
+import "../typedefs.dart";
 
 class SteamUgc extends Opaque {
   static Pointer<SteamUgc> steamUgc() => nullptr;

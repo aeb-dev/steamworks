@@ -1,8 +1,10 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
+import "../enums/e_match_making_server_response.dart";
 import "../steam_api.dart";
 import "../typedefs.dart";
-import "../enums/e_match_making_server_response.dart";
 
 class SteamMatchmakingServerListResponse extends Opaque {}
 

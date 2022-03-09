@@ -1,10 +1,12 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
-import "../typedefs.dart";
+
 import "../enums/e_begin_auth_session_result.dart";
 import "../enums/e_user_has_license_for_app_result.dart";
+import "../steam_api.dart";
 import "../structs/steam_ip_address.dart";
+import "../typedefs.dart";
 
 class SteamGameServer extends Opaque {
   static Pointer<SteamGameServer> steamGameServer() => nullptr;
