@@ -1,10 +1,11 @@
 import "dart:ffi";
+
 import "../enums/e_input_source_mode.dart";
 
-@Packed(4)
+@Packed(1)
 class InputAnalogActionData extends Struct {
   @Int32()
-  external EInputSourceMode eMode;
+  external EInputSourceMode mode;
 
   @Float()
   external double x;

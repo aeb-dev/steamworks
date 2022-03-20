@@ -14,14 +14,14 @@ class ESteamNetConnectionEndEnum {
   static const int localHostedServerPrimaryRelay = 3003;
   static const int localNetworkConfig = 3004;
   static const int localRights = 3005;
-  static const int localP2PICENoPublicAddresses = 3006;
+  static const int localP2pIceNoPublicAddresses = 3006;
   static const int localMax = 3999;
   static const int remoteMin = 4000;
   static const int remoteTimeout = 4001;
   static const int remoteBadCrypt = 4002;
   static const int remoteBadCert = 4003;
   static const int remoteBadProtocolVersion = 4006;
-  static const int remoteP2PICENoPublicAddresses = 4007;
+  static const int remoteP2pIceNoPublicAddresses = 4007;
   static const int remoteMax = 4999;
   static const int miscMin = 5000;
   static const int miscGeneric = 5001;
@@ -29,8 +29,8 @@ class ESteamNetConnectionEndEnum {
   static const int miscTimeout = 5003;
   static const int miscSteamConnectivity = 5005;
   static const int miscNoRelaySessionsToClient = 5006;
-  static const int miscP2PRendezvous = 5008;
-  static const int miscP2PNATFirewall = 5009;
+  static const int miscP2pRendezvous = 5008;
+  static const int miscP2pNatFirewall = 5009;
   static const int miscPeerSentNoConnection = 5010;
   static const int miscMax = 5999;
 }

@@ -4,12 +4,12 @@ import "package:ffi/ffi.dart";
 
 import "../callback_structs/steam_net_authentication_status.dart";
 import "../callback_structs/steam_networking_fake_ip_result.dart";
+import "../dl.dart";
 import "../enums/e_result.dart";
 import "../enums/e_steam_networking_availability.dart";
 import "../interfaces/steam_networking_connection_signaling.dart";
 import "../interfaces/steam_networking_fake_udp_port.dart";
 import "../interfaces/steam_networking_signaling_recv_context.dart";
-import "../steam_api.dart";
 import "../structs/steam_datagram_game_coordinator_server_login.dart";
 import "../structs/steam_datagram_hosted_address.dart";
 import "../structs/steam_datagram_relay_auth_ticket.dart";
@@ -22,14 +22,25 @@ import "../structs/steam_networking_ip_addr.dart";
 import "../structs/steam_networking_message.dart";
 import "../typedefs.dart";
 
+final _steamNetworkingSocketsSteamApi = dl.lookupFunction<
+    Pointer<SteamNetworkingSockets> Function(),
+    Pointer<SteamNetworkingSockets>
+        Function()>("SteamAPI_SteamNetworkingSockets_SteamAPI_v012");
+
+final _steamGameServerNetworkingSocketsSteamApi = dl.lookupFunction<
+    Pointer<SteamNetworkingSockets> Function(),
+    Pointer<SteamNetworkingSockets>
+        Function()>("SteamAPI_SteamGameServerNetworkingSockets_SteamAPI_v012");
+
 class SteamNetworkingSockets extends Opaque {
-  static Pointer<SteamNetworkingSockets> steamNetworkingSocketsSteamApi() =>
-      nullptr;
-  static Pointer<SteamNetworkingSockets>
-      steamGameServerNetworkingSocketsSteamApi() => nullptr;
+  static Pointer<SteamNetworkingSockets> get userInstance =>
+      _steamNetworkingSocketsSteamApi();
+
+  static Pointer<SteamNetworkingSockets> get serverInstance =>
+      _steamGameServerNetworkingSocketsSteamApi();
 }
 
-final _createListenSocketIP = dl.lookupFunction<
+final _createListenSocketIp = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingSockets>,
   Pointer<SteamNetworkingIpAddr>,
@@ -43,7 +54,7 @@ final _createListenSocketIP = dl.lookupFunction<
   Pointer<SteamNetworkingConfigValue>,
 )>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketIP");
 
-final _connectByIPAddress = dl.lookupFunction<
+final _connectByIpAddress = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingSockets>,
   Pointer<SteamNetworkingIpAddr>,
@@ -57,7 +68,7 @@ final _connectByIPAddress = dl.lookupFunction<
   Pointer<SteamNetworkingConfigValue>,
 )>("SteamAPI_ISteamNetworkingSockets_ConnectByIPAddress");
 
-final _createListenSocketP2P = dl.lookupFunction<
+final _createListenSocketP2p = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingSockets>,
   Int,
@@ -71,7 +82,7 @@ final _createListenSocketP2P = dl.lookupFunction<
   Pointer<SteamNetworkingConfigValue>,
 )>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketP2P");
 
-final _connectP2P = dl.lookupFunction<
+final _connectP2p = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingSockets>,
   Pointer<SteamNetworkingIdentity>,
@@ -439,11 +450,11 @@ final _getHostedDedicatedServerPort = dl.lookupFunction<
   Pointer<SteamNetworkingSockets>,
 )>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerPort");
 
-final _getHostedDedicatedServerPOPID = dl.lookupFunction<
+final _getHostedDedicatedServerPopId = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingSockets>,
 ),
-    SteamNetworkingPOPId Function(
+    SteamNetworkingPopId Function(
   Pointer<SteamNetworkingSockets>,
 )>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerPOPID");
 
@@ -485,7 +496,7 @@ final _getGameCoordinatorServerLogin = dl.lookupFunction<
   Pointer<Void>,
 )>("SteamAPI_ISteamNetworkingSockets_GetGameCoordinatorServerLogin");
 
-final _connectP2PCustomSignaling = dl.lookupFunction<
+final _connectP2pCustomSignaling = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingSockets>,
   Pointer<SteamNetworkingConnectionSignaling>,
@@ -503,7 +514,7 @@ final _connectP2PCustomSignaling = dl.lookupFunction<
   Pointer<SteamNetworkingConfigValue>,
 )>("SteamAPI_ISteamNetworkingSockets_ConnectP2PCustomSignaling");
 
-final _receivedP2PCustomSignal = dl.lookupFunction<
+final _receivedP2pCustomSignal = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingSockets>,
   Pointer<Void>,
@@ -563,7 +574,7 @@ final _runCallbacks = dl.lookupFunction<
   Pointer<SteamNetworkingSockets>,
 )>("SteamAPI_ISteamNetworkingSockets_RunCallbacks");
 
-final _beginAsyncRequestFakeIP = dl.lookupFunction<
+final _beginAsyncRequestFakeIp = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingSockets>,
   Int,
@@ -573,7 +584,7 @@ final _beginAsyncRequestFakeIP = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamNetworkingSockets_BeginAsyncRequestFakeIP");
 
-final _getFakeIP = dl.lookupFunction<
+final _getFakeIp = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingSockets>,
   Int,
@@ -585,7 +596,7 @@ final _getFakeIP = dl.lookupFunction<
   Pointer<SteamNetworkingFakeIpResult>,
 )>("SteamAPI_ISteamNetworkingSockets_GetFakeIP");
 
-final _createListenSocketP2PFakeIP = dl.lookupFunction<
+final _createListenSocketP2pFakeIp = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingSockets>,
   Int,
@@ -599,7 +610,7 @@ final _createListenSocketP2PFakeIP = dl.lookupFunction<
   Pointer<SteamNetworkingConfigValue>,
 )>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketP2PFakeIP");
 
-final _getRemoteFakeIPForConnection = dl.lookupFunction<
+final _getRemoteFakeIpForConnection = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamNetworkingSockets>,
   UnsignedInt,
@@ -611,7 +622,7 @@ final _getRemoteFakeIPForConnection = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_ISteamNetworkingSockets_GetRemoteFakeIPForConnection");
 
-final _createFakeUDPPort = dl.lookupFunction<
+final _createFakeUdpPort = dl.lookupFunction<
     Pointer<SteamNetworkingFakeUdpPort> Function(
   Pointer<SteamNetworkingSockets>,
   Int,
@@ -622,49 +633,49 @@ final _createFakeUDPPort = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworkingSockets_CreateFakeUDPPort");
 
 extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
-  HSteamListenSocket createListenSocketIP(
+  HSteamListenSocket createListenSocketIp(
     Pointer<SteamNetworkingIpAddr> localAddress,
     int nOptions,
     Pointer<SteamNetworkingConfigValue> pOptions,
   ) =>
-      _createListenSocketIP.call(
+      _createListenSocketIp.call(
         this,
         localAddress,
         nOptions,
         pOptions,
       );
 
-  HSteamNetConnection connectByIPAddress(
+  HSteamNetConnection connectByIpAddress(
     Pointer<SteamNetworkingIpAddr> address,
     int nOptions,
     Pointer<SteamNetworkingConfigValue> pOptions,
   ) =>
-      _connectByIPAddress.call(
+      _connectByIpAddress.call(
         this,
         address,
         nOptions,
         pOptions,
       );
 
-  HSteamListenSocket createListenSocketP2P(
+  HSteamListenSocket createListenSocketP2p(
     int nLocalVirtualPort,
     int nOptions,
     Pointer<SteamNetworkingConfigValue> pOptions,
   ) =>
-      _createListenSocketP2P.call(
+      _createListenSocketP2p.call(
         this,
         nLocalVirtualPort,
         nOptions,
         pOptions,
       );
 
-  HSteamNetConnection connectP2P(
+  HSteamNetConnection connectP2p(
     Pointer<SteamNetworkingIdentity> identityRemote,
     int nRemoteVirtualPort,
     int nOptions,
     Pointer<SteamNetworkingConfigValue> pOptions,
   ) =>
-      _connectP2P.call(
+      _connectP2p.call(
         this,
         identityRemote,
         nRemoteVirtualPort,
@@ -684,14 +695,14 @@ extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
     HSteamNetConnection hPeer,
     int nReason,
     Pointer<Utf8> pszDebug,
-    bool bEnableLinger,
+    bool enableLinger,
   ) =>
       _closeConnection.call(
         this,
         hPeer,
         nReason,
         pszDebug,
-        bEnableLinger,
+        enableLinger,
       );
 
   bool closeListenSocket(
@@ -839,7 +850,7 @@ extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
   bool createSocketPair(
     Pointer<UnsignedInt> pOutConnection1,
     Pointer<UnsignedInt> pOutConnection2,
-    bool bUseNetworkLoopback,
+    bool useNetworkLoopback,
     Pointer<SteamNetworkingIdentity> pIdentity1,
     Pointer<SteamNetworkingIdentity> pIdentity2,
   ) =>
@@ -847,7 +858,7 @@ extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
         this,
         pOutConnection1,
         pOutConnection2,
-        bUseNetworkLoopback,
+        useNetworkLoopback,
         pIdentity1,
         pIdentity2,
       );
@@ -962,8 +973,8 @@ extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
         this,
       );
 
-  SteamNetworkingPOPId getHostedDedicatedServerPOPID() =>
-      _getHostedDedicatedServerPOPID.call(
+  SteamNetworkingPopId getHostedDedicatedServerPopId() =>
+      _getHostedDedicatedServerPopId.call(
         this,
       );
 
@@ -999,14 +1010,14 @@ extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
         pBlob,
       );
 
-  HSteamNetConnection connectP2PCustomSignaling(
+  HSteamNetConnection connectP2pCustomSignaling(
     Pointer<SteamNetworkingConnectionSignaling> pSignaling,
     Pointer<SteamNetworkingIdentity> pPeerIdentity,
     int nRemoteVirtualPort,
     int nOptions,
     Pointer<SteamNetworkingConfigValue> pOptions,
   ) =>
-      _connectP2PCustomSignaling.call(
+      _connectP2pCustomSignaling.call(
         this,
         pSignaling,
         pPeerIdentity,
@@ -1015,12 +1026,12 @@ extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
         pOptions,
       );
 
-  bool receivedP2PCustomSignal(
+  bool receivedP2pCustomSignal(
     Pointer<Void> pMsg,
     int cbMsg,
     Pointer<SteamNetworkingSignalingRecvContext> pContext,
   ) =>
-      _receivedP2PCustomSignal.call(
+      _receivedP2pCustomSignal.call(
         this,
         pMsg,
         cbMsg,
@@ -1063,50 +1074,50 @@ extension SteamNetworkingSocketsExtensions on Pointer<SteamNetworkingSockets> {
         this,
       );
 
-  bool beginAsyncRequestFakeIP(
+  bool beginAsyncRequestFakeIp(
     int nNumPorts,
   ) =>
-      _beginAsyncRequestFakeIP.call(
+      _beginAsyncRequestFakeIp.call(
         this,
         nNumPorts,
       );
 
-  void getFakeIP(
+  void getFakeIp(
     int idxFirstPort,
     Pointer<SteamNetworkingFakeIpResult> pInfo,
   ) =>
-      _getFakeIP.call(
+      _getFakeIp.call(
         this,
         idxFirstPort,
         pInfo,
       );
 
-  HSteamListenSocket createListenSocketP2PFakeIP(
+  HSteamListenSocket createListenSocketP2pFakeIp(
     int idxFakePort,
     int nOptions,
     Pointer<SteamNetworkingConfigValue> pOptions,
   ) =>
-      _createListenSocketP2PFakeIP.call(
+      _createListenSocketP2pFakeIp.call(
         this,
         idxFakePort,
         nOptions,
         pOptions,
       );
 
-  EResult getRemoteFakeIPForConnection(
+  EResult getRemoteFakeIpForConnection(
     HSteamNetConnection hConn,
     Pointer<SteamNetworkingIpAddr> pOutAddr,
   ) =>
-      _getRemoteFakeIPForConnection.call(
+      _getRemoteFakeIpForConnection.call(
         this,
         hConn,
         pOutAddr,
       );
 
-  Pointer<SteamNetworkingFakeUdpPort> createFakeUDPPort(
+  Pointer<SteamNetworkingFakeUdpPort> createFakeUdpPort(
     int idxFakeServerPort,
   ) =>
-      _createFakeUDPPort.call(
+      _createFakeUdpPort.call(
         this,
         idxFakeServerPort,
       );

@@ -5,13 +5,13 @@ import "package:ffi/ffi.dart";
 import "../enums/e_result.dart";
 import "../structs/steam_networking_identity.dart";
 
-@Packed(4)
+@Packed(8)
 class SteamNetworkingFakeIpResult extends Struct {
   static const int maxReturnPorts = 8;
   @Int32()
   external EResult result;
 
-  external SteamNetworkingIdentity dentity;
+  external SteamNetworkingIdentity identity;
 
   @UnsignedInt()
   external int ip;

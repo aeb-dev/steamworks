@@ -2,15 +2,18 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_begin_auth_session_result.dart";
 import "../enums/e_duration_control_online_state.dart";
 import "../enums/e_user_has_license_for_app_result.dart";
 import "../enums/e_voice_result.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamUser = dl.lookupFunction<Pointer<SteamUser> Function(),
+    Pointer<SteamUser> Function()>("SteamAPI_SteamUser_v021");
+
 class SteamUser extends Opaque {
-  static Pointer<SteamUser> steamUser() => nullptr;
+  static Pointer<SteamUser> get userInstance => _steamUser();
 }
 
 final _getHSteamUser = dl.lookupFunction<
@@ -29,7 +32,7 @@ final _bLoggedOn = dl.lookupFunction<
   Pointer<SteamUser>,
 )>("SteamAPI_ISteamUser_BLoggedOn");
 
-final _getSteamID = dl.lookupFunction<
+final _getSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUser>,
 ),
@@ -207,7 +210,7 @@ final _userHasLicenseForApp = dl.lookupFunction<
   AppId,
 )>("SteamAPI_ISteamUser_UserHasLicenseForApp");
 
-final _bIsBehindNAT = dl.lookupFunction<
+final _isBehindNat = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUser>,
 ),
@@ -275,7 +278,7 @@ final _getPlayerSteamLevel = dl.lookupFunction<
   Pointer<SteamUser>,
 )>("SteamAPI_ISteamUser_GetPlayerSteamLevel");
 
-final _requestStoreAuthURL = dl.lookupFunction<
+final _requestStoreAuthUrl = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUser>,
   Pointer<Utf8>,
@@ -285,7 +288,7 @@ final _requestStoreAuthURL = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamUser_RequestStoreAuthURL");
 
-final _bIsPhoneVerified = dl.lookupFunction<
+final _isPhoneVerified = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUser>,
 ),
@@ -293,7 +296,7 @@ final _bIsPhoneVerified = dl.lookupFunction<
   Pointer<SteamUser>,
 )>("SteamAPI_ISteamUser_BIsPhoneVerified");
 
-final _bIsTwoFactorEnabled = dl.lookupFunction<
+final _isTwoFactorEnabled = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUser>,
 ),
@@ -301,7 +304,7 @@ final _bIsTwoFactorEnabled = dl.lookupFunction<
   Pointer<SteamUser>,
 )>("SteamAPI_ISteamUser_BIsTwoFactorEnabled");
 
-final _bIsPhoneIdentifying = dl.lookupFunction<
+final _isPhoneIdentifying = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUser>,
 ),
@@ -309,7 +312,7 @@ final _bIsPhoneIdentifying = dl.lookupFunction<
   Pointer<SteamUser>,
 )>("SteamAPI_ISteamUser_BIsPhoneIdentifying");
 
-final _bIsPhoneRequiringVerification = dl.lookupFunction<
+final _isPhoneRequiringVerification = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUser>,
 ),
@@ -352,29 +355,29 @@ extension SteamUserExtensions on Pointer<SteamUser> {
         this,
       );
 
-  CSteamId getSteamID() => _getSteamID.call(
+  CSteamId getSteamId() => _getSteamId.call(
         this,
       );
 
   void trackAppUsageEvent(
-    CGameId gameID,
-    int eAppUsageEvent,
-    Pointer<Utf8> pchExtraInfo,
+    CGameId gameId,
+    int appUsageEvent,
+    Pointer<Utf8> extraInfo,
   ) =>
       _trackAppUsageEvent.call(
         this,
-        gameID,
-        eAppUsageEvent,
-        pchExtraInfo,
+        gameId,
+        appUsageEvent,
+        extraInfo,
       );
 
   bool getUserDataFolder(
-    Pointer<Utf8> pchBuffer,
+    Pointer<Utf8> buffer,
     int cubBuffer,
   ) =>
       _getUserDataFolder.call(
         this,
-        pchBuffer,
+        buffer,
         cubBuffer,
       );
 
@@ -399,11 +402,11 @@ extension SteamUserExtensions on Pointer<SteamUser> {
       );
 
   EVoiceResult getVoice(
-    bool bWantCompressed,
+    bool wantCompressed,
     Pointer<Void> pDestBuffer,
     int cbDestBufferSize,
     Pointer<UnsignedInt> nBytesWritten,
-    bool bWantUncompressedDeprecated,
+    bool wantUncompressedDeprecated,
     Pointer<Void> pUncompressedDestBufferDeprecated,
     int cbUncompressedDestBufferSizeDeprecated,
     Pointer<UnsignedInt> nUncompressBytesWrittenDeprecated,
@@ -411,11 +414,11 @@ extension SteamUserExtensions on Pointer<SteamUser> {
   ) =>
       _getVoice.call(
         this,
-        bWantCompressed,
+        wantCompressed,
         pDestBuffer,
         cbDestBufferSize,
         nBytesWritten,
-        bWantUncompressedDeprecated,
+        wantUncompressedDeprecated,
         pUncompressedDestBufferDeprecated,
         cbUncompressedDestBufferSizeDeprecated,
         nUncompressBytesWrittenDeprecated,
@@ -459,21 +462,21 @@ extension SteamUserExtensions on Pointer<SteamUser> {
   EBeginAuthSessionResult beginAuthSession(
     Pointer<Void> pAuthTicket,
     int cbAuthTicket,
-    CSteamId steamID,
+    CSteamId steamId,
   ) =>
       _beginAuthSession.call(
         this,
         pAuthTicket,
         cbAuthTicket,
-        steamID,
+        steamId,
       );
 
   void endAuthSession(
-    CSteamId steamID,
+    CSteamId steamId,
   ) =>
       _endAuthSession.call(
         this,
-        steamID,
+        steamId,
       );
 
   void cancelAuthTicket(
@@ -485,29 +488,29 @@ extension SteamUserExtensions on Pointer<SteamUser> {
       );
 
   EUserHasLicenseForAppResult userHasLicenseForApp(
-    CSteamId steamID,
-    AppId appID,
+    CSteamId steamId,
+    AppId appId,
   ) =>
       _userHasLicenseForApp.call(
         this,
-        steamID,
-        appID,
+        steamId,
+        appId,
       );
 
-  bool bIsBehindNAT() => _bIsBehindNAT.call(
+  bool isBehindNat() => _isBehindNat.call(
         this,
       );
 
   void advertiseGame(
-    CSteamId steamIDGameServer,
-    int unIPServer,
-    int usPortServer,
+    CSteamId steamIdGameServer,
+    int ipServer,
+    int portServer,
   ) =>
       _advertiseGame.call(
         this,
-        steamIDGameServer,
-        unIPServer,
-        usPortServer,
+        steamIdGameServer,
+        ipServer,
+        portServer,
       );
 
   SteamApiCall requestEncryptedAppTicket(
@@ -534,39 +537,39 @@ extension SteamUserExtensions on Pointer<SteamUser> {
 
   int getGameBadgeLevel(
     int nSeries,
-    bool bFoil,
+    bool foil,
   ) =>
       _getGameBadgeLevel.call(
         this,
         nSeries,
-        bFoil,
+        foil,
       );
 
   int getPlayerSteamLevel() => _getPlayerSteamLevel.call(
         this,
       );
 
-  SteamApiCall requestStoreAuthURL(
-    Pointer<Utf8> pchRedirectURL,
+  SteamApiCall requestStoreAuthUrl(
+    Pointer<Utf8> redirectUrl,
   ) =>
-      _requestStoreAuthURL.call(
+      _requestStoreAuthUrl.call(
         this,
-        pchRedirectURL,
+        redirectUrl,
       );
 
-  bool bIsPhoneVerified() => _bIsPhoneVerified.call(
-        this,
-      );
-
-  bool bIsTwoFactorEnabled() => _bIsTwoFactorEnabled.call(
+  bool isPhoneVerified() => _isPhoneVerified.call(
         this,
       );
 
-  bool bIsPhoneIdentifying() => _bIsPhoneIdentifying.call(
+  bool isTwoFactorEnabled() => _isTwoFactorEnabled.call(
         this,
       );
 
-  bool bIsPhoneRequiringVerification() => _bIsPhoneRequiringVerification.call(
+  bool isPhoneIdentifying() => _isPhoneIdentifying.call(
+        this,
+      );
+
+  bool isPhoneRequiringVerification() => _isPhoneRequiringVerification.call(
         this,
       );
 
@@ -579,10 +582,10 @@ extension SteamUserExtensions on Pointer<SteamUser> {
       );
 
   bool bSetDurationControlOnlineState(
-    EDurationControlOnlineState eNewState,
+    EDurationControlOnlineState newState,
   ) =>
       _bSetDurationControlOnlineState.call(
         this,
-        eNewState,
+        newState,
       );
 }

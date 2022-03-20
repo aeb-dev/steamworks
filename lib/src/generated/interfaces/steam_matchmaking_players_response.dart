@@ -1,6 +1,6 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+import "../dl.dart";
 
 class SteamMatchmakingPlayersResponse extends Opaque {}
 
@@ -37,15 +37,15 @@ final _playersRefreshComplete = dl.lookupFunction<
 extension SteamMatchmakingPlayersResponseExtensions
     on Pointer<SteamMatchmakingPlayersResponse> {
   void addPlayerToList(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     int nScore,
-    double flTimePlayed,
+    double timePlayed,
   ) =>
       _addPlayerToList.call(
         this,
-        pchName,
+        name,
         nScore,
-        flTimePlayed,
+        timePlayed,
       );
 
   void playersFailedToRespond() => _playersFailedToRespond.call(

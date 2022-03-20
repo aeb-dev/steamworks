@@ -2,12 +2,16 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_vr_screenshot_type.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamScreenshots = dl.lookupFunction<
+    Pointer<SteamScreenshots> Function(),
+    Pointer<SteamScreenshots> Function()>("SteamAPI_SteamScreenshots_v003");
+
 class SteamScreenshots extends Opaque {
-  static Pointer<SteamScreenshots> steamScreenshots() => nullptr;
+  static Pointer<SteamScreenshots> get userInstance => _steamScreenshots();
 }
 
 final _writeScreenshot = dl.lookupFunction<
@@ -104,7 +108,7 @@ final _isScreenshotsHooked = dl.lookupFunction<
   Pointer<SteamScreenshots>,
 )>("SteamAPI_ISteamScreenshots_IsScreenshotsHooked");
 
-final _addVRScreenshotToLibrary = dl.lookupFunction<
+final _addVrScreenshotToLibrary = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamScreenshots>,
   Int32,
@@ -134,15 +138,15 @@ extension SteamScreenshotsExtensions on Pointer<SteamScreenshots> {
       );
 
   ScreenshotHandle addScreenshotToLibrary(
-    Pointer<Utf8> pchFilename,
-    Pointer<Utf8> pchThumbnailFilename,
+    Pointer<Utf8> filename,
+    Pointer<Utf8> thumbnailFilename,
     int nWidth,
     int nHeight,
   ) =>
       _addScreenshotToLibrary.call(
         this,
-        pchFilename,
-        pchThumbnailFilename,
+        filename,
+        thumbnailFilename,
         nWidth,
         nHeight,
       );
@@ -152,56 +156,56 @@ extension SteamScreenshotsExtensions on Pointer<SteamScreenshots> {
       );
 
   void hookScreenshots(
-    bool bHook,
+    bool hook,
   ) =>
       _hookScreenshots.call(
         this,
-        bHook,
+        hook,
       );
 
   bool setLocation(
     ScreenshotHandle hScreenshot,
-    Pointer<Utf8> pchLocation,
+    Pointer<Utf8> location,
   ) =>
       _setLocation.call(
         this,
         hScreenshot,
-        pchLocation,
+        location,
       );
 
   bool tagUser(
     ScreenshotHandle hScreenshot,
-    CSteamId steamID,
+    CSteamId steamId,
   ) =>
       _tagUser.call(
         this,
         hScreenshot,
-        steamID,
+        steamId,
       );
 
   bool tagPublishedFile(
     ScreenshotHandle hScreenshot,
-    PublishedFileId unPublishedFileID,
+    PublishedFileId publishedFileId,
   ) =>
       _tagPublishedFile.call(
         this,
         hScreenshot,
-        unPublishedFileID,
+        publishedFileId,
       );
 
   bool isScreenshotsHooked() => _isScreenshotsHooked.call(
         this,
       );
 
-  ScreenshotHandle addVRScreenshotToLibrary(
-    EVrScreenshotType eType,
-    Pointer<Utf8> pchFilename,
-    Pointer<Utf8> pchVRFilename,
+  ScreenshotHandle addVrScreenshotToLibrary(
+    EVrScreenshotType type,
+    Pointer<Utf8> filename,
+    Pointer<Utf8> vrFilename,
   ) =>
-      _addVRScreenshotToLibrary.call(
+      _addVrScreenshotToLibrary.call(
         this,
-        eType,
-        pchFilename,
-        pchVRFilename,
+        type,
+        filename,
+        vrFilename,
       );
 }

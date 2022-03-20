@@ -2,14 +2,14 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlCanGoBackAndForward extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
   @Bool()
-  external bool bCanGoBack;
+  external bool canGoBack;
 
   @Bool()
-  external bool bCanGoForward;
+  external bool canGoForward;
 }

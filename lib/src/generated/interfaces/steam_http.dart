@@ -2,16 +2,23 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_http_method.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamHttp = dl.lookupFunction<Pointer<SteamHttp> Function(),
+    Pointer<SteamHttp> Function()>("SteamAPI_SteamHTTP_v003");
+
+final _steamGameServerHttp = dl.lookupFunction<Pointer<SteamHttp> Function(),
+    Pointer<SteamHttp> Function()>("SteamAPI_SteamGameServerHTTP_v003");
+
 class SteamHttp extends Opaque {
-  static Pointer<SteamHttp> steamHttp() => nullptr;
-  static Pointer<SteamHttp> steamGameServerHttp() => nullptr;
+  static Pointer<SteamHttp> get userInstance => _steamHttp();
+
+  static Pointer<SteamHttp> get serverInstance => _steamGameServerHttp();
 }
 
-final _createHTTPRequest = dl.lookupFunction<
+final _createHttpRequest = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamHttp>,
   Int32,
@@ -23,7 +30,7 @@ final _createHTTPRequest = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamHTTP_CreateHTTPRequest");
 
-final _setHTTPRequestContextValue = dl.lookupFunction<
+final _setHttpRequestContextValue = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -35,7 +42,7 @@ final _setHTTPRequestContextValue = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestContextValue");
 
-final _setHTTPRequestNetworkActivityTimeout = dl.lookupFunction<
+final _setHttpRequestNetworkActivityTimeout = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -47,7 +54,7 @@ final _setHTTPRequestNetworkActivityTimeout = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestNetworkActivityTimeout");
 
-final _setHTTPRequestHeaderValue = dl.lookupFunction<
+final _setHttpRequestHeaderValue = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -61,7 +68,7 @@ final _setHTTPRequestHeaderValue = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestHeaderValue");
 
-final _setHTTPRequestGetOrPostParameter = dl.lookupFunction<
+final _setHttpRequestGetOrPostParameter = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -75,7 +82,7 @@ final _setHTTPRequestGetOrPostParameter = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestGetOrPostParameter");
 
-final _sendHTTPRequest = dl.lookupFunction<
+final _sendHttpRequest = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -87,7 +94,7 @@ final _sendHTTPRequest = dl.lookupFunction<
   Pointer<UnsignedLongLong>,
 )>("SteamAPI_ISteamHTTP_SendHTTPRequest");
 
-final _sendHTTPRequestAndStreamResponse = dl.lookupFunction<
+final _sendHttpRequestAndStreamResponse = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -99,7 +106,7 @@ final _sendHTTPRequestAndStreamResponse = dl.lookupFunction<
   Pointer<UnsignedLongLong>,
 )>("SteamAPI_ISteamHTTP_SendHTTPRequestAndStreamResponse");
 
-final _deferHTTPRequest = dl.lookupFunction<
+final _deferHttpRequest = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -109,7 +116,7 @@ final _deferHTTPRequest = dl.lookupFunction<
   HttpRequestHandle,
 )>("SteamAPI_ISteamHTTP_DeferHTTPRequest");
 
-final _prioritizeHTTPRequest = dl.lookupFunction<
+final _prioritizeHttpRequest = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -119,7 +126,7 @@ final _prioritizeHTTPRequest = dl.lookupFunction<
   HttpRequestHandle,
 )>("SteamAPI_ISteamHTTP_PrioritizeHTTPRequest");
 
-final _getHTTPResponseHeaderSize = dl.lookupFunction<
+final _getHttpResponseHeaderSize = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -133,7 +140,7 @@ final _getHTTPResponseHeaderSize = dl.lookupFunction<
   Pointer<UnsignedInt>,
 )>("SteamAPI_ISteamHTTP_GetHTTPResponseHeaderSize");
 
-final _getHTTPResponseHeaderValue = dl.lookupFunction<
+final _getHttpResponseHeaderValue = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -149,7 +156,7 @@ final _getHTTPResponseHeaderValue = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamHTTP_GetHTTPResponseHeaderValue");
 
-final _getHTTPResponseBodySize = dl.lookupFunction<
+final _getHttpResponseBodySize = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -161,7 +168,7 @@ final _getHTTPResponseBodySize = dl.lookupFunction<
   Pointer<UnsignedInt>,
 )>("SteamAPI_ISteamHTTP_GetHTTPResponseBodySize");
 
-final _getHTTPResponseBodyData = dl.lookupFunction<
+final _getHttpResponseBodyData = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -175,7 +182,7 @@ final _getHTTPResponseBodyData = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamHTTP_GetHTTPResponseBodyData");
 
-final _getHTTPStreamingResponseBodyData = dl.lookupFunction<
+final _getHttpStreamingResponseBodyData = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -191,7 +198,7 @@ final _getHTTPStreamingResponseBodyData = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamHTTP_GetHTTPStreamingResponseBodyData");
 
-final _releaseHTTPRequest = dl.lookupFunction<
+final _releaseHttpRequest = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -201,7 +208,7 @@ final _releaseHTTPRequest = dl.lookupFunction<
   HttpRequestHandle,
 )>("SteamAPI_ISteamHTTP_ReleaseHTTPRequest");
 
-final _getHTTPDownloadProgressPct = dl.lookupFunction<
+final _getHttpDownloadProgressPct = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -213,7 +220,7 @@ final _getHTTPDownloadProgressPct = dl.lookupFunction<
   Pointer<Float>,
 )>("SteamAPI_ISteamHTTP_GetHTTPDownloadProgressPct");
 
-final _setHTTPRequestRawPostBody = dl.lookupFunction<
+final _setHttpRequestRawPostBody = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -265,7 +272,7 @@ final _setCookie = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamHTTP_SetCookie");
 
-final _setHTTPRequestCookieContainer = dl.lookupFunction<
+final _setHttpRequestCookieContainer = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -277,7 +284,7 @@ final _setHTTPRequestCookieContainer = dl.lookupFunction<
   HttpCookieContainerHandle,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestCookieContainer");
 
-final _setHTTPRequestUserAgentInfo = dl.lookupFunction<
+final _setHttpRequestUserAgentInfo = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -289,7 +296,7 @@ final _setHTTPRequestUserAgentInfo = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestUserAgentInfo");
 
-final _setHTTPRequestRequiresVerifiedCertificate = dl.lookupFunction<
+final _setHttpRequestRequiresVerifiedCertificate = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -301,7 +308,7 @@ final _setHTTPRequestRequiresVerifiedCertificate = dl.lookupFunction<
   bool,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestRequiresVerifiedCertificate");
 
-final _setHTTPRequestAbsoluteTimeoutMS = dl.lookupFunction<
+final _setHttpRequestAbsoluteTimeoutMS = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -313,7 +320,7 @@ final _setHTTPRequestAbsoluteTimeoutMS = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamHTTP_SetHTTPRequestAbsoluteTimeoutMS");
 
-final _getHTTPRequestWasTimedOut = dl.lookupFunction<
+final _getHttpRequestWasTimedOut = dl.lookupFunction<
     Bool Function(
   Pointer<SteamHttp>,
   UnsignedInt,
@@ -326,196 +333,196 @@ final _getHTTPRequestWasTimedOut = dl.lookupFunction<
 )>("SteamAPI_ISteamHTTP_GetHTTPRequestWasTimedOut");
 
 extension SteamHttpExtensions on Pointer<SteamHttp> {
-  HttpRequestHandle createHTTPRequest(
-    EHttpMethod eHTTPRequestMethod,
-    Pointer<Utf8> pchAbsoluteURL,
+  HttpRequestHandle createHttpRequest(
+    EHttpMethod httpRequestMethod,
+    Pointer<Utf8> absoluteUrl,
   ) =>
-      _createHTTPRequest.call(
+      _createHttpRequest.call(
         this,
-        eHTTPRequestMethod,
-        pchAbsoluteURL,
+        httpRequestMethod,
+        absoluteUrl,
       );
 
-  bool setHTTPRequestContextValue(
+  bool setHttpRequestContextValue(
     HttpRequestHandle hRequest,
     int ulContextValue,
   ) =>
-      _setHTTPRequestContextValue.call(
+      _setHttpRequestContextValue.call(
         this,
         hRequest,
         ulContextValue,
       );
 
-  bool setHTTPRequestNetworkActivityTimeout(
+  bool setHttpRequestNetworkActivityTimeout(
     HttpRequestHandle hRequest,
-    int unTimeoutSeconds,
+    int timeoutSeconds,
   ) =>
-      _setHTTPRequestNetworkActivityTimeout.call(
+      _setHttpRequestNetworkActivityTimeout.call(
         this,
         hRequest,
-        unTimeoutSeconds,
+        timeoutSeconds,
       );
 
-  bool setHTTPRequestHeaderValue(
+  bool setHttpRequestHeaderValue(
     HttpRequestHandle hRequest,
-    Pointer<Utf8> pchHeaderName,
-    Pointer<Utf8> pchHeaderValue,
+    Pointer<Utf8> headerName,
+    Pointer<Utf8> headerValue,
   ) =>
-      _setHTTPRequestHeaderValue.call(
+      _setHttpRequestHeaderValue.call(
         this,
         hRequest,
-        pchHeaderName,
-        pchHeaderValue,
+        headerName,
+        headerValue,
       );
 
-  bool setHTTPRequestGetOrPostParameter(
+  bool setHttpRequestGetOrPostParameter(
     HttpRequestHandle hRequest,
-    Pointer<Utf8> pchParamName,
-    Pointer<Utf8> pchParamValue,
+    Pointer<Utf8> paramName,
+    Pointer<Utf8> paramValue,
   ) =>
-      _setHTTPRequestGetOrPostParameter.call(
+      _setHttpRequestGetOrPostParameter.call(
         this,
         hRequest,
-        pchParamName,
-        pchParamValue,
+        paramName,
+        paramValue,
       );
 
-  bool sendHTTPRequest(
+  bool sendHttpRequest(
     HttpRequestHandle hRequest,
     Pointer<UnsignedLongLong> pCallHandle,
   ) =>
-      _sendHTTPRequest.call(
+      _sendHttpRequest.call(
         this,
         hRequest,
         pCallHandle,
       );
 
-  bool sendHTTPRequestAndStreamResponse(
+  bool sendHttpRequestAndStreamResponse(
     HttpRequestHandle hRequest,
     Pointer<UnsignedLongLong> pCallHandle,
   ) =>
-      _sendHTTPRequestAndStreamResponse.call(
+      _sendHttpRequestAndStreamResponse.call(
         this,
         hRequest,
         pCallHandle,
       );
 
-  bool deferHTTPRequest(
+  bool deferHttpRequest(
     HttpRequestHandle hRequest,
   ) =>
-      _deferHTTPRequest.call(
+      _deferHttpRequest.call(
         this,
         hRequest,
       );
 
-  bool prioritizeHTTPRequest(
+  bool prioritizeHttpRequest(
     HttpRequestHandle hRequest,
   ) =>
-      _prioritizeHTTPRequest.call(
+      _prioritizeHttpRequest.call(
         this,
         hRequest,
       );
 
-  bool getHTTPResponseHeaderSize(
+  bool getHttpResponseHeaderSize(
     HttpRequestHandle hRequest,
-    Pointer<Utf8> pchHeaderName,
-    Pointer<UnsignedInt> unResponseHeaderSize,
+    Pointer<Utf8> headerName,
+    Pointer<UnsignedInt> responseHeaderSize,
   ) =>
-      _getHTTPResponseHeaderSize.call(
+      _getHttpResponseHeaderSize.call(
         this,
         hRequest,
-        pchHeaderName,
-        unResponseHeaderSize,
+        headerName,
+        responseHeaderSize,
       );
 
-  bool getHTTPResponseHeaderValue(
+  bool getHttpResponseHeaderValue(
     HttpRequestHandle hRequest,
-    Pointer<Utf8> pchHeaderName,
+    Pointer<Utf8> headerName,
     Pointer<UnsignedChar> pHeaderValueBuffer,
-    int unBufferSize,
+    int bufferSize,
   ) =>
-      _getHTTPResponseHeaderValue.call(
+      _getHttpResponseHeaderValue.call(
         this,
         hRequest,
-        pchHeaderName,
+        headerName,
         pHeaderValueBuffer,
-        unBufferSize,
+        bufferSize,
       );
 
-  bool getHTTPResponseBodySize(
+  bool getHttpResponseBodySize(
     HttpRequestHandle hRequest,
-    Pointer<UnsignedInt> unBodySize,
+    Pointer<UnsignedInt> bodySize,
   ) =>
-      _getHTTPResponseBodySize.call(
+      _getHttpResponseBodySize.call(
         this,
         hRequest,
-        unBodySize,
+        bodySize,
       );
 
-  bool getHTTPResponseBodyData(
+  bool getHttpResponseBodyData(
     HttpRequestHandle hRequest,
     Pointer<UnsignedChar> pBodyDataBuffer,
-    int unBufferSize,
+    int bufferSize,
   ) =>
-      _getHTTPResponseBodyData.call(
+      _getHttpResponseBodyData.call(
         this,
         hRequest,
         pBodyDataBuffer,
-        unBufferSize,
+        bufferSize,
       );
 
-  bool getHTTPStreamingResponseBodyData(
+  bool getHttpStreamingResponseBodyData(
     HttpRequestHandle hRequest,
     int cOffset,
     Pointer<UnsignedChar> pBodyDataBuffer,
-    int unBufferSize,
+    int bufferSize,
   ) =>
-      _getHTTPStreamingResponseBodyData.call(
+      _getHttpStreamingResponseBodyData.call(
         this,
         hRequest,
         cOffset,
         pBodyDataBuffer,
-        unBufferSize,
+        bufferSize,
       );
 
-  bool releaseHTTPRequest(
+  bool releaseHttpRequest(
     HttpRequestHandle hRequest,
   ) =>
-      _releaseHTTPRequest.call(
+      _releaseHttpRequest.call(
         this,
         hRequest,
       );
 
-  bool getHTTPDownloadProgressPct(
+  bool getHttpDownloadProgressPct(
     HttpRequestHandle hRequest,
-    Pointer<Float> pflPercentOut,
+    Pointer<Float> percentOut,
   ) =>
-      _getHTTPDownloadProgressPct.call(
+      _getHttpDownloadProgressPct.call(
         this,
         hRequest,
-        pflPercentOut,
+        percentOut,
       );
 
-  bool setHTTPRequestRawPostBody(
+  bool setHttpRequestRawPostBody(
     HttpRequestHandle hRequest,
-    Pointer<Utf8> pchContentType,
+    Pointer<Utf8> contentType,
     Pointer<UnsignedChar> pubBody,
-    int unBodyLen,
+    int bodyLen,
   ) =>
-      _setHTTPRequestRawPostBody.call(
+      _setHttpRequestRawPostBody.call(
         this,
         hRequest,
-        pchContentType,
+        contentType,
         pubBody,
-        unBodyLen,
+        bodyLen,
       );
 
   HttpCookieContainerHandle createCookieContainer(
-    bool bAllowResponsesToModify,
+    bool allowResponsesToModify,
   ) =>
       _createCookieContainer.call(
         this,
-        bAllowResponsesToModify,
+        allowResponsesToModify,
       );
 
   bool releaseCookieContainer(
@@ -528,63 +535,63 @@ extension SteamHttpExtensions on Pointer<SteamHttp> {
 
   bool setCookie(
     HttpCookieContainerHandle hCookieContainer,
-    Pointer<Utf8> pchHost,
-    Pointer<Utf8> pchUrl,
-    Pointer<Utf8> pchCookie,
+    Pointer<Utf8> host,
+    Pointer<Utf8> url,
+    Pointer<Utf8> cookie,
   ) =>
       _setCookie.call(
         this,
         hCookieContainer,
-        pchHost,
-        pchUrl,
-        pchCookie,
+        host,
+        url,
+        cookie,
       );
 
-  bool setHTTPRequestCookieContainer(
+  bool setHttpRequestCookieContainer(
     HttpRequestHandle hRequest,
     HttpCookieContainerHandle hCookieContainer,
   ) =>
-      _setHTTPRequestCookieContainer.call(
+      _setHttpRequestCookieContainer.call(
         this,
         hRequest,
         hCookieContainer,
       );
 
-  bool setHTTPRequestUserAgentInfo(
+  bool setHttpRequestUserAgentInfo(
     HttpRequestHandle hRequest,
-    Pointer<Utf8> pchUserAgentInfo,
+    Pointer<Utf8> userAgentInfo,
   ) =>
-      _setHTTPRequestUserAgentInfo.call(
+      _setHttpRequestUserAgentInfo.call(
         this,
         hRequest,
-        pchUserAgentInfo,
+        userAgentInfo,
       );
 
-  bool setHTTPRequestRequiresVerifiedCertificate(
+  bool setHttpRequestRequiresVerifiedCertificate(
     HttpRequestHandle hRequest,
-    bool bRequireVerifiedCertificate,
+    bool requireVerifiedCertificate,
   ) =>
-      _setHTTPRequestRequiresVerifiedCertificate.call(
+      _setHttpRequestRequiresVerifiedCertificate.call(
         this,
         hRequest,
-        bRequireVerifiedCertificate,
+        requireVerifiedCertificate,
       );
 
-  bool setHTTPRequestAbsoluteTimeoutMS(
+  bool setHttpRequestAbsoluteTimeoutMS(
     HttpRequestHandle hRequest,
-    int unMilliseconds,
+    int milliseconds,
   ) =>
-      _setHTTPRequestAbsoluteTimeoutMS.call(
+      _setHttpRequestAbsoluteTimeoutMS.call(
         this,
         hRequest,
-        unMilliseconds,
+        milliseconds,
       );
 
-  bool getHTTPRequestWasTimedOut(
+  bool getHttpRequestWasTimedOut(
     HttpRequestHandle hRequest,
     Pointer<Bool> pbWasTimedOut,
   ) =>
-      _getHTTPRequestWasTimedOut.call(
+      _getHttpRequestWasTimedOut.call(
         this,
         hRequest,
         pbWasTimedOut,

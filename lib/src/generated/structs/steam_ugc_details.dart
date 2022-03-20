@@ -7,7 +7,7 @@ import "../enums/e_result.dart";
 import "../enums/e_workshop_file_type.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class SteamUgcDetails extends Struct {
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
@@ -60,7 +60,7 @@ class SteamUgcDetails extends Struct {
   @UnsignedLongLong()
   external UgcHandle previewFile;
 
-  external Pointer<Utf8> pchFileName;
+  external Pointer<Utf8> fileName;
 
   @Int()
   external int fileSize;

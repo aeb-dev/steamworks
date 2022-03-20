@@ -2,19 +2,30 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_result.dart";
 import "../enums/e_steam_networking_connection_state.dart";
-import "../steam_api.dart";
 import "../structs/steam_net_connection_info.dart";
 import "../structs/steam_net_connection_real_time_status.dart";
 import "../structs/steam_networking_identity.dart";
 import "../structs/steam_networking_message.dart";
 
+final _steamNetworkingMessagesSteamApi = dl.lookupFunction<
+    Pointer<SteamNetworkingMessages> Function(),
+    Pointer<SteamNetworkingMessages>
+        Function()>("SteamAPI_SteamNetworkingMessages_SteamAPI_v002");
+
+final _steamGameServerNetworkingMessagesSteamApi = dl.lookupFunction<
+    Pointer<SteamNetworkingMessages> Function(),
+    Pointer<SteamNetworkingMessages>
+        Function()>("SteamAPI_SteamGameServerNetworkingMessages_SteamAPI_v002");
+
 class SteamNetworkingMessages extends Opaque {
-  static Pointer<SteamNetworkingMessages> steamNetworkingMessagesSteamApi() =>
-      nullptr;
-  static Pointer<SteamNetworkingMessages>
-      steamGameServerNetworkingMessagesSteamApi() => nullptr;
+  static Pointer<SteamNetworkingMessages> get userInstance =>
+      _steamNetworkingMessagesSteamApi();
+
+  static Pointer<SteamNetworkingMessages> get serverInstance =>
+      _steamGameServerNetworkingMessagesSteamApi();
 }
 
 final _sendMessageToUser = dl.lookupFunction<

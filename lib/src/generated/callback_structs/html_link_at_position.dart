@@ -2,10 +2,10 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlLinkAtPosition extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
   @UnsignedInt()
   external int x;
@@ -13,11 +13,11 @@ class HtmlLinkAtPosition extends Struct {
   @UnsignedInt()
   external int y;
 
-  external Pointer<Utf8> pchUrl;
+  external Pointer<Utf8> url;
 
   @Bool()
-  external bool bInput;
+  external bool input;
 
   @Bool()
-  external bool bLiveLink;
+  external bool liveLink;
 }

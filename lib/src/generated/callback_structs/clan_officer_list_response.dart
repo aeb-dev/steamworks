@@ -8,7 +8,7 @@ class ClanOfficerListResponse extends Struct {
   external CSteamId steamIdClan;
 
   @Int()
-  external int cOfficers;
+  external int officers;
 
   @UnsignedChar()
   external int success;

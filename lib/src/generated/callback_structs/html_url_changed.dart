@@ -2,20 +2,20 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlUrlChanged extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
-  external Pointer<Utf8> pchUrl;
+  external Pointer<Utf8> url;
 
-  external Pointer<Utf8> pchPostData;
-
-  @Bool()
-  external bool bIsRedirect;
-
-  external Pointer<Utf8> pchPageTitle;
+  external Pointer<Utf8> postData;
 
   @Bool()
-  external bool bNewNavigation;
+  external bool isRedirect;
+
+  external Pointer<Utf8> pageTitle;
+
+  @Bool()
+  external bool newNavigation;
 }

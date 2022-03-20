@@ -1,6 +1,6 @@
 import "dart:ffi";
 
-@Packed(4)
+@Packed(8)
 class RemoteStoragePublishFileProgress extends Struct {
   @Double()
   external double dPercentFile;

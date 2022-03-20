@@ -2,23 +2,23 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlHorizontalScroll extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
   @UnsignedInt()
-  external int unScrollMax;
+  external int scrollMax;
 
   @UnsignedInt()
-  external int unScrollCurrent;
+  external int scrollCurrent;
 
   @Float()
-  external double flPageScale;
+  external double pageScale;
 
   @Bool()
-  external bool bVisible;
+  external bool visible;
 
   @UnsignedInt()
-  external int unPageSize;
+  external int pageSize;
 }

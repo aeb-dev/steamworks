@@ -2,14 +2,18 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_lobby_comparison.dart";
 import "../enums/e_lobby_distance_filter.dart";
 import "../enums/e_lobby_type.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamMatchmaking = dl.lookupFunction<
+    Pointer<SteamMatchmaking> Function(),
+    Pointer<SteamMatchmaking> Function()>("SteamAPI_SteamMatchmaking_v009");
+
 class SteamMatchmaking extends Opaque {
-  static Pointer<SteamMatchmaking> steamMatchmaking() => nullptr;
+  static Pointer<SteamMatchmaking> get userInstance => _steamMatchmaking();
 }
 
 final _getFavoriteGameCount = dl.lookupFunction<
@@ -503,8 +507,8 @@ extension SteamMatchmakingExtensions on Pointer<SteamMatchmaking> {
 
   bool getFavoriteGame(
     int iGame,
-    Pointer<UnsignedInt> pnAppID,
-    Pointer<UnsignedInt> pnIP,
+    Pointer<UnsignedInt> pnAppId,
+    Pointer<UnsignedInt> pnIp,
     Pointer<UnsignedShort> pnConnPort,
     Pointer<UnsignedShort> pnQueryPort,
     Pointer<UnsignedInt> punFlags,
@@ -513,8 +517,8 @@ extension SteamMatchmakingExtensions on Pointer<SteamMatchmaking> {
       _getFavoriteGame.call(
         this,
         iGame,
-        pnAppID,
-        pnIP,
+        pnAppId,
+        pnIp,
         pnConnPort,
         pnQueryPort,
         punFlags,
@@ -522,37 +526,37 @@ extension SteamMatchmakingExtensions on Pointer<SteamMatchmaking> {
       );
 
   int addFavoriteGame(
-    AppId nAppID,
-    int nIP,
+    AppId nAppId,
+    int nIp,
     int nConnPort,
     int nQueryPort,
-    int unFlags,
+    int flags,
     int rTime32LastPlayedOnServer,
   ) =>
       _addFavoriteGame.call(
         this,
-        nAppID,
-        nIP,
+        nAppId,
+        nIp,
         nConnPort,
         nQueryPort,
-        unFlags,
+        flags,
         rTime32LastPlayedOnServer,
       );
 
   bool removeFavoriteGame(
-    AppId nAppID,
-    int nIP,
+    AppId nAppId,
+    int nIp,
     int nConnPort,
     int nQueryPort,
-    int unFlags,
+    int flags,
   ) =>
       _removeFavoriteGame.call(
         this,
-        nAppID,
-        nIP,
+        nAppId,
+        nIp,
         nConnPort,
         nQueryPort,
-        unFlags,
+        flags,
       );
 
   SteamApiCall requestLobbyList() => _requestLobbyList.call(
@@ -560,36 +564,36 @@ extension SteamMatchmakingExtensions on Pointer<SteamMatchmaking> {
       );
 
   void addRequestLobbyListStringFilter(
-    Pointer<Utf8> pchKeyToMatch,
-    Pointer<Utf8> pchValueToMatch,
-    ELobbyComparison eComparisonType,
+    Pointer<Utf8> keyToMatch,
+    Pointer<Utf8> valueToMatch,
+    ELobbyComparison comparisonType,
   ) =>
       _addRequestLobbyListStringFilter.call(
         this,
-        pchKeyToMatch,
-        pchValueToMatch,
-        eComparisonType,
+        keyToMatch,
+        valueToMatch,
+        comparisonType,
       );
 
   void addRequestLobbyListNumericalFilter(
-    Pointer<Utf8> pchKeyToMatch,
+    Pointer<Utf8> keyToMatch,
     int nValueToMatch,
-    ELobbyComparison eComparisonType,
+    ELobbyComparison comparisonType,
   ) =>
       _addRequestLobbyListNumericalFilter.call(
         this,
-        pchKeyToMatch,
+        keyToMatch,
         nValueToMatch,
-        eComparisonType,
+        comparisonType,
       );
 
   void addRequestLobbyListNearValueFilter(
-    Pointer<Utf8> pchKeyToMatch,
+    Pointer<Utf8> keyToMatch,
     int nValueToBeCloseTo,
   ) =>
       _addRequestLobbyListNearValueFilter.call(
         this,
-        pchKeyToMatch,
+        keyToMatch,
         nValueToBeCloseTo,
       );
 
@@ -602,11 +606,11 @@ extension SteamMatchmakingExtensions on Pointer<SteamMatchmaking> {
       );
 
   void addRequestLobbyListDistanceFilter(
-    ELobbyDistanceFilter eLobbyDistanceFilter,
+    ELobbyDistanceFilter lobbyDistanceFilter,
   ) =>
       _addRequestLobbyListDistanceFilter.call(
         this,
-        eLobbyDistanceFilter,
+        lobbyDistanceFilter,
       );
 
   void addRequestLobbyListResultCountFilter(
@@ -618,11 +622,11 @@ extension SteamMatchmakingExtensions on Pointer<SteamMatchmaking> {
       );
 
   void addRequestLobbyListCompatibleMembersFilter(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _addRequestLobbyListCompatibleMembersFilter.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   CSteamId getLobbyByIndex(
@@ -634,270 +638,270 @@ extension SteamMatchmakingExtensions on Pointer<SteamMatchmaking> {
       );
 
   SteamApiCall createLobby(
-    ELobbyType eLobbyType,
+    ELobbyType lobbyType,
     int cMaxMembers,
   ) =>
       _createLobby.call(
         this,
-        eLobbyType,
+        lobbyType,
         cMaxMembers,
       );
 
   SteamApiCall joinLobby(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _joinLobby.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   void leaveLobby(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _leaveLobby.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   bool inviteUserToLobby(
-    CSteamId steamIDLobby,
-    CSteamId steamIDInvitee,
+    CSteamId steamIdLobby,
+    CSteamId steamIdInvitee,
   ) =>
       _inviteUserToLobby.call(
         this,
-        steamIDLobby,
-        steamIDInvitee,
+        steamIdLobby,
+        steamIdInvitee,
       );
 
   int getNumLobbyMembers(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _getNumLobbyMembers.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   CSteamId getLobbyMemberByIndex(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
     int iMember,
   ) =>
       _getLobbyMemberByIndex.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
         iMember,
       );
 
   Pointer<Utf8> getLobbyData(
-    CSteamId steamIDLobby,
-    Pointer<Utf8> pchKey,
+    CSteamId steamIdLobby,
+    Pointer<Utf8> key,
   ) =>
       _getLobbyData.call(
         this,
-        steamIDLobby,
-        pchKey,
+        steamIdLobby,
+        key,
       );
 
   bool setLobbyData(
-    CSteamId steamIDLobby,
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
+    CSteamId steamIdLobby,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
   ) =>
       _setLobbyData.call(
         this,
-        steamIDLobby,
-        pchKey,
-        pchValue,
+        steamIdLobby,
+        key,
+        value,
       );
 
   int getLobbyDataCount(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _getLobbyDataCount.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   bool getLobbyDataByIndex(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
     int iLobbyData,
-    Pointer<Utf8> pchKey,
+    Pointer<Utf8> key,
     int cchKeyBufferSize,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> value,
     int cchValueBufferSize,
   ) =>
       _getLobbyDataByIndex.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
         iLobbyData,
-        pchKey,
+        key,
         cchKeyBufferSize,
-        pchValue,
+        value,
         cchValueBufferSize,
       );
 
   bool deleteLobbyData(
-    CSteamId steamIDLobby,
-    Pointer<Utf8> pchKey,
+    CSteamId steamIdLobby,
+    Pointer<Utf8> key,
   ) =>
       _deleteLobbyData.call(
         this,
-        steamIDLobby,
-        pchKey,
+        steamIdLobby,
+        key,
       );
 
   Pointer<Utf8> getLobbyMemberData(
-    CSteamId steamIDLobby,
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchKey,
+    CSteamId steamIdLobby,
+    CSteamId steamIdUser,
+    Pointer<Utf8> key,
   ) =>
       _getLobbyMemberData.call(
         this,
-        steamIDLobby,
-        steamIDUser,
-        pchKey,
+        steamIdLobby,
+        steamIdUser,
+        key,
       );
 
   void setLobbyMemberData(
-    CSteamId steamIDLobby,
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
+    CSteamId steamIdLobby,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
   ) =>
       _setLobbyMemberData.call(
         this,
-        steamIDLobby,
-        pchKey,
-        pchValue,
+        steamIdLobby,
+        key,
+        value,
       );
 
   bool sendLobbyChatMsg(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
     Pointer<Void> pvMsgBody,
     int cubMsgBody,
   ) =>
       _sendLobbyChatMsg.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
         pvMsgBody,
         cubMsgBody,
       );
 
   int getLobbyChatEntry(
-    CSteamId steamIDLobby,
-    int iChatID,
-    Pointer<UnsignedLongLong> pSteamIDUser,
+    CSteamId steamIdLobby,
+    int iChatId,
+    Pointer<UnsignedLongLong> pSteamIdUser,
     Pointer<Void> pvData,
     int cubData,
     Pointer<Int32> peChatEntryType,
   ) =>
       _getLobbyChatEntry.call(
         this,
-        steamIDLobby,
-        iChatID,
-        pSteamIDUser,
+        steamIdLobby,
+        iChatId,
+        pSteamIdUser,
         pvData,
         cubData,
         peChatEntryType,
       );
 
   bool requestLobbyData(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _requestLobbyData.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   void setLobbyGameServer(
-    CSteamId steamIDLobby,
-    int unGameServerIP,
-    int unGameServerPort,
-    CSteamId steamIDGameServer,
+    CSteamId steamIdLobby,
+    int gameServerIp,
+    int gameServerPort,
+    CSteamId steamIdGameServer,
   ) =>
       _setLobbyGameServer.call(
         this,
-        steamIDLobby,
-        unGameServerIP,
-        unGameServerPort,
-        steamIDGameServer,
+        steamIdLobby,
+        gameServerIp,
+        gameServerPort,
+        steamIdGameServer,
       );
 
   bool getLobbyGameServer(
-    CSteamId steamIDLobby,
-    Pointer<UnsignedInt> punGameServerIP,
+    CSteamId steamIdLobby,
+    Pointer<UnsignedInt> punGameServerIp,
     Pointer<UnsignedShort> punGameServerPort,
-    Pointer<UnsignedLongLong> psteamIDGameServer,
+    Pointer<UnsignedLongLong> psteamIdGameServer,
   ) =>
       _getLobbyGameServer.call(
         this,
-        steamIDLobby,
-        punGameServerIP,
+        steamIdLobby,
+        punGameServerIp,
         punGameServerPort,
-        psteamIDGameServer,
+        psteamIdGameServer,
       );
 
   bool setLobbyMemberLimit(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
     int cMaxMembers,
   ) =>
       _setLobbyMemberLimit.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
         cMaxMembers,
       );
 
   int getLobbyMemberLimit(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _getLobbyMemberLimit.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   bool setLobbyType(
-    CSteamId steamIDLobby,
-    ELobbyType eLobbyType,
+    CSteamId steamIdLobby,
+    ELobbyType lobbyType,
   ) =>
       _setLobbyType.call(
         this,
-        steamIDLobby,
-        eLobbyType,
+        steamIdLobby,
+        lobbyType,
       );
 
   bool setLobbyJoinable(
-    CSteamId steamIDLobby,
-    bool bLobbyJoinable,
+    CSteamId steamIdLobby,
+    bool lobbyJoinable,
   ) =>
       _setLobbyJoinable.call(
         this,
-        steamIDLobby,
-        bLobbyJoinable,
+        steamIdLobby,
+        lobbyJoinable,
       );
 
   CSteamId getLobbyOwner(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _getLobbyOwner.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   bool setLobbyOwner(
-    CSteamId steamIDLobby,
-    CSteamId steamIDNewOwner,
+    CSteamId steamIdLobby,
+    CSteamId steamIdNewOwner,
   ) =>
       _setLobbyOwner.call(
         this,
-        steamIDLobby,
-        steamIDNewOwner,
+        steamIdLobby,
+        steamIdNewOwner,
       );
 
   bool setLinkedLobby(
-    CSteamId steamIDLobby,
-    CSteamId steamIDLobbyDependent,
+    CSteamId steamIdLobby,
+    CSteamId steamIdLobbyDependent,
   ) =>
       _setLinkedLobby.call(
         this,
-        steamIDLobby,
-        steamIDLobbyDependent,
+        steamIdLobby,
+        steamIdLobbyDependent,
       );
 }

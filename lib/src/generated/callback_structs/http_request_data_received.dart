@@ -2,7 +2,7 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HttpRequestDataReceived extends Struct {
   @UnsignedInt()
   external HttpRequestHandle request;
@@ -11,8 +11,8 @@ class HttpRequestDataReceived extends Struct {
   external int contextValue;
 
   @UnsignedInt()
-  external int cOffset;
+  external int offset;
 
   @UnsignedInt()
-  external int cBytesReceived;
+  external int bytesReceived;
 }

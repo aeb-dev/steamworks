@@ -2,7 +2,7 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class LeaderboardEntry extends Struct {
   @UnsignedLongLong()
   external CSteamId steamIdUser;
@@ -14,7 +14,7 @@ class LeaderboardEntry extends Struct {
   external int score;
 
   @Int()
-  external int cDetails;
+  external int details;
 
   @UnsignedLongLong()
   external UgcHandle ugc;

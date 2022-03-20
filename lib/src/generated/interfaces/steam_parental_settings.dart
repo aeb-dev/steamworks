@@ -2,15 +2,21 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_parental_feature.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamParentalSettings = dl.lookupFunction<
+    Pointer<SteamParentalSettings> Function(),
+    Pointer<SteamParentalSettings>
+        Function()>("SteamAPI_SteamParentalSettings_v001");
+
 class SteamParentalSettings extends Opaque {
-  static Pointer<SteamParentalSettings> steamParentalSettings() => nullptr;
+  static Pointer<SteamParentalSettings> get userInstance =>
+      _steamParentalSettings();
 }
 
-final _bIsParentalLockEnabled = dl.lookupFunction<
+final _isParentalLockEnabled = dl.lookupFunction<
     Bool Function(
   Pointer<SteamParentalSettings>,
 ),
@@ -18,7 +24,7 @@ final _bIsParentalLockEnabled = dl.lookupFunction<
   Pointer<SteamParentalSettings>,
 )>("SteamAPI_ISteamParentalSettings_BIsParentalLockEnabled");
 
-final _bIsParentalLockLocked = dl.lookupFunction<
+final _isParentalLockLocked = dl.lookupFunction<
     Bool Function(
   Pointer<SteamParentalSettings>,
 ),
@@ -26,7 +32,7 @@ final _bIsParentalLockLocked = dl.lookupFunction<
   Pointer<SteamParentalSettings>,
 )>("SteamAPI_ISteamParentalSettings_BIsParentalLockLocked");
 
-final _bIsAppBlocked = dl.lookupFunction<
+final _isAppBlocked = dl.lookupFunction<
     Bool Function(
   Pointer<SteamParentalSettings>,
   UnsignedInt,
@@ -36,7 +42,7 @@ final _bIsAppBlocked = dl.lookupFunction<
   AppId,
 )>("SteamAPI_ISteamParentalSettings_BIsAppBlocked");
 
-final _bIsAppInBlockList = dl.lookupFunction<
+final _isAppInBlockList = dl.lookupFunction<
     Bool Function(
   Pointer<SteamParentalSettings>,
   UnsignedInt,
@@ -46,7 +52,7 @@ final _bIsAppInBlockList = dl.lookupFunction<
   AppId,
 )>("SteamAPI_ISteamParentalSettings_BIsAppInBlockList");
 
-final _bIsFeatureBlocked = dl.lookupFunction<
+final _isFeatureBlocked = dl.lookupFunction<
     Bool Function(
   Pointer<SteamParentalSettings>,
   Int32,
@@ -56,7 +62,7 @@ final _bIsFeatureBlocked = dl.lookupFunction<
   EParentalFeature,
 )>("SteamAPI_ISteamParentalSettings_BIsFeatureBlocked");
 
-final _bIsFeatureInBlockList = dl.lookupFunction<
+final _isFeatureInBlockList = dl.lookupFunction<
     Bool Function(
   Pointer<SteamParentalSettings>,
   Int32,
@@ -67,43 +73,43 @@ final _bIsFeatureInBlockList = dl.lookupFunction<
 )>("SteamAPI_ISteamParentalSettings_BIsFeatureInBlockList");
 
 extension SteamParentalSettingsExtensions on Pointer<SteamParentalSettings> {
-  bool bIsParentalLockEnabled() => _bIsParentalLockEnabled.call(
+  bool isParentalLockEnabled() => _isParentalLockEnabled.call(
         this,
       );
 
-  bool bIsParentalLockLocked() => _bIsParentalLockLocked.call(
+  bool isParentalLockLocked() => _isParentalLockLocked.call(
         this,
       );
 
-  bool bIsAppBlocked(
-    AppId nAppID,
+  bool isAppBlocked(
+    AppId nAppId,
   ) =>
-      _bIsAppBlocked.call(
+      _isAppBlocked.call(
         this,
-        nAppID,
+        nAppId,
       );
 
-  bool bIsAppInBlockList(
-    AppId nAppID,
+  bool isAppInBlockList(
+    AppId nAppId,
   ) =>
-      _bIsAppInBlockList.call(
+      _isAppInBlockList.call(
         this,
-        nAppID,
+        nAppId,
       );
 
-  bool bIsFeatureBlocked(
-    EParentalFeature eFeature,
+  bool isFeatureBlocked(
+    EParentalFeature feature,
   ) =>
-      _bIsFeatureBlocked.call(
+      _isFeatureBlocked.call(
         this,
-        eFeature,
+        feature,
       );
 
-  bool bIsFeatureInBlockList(
-    EParentalFeature eFeature,
+  bool isFeatureInBlockList(
+    EParentalFeature feature,
   ) =>
-      _bIsFeatureInBlockList.call(
+      _isFeatureInBlockList.call(
         this,
-        eFeature,
+        feature,
       );
 }

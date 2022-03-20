@@ -2,7 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../steam_api.dart";
+import "../dl.dart";
 import "../structs/server_net_adr.dart";
 import "../typedefs.dart";
 
@@ -49,6 +49,7 @@ class GameServerItem extends Struct {
   @Int()
   external int serverVersion;
 
+  // ignore: unused_field
   external Pointer<Utf8> _serverName;
 
   external Pointer<Utf8> gameTags;

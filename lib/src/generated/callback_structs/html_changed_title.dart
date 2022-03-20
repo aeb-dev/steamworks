@@ -2,10 +2,10 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlChangedTitle extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
-  external Pointer<Utf8> pchTitle;
+  external Pointer<Utf8> title;
 }

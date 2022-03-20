@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_market_not_allowed_reason_flags.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class MarketEligibilityResponse extends Struct {
   @Bool()
   external bool allowed;
@@ -12,11 +14,11 @@ class MarketEligibilityResponse extends Struct {
   external EMarketNotAllowedReasonFlags notAllowedReason;
 
   @UnsignedInt()
-  external RTime32 tAllowedAtTime;
+  external RTime32 allowedAtTime;
 
   @Int()
-  external int cdaySteamGuardRequiredDays;
+  external int steamGuardRequiredDays;
 
   @Int()
-  external int cdayNewDeviceCooldown;
+  external int newDeviceCooldown;
 }

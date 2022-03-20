@@ -2,13 +2,16 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_steam_party_beacon_location_data.dart";
-import "../steam_api.dart";
 import "../structs/steam_party_beacon_location.dart";
 import "../typedefs.dart";
 
+final _steamParties = dl.lookupFunction<Pointer<SteamParties> Function(),
+    Pointer<SteamParties> Function()>("SteamAPI_SteamParties_v002");
+
 class SteamParties extends Opaque {
-  static Pointer<SteamParties> steamParties() => nullptr;
+  static Pointer<SteamParties> get userInstance => _steamParties();
 }
 
 final _getNumActiveBeacons = dl.lookupFunction<
@@ -163,35 +166,35 @@ extension SteamPartiesExtensions on Pointer<SteamParties> {
       );
 
   PartyBeaconId getBeaconByIndex(
-    int unIndex,
+    int index,
   ) =>
       _getBeaconByIndex.call(
         this,
-        unIndex,
+        index,
       );
 
   bool getBeaconDetails(
-    PartyBeaconId ulBeaconID,
-    Pointer<UnsignedLongLong> pSteamIDBeaconOwner,
+    PartyBeaconId ulBeaconId,
+    Pointer<UnsignedLongLong> pSteamIdBeaconOwner,
     Pointer<SteamPartyBeaconLocation> pLocation,
-    Pointer<Utf8> pchMetadata,
+    Pointer<Utf8> metadata,
     int cchMetadata,
   ) =>
       _getBeaconDetails.call(
         this,
-        ulBeaconID,
-        pSteamIDBeaconOwner,
+        ulBeaconId,
+        pSteamIdBeaconOwner,
         pLocation,
-        pchMetadata,
+        metadata,
         cchMetadata,
       );
 
   SteamApiCall joinParty(
-    PartyBeaconId ulBeaconID,
+    PartyBeaconId ulBeaconId,
   ) =>
       _joinParty.call(
         this,
-        ulBeaconID,
+        ulBeaconId,
       );
 
   bool getNumAvailableBeaconLocations(
@@ -213,47 +216,47 @@ extension SteamPartiesExtensions on Pointer<SteamParties> {
       );
 
   SteamApiCall createBeacon(
-    int unOpenSlots,
+    int openSlots,
     Pointer<SteamPartyBeaconLocation> pBeaconLocation,
-    Pointer<Utf8> pchConnectString,
-    Pointer<Utf8> pchMetadata,
+    Pointer<Utf8> connectString,
+    Pointer<Utf8> metadata,
   ) =>
       _createBeacon.call(
         this,
-        unOpenSlots,
+        openSlots,
         pBeaconLocation,
-        pchConnectString,
-        pchMetadata,
+        connectString,
+        metadata,
       );
 
   void onReservationCompleted(
     PartyBeaconId ulBeacon,
-    CSteamId steamIDUser,
+    CSteamId steamIdUser,
   ) =>
       _onReservationCompleted.call(
         this,
         ulBeacon,
-        steamIDUser,
+        steamIdUser,
       );
 
   void cancelReservation(
     PartyBeaconId ulBeacon,
-    CSteamId steamIDUser,
+    CSteamId steamIdUser,
   ) =>
       _cancelReservation.call(
         this,
         ulBeacon,
-        steamIDUser,
+        steamIdUser,
       );
 
   SteamApiCall changeNumOpenSlots(
     PartyBeaconId ulBeacon,
-    int unOpenSlots,
+    int openSlots,
   ) =>
       _changeNumOpenSlots.call(
         this,
         ulBeacon,
-        unOpenSlots,
+        openSlots,
       );
 
   bool destroyBeacon(
@@ -265,16 +268,16 @@ extension SteamPartiesExtensions on Pointer<SteamParties> {
       );
 
   bool getBeaconLocationData(
-    SteamPartyBeaconLocation BeaconLocation,
-    ESteamPartyBeaconLocationData eData,
-    Pointer<Utf8> pchDataStringOut,
+    SteamPartyBeaconLocation beaconLocation,
+    ESteamPartyBeaconLocationData data,
+    Pointer<Utf8> dataStringOut,
     int cchDataStringOut,
   ) =>
       _getBeaconLocationData.call(
         this,
-        BeaconLocation,
-        eData,
-        pchDataStringOut,
+        beaconLocation,
+        data,
+        dataStringOut,
         cchDataStringOut,
       );
 }

@@ -1,13 +1,13 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
 
-@Packed(4)
+@Packed(8)
 class LobbyEnter extends Struct {
   @UnsignedLongLong()
   external int steamIdLobby;
 
   @UnsignedInt()
-  external int gfChatPermissions;
+  external int chatPermissions;
 
   @Bool()
   external bool locked;

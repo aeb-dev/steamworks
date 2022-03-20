@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_steam_networking_connection_state.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class SteamNetConnectionRealTimeStatus extends Struct {
   @Int32()
   external ESteamNetworkingConnectionState state;
@@ -42,7 +44,7 @@ class SteamNetConnectionRealTimeStatus extends Struct {
   external int sentUnackedReliableSize;
 
   @LongLong()
-  external SteamNetworkingMicroseconds ecQueueTime;
+  external SteamNetworkingMicroseconds queueTime;
 
   @Array<UnsignedInt>(16)
   external Array<UnsignedInt> reserved;

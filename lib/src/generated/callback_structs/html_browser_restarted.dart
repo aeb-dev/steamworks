@@ -2,11 +2,11 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlBrowserRestarted extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
   @UnsignedInt()
-  external HHtmlBrowser unOldBrowserHandle;
+  external HHtmlBrowser oldBrowserHandle;
 }

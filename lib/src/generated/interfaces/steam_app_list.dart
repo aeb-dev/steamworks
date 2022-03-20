@@ -1,10 +1,13 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+import "../dl.dart";
 import "../typedefs.dart";
 
+final _steamAppList = dl.lookupFunction<Pointer<SteamAppList> Function(),
+    Pointer<SteamAppList> Function()>("SteamAPI_SteamAppList_v001");
+
 class SteamAppList extends Opaque {
-  static Pointer<SteamAppList> steamAppList() => nullptr;
+  static Pointer<SteamAppList> get userInstance => _steamAppList();
 }
 
 final _getNumInstalledApps = dl.lookupFunction<
@@ -71,44 +74,44 @@ extension SteamAppListExtensions on Pointer<SteamAppList> {
       );
 
   int getInstalledApps(
-    Pointer<UnsignedInt> pvecAppID,
-    int unMaxAppIDs,
+    Pointer<UnsignedInt> pvecAppId,
+    int maxAppIds,
   ) =>
       _getInstalledApps.call(
         this,
-        pvecAppID,
-        unMaxAppIDs,
+        pvecAppId,
+        maxAppIds,
       );
 
   int getAppName(
-    AppId nAppID,
-    Pointer<Utf8> pchName,
+    AppId nAppId,
+    Pointer<Utf8> name,
     int cchNameMax,
   ) =>
       _getAppName.call(
         this,
-        nAppID,
-        pchName,
+        nAppId,
+        name,
         cchNameMax,
       );
 
   int getAppInstallDir(
-    AppId nAppID,
-    Pointer<Utf8> pchDirectory,
+    AppId nAppId,
+    Pointer<Utf8> directory,
     int cchNameMax,
   ) =>
       _getAppInstallDir.call(
         this,
-        nAppID,
-        pchDirectory,
+        nAppId,
+        directory,
         cchNameMax,
       );
 
   int getAppBuildId(
-    AppId nAppID,
+    AppId nAppId,
   ) =>
       _getAppBuildId.call(
         this,
-        nAppID,
+        nAppId,
       );
 }

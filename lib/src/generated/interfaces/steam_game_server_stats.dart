@@ -1,10 +1,16 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+import "../dl.dart";
 import "../typedefs.dart";
 
+final _steamGameServerStats = dl.lookupFunction<
+    Pointer<SteamGameServerStats> Function(),
+    Pointer<SteamGameServerStats>
+        Function()>("SteamAPI_SteamGameServerStats_v001");
+
 class SteamGameServerStats extends Opaque {
-  static Pointer<SteamGameServerStats> steamGameServerStats() => nullptr;
+  static Pointer<SteamGameServerStats> get serverInstance =>
+      _steamGameServerStats();
 }
 
 final _requestUserStats = dl.lookupFunction<
@@ -139,112 +145,112 @@ final _storeUserStats = dl.lookupFunction<
 
 extension SteamGameServerStatsExtensions on Pointer<SteamGameServerStats> {
   SteamApiCall requestUserStats(
-    CSteamId steamIDUser,
+    CSteamId steamIdUser,
   ) =>
       _requestUserStats.call(
         this,
-        steamIDUser,
+        steamIdUser,
       );
 
   bool getUserStatInt32(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     Pointer<Int> pData,
   ) =>
       _getUserStatInt32.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         pData,
       );
 
   bool getUserStatFloat(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     Pointer<Float> pData,
   ) =>
       _getUserStatFloat.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         pData,
       );
 
   bool getUserAchievement(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     Pointer<Bool> pbAchieved,
   ) =>
       _getUserAchievement.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         pbAchieved,
       );
 
   bool setUserStatInt32(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     int nData,
   ) =>
       _setUserStatInt32.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         nData,
       );
 
   bool setUserStatFloat(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     double fData,
   ) =>
       _setUserStatFloat.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         fData,
       );
 
   bool updateUserAvgRateStat(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
-    double flCountThisSession,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
+    double countThisSession,
     double dSessionLength,
   ) =>
       _updateUserAvgRateStat.call(
         this,
-        steamIDUser,
-        pchName,
-        flCountThisSession,
+        steamIdUser,
+        name,
+        countThisSession,
         dSessionLength,
       );
 
   bool setUserAchievement(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
   ) =>
       _setUserAchievement.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
       );
 
   bool clearUserAchievement(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
   ) =>
       _clearUserAchievement.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
       );
 
   SteamApiCall storeUserStats(
-    CSteamId steamIDUser,
+    CSteamId steamIdUser,
   ) =>
       _storeUserStats.call(
         this,
-        steamIDUser,
+        steamIdUser,
       );
 }

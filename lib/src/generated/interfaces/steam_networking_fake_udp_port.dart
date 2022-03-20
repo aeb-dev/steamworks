@@ -2,14 +2,14 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_result.dart";
-import "../steam_api.dart";
 import "../structs/steam_networking_ip_addr.dart";
 import "../structs/steam_networking_message.dart";
 
 class SteamNetworkingFakeUdpPort extends Opaque {}
 
-final _destroyFakeUDPPort = dl.lookupFunction<
+final _destroyFakeUdpPort = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingFakeUdpPort>,
 ),
@@ -17,7 +17,7 @@ final _destroyFakeUDPPort = dl.lookupFunction<
   Pointer<SteamNetworkingFakeUdpPort>,
 )>("SteamAPI_ISteamNetworkingFakeUDPPort_DestroyFakeUDPPort");
 
-final _sendMessageToFakeIP = dl.lookupFunction<
+final _sendMessageToFakeIp = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamNetworkingFakeUdpPort>,
   Pointer<SteamNetworkingIpAddr>,
@@ -57,17 +57,17 @@ final _scheduleCleanup = dl.lookupFunction<
 
 extension SteamNetworkingFakeUdpPortExtensions
     on Pointer<SteamNetworkingFakeUdpPort> {
-  void destroyFakeUDPPort() => _destroyFakeUDPPort.call(
+  void destroyFakeUdpPort() => _destroyFakeUdpPort.call(
         this,
       );
 
-  EResult sendMessageToFakeIP(
+  EResult sendMessageToFakeIp(
     Pointer<SteamNetworkingIpAddr> remoteAddress,
     Pointer<Void> pData,
     int cbData,
     int nSendFlags,
   ) =>
-      _sendMessageToFakeIP.call(
+      _sendMessageToFakeIp.call(
         this,
         remoteAddress,
         pData,

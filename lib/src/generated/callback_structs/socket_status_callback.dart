@@ -2,7 +2,7 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class SocketStatusCallback extends Struct {
   @UnsignedInt()
   external SnetSocket socket;

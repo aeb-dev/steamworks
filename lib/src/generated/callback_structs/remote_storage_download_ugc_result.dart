@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class RemoteStorageDownloadUgcResult extends Struct {
   @Int32()
   external EResult result;
@@ -17,7 +19,7 @@ class RemoteStorageDownloadUgcResult extends Struct {
   @Int()
   external int sizeInBytes;
 
-  external Pointer<Utf8> pchFileName;
+  external Pointer<Utf8> fileName;
 
   @UnsignedLongLong()
   external int steamIdOwner;

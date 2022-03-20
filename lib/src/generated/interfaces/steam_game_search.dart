@@ -2,13 +2,16 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_game_search_error_code.dart";
 import "../enums/e_player_result.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamGameSearch = dl.lookupFunction<Pointer<SteamGameSearch> Function(),
+    Pointer<SteamGameSearch> Function()>("SteamAPI_SteamGameSearch_v001");
+
 class SteamGameSearch extends Opaque {
-  static Pointer<SteamGameSearch> steamGameSearch() => nullptr;
+  static Pointer<SteamGameSearch> get userInstance => _steamGameSearch();
 }
 
 final _addGameSearchParams = dl.lookupFunction<
@@ -169,23 +172,23 @@ final _endGame = dl.lookupFunction<
 
 extension SteamGameSearchExtensions on Pointer<SteamGameSearch> {
   EGameSearchErrorCode addGameSearchParams(
-    Pointer<Utf8> pchKeyToFind,
-    Pointer<Utf8> pchValuesToFind,
+    Pointer<Utf8> keyToFind,
+    Pointer<Utf8> valuesToFind,
   ) =>
       _addGameSearchParams.call(
         this,
-        pchKeyToFind,
-        pchValuesToFind,
+        keyToFind,
+        valuesToFind,
       );
 
   EGameSearchErrorCode searchForGameWithLobby(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
     int nPlayerMin,
     int nPlayerMax,
   ) =>
       _searchForGameWithLobby.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
         nPlayerMin,
         nPlayerMax,
       );
@@ -209,14 +212,14 @@ extension SteamGameSearchExtensions on Pointer<SteamGameSearch> {
       );
 
   EGameSearchErrorCode retrieveConnectionDetails(
-    CSteamId steamIDHost,
-    Pointer<Utf8> pchConnectionDetails,
+    CSteamId steamIdHost,
+    Pointer<Utf8> connectionDetails,
     int cubConnectionDetails,
   ) =>
       _retrieveConnectionDetails.call(
         this,
-        steamIDHost,
-        pchConnectionDetails,
+        steamIdHost,
+        connectionDetails,
         cubConnectionDetails,
       );
 
@@ -225,22 +228,22 @@ extension SteamGameSearchExtensions on Pointer<SteamGameSearch> {
       );
 
   EGameSearchErrorCode setGameHostParams(
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
   ) =>
       _setGameHostParams.call(
         this,
-        pchKey,
-        pchValue,
+        key,
+        value,
       );
 
   EGameSearchErrorCode setConnectionDetails(
-    Pointer<Utf8> pchConnectionDetails,
+    Pointer<Utf8> connectionDetails,
     int cubConnectionDetails,
   ) =>
       _setConnectionDetails.call(
         this,
-        pchConnectionDetails,
+        connectionDetails,
         cubConnectionDetails,
       );
 
@@ -257,11 +260,11 @@ extension SteamGameSearchExtensions on Pointer<SteamGameSearch> {
       );
 
   EGameSearchErrorCode hostConfirmGameStart(
-    int ullUniqueGameID,
+    int uniqueGameId,
   ) =>
       _hostConfirmGameStart.call(
         this,
-        ullUniqueGameID,
+        uniqueGameId,
       );
 
   EGameSearchErrorCode cancelRequestPlayersForGame() =>
@@ -270,22 +273,22 @@ extension SteamGameSearchExtensions on Pointer<SteamGameSearch> {
       );
 
   EGameSearchErrorCode submitPlayerResult(
-    int ullUniqueGameID,
-    CSteamId steamIDPlayer,
-    EPlayerResult EPlayerResult,
+    int uniqueGameId,
+    CSteamId steamIdPlayer,
+    EPlayerResult ePlayerResult,
   ) =>
       _submitPlayerResult.call(
         this,
-        ullUniqueGameID,
-        steamIDPlayer,
-        EPlayerResult,
+        uniqueGameId,
+        steamIdPlayer,
+        ePlayerResult,
       );
 
   EGameSearchErrorCode endGame(
-    int ullUniqueGameID,
+    int uniqueGameId,
   ) =>
       _endGame.call(
         this,
-        ullUniqueGameID,
+        uniqueGameId,
       );
 }

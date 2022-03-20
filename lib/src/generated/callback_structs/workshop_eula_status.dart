@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class WorkshopEulaStatus extends Struct {
   @Int32()
   external EResult result;
@@ -15,7 +17,7 @@ class WorkshopEulaStatus extends Struct {
   external int version;
 
   @UnsignedInt()
-  external RTime32 tAction;
+  external RTime32 action;
 
   @Bool()
   external bool accepted;

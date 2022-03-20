@@ -2,11 +2,15 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/audio_playback_status.dart";
-import "../steam_api.dart";
+
+final _steamMusicRemote = dl.lookupFunction<
+    Pointer<SteamMusicRemote> Function(),
+    Pointer<SteamMusicRemote> Function()>("SteamAPI_SteamMusicRemote_v001");
 
 class SteamMusicRemote extends Opaque {
-  static Pointer<SteamMusicRemote> steamMusicRemote() => nullptr;
+  static Pointer<SteamMusicRemote> get userInstance => _steamMusicRemote();
 }
 
 final _registerSteamMusicRemote = dl.lookupFunction<
@@ -27,7 +31,7 @@ final _deregisterSteamMusicRemote = dl.lookupFunction<
   Pointer<SteamMusicRemote>,
 )>("SteamAPI_ISteamMusicRemote_DeregisterSteamMusicRemote");
 
-final _bIsCurrentMusicRemote = dl.lookupFunction<
+final _isCurrentMusicRemote = dl.lookupFunction<
     Bool Function(
   Pointer<SteamMusicRemote>,
 ),
@@ -323,35 +327,35 @@ final _playlistDidChange = dl.lookupFunction<
 
 extension SteamMusicRemoteExtensions on Pointer<SteamMusicRemote> {
   bool registerSteamMusicRemote(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
   ) =>
       _registerSteamMusicRemote.call(
         this,
-        pchName,
+        name,
       );
 
   bool deregisterSteamMusicRemote() => _deregisterSteamMusicRemote.call(
         this,
       );
 
-  bool bIsCurrentMusicRemote() => _bIsCurrentMusicRemote.call(
+  bool isCurrentMusicRemote() => _isCurrentMusicRemote.call(
         this,
       );
 
   bool bActivationSuccess(
-    bool bValue,
+    bool value,
   ) =>
       _bActivationSuccess.call(
         this,
-        bValue,
+        value,
       );
 
   bool setDisplayName(
-    Pointer<Utf8> pchDisplayName,
+    Pointer<Utf8> displayName,
   ) =>
       _setDisplayName.call(
         this,
-        pchDisplayName,
+        displayName,
       );
 
   bool setPNGIcon64x64(
@@ -365,51 +369,51 @@ extension SteamMusicRemoteExtensions on Pointer<SteamMusicRemote> {
       );
 
   bool enablePlayPrevious(
-    bool bValue,
+    bool value,
   ) =>
       _enablePlayPrevious.call(
         this,
-        bValue,
+        value,
       );
 
   bool enablePlayNext(
-    bool bValue,
+    bool value,
   ) =>
       _enablePlayNext.call(
         this,
-        bValue,
+        value,
       );
 
   bool enableShuffled(
-    bool bValue,
+    bool value,
   ) =>
       _enableShuffled.call(
         this,
-        bValue,
+        value,
       );
 
   bool enableLooped(
-    bool bValue,
+    bool value,
   ) =>
       _enableLooped.call(
         this,
-        bValue,
+        value,
       );
 
   bool enableQueue(
-    bool bValue,
+    bool value,
   ) =>
       _enableQueue.call(
         this,
-        bValue,
+        value,
       );
 
   bool enablePlaylists(
-    bool bValue,
+    bool value,
   ) =>
       _enablePlaylists.call(
         this,
-        bValue,
+        value,
       );
 
   bool updatePlaybackStatus(
@@ -421,27 +425,27 @@ extension SteamMusicRemoteExtensions on Pointer<SteamMusicRemote> {
       );
 
   bool updateShuffled(
-    bool bValue,
+    bool value,
   ) =>
       _updateShuffled.call(
         this,
-        bValue,
+        value,
       );
 
   bool updateLooped(
-    bool bValue,
+    bool value,
   ) =>
       _updateLooped.call(
         this,
-        bValue,
+        value,
       );
 
   bool updateVolume(
-    double flValue,
+    double value,
   ) =>
       _updateVolume.call(
         this,
-        flValue,
+        value,
       );
 
   bool currentEntryWillChange() => _currentEntryWillChange.call(
@@ -449,19 +453,19 @@ extension SteamMusicRemoteExtensions on Pointer<SteamMusicRemote> {
       );
 
   bool currentEntryIsAvailable(
-    bool bAvailable,
+    bool available,
   ) =>
       _currentEntryIsAvailable.call(
         this,
-        bAvailable,
+        available,
       );
 
   bool updateCurrentEntryText(
-    Pointer<Utf8> pchText,
+    Pointer<Utf8> text,
   ) =>
       _updateCurrentEntryText.call(
         this,
-        pchText,
+        text,
       );
 
   bool updateCurrentEntryElapsedSeconds(
@@ -495,23 +499,23 @@ extension SteamMusicRemoteExtensions on Pointer<SteamMusicRemote> {
       );
 
   bool setQueueEntry(
-    int nID,
+    int nId,
     int nPosition,
-    Pointer<Utf8> pchEntryText,
+    Pointer<Utf8> entryText,
   ) =>
       _setQueueEntry.call(
         this,
-        nID,
+        nId,
         nPosition,
-        pchEntryText,
+        entryText,
       );
 
   bool setCurrentQueueEntry(
-    int nID,
+    int nId,
   ) =>
       _setCurrentQueueEntry.call(
         this,
-        nID,
+        nId,
       );
 
   bool queueDidChange() => _queueDidChange.call(
@@ -527,23 +531,23 @@ extension SteamMusicRemoteExtensions on Pointer<SteamMusicRemote> {
       );
 
   bool setPlaylistEntry(
-    int nID,
+    int nId,
     int nPosition,
-    Pointer<Utf8> pchEntryText,
+    Pointer<Utf8> entryText,
   ) =>
       _setPlaylistEntry.call(
         this,
-        nID,
+        nId,
         nPosition,
-        pchEntryText,
+        entryText,
       );
 
   bool setCurrentPlaylistEntry(
-    int nID,
+    int nId,
   ) =>
       _setCurrentPlaylistEntry.call(
         this,
-        nID,
+        nId,
       );
 
   bool playlistDidChange() => _playlistDidChange.call(

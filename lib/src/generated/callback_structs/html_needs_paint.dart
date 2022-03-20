@@ -2,40 +2,40 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlNeedsPaint extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
   external Pointer<Utf8> pBGRA;
 
   @UnsignedInt()
-  external int unWide;
+  external int wide;
 
   @UnsignedInt()
-  external int unTall;
+  external int tall;
 
   @UnsignedInt()
-  external int unUpdateX;
+  external int updateX;
 
   @UnsignedInt()
-  external int unUpdateY;
+  external int updateY;
 
   @UnsignedInt()
-  external int unUpdateWide;
+  external int updateWide;
 
   @UnsignedInt()
-  external int unUpdateTall;
+  external int updateTall;
 
   @UnsignedInt()
-  external int unScrollX;
+  external int scrollX;
 
   @UnsignedInt()
-  external int unScrollY;
+  external int scrollY;
 
   @Float()
-  external double flPageScale;
+  external double pageScale;
 
   @UnsignedInt()
-  external int unPageSerial;
+  external int pageSerial;
 }

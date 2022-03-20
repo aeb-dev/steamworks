@@ -1,13 +1,16 @@
 import "dart:ffi";
 
+import "../dl.dart";
 import "../enums/audio_playback_status.dart";
-import "../steam_api.dart";
+
+final _steamMusic = dl.lookupFunction<Pointer<SteamMusic> Function(),
+    Pointer<SteamMusic> Function()>("SteamAPI_SteamMusic_v001");
 
 class SteamMusic extends Opaque {
-  static Pointer<SteamMusic> steamMusic() => nullptr;
+  static Pointer<SteamMusic> get userInstance => _steamMusic();
 }
 
-final _bIsEnabled = dl.lookupFunction<
+final _isEnabled = dl.lookupFunction<
     Bool Function(
   Pointer<SteamMusic>,
 ),
@@ -15,7 +18,7 @@ final _bIsEnabled = dl.lookupFunction<
   Pointer<SteamMusic>,
 )>("SteamAPI_ISteamMusic_BIsEnabled");
 
-final _bIsPlaying = dl.lookupFunction<
+final _isPlaying = dl.lookupFunction<
     Bool Function(
   Pointer<SteamMusic>,
 ),
@@ -82,11 +85,11 @@ final _getVolume = dl.lookupFunction<
 )>("SteamAPI_ISteamMusic_GetVolume");
 
 extension SteamMusicExtensions on Pointer<SteamMusic> {
-  bool bIsEnabled() => _bIsEnabled.call(
+  bool isEnabled() => _isEnabled.call(
         this,
       );
 
-  bool bIsPlaying() => _bIsPlaying.call(
+  bool isPlaying() => _isPlaying.call(
         this,
       );
 
@@ -111,11 +114,11 @@ extension SteamMusicExtensions on Pointer<SteamMusic> {
       );
 
   void setVolume(
-    double flVolume,
+    double volume,
   ) =>
       _setVolume.call(
         this,
-        flVolume,
+        volume,
       );
 
   double getVolume() => _getVolume.call(

@@ -2,6 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_floating_gamepad_text_input_mode.dart";
 import "../enums/e_gamepad_text_input_line_mode.dart";
 import "../enums/e_gamepad_text_input_mode.dart";
@@ -11,12 +12,18 @@ import "../enums/e_steam_ipv6_connectivity_protocol.dart";
 import "../enums/e_steam_ipv6_connectivity_state.dart";
 import "../enums/e_text_filtering_context.dart";
 import "../enums/e_universe.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamUtils = dl.lookupFunction<Pointer<SteamUtils> Function(),
+    Pointer<SteamUtils> Function()>("SteamAPI_SteamUtils_v010");
+
+final _steamGameServerUtils = dl.lookupFunction<Pointer<SteamUtils> Function(),
+    Pointer<SteamUtils> Function()>("SteamAPI_SteamGameServerUtils_v010");
+
 class SteamUtils extends Opaque {
-  static Pointer<SteamUtils> steamUtils() => nullptr;
-  static Pointer<SteamUtils> steamGameServerUtils() => nullptr;
+  static Pointer<SteamUtils> get userInstance => _steamUtils();
+
+  static Pointer<SteamUtils> get serverInstance => _steamGameServerUtils();
 }
 
 final _getSecondsSinceAppActive = dl.lookupFunction<
@@ -51,7 +58,7 @@ final _getServerRealTime = dl.lookupFunction<
   Pointer<SteamUtils>,
 )>("SteamAPI_ISteamUtils_GetServerRealTime");
 
-final _getIPCountry = dl.lookupFunction<
+final _getIpcountry = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<SteamUtils>,
 ),
@@ -95,7 +102,7 @@ final _getCurrentBatteryPower = dl.lookupFunction<
   Pointer<SteamUtils>,
 )>("SteamAPI_ISteamUtils_GetCurrentBatteryPower");
 
-final _getAppID = dl.lookupFunction<
+final _getAppId = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamUtils>,
 ),
@@ -113,7 +120,7 @@ final _setOverlayNotificationPosition = dl.lookupFunction<
   ENotificationPosition,
 )>("SteamAPI_ISteamUtils_SetOverlayNotificationPosition");
 
-final _isAPICallCompleted = dl.lookupFunction<
+final _isApiCallCompleted = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUtils>,
   UnsignedLongLong,
@@ -125,7 +132,7 @@ final _isAPICallCompleted = dl.lookupFunction<
   Pointer<Bool>,
 )>("SteamAPI_ISteamUtils_IsAPICallCompleted");
 
-final _getAPICallFailureReason = dl.lookupFunction<
+final _getApiCallFailureReason = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamUtils>,
   UnsignedLongLong,
@@ -135,7 +142,7 @@ final _getAPICallFailureReason = dl.lookupFunction<
   SteamApiCall,
 )>("SteamAPI_ISteamUtils_GetAPICallFailureReason");
 
-final _getAPICallResult = dl.lookupFunction<
+final _getApiCallResult = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUtils>,
   UnsignedLongLong,
@@ -153,7 +160,7 @@ final _getAPICallResult = dl.lookupFunction<
   Pointer<Bool>,
 )>("SteamAPI_ISteamUtils_GetAPICallResult");
 
-final _getIPCCallCount = dl.lookupFunction<
+final _getIpcCallCount = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamUtils>,
 ),
@@ -233,7 +240,7 @@ final _getSteamUILanguage = dl.lookupFunction<
   Pointer<SteamUtils>,
 )>("SteamAPI_ISteamUtils_GetSteamUILanguage");
 
-final _isSteamRunningInVR = dl.lookupFunction<
+final _isSteamRunningInVr = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUtils>,
 ),
@@ -261,7 +268,7 @@ final _isSteamInBigPictureMode = dl.lookupFunction<
   Pointer<SteamUtils>,
 )>("SteamAPI_ISteamUtils_IsSteamInBigPictureMode");
 
-final _startVRDashboard = dl.lookupFunction<
+final _startVrDashboard = dl.lookupFunction<
     Void Function(
   Pointer<SteamUtils>,
 ),
@@ -269,7 +276,7 @@ final _startVRDashboard = dl.lookupFunction<
   Pointer<SteamUtils>,
 )>("SteamAPI_ISteamUtils_StartVRDashboard");
 
-final _isVRHeadsetStreamingEnabled = dl.lookupFunction<
+final _isVrHeadsetStreamingEnabled = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUtils>,
 ),
@@ -277,7 +284,7 @@ final _isVRHeadsetStreamingEnabled = dl.lookupFunction<
   Pointer<SteamUtils>,
 )>("SteamAPI_ISteamUtils_IsVRHeadsetStreamingEnabled");
 
-final _setVRHeadsetStreamingEnabled = dl.lookupFunction<
+final _setVrHeadsetStreamingEnabled = dl.lookupFunction<
     Void Function(
   Pointer<SteamUtils>,
   Bool,
@@ -323,7 +330,7 @@ final _filterText = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUtils_FilterText");
 
-final _getIPv6ConnectivityState = dl.lookupFunction<
+final _getIpv6ConnectivityState = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamUtils>,
   Int32,
@@ -394,7 +401,7 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
         this,
       );
 
-  Pointer<Utf8> getIPCountry() => _getIPCountry.call(
+  Pointer<Utf8> getIpcountry() => _getIpcountry.call(
         this,
       );
 
@@ -426,53 +433,53 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
         this,
       );
 
-  int getAppID() => _getAppID.call(
+  int getAppId() => _getAppId.call(
         this,
       );
 
   void setOverlayNotificationPosition(
-    ENotificationPosition eNotificationPosition,
+    ENotificationPosition notificationPosition,
   ) =>
       _setOverlayNotificationPosition.call(
         this,
-        eNotificationPosition,
+        notificationPosition,
       );
 
-  bool isAPICallCompleted(
-    SteamApiCall hSteamAPICall,
+  bool isApiCallCompleted(
+    SteamApiCall hSteamApiCall,
     Pointer<Bool> pbFailed,
   ) =>
-      _isAPICallCompleted.call(
+      _isApiCallCompleted.call(
         this,
-        hSteamAPICall,
+        hSteamApiCall,
         pbFailed,
       );
 
-  ESteamApiCallFailure getAPICallFailureReason(
-    SteamApiCall hSteamAPICall,
+  ESteamApiCallFailure getApiCallFailureReason(
+    SteamApiCall hSteamApiCall,
   ) =>
-      _getAPICallFailureReason.call(
+      _getApiCallFailureReason.call(
         this,
-        hSteamAPICall,
+        hSteamApiCall,
       );
 
-  bool getAPICallResult(
-    SteamApiCall hSteamAPICall,
+  bool getApiCallResult(
+    SteamApiCall hSteamApiCall,
     Pointer<Void> pCallback,
     int cubCallback,
     int iCallbackExpected,
     Pointer<Bool> pbFailed,
   ) =>
-      _getAPICallResult.call(
+      _getApiCallResult.call(
         this,
-        hSteamAPICall,
+        hSteamApiCall,
         pCallback,
         cubCallback,
         iCallbackExpected,
         pbFailed,
       );
 
-  int getIPCCallCount() => _getIPCCallCount.call(
+  int getIpcCallCount() => _getIpcCallCount.call(
         this,
       );
 
@@ -493,19 +500,19 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
       );
 
   bool showGamepadTextInput(
-    EGamepadTextInputMode eInputMode,
-    EGamepadTextInputLineMode eLineInputMode,
-    Pointer<Utf8> pchDescription,
-    int unCharMax,
-    Pointer<Utf8> pchExistingText,
+    EGamepadTextInputMode inputMode,
+    EGamepadTextInputLineMode lineInputMode,
+    Pointer<Utf8> description,
+    int charMax,
+    Pointer<Utf8> existingText,
   ) =>
       _showGamepadTextInput.call(
         this,
-        eInputMode,
-        eLineInputMode,
-        pchDescription,
-        unCharMax,
-        pchExistingText,
+        inputMode,
+        lineInputMode,
+        description,
+        charMax,
+        existingText,
       );
 
   int getEnteredGamepadTextLength() => _getEnteredGamepadTextLength.call(
@@ -513,12 +520,12 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
       );
 
   bool getEnteredGamepadTextInput(
-    Pointer<Utf8> pchText,
+    Pointer<Utf8> text,
     int cchText,
   ) =>
       _getEnteredGamepadTextInput.call(
         this,
-        pchText,
+        text,
         cchText,
       );
 
@@ -526,7 +533,7 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
         this,
       );
 
-  bool isSteamRunningInVR() => _isSteamRunningInVR.call(
+  bool isSteamRunningInVr() => _isSteamRunningInVr.call(
         this,
       );
 
@@ -544,20 +551,20 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
         this,
       );
 
-  void startVRDashboard() => _startVRDashboard.call(
+  void startVrDashboard() => _startVrDashboard.call(
         this,
       );
 
-  bool isVRHeadsetStreamingEnabled() => _isVRHeadsetStreamingEnabled.call(
+  bool isVrHeadsetStreamingEnabled() => _isVrHeadsetStreamingEnabled.call(
         this,
       );
 
-  void setVRHeadsetStreamingEnabled(
-    bool bEnabled,
+  void setVrHeadsetStreamingEnabled(
+    bool enabled,
   ) =>
-      _setVRHeadsetStreamingEnabled.call(
+      _setVrHeadsetStreamingEnabled.call(
         this,
-        bEnabled,
+        enabled,
       );
 
   bool isSteamChinaLauncher() => _isSteamChinaLauncher.call(
@@ -565,35 +572,35 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
       );
 
   bool initFilterText(
-    int unFilterOptions,
+    int filterOptions,
   ) =>
       _initFilterText.call(
         this,
-        unFilterOptions,
+        filterOptions,
       );
 
   int filterText(
-    ETextFilteringContext eContext,
-    CSteamId sourceSteamID,
-    Pointer<Utf8> pchInputMessage,
-    Pointer<Utf8> pchOutFilteredText,
+    ETextFilteringContext context,
+    CSteamId sourceSteamId,
+    Pointer<Utf8> inputMessage,
+    Pointer<Utf8> outFilteredText,
     int nByteSizeOutFilteredText,
   ) =>
       _filterText.call(
         this,
-        eContext,
-        sourceSteamID,
-        pchInputMessage,
-        pchOutFilteredText,
+        context,
+        sourceSteamId,
+        inputMessage,
+        outFilteredText,
         nByteSizeOutFilteredText,
       );
 
-  ESteamIpv6ConnectivityState getIPv6ConnectivityState(
-    ESteamIpv6ConnectivityProtocol eProtocol,
+  ESteamIpv6ConnectivityState getIpv6ConnectivityState(
+    ESteamIpv6ConnectivityProtocol protocol,
   ) =>
-      _getIPv6ConnectivityState.call(
+      _getIpv6ConnectivityState.call(
         this,
-        eProtocol,
+        protocol,
       );
 
   bool isSteamRunningOnSteamDeck() => _isSteamRunningOnSteamDeck.call(
@@ -601,7 +608,7 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
       );
 
   bool showFloatingGamepadTextInput(
-    EFloatingGamepadTextInputMode eKeyboardMode,
+    EFloatingGamepadTextInputMode keyboardMode,
     int nTextFieldXPosition,
     int nTextFieldYPosition,
     int nTextFieldWidth,
@@ -609,7 +616,7 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
   ) =>
       _showFloatingGamepadTextInput.call(
         this,
-        eKeyboardMode,
+        keyboardMode,
         nTextFieldXPosition,
         nTextFieldYPosition,
         nTextFieldWidth,
@@ -617,11 +624,11 @@ extension SteamUtilsExtensions on Pointer<SteamUtils> {
       );
 
   void setGameLauncherMode(
-    bool bLauncherMode,
+    bool launcherMode,
   ) =>
       _setGameLauncherMode.call(
         this,
-        bLauncherMode,
+        launcherMode,
       );
 
   bool dismissFloatingGamepadTextInput() =>

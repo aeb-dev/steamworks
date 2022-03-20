@@ -2,6 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_item_preview_type.dart";
 import "../enums/e_item_statistic.dart";
 import "../enums/e_item_update_status.dart";
@@ -11,17 +12,23 @@ import "../enums/e_ugc_query.dart";
 import "../enums/e_user_ugc_list.dart";
 import "../enums/e_user_ugc_list_sort_order.dart";
 import "../enums/e_workshop_file_type.dart";
-import "../steam_api.dart";
 import "../structs/steam_param_string_array.dart";
 import "../structs/steam_ugc_details.dart";
 import "../typedefs.dart";
 
+final _steamUgc = dl.lookupFunction<Pointer<SteamUgc> Function(),
+    Pointer<SteamUgc> Function()>("SteamAPI_SteamUGC_v016");
+
+final _steamGameServerUgc = dl.lookupFunction<Pointer<SteamUgc> Function(),
+    Pointer<SteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v016");
+
 class SteamUgc extends Opaque {
-  static Pointer<SteamUgc> steamUgc() => nullptr;
-  static Pointer<SteamUgc> steamGameServerUgc() => nullptr;
+  static Pointer<SteamUgc> get userInstance => _steamUgc();
+
+  static Pointer<SteamUgc> get serverInstance => _steamGameServerUgc();
 }
 
-final _createQueryUserUGCRequest = dl.lookupFunction<
+final _createQueryUserUgcRequest = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUgc>,
   UnsignedInt,
@@ -43,7 +50,7 @@ final _createQueryUserUGCRequest = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_CreateQueryUserUGCRequest");
 
-final _createQueryAllUGCRequestPage = dl.lookupFunction<
+final _createQueryAllUgcRequestPage = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUgc>,
   Int32,
@@ -61,7 +68,7 @@ final _createQueryAllUGCRequestPage = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_CreateQueryAllUGCRequestPage");
 
-final _createQueryAllUGCRequestCursor = dl.lookupFunction<
+final _createQueryAllUgcRequestCursor = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUgc>,
   Int32,
@@ -79,7 +86,7 @@ final _createQueryAllUGCRequestCursor = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamUGC_CreateQueryAllUGCRequestCursor");
 
-final _createQueryUGCDetailsRequest = dl.lookupFunction<
+final _createQueryUgcDetailsRequest = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUgc>,
   Pointer<UnsignedLongLong>,
@@ -91,7 +98,7 @@ final _createQueryUGCDetailsRequest = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_CreateQueryUGCDetailsRequest");
 
-final _sendQueryUGCRequest = dl.lookupFunction<
+final _sendQueryUgcRequest = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -101,7 +108,7 @@ final _sendQueryUGCRequest = dl.lookupFunction<
   UgcQueryHandle,
 )>("SteamAPI_ISteamUGC_SendQueryUGCRequest");
 
-final _getQueryUGCResult = dl.lookupFunction<
+final _getQueryUgcResult = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -115,7 +122,7 @@ final _getQueryUGCResult = dl.lookupFunction<
   Pointer<SteamUgcDetails>,
 )>("SteamAPI_ISteamUGC_GetQueryUGCResult");
 
-final _getQueryUGCNumTags = dl.lookupFunction<
+final _getQueryUgcNumTags = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -127,7 +134,7 @@ final _getQueryUGCNumTags = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCNumTags");
 
-final _getQueryUGCTag = dl.lookupFunction<
+final _getQueryUgcTag = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -145,7 +152,7 @@ final _getQueryUGCTag = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCTag");
 
-final _getQueryUGCTagDisplayName = dl.lookupFunction<
+final _getQueryUgcTagDisplayName = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -163,7 +170,7 @@ final _getQueryUGCTagDisplayName = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCTagDisplayName");
 
-final _getQueryUGCPreviewURL = dl.lookupFunction<
+final _getQueryUgcPreviewUrl = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -179,7 +186,7 @@ final _getQueryUGCPreviewURL = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCPreviewURL");
 
-final _getQueryUGCMetadata = dl.lookupFunction<
+final _getQueryUgcMetadata = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -195,7 +202,7 @@ final _getQueryUGCMetadata = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCMetadata");
 
-final _getQueryUGCChildren = dl.lookupFunction<
+final _getQueryUgcChildren = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -211,7 +218,7 @@ final _getQueryUGCChildren = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCChildren");
 
-final _getQueryUGCStatistic = dl.lookupFunction<
+final _getQueryUgcStatistic = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -227,7 +234,7 @@ final _getQueryUGCStatistic = dl.lookupFunction<
   Pointer<UnsignedLongLong>,
 )>("SteamAPI_ISteamUGC_GetQueryUGCStatistic");
 
-final _getQueryUGCNumAdditionalPreviews = dl.lookupFunction<
+final _getQueryUgcNumAdditionalPreviews = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -239,7 +246,7 @@ final _getQueryUGCNumAdditionalPreviews = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCNumAdditionalPreviews");
 
-final _getQueryUGCAdditionalPreview = dl.lookupFunction<
+final _getQueryUgcAdditionalPreview = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -263,7 +270,7 @@ final _getQueryUGCAdditionalPreview = dl.lookupFunction<
   Pointer<Int32>,
 )>("SteamAPI_ISteamUGC_GetQueryUGCAdditionalPreview");
 
-final _getQueryUGCNumKeyValueTags = dl.lookupFunction<
+final _getQueryUgcNumKeyValueTags = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -275,7 +282,7 @@ final _getQueryUGCNumKeyValueTags = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCNumKeyValueTags");
 
-final _getQueryUGCKeyValueTag = dl.lookupFunction<
+final _getQueryUgcKeyValueTag = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -297,7 +304,7 @@ final _getQueryUGCKeyValueTag = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryUGCKeyValueTag");
 
-final _getQueryFirstUGCKeyValueTag = dl.lookupFunction<
+final _getQueryFirstUgcKeyValueTag = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -315,7 +322,7 @@ final _getQueryFirstUGCKeyValueTag = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUGC_GetQueryFirstUGCKeyValueTag");
 
-final _releaseQueryUGCRequest = dl.lookupFunction<
+final _releaseQueryUgcRequest = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -361,7 +368,7 @@ final _addExcludedTag = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamUGC_AddExcludedTag");
 
-final _setReturnOnlyIDs = dl.lookupFunction<
+final _setReturnOnlyIds = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -571,7 +578,7 @@ final _addRequiredKeyValueTag = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamUGC_AddRequiredKeyValueTag");
 
-final _requestUGCDetails = dl.lookupFunction<
+final _requestUgcDetails = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUgc>,
   UnsignedLongLong,
@@ -1105,7 +1112,7 @@ final _deleteItem = dl.lookupFunction<
   PublishedFileId,
 )>("SteamAPI_ISteamUGC_DeleteItem");
 
-final _showWorkshopEULA = dl.lookupFunction<
+final _showWorkshopEula = dl.lookupFunction<
     Bool Function(
   Pointer<SteamUgc>,
 ),
@@ -1113,7 +1120,7 @@ final _showWorkshopEULA = dl.lookupFunction<
   Pointer<SteamUgc>,
 )>("SteamAPI_ISteamUGC_ShowWorkshopEULA");
 
-final _getWorkshopEULAStatus = dl.lookupFunction<
+final _getWorkshopEulaStatus = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUgc>,
 ),
@@ -1122,268 +1129,268 @@ final _getWorkshopEULAStatus = dl.lookupFunction<
 )>("SteamAPI_ISteamUGC_GetWorkshopEULAStatus");
 
 extension SteamUgcExtensions on Pointer<SteamUgc> {
-  UgcQueryHandle createQueryUserUGCRequest(
-    AccountId unAccountID,
-    EUserUgcList eListType,
-    EUgcMatchingUgcType eMatchingUGCType,
-    EUserUgcListSortOrder eSortOrder,
-    AppId nCreatorAppID,
-    AppId nConsumerAppID,
-    int unPage,
+  UgcQueryHandle createQueryUserUgcRequest(
+    AccountId accountId,
+    EUserUgcList listType,
+    EUgcMatchingUgcType matchingUgcType,
+    EUserUgcListSortOrder sortOrder,
+    AppId nCreatorAppId,
+    AppId nConsumerAppId,
+    int page,
   ) =>
-      _createQueryUserUGCRequest.call(
+      _createQueryUserUgcRequest.call(
         this,
-        unAccountID,
-        eListType,
-        eMatchingUGCType,
-        eSortOrder,
-        nCreatorAppID,
-        nConsumerAppID,
-        unPage,
+        accountId,
+        listType,
+        matchingUgcType,
+        sortOrder,
+        nCreatorAppId,
+        nConsumerAppId,
+        page,
       );
 
-  UgcQueryHandle createQueryAllUGCRequestPage(
-    EUgcQuery eQueryType,
-    EUgcMatchingUgcType eMatchingeMatchingUGCTypeFileType,
-    AppId nCreatorAppID,
-    AppId nConsumerAppID,
-    int unPage,
+  UgcQueryHandle createQueryAllUgcRequestPage(
+    EUgcQuery queryType,
+    EUgcMatchingUgcType matchingeMatchingUgcTypeFileType,
+    AppId nCreatorAppId,
+    AppId nConsumerAppId,
+    int page,
   ) =>
-      _createQueryAllUGCRequestPage.call(
+      _createQueryAllUgcRequestPage.call(
         this,
-        eQueryType,
-        eMatchingeMatchingUGCTypeFileType,
-        nCreatorAppID,
-        nConsumerAppID,
-        unPage,
+        queryType,
+        matchingeMatchingUgcTypeFileType,
+        nCreatorAppId,
+        nConsumerAppId,
+        page,
       );
 
-  UgcQueryHandle createQueryAllUGCRequestCursor(
-    EUgcQuery eQueryType,
-    EUgcMatchingUgcType eMatchingeMatchingUGCTypeFileType,
-    AppId nCreatorAppID,
-    AppId nConsumerAppID,
-    Pointer<Utf8> pchCursor,
+  UgcQueryHandle createQueryAllUgcRequestCursor(
+    EUgcQuery queryType,
+    EUgcMatchingUgcType matchingeMatchingUgcTypeFileType,
+    AppId nCreatorAppId,
+    AppId nConsumerAppId,
+    Pointer<Utf8> cursor,
   ) =>
-      _createQueryAllUGCRequestCursor.call(
+      _createQueryAllUgcRequestCursor.call(
         this,
-        eQueryType,
-        eMatchingeMatchingUGCTypeFileType,
-        nCreatorAppID,
-        nConsumerAppID,
-        pchCursor,
+        queryType,
+        matchingeMatchingUgcTypeFileType,
+        nCreatorAppId,
+        nConsumerAppId,
+        cursor,
       );
 
-  UgcQueryHandle createQueryUGCDetailsRequest(
-    Pointer<UnsignedLongLong> pvecPublishedFileID,
-    int unNumPublishedFileIDs,
+  UgcQueryHandle createQueryUgcDetailsRequest(
+    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    int numPublishedFileIds,
   ) =>
-      _createQueryUGCDetailsRequest.call(
+      _createQueryUgcDetailsRequest.call(
         this,
-        pvecPublishedFileID,
-        unNumPublishedFileIDs,
+        pvecPublishedFileId,
+        numPublishedFileIds,
       );
 
-  SteamApiCall sendQueryUGCRequest(
+  SteamApiCall sendQueryUgcRequest(
     UgcQueryHandle handle,
   ) =>
-      _sendQueryUGCRequest.call(
+      _sendQueryUgcRequest.call(
         this,
         handle,
       );
 
-  bool getQueryUGCResult(
+  bool getQueryUgcResult(
     UgcQueryHandle handle,
     int index,
     Pointer<SteamUgcDetails> pDetails,
   ) =>
-      _getQueryUGCResult.call(
+      _getQueryUgcResult.call(
         this,
         handle,
         index,
         pDetails,
       );
 
-  int getQueryUGCNumTags(
+  int getQueryUgcNumTags(
     UgcQueryHandle handle,
     int index,
   ) =>
-      _getQueryUGCNumTags.call(
+      _getQueryUgcNumTags.call(
         this,
         handle,
         index,
       );
 
-  bool getQueryUGCTag(
+  bool getQueryUgcTag(
     UgcQueryHandle handle,
     int index,
     int indexTag,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> value,
     int cchValueSize,
   ) =>
-      _getQueryUGCTag.call(
+      _getQueryUgcTag.call(
         this,
         handle,
         index,
         indexTag,
-        pchValue,
+        value,
         cchValueSize,
       );
 
-  bool getQueryUGCTagDisplayName(
+  bool getQueryUgcTagDisplayName(
     UgcQueryHandle handle,
     int index,
     int indexTag,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> value,
     int cchValueSize,
   ) =>
-      _getQueryUGCTagDisplayName.call(
+      _getQueryUgcTagDisplayName.call(
         this,
         handle,
         index,
         indexTag,
-        pchValue,
+        value,
         cchValueSize,
       );
 
-  bool getQueryUGCPreviewURL(
+  bool getQueryUgcPreviewUrl(
     UgcQueryHandle handle,
     int index,
-    Pointer<Utf8> pchURL,
-    int cchURLSize,
+    Pointer<Utf8> url,
+    int cchUrlSize,
   ) =>
-      _getQueryUGCPreviewURL.call(
+      _getQueryUgcPreviewUrl.call(
         this,
         handle,
         index,
-        pchURL,
-        cchURLSize,
+        url,
+        cchUrlSize,
       );
 
-  bool getQueryUGCMetadata(
+  bool getQueryUgcMetadata(
     UgcQueryHandle handle,
     int index,
-    Pointer<Utf8> pchMetadata,
+    Pointer<Utf8> metadata,
     int cchMetadatasize,
   ) =>
-      _getQueryUGCMetadata.call(
+      _getQueryUgcMetadata.call(
         this,
         handle,
         index,
-        pchMetadata,
+        metadata,
         cchMetadatasize,
       );
 
-  bool getQueryUGCChildren(
+  bool getQueryUgcChildren(
     UgcQueryHandle handle,
     int index,
-    Pointer<UnsignedLongLong> pvecPublishedFileID,
+    Pointer<UnsignedLongLong> pvecPublishedFileId,
     int cMaxEntries,
   ) =>
-      _getQueryUGCChildren.call(
+      _getQueryUgcChildren.call(
         this,
         handle,
         index,
-        pvecPublishedFileID,
+        pvecPublishedFileId,
         cMaxEntries,
       );
 
-  bool getQueryUGCStatistic(
+  bool getQueryUgcStatistic(
     UgcQueryHandle handle,
     int index,
-    EItemStatistic eStatType,
+    EItemStatistic statType,
     Pointer<UnsignedLongLong> pStatValue,
   ) =>
-      _getQueryUGCStatistic.call(
+      _getQueryUgcStatistic.call(
         this,
         handle,
         index,
-        eStatType,
+        statType,
         pStatValue,
       );
 
-  int getQueryUGCNumAdditionalPreviews(
+  int getQueryUgcNumAdditionalPreviews(
     UgcQueryHandle handle,
     int index,
   ) =>
-      _getQueryUGCNumAdditionalPreviews.call(
+      _getQueryUgcNumAdditionalPreviews.call(
         this,
         handle,
         index,
       );
 
-  bool getQueryUGCAdditionalPreview(
+  bool getQueryUgcAdditionalPreview(
     UgcQueryHandle handle,
     int index,
     int previewIndex,
-    Pointer<Utf8> pchURLOrVideoID,
-    int cchURLSize,
-    Pointer<Utf8> pchOriginalFileName,
+    Pointer<Utf8> urlOrVideoId,
+    int cchUrlSize,
+    Pointer<Utf8> originalFileName,
     int cchOriginalFileNameSize,
     Pointer<Int32> pPreviewType,
   ) =>
-      _getQueryUGCAdditionalPreview.call(
+      _getQueryUgcAdditionalPreview.call(
         this,
         handle,
         index,
         previewIndex,
-        pchURLOrVideoID,
-        cchURLSize,
-        pchOriginalFileName,
+        urlOrVideoId,
+        cchUrlSize,
+        originalFileName,
         cchOriginalFileNameSize,
         pPreviewType,
       );
 
-  int getQueryUGCNumKeyValueTags(
+  int getQueryUgcNumKeyValueTags(
     UgcQueryHandle handle,
     int index,
   ) =>
-      _getQueryUGCNumKeyValueTags.call(
+      _getQueryUgcNumKeyValueTags.call(
         this,
         handle,
         index,
       );
 
-  bool getQueryUGCKeyValueTag(
+  bool getQueryUgcKeyValueTag(
     UgcQueryHandle handle,
     int index,
     int keyValueTagIndex,
-    Pointer<Utf8> pchKey,
+    Pointer<Utf8> key,
     int cchKeySize,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> value,
     int cchValueSize,
   ) =>
-      _getQueryUGCKeyValueTag.call(
+      _getQueryUgcKeyValueTag.call(
         this,
         handle,
         index,
         keyValueTagIndex,
-        pchKey,
+        key,
         cchKeySize,
-        pchValue,
+        value,
         cchValueSize,
       );
 
-  bool getQueryFirstUGCKeyValueTag(
+  bool getQueryFirstUgcKeyValueTag(
     UgcQueryHandle handle,
     int index,
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
     int cchValueSize,
   ) =>
-      _getQueryFirstUGCKeyValueTag.call(
+      _getQueryFirstUgcKeyValueTag.call(
         this,
         handle,
         index,
-        pchKey,
-        pchValue,
+        key,
+        value,
         cchValueSize,
       );
 
-  bool releaseQueryUGCRequest(
+  bool releaseQueryUgcRequest(
     UgcQueryHandle handle,
   ) =>
-      _releaseQueryUGCRequest.call(
+      _releaseQueryUgcRequest.call(
         this,
         handle,
       );
@@ -1418,104 +1425,104 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
         pTagName,
       );
 
-  bool setReturnOnlyIDs(
+  bool setReturnOnlyIds(
     UgcQueryHandle handle,
-    bool bReturnOnlyIDs,
+    bool returnOnlyIds,
   ) =>
-      _setReturnOnlyIDs.call(
+      _setReturnOnlyIds.call(
         this,
         handle,
-        bReturnOnlyIDs,
+        returnOnlyIds,
       );
 
   bool setReturnKeyValueTags(
     UgcQueryHandle handle,
-    bool bReturnKeyValueTags,
+    bool returnKeyValueTags,
   ) =>
       _setReturnKeyValueTags.call(
         this,
         handle,
-        bReturnKeyValueTags,
+        returnKeyValueTags,
       );
 
   bool setReturnLongDescription(
     UgcQueryHandle handle,
-    bool bReturnLongDescription,
+    bool returnLongDescription,
   ) =>
       _setReturnLongDescription.call(
         this,
         handle,
-        bReturnLongDescription,
+        returnLongDescription,
       );
 
   bool setReturnMetadata(
     UgcQueryHandle handle,
-    bool bReturnMetadata,
+    bool returnMetadata,
   ) =>
       _setReturnMetadata.call(
         this,
         handle,
-        bReturnMetadata,
+        returnMetadata,
       );
 
   bool setReturnChildren(
     UgcQueryHandle handle,
-    bool bReturnChildren,
+    bool returnChildren,
   ) =>
       _setReturnChildren.call(
         this,
         handle,
-        bReturnChildren,
+        returnChildren,
       );
 
   bool setReturnAdditionalPreviews(
     UgcQueryHandle handle,
-    bool bReturnAdditionalPreviews,
+    bool returnAdditionalPreviews,
   ) =>
       _setReturnAdditionalPreviews.call(
         this,
         handle,
-        bReturnAdditionalPreviews,
+        returnAdditionalPreviews,
       );
 
   bool setReturnTotalOnly(
     UgcQueryHandle handle,
-    bool bReturnTotalOnly,
+    bool returnTotalOnly,
   ) =>
       _setReturnTotalOnly.call(
         this,
         handle,
-        bReturnTotalOnly,
+        returnTotalOnly,
       );
 
   bool setReturnPlaytimeStats(
     UgcQueryHandle handle,
-    int unDays,
+    int days,
   ) =>
       _setReturnPlaytimeStats.call(
         this,
         handle,
-        unDays,
+        days,
       );
 
   bool setLanguage(
     UgcQueryHandle handle,
-    Pointer<Utf8> pchLanguage,
+    Pointer<Utf8> language,
   ) =>
       _setLanguage.call(
         this,
         handle,
-        pchLanguage,
+        language,
       );
 
   bool setAllowCachedResponse(
     UgcQueryHandle handle,
-    int unMaxAgeSeconds,
+    int maxAgeSeconds,
   ) =>
       _setAllowCachedResponse.call(
         this,
         handle,
-        unMaxAgeSeconds,
+        maxAgeSeconds,
       );
 
   bool setCloudFileNameFilter(
@@ -1530,12 +1537,12 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
 
   bool setMatchAnyTag(
     UgcQueryHandle handle,
-    bool bMatchAnyTag,
+    bool matchAnyTag,
   ) =>
       _setMatchAnyTag.call(
         this,
         handle,
-        bMatchAnyTag,
+        matchAnyTag,
       );
 
   bool setSearchText(
@@ -1550,12 +1557,12 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
 
   bool setRankedByTrendDays(
     UgcQueryHandle handle,
-    int unDays,
+    int days,
   ) =>
       _setRankedByTrendDays.call(
         this,
         handle,
-        unDays,
+        days,
       );
 
   bool setTimeCreatedDateRange(
@@ -1594,84 +1601,84 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
         pValue,
       );
 
-  SteamApiCall requestUGCDetails(
-    PublishedFileId nPublishedFileID,
-    int unMaxAgeSeconds,
+  SteamApiCall requestUgcDetails(
+    PublishedFileId nPublishedFileId,
+    int maxAgeSeconds,
   ) =>
-      _requestUGCDetails.call(
+      _requestUgcDetails.call(
         this,
-        nPublishedFileID,
-        unMaxAgeSeconds,
+        nPublishedFileId,
+        maxAgeSeconds,
       );
 
   SteamApiCall createItem(
     AppId nConsumerAppId,
-    EWorkshopFileType eFileType,
+    EWorkshopFileType fileType,
   ) =>
       _createItem.call(
         this,
         nConsumerAppId,
-        eFileType,
+        fileType,
       );
 
   UgcUpdateHandle startItemUpdate(
     AppId nConsumerAppId,
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _startItemUpdate.call(
         this,
         nConsumerAppId,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   bool setItemTitle(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pchTitle,
+    Pointer<Utf8> title,
   ) =>
       _setItemTitle.call(
         this,
         handle,
-        pchTitle,
+        title,
       );
 
   bool setItemDescription(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pchDescription,
+    Pointer<Utf8> description,
   ) =>
       _setItemDescription.call(
         this,
         handle,
-        pchDescription,
+        description,
       );
 
   bool setItemUpdateLanguage(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pchLanguage,
+    Pointer<Utf8> language,
   ) =>
       _setItemUpdateLanguage.call(
         this,
         handle,
-        pchLanguage,
+        language,
       );
 
   bool setItemMetadata(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pchMetaData,
+    Pointer<Utf8> metaData,
   ) =>
       _setItemMetadata.call(
         this,
         handle,
-        pchMetaData,
+        metaData,
       );
 
   bool setItemVisibility(
     UgcUpdateHandle handle,
-    ERemoteStoragePublishedFileVisibility eVisibility,
+    ERemoteStoragePublishedFileVisibility visibility,
   ) =>
       _setItemVisibility.call(
         this,
         handle,
-        eVisibility,
+        visibility,
       );
 
   bool setItemTags(
@@ -1706,12 +1713,12 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
 
   bool setAllowLegacyUpload(
     UgcUpdateHandle handle,
-    bool bAllowLegacyUpload,
+    bool allowLegacyUpload,
   ) =>
       _setAllowLegacyUpload.call(
         this,
         handle,
-        bAllowLegacyUpload,
+        allowLegacyUpload,
       );
 
   bool removeAllItemKeyValueTags(
@@ -1724,24 +1731,24 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
 
   bool removeItemKeyValueTags(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pchKey,
+    Pointer<Utf8> key,
   ) =>
       _removeItemKeyValueTags.call(
         this,
         handle,
-        pchKey,
+        key,
       );
 
   bool addItemKeyValueTag(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
   ) =>
       _addItemKeyValueTag.call(
         this,
         handle,
-        pchKey,
-        pchValue,
+        key,
+        value,
       );
 
   bool addItemPreviewFile(
@@ -1758,12 +1765,12 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
 
   bool addItemPreviewVideo(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pszVideoID,
+    Pointer<Utf8> pszVideoId,
   ) =>
       _addItemPreviewVideo.call(
         this,
         handle,
-        pszVideoID,
+        pszVideoId,
       );
 
   bool updateItemPreviewFile(
@@ -1781,13 +1788,13 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
   bool updateItemPreviewVideo(
     UgcUpdateHandle handle,
     int index,
-    Pointer<Utf8> pszVideoID,
+    Pointer<Utf8> pszVideoId,
   ) =>
       _updateItemPreviewVideo.call(
         this,
         handle,
         index,
-        pszVideoID,
+        pszVideoId,
       );
 
   bool removeItemPreview(
@@ -1802,12 +1809,12 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
 
   SteamApiCall submitItemUpdate(
     UgcUpdateHandle handle,
-    Pointer<Utf8> pchChangeNote,
+    Pointer<Utf8> changeNote,
   ) =>
       _submitItemUpdate.call(
         this,
         handle,
-        pchChangeNote,
+        changeNote,
       );
 
   EItemUpdateStatus getItemUpdateProgress(
@@ -1823,57 +1830,57 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
       );
 
   SteamApiCall setUserItemVote(
-    PublishedFileId nPublishedFileID,
-    bool bVoteUp,
+    PublishedFileId nPublishedFileId,
+    bool voteUp,
   ) =>
       _setUserItemVote.call(
         this,
-        nPublishedFileID,
-        bVoteUp,
+        nPublishedFileId,
+        voteUp,
       );
 
   SteamApiCall getUserItemVote(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _getUserItemVote.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   SteamApiCall addItemToFavorites(
     AppId nAppId,
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _addItemToFavorites.call(
         this,
         nAppId,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   SteamApiCall removeItemFromFavorites(
     AppId nAppId,
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _removeItemFromFavorites.call(
         this,
         nAppId,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   SteamApiCall subscribeItem(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _subscribeItem.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   SteamApiCall unsubscribeItem(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _unsubscribeItem.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   int getNumSubscribedItems() => _getNumSubscribedItems.call(
@@ -1881,97 +1888,97 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
       );
 
   int getSubscribedItems(
-    Pointer<UnsignedLongLong> pvecPublishedFileID,
+    Pointer<UnsignedLongLong> pvecPublishedFileId,
     int cMaxEntries,
   ) =>
       _getSubscribedItems.call(
         this,
-        pvecPublishedFileID,
+        pvecPublishedFileId,
         cMaxEntries,
       );
 
   int getItemState(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _getItemState.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   bool getItemInstallInfo(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
     Pointer<UnsignedLongLong> punSizeOnDisk,
-    Pointer<Utf8> pchFolder,
+    Pointer<Utf8> folder,
     int cchFolderSize,
     Pointer<UnsignedInt> punTimeStamp,
   ) =>
       _getItemInstallInfo.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
         punSizeOnDisk,
-        pchFolder,
+        folder,
         cchFolderSize,
         punTimeStamp,
       );
 
   bool getItemDownloadInfo(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
     Pointer<UnsignedLongLong> punBytesDownloaded,
     Pointer<UnsignedLongLong> punBytesTotal,
   ) =>
       _getItemDownloadInfo.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
         punBytesDownloaded,
         punBytesTotal,
       );
 
   bool downloadItem(
-    PublishedFileId nPublishedFileID,
-    bool bHighPriority,
+    PublishedFileId nPublishedFileId,
+    bool highPriority,
   ) =>
       _downloadItem.call(
         this,
-        nPublishedFileID,
-        bHighPriority,
+        nPublishedFileId,
+        highPriority,
       );
 
   bool bInitWorkshopForGameServer(
-    DepotId unWorkshopDepotID,
+    DepotId workshopDepotId,
     Pointer<Utf8> pszFolder,
   ) =>
       _bInitWorkshopForGameServer.call(
         this,
-        unWorkshopDepotID,
+        workshopDepotId,
         pszFolder,
       );
 
   void suspendDownloads(
-    bool bSuspend,
+    bool suspend,
   ) =>
       _suspendDownloads.call(
         this,
-        bSuspend,
+        suspend,
       );
 
   SteamApiCall startPlaytimeTracking(
-    Pointer<UnsignedLongLong> pvecPublishedFileID,
-    int unNumPublishedFileIDs,
+    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    int numPublishedFileIds,
   ) =>
       _startPlaytimeTracking.call(
         this,
-        pvecPublishedFileID,
-        unNumPublishedFileIDs,
+        pvecPublishedFileId,
+        numPublishedFileIds,
       );
 
   SteamApiCall stopPlaytimeTracking(
-    Pointer<UnsignedLongLong> pvecPublishedFileID,
-    int unNumPublishedFileIDs,
+    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    int numPublishedFileIds,
   ) =>
       _stopPlaytimeTracking.call(
         this,
-        pvecPublishedFileID,
-        unNumPublishedFileIDs,
+        pvecPublishedFileId,
+        numPublishedFileIds,
       );
 
   SteamApiCall stopPlaytimeTrackingForAllItems() =>
@@ -1980,66 +1987,66 @@ extension SteamUgcExtensions on Pointer<SteamUgc> {
       );
 
   SteamApiCall addDependency(
-    PublishedFileId nParentPublishedFileID,
-    PublishedFileId nChildPublishedFileID,
+    PublishedFileId nParentPublishedFileId,
+    PublishedFileId nChildPublishedFileId,
   ) =>
       _addDependency.call(
         this,
-        nParentPublishedFileID,
-        nChildPublishedFileID,
+        nParentPublishedFileId,
+        nChildPublishedFileId,
       );
 
   SteamApiCall removeDependency(
-    PublishedFileId nParentPublishedFileID,
-    PublishedFileId nChildPublishedFileID,
+    PublishedFileId nParentPublishedFileId,
+    PublishedFileId nChildPublishedFileId,
   ) =>
       _removeDependency.call(
         this,
-        nParentPublishedFileID,
-        nChildPublishedFileID,
+        nParentPublishedFileId,
+        nChildPublishedFileId,
       );
 
   SteamApiCall addAppDependency(
-    PublishedFileId nPublishedFileID,
-    AppId nAppID,
+    PublishedFileId nPublishedFileId,
+    AppId nAppId,
   ) =>
       _addAppDependency.call(
         this,
-        nPublishedFileID,
-        nAppID,
+        nPublishedFileId,
+        nAppId,
       );
 
   SteamApiCall removeAppDependency(
-    PublishedFileId nPublishedFileID,
-    AppId nAppID,
+    PublishedFileId nPublishedFileId,
+    AppId nAppId,
   ) =>
       _removeAppDependency.call(
         this,
-        nPublishedFileID,
-        nAppID,
+        nPublishedFileId,
+        nAppId,
       );
 
   SteamApiCall getAppDependencies(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _getAppDependencies.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
   SteamApiCall deleteItem(
-    PublishedFileId nPublishedFileID,
+    PublishedFileId nPublishedFileId,
   ) =>
       _deleteItem.call(
         this,
-        nPublishedFileID,
+        nPublishedFileId,
       );
 
-  bool showWorkshopEULA() => _showWorkshopEULA.call(
+  bool showWorkshopEula() => _showWorkshopEula.call(
         this,
       );
 
-  SteamApiCall getWorkshopEULAStatus() => _getWorkshopEULAStatus.call(
+  SteamApiCall getWorkshopEulaStatus() => _getWorkshopEulaStatus.call(
         this,
       );
 }

@@ -2,14 +2,17 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_begin_auth_session_result.dart";
 import "../enums/e_user_has_license_for_app_result.dart";
-import "../steam_api.dart";
 import "../structs/steam_ip_address.dart";
 import "../typedefs.dart";
 
+final _steamGameServer = dl.lookupFunction<Pointer<SteamGameServer> Function(),
+    Pointer<SteamGameServer> Function()>("SteamAPI_SteamGameServer_v014");
+
 class SteamGameServer extends Opaque {
-  static Pointer<SteamGameServer> steamGameServer() => nullptr;
+  static Pointer<SteamGameServer> get serverInstance => _steamGameServer();
 }
 
 final _setProduct = dl.lookupFunction<
@@ -94,7 +97,7 @@ final _bSecure = dl.lookupFunction<
   Pointer<SteamGameServer>,
 )>("SteamAPI_ISteamGameServer_BSecure");
 
-final _getSteamID = dl.lookupFunction<
+final _getSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamGameServer>,
 ),
@@ -328,7 +331,7 @@ final _getServerReputation = dl.lookupFunction<
   Pointer<SteamGameServer>,
 )>("SteamAPI_ISteamGameServer_GetServerReputation");
 
-final _getPublicIP = dl.lookupFunction<
+final _getPublicIp = dl.lookupFunction<
     SteamIpAddress Function(
   Pointer<SteamGameServer>,
 ),
@@ -436,11 +439,11 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
       );
 
   void setDedicatedServer(
-    bool bDedicated,
+    bool dedicated,
   ) =>
       _setDedicatedServer.call(
         this,
-        bDedicated,
+        dedicated,
       );
 
   void logOn(
@@ -467,7 +470,7 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
         this,
       );
 
-  CSteamId getSteamID() => _getSteamID.call(
+  CSteamId getSteamId() => _getSteamId.call(
         this,
       );
 
@@ -508,19 +511,19 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
       );
 
   void setPasswordProtected(
-    bool bPasswordProtected,
+    bool passwordProtected,
   ) =>
       _setPasswordProtected.call(
         this,
-        bPasswordProtected,
+        passwordProtected,
       );
 
   void setSpectatorPort(
-    int unSpectatorPort,
+    int spectatorPort,
   ) =>
       _setSpectatorPort.call(
         this,
-        unSpectatorPort,
+        spectatorPort,
       );
 
   void setSpectatorServerName(
@@ -546,19 +549,19 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
       );
 
   void setGameTags(
-    Pointer<Utf8> pchGameTags,
+    Pointer<Utf8> gameTags,
   ) =>
       _setGameTags.call(
         this,
-        pchGameTags,
+        gameTags,
       );
 
   void setGameData(
-    Pointer<Utf8> pchGameData,
+    Pointer<Utf8> gameData,
   ) =>
       _setGameData.call(
         this,
-        pchGameData,
+        gameData,
       );
 
   void setRegion(
@@ -570,11 +573,11 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
       );
 
   void setAdvertiseServerActive(
-    bool bActive,
+    bool active,
   ) =>
       _setAdvertiseServerActive.call(
         this,
-        bActive,
+        active,
       );
 
   HAuthTicket getAuthSessionTicket(
@@ -592,21 +595,21 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
   EBeginAuthSessionResult beginAuthSession(
     Pointer<Void> pAuthTicket,
     int cbAuthTicket,
-    CSteamId steamID,
+    CSteamId steamId,
   ) =>
       _beginAuthSession.call(
         this,
         pAuthTicket,
         cbAuthTicket,
-        steamID,
+        steamId,
       );
 
   void endAuthSession(
-    CSteamId steamID,
+    CSteamId steamId,
   ) =>
       _endAuthSession.call(
         this,
-        steamID,
+        steamId,
       );
 
   void cancelAuthTicket(
@@ -618,23 +621,23 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
       );
 
   EUserHasLicenseForAppResult userHasLicenseForApp(
-    CSteamId steamID,
-    AppId appID,
+    CSteamId steamId,
+    AppId appId,
   ) =>
       _userHasLicenseForApp.call(
         this,
-        steamID,
-        appID,
+        steamId,
+        appId,
       );
 
   bool requestUserGroupStatus(
-    CSteamId steamIDUser,
-    CSteamId steamIDGroup,
+    CSteamId steamIdUser,
+    CSteamId steamIdGroup,
   ) =>
       _requestUserGroupStatus.call(
         this,
-        steamIDUser,
-        steamIDGroup,
+        steamIdUser,
+        steamIdGroup,
       );
 
   void getGameplayStats() => _getGameplayStats.call(
@@ -645,21 +648,21 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
         this,
       );
 
-  SteamIpAddress getPublicIP() => _getPublicIP.call(
+  SteamIpAddress getPublicIp() => _getPublicIp.call(
         this,
       );
 
   bool handleIncomingPacket(
     Pointer<Void> pData,
     int cbData,
-    int srcIP,
+    int srcIp,
     int srcPort,
   ) =>
       _handleIncomingPacket.call(
         this,
         pData,
         cbData,
-        srcIP,
+        srcIp,
         srcPort,
       );
 
@@ -678,19 +681,19 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
       );
 
   SteamApiCall associateWithClan(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _associateWithClan.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   SteamApiCall computeNewPlayerCompatibility(
-    CSteamId steamIDNewPlayer,
+    CSteamId steamIdNewPlayer,
   ) =>
       _computeNewPlayerCompatibility.call(
         this,
-        steamIDNewPlayer,
+        steamIdNewPlayer,
       );
 
   CSteamId createUnauthenticatedUserConnection() =>
@@ -699,14 +702,14 @@ extension SteamGameServerExtensions on Pointer<SteamGameServer> {
       );
 
   bool bUpdateUserData(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchPlayerName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> playerName,
     int uScore,
   ) =>
       _bUpdateUserData.call(
         this,
-        steamIDUser,
-        pchPlayerName,
+        steamIdUser,
+        playerName,
         uScore,
       );
 }

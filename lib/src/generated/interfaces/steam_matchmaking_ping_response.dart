@@ -1,6 +1,6 @@
 import "dart:ffi";
 
-import "../steam_api.dart";
+import "../dl.dart";
 import "../structs/game_server_item.dart";
 
 class SteamMatchmakingPingResponse extends Opaque {}

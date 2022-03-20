@@ -2,19 +2,29 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_p2p_send.dart";
 import "../enums/e_snet_socket_connection_type.dart";
-import "../steam_api.dart";
 import "../structs/p2p_session_state.dart";
 import "../structs/steam_ip_address.dart";
 import "../typedefs.dart";
 
+final _steamNetworking = dl.lookupFunction<Pointer<SteamNetworking> Function(),
+    Pointer<SteamNetworking> Function()>("SteamAPI_SteamNetworking_v006");
+
+final _steamGameServerNetworking = dl.lookupFunction<
+    Pointer<SteamNetworking> Function(),
+    Pointer<SteamNetworking>
+        Function()>("SteamAPI_SteamGameServerNetworking_v006");
+
 class SteamNetworking extends Opaque {
-  static Pointer<SteamNetworking> steamNetworking() => nullptr;
-  static Pointer<SteamNetworking> steamGameServerNetworking() => nullptr;
+  static Pointer<SteamNetworking> get userInstance => _steamNetworking();
+
+  static Pointer<SteamNetworking> get serverInstance =>
+      _steamGameServerNetworking();
 }
 
-final _sendP2PPacket = dl.lookupFunction<
+final _sendP2pPacket = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   UnsignedLongLong,
@@ -32,7 +42,7 @@ final _sendP2PPacket = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamNetworking_SendP2PPacket");
 
-final _isP2PPacketAvailable = dl.lookupFunction<
+final _isP2pPacketAvailable = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   Pointer<UnsignedInt>,
@@ -44,7 +54,7 @@ final _isP2PPacketAvailable = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamNetworking_IsP2PPacketAvailable");
 
-final _readP2PPacket = dl.lookupFunction<
+final _readP2pPacket = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   Pointer<Void>,
@@ -62,7 +72,7 @@ final _readP2PPacket = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamNetworking_ReadP2PPacket");
 
-final _acceptP2PSessionWithUser = dl.lookupFunction<
+final _acceptP2pSessionWithUser = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   UnsignedLongLong,
@@ -72,7 +82,7 @@ final _acceptP2PSessionWithUser = dl.lookupFunction<
   CSteamId,
 )>("SteamAPI_ISteamNetworking_AcceptP2PSessionWithUser");
 
-final _closeP2PSessionWithUser = dl.lookupFunction<
+final _closeP2pSessionWithUser = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   UnsignedLongLong,
@@ -82,7 +92,7 @@ final _closeP2PSessionWithUser = dl.lookupFunction<
   CSteamId,
 )>("SteamAPI_ISteamNetworking_CloseP2PSessionWithUser");
 
-final _closeP2PChannelWithUser = dl.lookupFunction<
+final _closeP2pChannelWithUser = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   UnsignedLongLong,
@@ -94,7 +104,7 @@ final _closeP2PChannelWithUser = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamNetworking_CloseP2PChannelWithUser");
 
-final _getP2PSessionState = dl.lookupFunction<
+final _getP2pSessionState = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   UnsignedLongLong,
@@ -106,7 +116,7 @@ final _getP2PSessionState = dl.lookupFunction<
   Pointer<P2pSessionState>,
 )>("SteamAPI_ISteamNetworking_GetP2PSessionState");
 
-final _allowP2PPacketRelay = dl.lookupFunction<
+final _allowP2pPacketRelay = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworking>,
   Bool,
@@ -132,7 +142,7 @@ final _createListenSocket = dl.lookupFunction<
   bool,
 )>("SteamAPI_ISteamNetworking_CreateListenSocket");
 
-final _createP2PConnectionSocket = dl.lookupFunction<
+final _createP2pConnectionSocket = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworking>,
   UnsignedLongLong,
@@ -315,164 +325,164 @@ final _getMaxPacketSize = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworking_GetMaxPacketSize");
 
 extension SteamNetworkingExtensions on Pointer<SteamNetworking> {
-  bool sendP2PPacket(
-    CSteamId steamIDRemote,
+  bool sendP2pPacket(
+    CSteamId steamIdRemote,
     Pointer<Void> pubData,
     int cubData,
-    EP2pSend eP2PSendType,
+    EP2pSend p2pSendType,
     int nChannel,
   ) =>
-      _sendP2PPacket.call(
+      _sendP2pPacket.call(
         this,
-        steamIDRemote,
+        steamIdRemote,
         pubData,
         cubData,
-        eP2PSendType,
+        p2pSendType,
         nChannel,
       );
 
-  bool isP2PPacketAvailable(
+  bool isP2pPacketAvailable(
     Pointer<UnsignedInt> pcubMsgSize,
     int nChannel,
   ) =>
-      _isP2PPacketAvailable.call(
+      _isP2pPacketAvailable.call(
         this,
         pcubMsgSize,
         nChannel,
       );
 
-  bool readP2PPacket(
+  bool readP2pPacket(
     Pointer<Void> pubDest,
     int cubDest,
     Pointer<UnsignedInt> pcubMsgSize,
-    Pointer<UnsignedLongLong> psteamIDRemote,
+    Pointer<UnsignedLongLong> psteamIdRemote,
     int nChannel,
   ) =>
-      _readP2PPacket.call(
+      _readP2pPacket.call(
         this,
         pubDest,
         cubDest,
         pcubMsgSize,
-        psteamIDRemote,
+        psteamIdRemote,
         nChannel,
       );
 
-  bool acceptP2PSessionWithUser(
-    CSteamId steamIDRemote,
+  bool acceptP2pSessionWithUser(
+    CSteamId steamIdRemote,
   ) =>
-      _acceptP2PSessionWithUser.call(
+      _acceptP2pSessionWithUser.call(
         this,
-        steamIDRemote,
+        steamIdRemote,
       );
 
-  bool closeP2PSessionWithUser(
-    CSteamId steamIDRemote,
+  bool closeP2pSessionWithUser(
+    CSteamId steamIdRemote,
   ) =>
-      _closeP2PSessionWithUser.call(
+      _closeP2pSessionWithUser.call(
         this,
-        steamIDRemote,
+        steamIdRemote,
       );
 
-  bool closeP2PChannelWithUser(
-    CSteamId steamIDRemote,
+  bool closeP2pChannelWithUser(
+    CSteamId steamIdRemote,
     int nChannel,
   ) =>
-      _closeP2PChannelWithUser.call(
+      _closeP2pChannelWithUser.call(
         this,
-        steamIDRemote,
+        steamIdRemote,
         nChannel,
       );
 
-  bool getP2PSessionState(
-    CSteamId steamIDRemote,
+  bool getP2pSessionState(
+    CSteamId steamIdRemote,
     Pointer<P2pSessionState> pConnectionState,
   ) =>
-      _getP2PSessionState.call(
+      _getP2pSessionState.call(
         this,
-        steamIDRemote,
+        steamIdRemote,
         pConnectionState,
       );
 
-  bool allowP2PPacketRelay(
-    bool bAllow,
+  bool allowP2pPacketRelay(
+    bool allow,
   ) =>
-      _allowP2PPacketRelay.call(
+      _allowP2pPacketRelay.call(
         this,
-        bAllow,
+        allow,
       );
 
   SnetListenSocket createListenSocket(
-    int nVirtualP2PPort,
-    SteamIpAddress nIP,
+    int nVirtualP2pPort,
+    SteamIpAddress nIp,
     int nPort,
-    bool bAllowUseOfPacketRelay,
+    bool allowUseOfPacketRelay,
   ) =>
       _createListenSocket.call(
         this,
-        nVirtualP2PPort,
-        nIP,
+        nVirtualP2pPort,
+        nIp,
         nPort,
-        bAllowUseOfPacketRelay,
+        allowUseOfPacketRelay,
       );
 
-  SnetSocket createP2PConnectionSocket(
-    CSteamId steamIDTarget,
+  SnetSocket createP2pConnectionSocket(
+    CSteamId steamIdTarget,
     int nVirtualPort,
     int nTimeoutSec,
-    bool bAllowUseOfPacketRelay,
+    bool allowUseOfPacketRelay,
   ) =>
-      _createP2PConnectionSocket.call(
+      _createP2pConnectionSocket.call(
         this,
-        steamIDTarget,
+        steamIdTarget,
         nVirtualPort,
         nTimeoutSec,
-        bAllowUseOfPacketRelay,
+        allowUseOfPacketRelay,
       );
 
   SnetSocket createConnectionSocket(
-    SteamIpAddress nIP,
+    SteamIpAddress nIp,
     int nPort,
     int nTimeoutSec,
   ) =>
       _createConnectionSocket.call(
         this,
-        nIP,
+        nIp,
         nPort,
         nTimeoutSec,
       );
 
   bool destroySocket(
     SnetSocket hSocket,
-    bool bNotifyRemoteEnd,
+    bool notifyRemoteEnd,
   ) =>
       _destroySocket.call(
         this,
         hSocket,
-        bNotifyRemoteEnd,
+        notifyRemoteEnd,
       );
 
   bool destroyListenSocket(
     SnetListenSocket hSocket,
-    bool bNotifyRemoteEnd,
+    bool notifyRemoteEnd,
   ) =>
       _destroyListenSocket.call(
         this,
         hSocket,
-        bNotifyRemoteEnd,
+        notifyRemoteEnd,
       );
 
   bool sendDataOnSocket(
     SnetSocket hSocket,
     Pointer<Void> pubData,
     int cubData,
-    bool bReliable,
+    bool reliable,
   ) =>
       _sendDataOnSocket.call(
         this,
         hSocket,
         pubData,
         cubData,
-        bReliable,
+        reliable,
       );
 
   bool isDataAvailableOnSocket(
@@ -529,29 +539,29 @@ extension SteamNetworkingExtensions on Pointer<SteamNetworking> {
 
   bool getSocketInfo(
     SnetSocket hSocket,
-    Pointer<UnsignedLongLong> pSteamIDRemote,
+    Pointer<UnsignedLongLong> pSteamIdRemote,
     Pointer<Int> peSocketStatus,
-    Pointer<SteamIpAddress> punIPRemote,
+    Pointer<SteamIpAddress> punIpRemote,
     Pointer<UnsignedShort> punPortRemote,
   ) =>
       _getSocketInfo.call(
         this,
         hSocket,
-        pSteamIDRemote,
+        pSteamIdRemote,
         peSocketStatus,
-        punIPRemote,
+        punIpRemote,
         punPortRemote,
       );
 
   bool getListenSocketInfo(
     SnetListenSocket hListenSocket,
-    Pointer<SteamIpAddress> pnIP,
+    Pointer<SteamIpAddress> pnIp,
     Pointer<UnsignedShort> pnPort,
   ) =>
       _getListenSocketInfo.call(
         this,
         hListenSocket,
-        pnIP,
+        pnIp,
         pnPort,
       );
 

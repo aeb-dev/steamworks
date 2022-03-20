@@ -7,9 +7,9 @@ import "../structs/steam_networking_identity.dart";
 import "../structs/steam_networking_ip_addr.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class SteamNetConnectionInfo extends Struct {
-  external SteamNetworkingIdentity dentityRemote;
+  external SteamNetworkingIdentity identityRemote;
 
   @LongLong()
   external int userData;
@@ -23,10 +23,10 @@ class SteamNetConnectionInfo extends Struct {
   external int pad1;
 
   @UnsignedInt()
-  external SteamNetworkingPOPId dPOPRemote;
+  external SteamNetworkingPopId idPopRemote;
 
   @UnsignedInt()
-  external SteamNetworkingPOPId dPOPRelay;
+  external SteamNetworkingPopId idPopRelay;
 
   @Int32()
   external ESteamNetworkingConnectionState state;

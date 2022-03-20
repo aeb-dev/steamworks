@@ -2,6 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_remote_storage_platform.dart";
 import "../enums/e_remote_storage_published_file_visibility.dart";
 import "../enums/e_ugc_read_action.dart";
@@ -9,12 +10,15 @@ import "../enums/e_workshop_enumeration_type.dart";
 import "../enums/e_workshop_file_action.dart";
 import "../enums/e_workshop_file_type.dart";
 import "../enums/e_workshop_video_provider.dart";
-import "../steam_api.dart";
 import "../structs/steam_param_string_array.dart";
 import "../typedefs.dart";
 
+final _steamRemoteStorage = dl.lookupFunction<
+    Pointer<SteamRemoteStorage> Function(),
+    Pointer<SteamRemoteStorage> Function()>("SteamAPI_SteamRemoteStorage_v016");
+
 class SteamRemoteStorage extends Opaque {
-  static Pointer<SteamRemoteStorage> steamRemoteStorage() => nullptr;
+  static Pointer<SteamRemoteStorage> get userInstance => _steamRemoteStorage();
 }
 
 final _fileWrite = dl.lookupFunction<
@@ -281,7 +285,7 @@ final _setCloudEnabledForApp = dl.lookupFunction<
   bool,
 )>("SteamAPI_ISteamRemoteStorage_SetCloudEnabledForApp");
 
-final _uGCDownload = dl.lookupFunction<
+final _ugcDownload = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamRemoteStorage>,
   UnsignedLongLong,
@@ -293,7 +297,7 @@ final _uGCDownload = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamRemoteStorage_UGCDownload");
 
-final _getUGCDownloadProgress = dl.lookupFunction<
+final _getUgcDownloadProgress = dl.lookupFunction<
     Bool Function(
   Pointer<SteamRemoteStorage>,
   UnsignedLongLong,
@@ -307,7 +311,7 @@ final _getUGCDownloadProgress = dl.lookupFunction<
   Pointer<Int>,
 )>("SteamAPI_ISteamRemoteStorage_GetUGCDownloadProgress");
 
-final _getUGCDetails = dl.lookupFunction<
+final _getUgcDetails = dl.lookupFunction<
     Bool Function(
   Pointer<SteamRemoteStorage>,
   UnsignedLongLong,
@@ -325,7 +329,7 @@ final _getUGCDetails = dl.lookupFunction<
   Pointer<UnsignedLongLong>,
 )>("SteamAPI_ISteamRemoteStorage_GetUGCDetails");
 
-final _uGCRead = dl.lookupFunction<
+final _ugcRead = dl.lookupFunction<
     Int Function(
   Pointer<SteamRemoteStorage>,
   UnsignedLongLong,
@@ -343,7 +347,7 @@ final _uGCRead = dl.lookupFunction<
   EUgcReadAction,
 )>("SteamAPI_ISteamRemoteStorage_UGCRead");
 
-final _getCachedUGCCount = dl.lookupFunction<
+final _getCachedUgcCount = dl.lookupFunction<
     Int Function(
   Pointer<SteamRemoteStorage>,
 ),
@@ -351,7 +355,7 @@ final _getCachedUGCCount = dl.lookupFunction<
   Pointer<SteamRemoteStorage>,
 )>("SteamAPI_ISteamRemoteStorage_GetCachedUGCCount");
 
-final _getCachedUGCHandle = dl.lookupFunction<
+final _getCachedUgcHandle = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamRemoteStorage>,
   Int,
@@ -669,7 +673,7 @@ final _enumeratePublishedWorkshopFiles = dl.lookupFunction<
   Pointer<SteamParamStringArray>,
 )>("SteamAPI_ISteamRemoteStorage_EnumeratePublishedWorkshopFiles");
 
-final _uGCDownloadToLocation = dl.lookupFunction<
+final _ugcDownloadToLocation = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamRemoteStorage>,
   UnsignedLongLong,
@@ -723,49 +727,49 @@ final _endFileWriteBatch = dl.lookupFunction<
 
 extension SteamRemoteStorageExtensions on Pointer<SteamRemoteStorage> {
   bool fileWrite(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
     Pointer<Void> pvData,
     int cubData,
   ) =>
       _fileWrite.call(
         this,
-        pchFile,
+        file,
         pvData,
         cubData,
       );
 
   int fileRead(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
     Pointer<Void> pvData,
     int cubDataToRead,
   ) =>
       _fileRead.call(
         this,
-        pchFile,
+        file,
         pvData,
         cubDataToRead,
       );
 
   SteamApiCall fileWriteAsync(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
     Pointer<Void> pvData,
     int cubData,
   ) =>
       _fileWriteAsync.call(
         this,
-        pchFile,
+        file,
         pvData,
         cubData,
       );
 
   SteamApiCall fileReadAsync(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
     int nOffset,
     int cubToRead,
   ) =>
       _fileReadAsync.call(
         this,
-        pchFile,
+        file,
         nOffset,
         cubToRead,
       );
@@ -783,45 +787,45 @@ extension SteamRemoteStorageExtensions on Pointer<SteamRemoteStorage> {
       );
 
   bool fileForget(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _fileForget.call(
         this,
-        pchFile,
+        file,
       );
 
   bool fileDelete(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _fileDelete.call(
         this,
-        pchFile,
+        file,
       );
 
   SteamApiCall fileShare(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _fileShare.call(
         this,
-        pchFile,
+        file,
       );
 
   bool setSyncPlatforms(
-    Pointer<Utf8> pchFile,
-    ERemoteStoragePlatform eRemoteStoragePlatform,
+    Pointer<Utf8> file,
+    ERemoteStoragePlatform remoteStoragePlatform,
   ) =>
       _setSyncPlatforms.call(
         this,
-        pchFile,
-        eRemoteStoragePlatform,
+        file,
+        remoteStoragePlatform,
       );
 
   UgcFileWriteStreamHandle fileWriteStreamOpen(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _fileWriteStreamOpen.call(
         this,
-        pchFile,
+        file,
       );
 
   bool fileWriteStreamWriteChunk(
@@ -853,43 +857,43 @@ extension SteamRemoteStorageExtensions on Pointer<SteamRemoteStorage> {
       );
 
   bool fileExists(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _fileExists.call(
         this,
-        pchFile,
+        file,
       );
 
   bool filePersisted(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _filePersisted.call(
         this,
-        pchFile,
+        file,
       );
 
   int getFileSize(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _getFileSize.call(
         this,
-        pchFile,
+        file,
       );
 
   int getFileTimestamp(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _getFileTimestamp.call(
         this,
-        pchFile,
+        file,
       );
 
   ERemoteStoragePlatform getSyncPlatforms(
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _getSyncPlatforms.call(
         this,
-        pchFile,
+        file,
       );
 
   int getFileCount() => _getFileCount.call(
@@ -925,157 +929,157 @@ extension SteamRemoteStorageExtensions on Pointer<SteamRemoteStorage> {
       );
 
   void setCloudEnabledForApp(
-    bool bEnabled,
+    bool enabled,
   ) =>
       _setCloudEnabledForApp.call(
         this,
-        bEnabled,
+        enabled,
       );
 
-  SteamApiCall uGCDownload(
+  SteamApiCall ugcDownload(
     UgcHandle hContent,
-    int unPriority,
+    int priority,
   ) =>
-      _uGCDownload.call(
+      _ugcDownload.call(
         this,
         hContent,
-        unPriority,
+        priority,
       );
 
-  bool getUGCDownloadProgress(
+  bool getUgcDownloadProgress(
     UgcHandle hContent,
     Pointer<Int> pnBytesDownloaded,
     Pointer<Int> pnBytesExpected,
   ) =>
-      _getUGCDownloadProgress.call(
+      _getUgcDownloadProgress.call(
         this,
         hContent,
         pnBytesDownloaded,
         pnBytesExpected,
       );
 
-  bool getUGCDetails(
+  bool getUgcDetails(
     UgcHandle hContent,
-    Pointer<UnsignedInt> pnAppID,
+    Pointer<UnsignedInt> pnAppId,
     Pointer<Pointer<Utf8>> ppchName,
     Pointer<Int> pnFileSizeInBytes,
-    Pointer<UnsignedLongLong> pSteamIDOwner,
+    Pointer<UnsignedLongLong> pSteamIdOwner,
   ) =>
-      _getUGCDetails.call(
+      _getUgcDetails.call(
         this,
         hContent,
-        pnAppID,
+        pnAppId,
         ppchName,
         pnFileSizeInBytes,
-        pSteamIDOwner,
+        pSteamIdOwner,
       );
 
-  int uGCRead(
+  int ugcRead(
     UgcHandle hContent,
     Pointer<Void> pvData,
     int cubDataToRead,
     int cOffset,
-    EUgcReadAction eAction,
+    EUgcReadAction action,
   ) =>
-      _uGCRead.call(
+      _ugcRead.call(
         this,
         hContent,
         pvData,
         cubDataToRead,
         cOffset,
-        eAction,
+        action,
       );
 
-  int getCachedUGCCount() => _getCachedUGCCount.call(
+  int getCachedUgcCount() => _getCachedUgcCount.call(
         this,
       );
 
-  UgcHandle getCachedUGCHandle(
+  UgcHandle getCachedUgcHandle(
     int iCachedContent,
   ) =>
-      _getCachedUGCHandle.call(
+      _getCachedUgcHandle.call(
         this,
         iCachedContent,
       );
 
   SteamApiCall publishWorkshopFile(
-    Pointer<Utf8> pchFile,
-    Pointer<Utf8> pchPreviewFile,
+    Pointer<Utf8> file,
+    Pointer<Utf8> previewFile,
     AppId nConsumerAppId,
-    Pointer<Utf8> pchTitle,
-    Pointer<Utf8> pchDescription,
-    ERemoteStoragePublishedFileVisibility eVisibility,
+    Pointer<Utf8> title,
+    Pointer<Utf8> description,
+    ERemoteStoragePublishedFileVisibility visibility,
     Pointer<SteamParamStringArray> pTags,
-    EWorkshopFileType eWorkshopFileType,
+    EWorkshopFileType workshopFileType,
   ) =>
       _publishWorkshopFile.call(
         this,
-        pchFile,
-        pchPreviewFile,
+        file,
+        previewFile,
         nConsumerAppId,
-        pchTitle,
-        pchDescription,
-        eVisibility,
+        title,
+        description,
+        visibility,
         pTags,
-        eWorkshopFileType,
+        workshopFileType,
       );
 
   PublishedFileUpdateHandle createPublishedFileUpdateRequest(
-    PublishedFileId unPublishedFileId,
+    PublishedFileId publishedFileId,
   ) =>
       _createPublishedFileUpdateRequest.call(
         this,
-        unPublishedFileId,
+        publishedFileId,
       );
 
   bool updatePublishedFileFile(
     PublishedFileUpdateHandle updateHandle,
-    Pointer<Utf8> pchFile,
+    Pointer<Utf8> file,
   ) =>
       _updatePublishedFileFile.call(
         this,
         updateHandle,
-        pchFile,
+        file,
       );
 
   bool updatePublishedFilePreviewFile(
     PublishedFileUpdateHandle updateHandle,
-    Pointer<Utf8> pchPreviewFile,
+    Pointer<Utf8> previewFile,
   ) =>
       _updatePublishedFilePreviewFile.call(
         this,
         updateHandle,
-        pchPreviewFile,
+        previewFile,
       );
 
   bool updatePublishedFileTitle(
     PublishedFileUpdateHandle updateHandle,
-    Pointer<Utf8> pchTitle,
+    Pointer<Utf8> title,
   ) =>
       _updatePublishedFileTitle.call(
         this,
         updateHandle,
-        pchTitle,
+        title,
       );
 
   bool updatePublishedFileDescription(
     PublishedFileUpdateHandle updateHandle,
-    Pointer<Utf8> pchDescription,
+    Pointer<Utf8> description,
   ) =>
       _updatePublishedFileDescription.call(
         this,
         updateHandle,
-        pchDescription,
+        description,
       );
 
   bool updatePublishedFileVisibility(
     PublishedFileUpdateHandle updateHandle,
-    ERemoteStoragePublishedFileVisibility eVisibility,
+    ERemoteStoragePublishedFileVisibility visibility,
   ) =>
       _updatePublishedFileVisibility.call(
         this,
         updateHandle,
-        eVisibility,
+        visibility,
       );
 
   bool updatePublishedFileTags(
@@ -1097,177 +1101,177 @@ extension SteamRemoteStorageExtensions on Pointer<SteamRemoteStorage> {
       );
 
   SteamApiCall getPublishedFileDetails(
-    PublishedFileId unPublishedFileId,
-    int unMaxSecondsOld,
+    PublishedFileId publishedFileId,
+    int maxSecondsOld,
   ) =>
       _getPublishedFileDetails.call(
         this,
-        unPublishedFileId,
-        unMaxSecondsOld,
+        publishedFileId,
+        maxSecondsOld,
       );
 
   SteamApiCall deletePublishedFile(
-    PublishedFileId unPublishedFileId,
+    PublishedFileId publishedFileId,
   ) =>
       _deletePublishedFile.call(
         this,
-        unPublishedFileId,
+        publishedFileId,
       );
 
   SteamApiCall enumerateUserPublishedFiles(
-    int unStartIndex,
+    int startIndex,
   ) =>
       _enumerateUserPublishedFiles.call(
         this,
-        unStartIndex,
+        startIndex,
       );
 
   SteamApiCall subscribePublishedFile(
-    PublishedFileId unPublishedFileId,
+    PublishedFileId publishedFileId,
   ) =>
       _subscribePublishedFile.call(
         this,
-        unPublishedFileId,
+        publishedFileId,
       );
 
   SteamApiCall enumerateUserSubscribedFiles(
-    int unStartIndex,
+    int startIndex,
   ) =>
       _enumerateUserSubscribedFiles.call(
         this,
-        unStartIndex,
+        startIndex,
       );
 
   SteamApiCall unsubscribePublishedFile(
-    PublishedFileId unPublishedFileId,
+    PublishedFileId publishedFileId,
   ) =>
       _unsubscribePublishedFile.call(
         this,
-        unPublishedFileId,
+        publishedFileId,
       );
 
   bool updatePublishedFileSetChangeDescription(
     PublishedFileUpdateHandle updateHandle,
-    Pointer<Utf8> pchChangeDescription,
+    Pointer<Utf8> changeDescription,
   ) =>
       _updatePublishedFileSetChangeDescription.call(
         this,
         updateHandle,
-        pchChangeDescription,
+        changeDescription,
       );
 
   SteamApiCall getPublishedItemVoteDetails(
-    PublishedFileId unPublishedFileId,
+    PublishedFileId publishedFileId,
   ) =>
       _getPublishedItemVoteDetails.call(
         this,
-        unPublishedFileId,
+        publishedFileId,
       );
 
   SteamApiCall updateUserPublishedItemVote(
-    PublishedFileId unPublishedFileId,
-    bool bVoteUp,
+    PublishedFileId publishedFileId,
+    bool voteUp,
   ) =>
       _updateUserPublishedItemVote.call(
         this,
-        unPublishedFileId,
-        bVoteUp,
+        publishedFileId,
+        voteUp,
       );
 
   SteamApiCall getUserPublishedItemVoteDetails(
-    PublishedFileId unPublishedFileId,
+    PublishedFileId publishedFileId,
   ) =>
       _getUserPublishedItemVoteDetails.call(
         this,
-        unPublishedFileId,
+        publishedFileId,
       );
 
   SteamApiCall enumerateUserSharedWorkshopFiles(
     CSteamId steamId,
-    int unStartIndex,
+    int startIndex,
     Pointer<SteamParamStringArray> pRequiredTags,
     Pointer<SteamParamStringArray> pExcludedTags,
   ) =>
       _enumerateUserSharedWorkshopFiles.call(
         this,
         steamId,
-        unStartIndex,
+        startIndex,
         pRequiredTags,
         pExcludedTags,
       );
 
   SteamApiCall publishVideo(
-    EWorkshopVideoProvider eVideoProvider,
-    Pointer<Utf8> pchVideoAccount,
-    Pointer<Utf8> pchVideoIdentifier,
-    Pointer<Utf8> pchPreviewFile,
+    EWorkshopVideoProvider videoProvider,
+    Pointer<Utf8> videoAccount,
+    Pointer<Utf8> videoIdentifier,
+    Pointer<Utf8> previewFile,
     AppId nConsumerAppId,
-    Pointer<Utf8> pchTitle,
-    Pointer<Utf8> pchDescription,
-    ERemoteStoragePublishedFileVisibility eVisibility,
+    Pointer<Utf8> title,
+    Pointer<Utf8> description,
+    ERemoteStoragePublishedFileVisibility visibility,
     Pointer<SteamParamStringArray> pTags,
   ) =>
       _publishVideo.call(
         this,
-        eVideoProvider,
-        pchVideoAccount,
-        pchVideoIdentifier,
-        pchPreviewFile,
+        videoProvider,
+        videoAccount,
+        videoIdentifier,
+        previewFile,
         nConsumerAppId,
-        pchTitle,
-        pchDescription,
-        eVisibility,
+        title,
+        description,
+        visibility,
         pTags,
       );
 
   SteamApiCall setUserPublishedFileAction(
-    PublishedFileId unPublishedFileId,
-    EWorkshopFileAction eAction,
+    PublishedFileId publishedFileId,
+    EWorkshopFileAction action,
   ) =>
       _setUserPublishedFileAction.call(
         this,
-        unPublishedFileId,
-        eAction,
+        publishedFileId,
+        action,
       );
 
   SteamApiCall enumeratePublishedFilesByUserAction(
-    EWorkshopFileAction eAction,
-    int unStartIndex,
+    EWorkshopFileAction action,
+    int startIndex,
   ) =>
       _enumeratePublishedFilesByUserAction.call(
         this,
-        eAction,
-        unStartIndex,
+        action,
+        startIndex,
       );
 
   SteamApiCall enumeratePublishedWorkshopFiles(
-    EWorkshopEnumerationType eEnumerationType,
-    int unStartIndex,
-    int unCount,
-    int unDays,
+    EWorkshopEnumerationType enumerationType,
+    int startIndex,
+    int count,
+    int days,
     Pointer<SteamParamStringArray> pTags,
     Pointer<SteamParamStringArray> pUserTags,
   ) =>
       _enumeratePublishedWorkshopFiles.call(
         this,
-        eEnumerationType,
-        unStartIndex,
-        unCount,
-        unDays,
+        enumerationType,
+        startIndex,
+        count,
+        days,
         pTags,
         pUserTags,
       );
 
-  SteamApiCall uGCDownloadToLocation(
+  SteamApiCall ugcDownloadToLocation(
     UgcHandle hContent,
-    Pointer<Utf8> pchLocation,
-    int unPriority,
+    Pointer<Utf8> location,
+    int priority,
   ) =>
-      _uGCDownloadToLocation.call(
+      _ugcDownloadToLocation.call(
         this,
         hContent,
-        pchLocation,
-        unPriority,
+        location,
+        priority,
       );
 
   int getLocalFileChangeCount() => _getLocalFileChangeCount.call(

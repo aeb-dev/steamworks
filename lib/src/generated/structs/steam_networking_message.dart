@@ -2,7 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../steam_api.dart";
+import "../dl.dart";
 import "../structs/steam_networking_identity.dart";
 import "../typedefs.dart";
 
@@ -16,13 +16,13 @@ class SteamNetworkingMessage extends Struct {
   @UnsignedInt()
   external HSteamNetConnection conn;
 
-  external SteamNetworkingIdentity dentityPeer;
+  external SteamNetworkingIdentity identityPeer;
 
   @LongLong()
   external int connUserData;
 
   @LongLong()
-  external SteamNetworkingMicroseconds ecTimeReceived;
+  external SteamNetworkingMicroseconds timeReceived;
 
   @LongLong()
   external int messageNumber;
@@ -45,7 +45,7 @@ class SteamNetworkingMessage extends Struct {
   external int userData;
 
   @UnsignedShort()
-  external int dxLane;
+  external int idxLane;
 
   @UnsignedShort()
   external int pad1;

@@ -1,6 +1,6 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+import "../dl.dart";
 
 class SteamMatchmakingRulesResponse extends Opaque {}
 
@@ -35,13 +35,13 @@ final _rulesRefreshComplete = dl.lookupFunction<
 extension SteamMatchmakingRulesResponseExtensions
     on Pointer<SteamMatchmakingRulesResponse> {
   void rulesResponded(
-    Pointer<Utf8> pchRule,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> rule,
+    Pointer<Utf8> value,
   ) =>
       _rulesResponded.call(
         this,
-        pchRule,
-        pchValue,
+        rule,
+        value,
       );
 
   void rulesFailedToRespond() => _rulesFailedToRespond.call(

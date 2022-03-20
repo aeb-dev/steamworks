@@ -1,4 +1,5 @@
 import "dart:ffi";
+
 import "../enums/e_result.dart";
 
 @Packed(8)
@@ -10,5 +11,5 @@ class SetPersonaNameResponse extends Struct {
   external bool localSuccess;
 
   @Int32()
-  external EResult esult;
+  external EResult result;
 }

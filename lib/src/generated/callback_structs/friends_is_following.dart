@@ -1,5 +1,7 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 import "../typedefs.dart";
 

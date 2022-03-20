@@ -1,6 +1,6 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+import "../dl.dart";
 
 @Packed(4)
 class MatchMakingKeyValuePair extends Struct {

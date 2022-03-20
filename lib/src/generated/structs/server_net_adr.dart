@@ -2,17 +2,20 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../steam_api.dart";
+import "../dl.dart";
 
 @Packed(4)
 class ServerNetAdr extends Struct {
   @UnsignedShort()
+  // ignore: unused_field
   external int _connectionPort;
 
   @UnsignedShort()
+  // ignore: unused_field
   external int _queryPort;
 
   @UnsignedInt()
+  // ignore: unused_field
   external int _ip;
 }
 
@@ -74,7 +77,7 @@ final _setConnectionPort = dl.lookupFunction<
   int,
 )>("SteamAPI_servernetadr_t_SetConnectionPort");
 
-final _getIP = dl.lookupFunction<
+final _getIp = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<ServerNetAdr>,
 ),
@@ -82,7 +85,7 @@ final _getIP = dl.lookupFunction<
   Pointer<ServerNetAdr>,
 )>("SteamAPI_servernetadr_t_GetIP");
 
-final _setIP = dl.lookupFunction<
+final _setIp = dl.lookupFunction<
     Void Function(
   Pointer<ServerNetAdr>,
   UnsignedInt,
@@ -135,14 +138,14 @@ extension ServerNetAdrExtensions on Pointer<ServerNetAdr> {
 
   void init(
     int ip,
-    int usQueryPort,
-    int usConnectionPort,
+    int queryPort,
+    int connectionPort,
   ) =>
       _init.call(
         this,
         ip,
-        usQueryPort,
-        usConnectionPort,
+        queryPort,
+        connectionPort,
       );
 
   int getQueryPort() => _getQueryPort.call(
@@ -150,11 +153,11 @@ extension ServerNetAdrExtensions on Pointer<ServerNetAdr> {
       );
 
   void setQueryPort(
-    int usPort,
+    int port,
   ) =>
       _setQueryPort.call(
         this,
-        usPort,
+        port,
       );
 
   int getConnectionPort() => _getConnectionPort.call(
@@ -162,23 +165,23 @@ extension ServerNetAdrExtensions on Pointer<ServerNetAdr> {
       );
 
   void setConnectionPort(
-    int usPort,
+    int port,
   ) =>
       _setConnectionPort.call(
         this,
-        usPort,
+        port,
       );
 
-  int getIP() => _getIP.call(
+  int getIp() => _getIp.call(
         this,
       );
 
-  void setIP(
-    int unIP,
+  void setIp(
+    int ip,
   ) =>
-      _setIP.call(
+      _setIp.call(
         this,
-        unIP,
+        ip,
       );
 
   Pointer<Utf8> getConnectionAddressString() =>

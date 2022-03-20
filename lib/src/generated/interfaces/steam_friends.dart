@@ -2,16 +2,19 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_activate_game_overlay_to_web_page_mode.dart";
 import "../enums/e_friend_relationship.dart";
 import "../enums/e_overlay_to_store_flag.dart";
 import "../enums/e_persona_state.dart";
-import "../steam_api.dart";
 import "../structs/friend_game_info.dart";
 import "../typedefs.dart";
 
+final _steamFriends = dl.lookupFunction<Pointer<SteamFriends> Function(),
+    Pointer<SteamFriends> Function()>("SteamAPI_SteamFriends_v017");
+
 class SteamFriends extends Opaque {
-  static Pointer<SteamFriends> steamFriends() => nullptr;
+  static Pointer<SteamFriends> get userInstance => _steamFriends();
 }
 
 final _getPersonaName = dl.lookupFunction<
@@ -144,7 +147,7 @@ final _getFriendsGroupCount = dl.lookupFunction<
   Pointer<SteamFriends>,
 )>("SteamAPI_ISteamFriends_GetFriendsGroupCount");
 
-final _getFriendsGroupIDByIndex = dl.lookupFunction<
+final _getFriendsGroupIdByIndex = dl.lookupFunction<
     Short Function(
   Pointer<SteamFriends>,
   Int,
@@ -834,11 +837,11 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   SteamApiCall setPersonaName(
-    Pointer<Utf8> pchPersonaName,
+    Pointer<Utf8> personaName,
   ) =>
       _setPersonaName.call(
         this,
-        pchPersonaName,
+        personaName,
       );
 
   EPersonaState getPersonaState() => _getPersonaState.call(
@@ -864,112 +867,112 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   EFriendRelationship getFriendRelationship(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getFriendRelationship.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   EPersonaState getFriendPersonaState(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getFriendPersonaState.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   Pointer<Utf8> getFriendPersonaName(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getFriendPersonaName.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   bool getFriendGamePlayed(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
     Pointer<FriendGameInfo> pFriendGameInfo,
   ) =>
       _getFriendGamePlayed.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
         pFriendGameInfo,
       );
 
   Pointer<Utf8> getFriendPersonaNameHistory(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
     int iPersonaName,
   ) =>
       _getFriendPersonaNameHistory.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
         iPersonaName,
       );
 
   int getFriendSteamLevel(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getFriendSteamLevel.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   Pointer<Utf8> getPlayerNickname(
-    CSteamId steamIDPlayer,
+    CSteamId steamIdPlayer,
   ) =>
       _getPlayerNickname.call(
         this,
-        steamIDPlayer,
+        steamIdPlayer,
       );
 
   int getFriendsGroupCount() => _getFriendsGroupCount.call(
         this,
       );
 
-  FriendsGroupId getFriendsGroupIDByIndex(
+  FriendsGroupId getFriendsGroupIdByIndex(
     int iFG,
   ) =>
-      _getFriendsGroupIDByIndex.call(
+      _getFriendsGroupIdByIndex.call(
         this,
         iFG,
       );
 
   Pointer<Utf8> getFriendsGroupName(
-    FriendsGroupId friendsGroupID,
+    FriendsGroupId friendsGroupId,
   ) =>
       _getFriendsGroupName.call(
         this,
-        friendsGroupID,
+        friendsGroupId,
       );
 
   int getFriendsGroupMembersCount(
-    FriendsGroupId friendsGroupID,
+    FriendsGroupId friendsGroupId,
   ) =>
       _getFriendsGroupMembersCount.call(
         this,
-        friendsGroupID,
+        friendsGroupId,
       );
 
   void getFriendsGroupMembersList(
-    FriendsGroupId friendsGroupID,
-    Pointer<UnsignedLongLong> pOutSteamIDMembers,
+    FriendsGroupId friendsGroupId,
+    Pointer<UnsignedLongLong> pOutSteamIdMembers,
     int nMembersCount,
   ) =>
       _getFriendsGroupMembersList.call(
         this,
-        friendsGroupID,
-        pOutSteamIDMembers,
+        friendsGroupId,
+        pOutSteamIdMembers,
         nMembersCount,
       );
 
   bool hasFriend(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
     int iFriendFlags,
   ) =>
       _hasFriend.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
         iFriendFlags,
       );
 
@@ -986,202 +989,202 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   Pointer<Utf8> getClanName(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _getClanName.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   Pointer<Utf8> getClanTag(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _getClanTag.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   bool getClanActivityCounts(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
     Pointer<Int> pnOnline,
     Pointer<Int> pnInGame,
     Pointer<Int> pnChatting,
   ) =>
       _getClanActivityCounts.call(
         this,
-        steamIDClan,
+        steamIdClan,
         pnOnline,
         pnInGame,
         pnChatting,
       );
 
   SteamApiCall downloadClanActivityCounts(
-    Pointer<UnsignedLongLong> psteamIDClans,
+    Pointer<UnsignedLongLong> psteamIdClans,
     int cClansToRequest,
   ) =>
       _downloadClanActivityCounts.call(
         this,
-        psteamIDClans,
+        psteamIdClans,
         cClansToRequest,
       );
 
   int getFriendCountFromSource(
-    CSteamId steamIDSource,
+    CSteamId steamIdSource,
   ) =>
       _getFriendCountFromSource.call(
         this,
-        steamIDSource,
+        steamIdSource,
       );
 
   CSteamId getFriendFromSourceByIndex(
-    CSteamId steamIDSource,
+    CSteamId steamIdSource,
     int iFriend,
   ) =>
       _getFriendFromSourceByIndex.call(
         this,
-        steamIDSource,
+        steamIdSource,
         iFriend,
       );
 
   bool isUserInSource(
-    CSteamId steamIDUser,
-    CSteamId steamIDSource,
+    CSteamId steamIdUser,
+    CSteamId steamIdSource,
   ) =>
       _isUserInSource.call(
         this,
-        steamIDUser,
-        steamIDSource,
+        steamIdUser,
+        steamIdSource,
       );
 
   void setInGameVoiceSpeaking(
-    CSteamId steamIDUser,
-    bool bSpeaking,
+    CSteamId steamIdUser,
+    bool speaking,
   ) =>
       _setInGameVoiceSpeaking.call(
         this,
-        steamIDUser,
-        bSpeaking,
+        steamIdUser,
+        speaking,
       );
 
   void activateGameOverlay(
-    Pointer<Utf8> pchDialog,
+    Pointer<Utf8> dialog,
   ) =>
       _activateGameOverlay.call(
         this,
-        pchDialog,
+        dialog,
       );
 
   void activateGameOverlayToUser(
-    Pointer<Utf8> pchDialog,
-    CSteamId steamID,
+    Pointer<Utf8> dialog,
+    CSteamId steamId,
   ) =>
       _activateGameOverlayToUser.call(
         this,
-        pchDialog,
-        steamID,
+        dialog,
+        steamId,
       );
 
   void activateGameOverlayToWebPage(
-    Pointer<Utf8> pchURL,
-    EActivateGameOverlayToWebPageMode eMode,
+    Pointer<Utf8> url,
+    EActivateGameOverlayToWebPageMode mode,
   ) =>
       _activateGameOverlayToWebPage.call(
         this,
-        pchURL,
-        eMode,
+        url,
+        mode,
       );
 
   void activateGameOverlayToStore(
-    AppId nAppID,
-    EOverlayToStoreFlag eFlag,
+    AppId nAppId,
+    EOverlayToStoreFlag flag,
   ) =>
       _activateGameOverlayToStore.call(
         this,
-        nAppID,
-        eFlag,
+        nAppId,
+        flag,
       );
 
   void setPlayedWith(
-    CSteamId steamIDUserPlayedWith,
+    CSteamId steamIdUserPlayedWith,
   ) =>
       _setPlayedWith.call(
         this,
-        steamIDUserPlayedWith,
+        steamIdUserPlayedWith,
       );
 
   void activateGameOverlayInviteDialog(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _activateGameOverlayInviteDialog.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   int getSmallFriendAvatar(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getSmallFriendAvatar.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   int getMediumFriendAvatar(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getMediumFriendAvatar.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   int getLargeFriendAvatar(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getLargeFriendAvatar.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   bool requestUserInformation(
-    CSteamId steamIDUser,
-    bool bRequireNameOnly,
+    CSteamId steamIdUser,
+    bool requireNameOnly,
   ) =>
       _requestUserInformation.call(
         this,
-        steamIDUser,
-        bRequireNameOnly,
+        steamIdUser,
+        requireNameOnly,
       );
 
   SteamApiCall requestClanOfficerList(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _requestClanOfficerList.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   CSteamId getClanOwner(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _getClanOwner.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   int getClanOfficerCount(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _getClanOfficerCount.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   CSteamId getClanOfficerByIndex(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
     int iOfficer,
   ) =>
       _getClanOfficerByIndex.call(
         this,
-        steamIDClan,
+        steamIdClan,
         iOfficer,
       );
 
@@ -1190,13 +1193,13 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   bool setRichPresence(
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
   ) =>
       _setRichPresence.call(
         this,
-        pchKey,
-        pchValue,
+        key,
+        value,
       );
 
   void clearRichPresence() => _clearRichPresence.call(
@@ -1204,49 +1207,49 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   Pointer<Utf8> getFriendRichPresence(
-    CSteamId steamIDFriend,
-    Pointer<Utf8> pchKey,
+    CSteamId steamIdFriend,
+    Pointer<Utf8> key,
   ) =>
       _getFriendRichPresence.call(
         this,
-        steamIDFriend,
-        pchKey,
+        steamIdFriend,
+        key,
       );
 
   int getFriendRichPresenceKeyCount(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getFriendRichPresenceKeyCount.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   Pointer<Utf8> getFriendRichPresenceKeyByIndex(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
     int iKey,
   ) =>
       _getFriendRichPresenceKeyByIndex.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
         iKey,
       );
 
   void requestFriendRichPresence(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _requestFriendRichPresence.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   bool inviteUserToGame(
-    CSteamId steamIDFriend,
-    Pointer<Utf8> pchConnectString,
+    CSteamId steamIdFriend,
+    Pointer<Utf8> connectString,
   ) =>
       _inviteUserToGame.call(
         this,
-        steamIDFriend,
-        pchConnectString,
+        steamIdFriend,
+        connectString,
       );
 
   int getCoplayFriendCount() => _getCoplayFriendCount.call(
@@ -1262,67 +1265,67 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   int getFriendCoplayTime(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getFriendCoplayTime.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   AppId getFriendCoplayGame(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _getFriendCoplayGame.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 
   SteamApiCall joinClanChatRoom(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _joinClanChatRoom.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   bool leaveClanChatRoom(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _leaveClanChatRoom.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   int getClanChatMemberCount(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _getClanChatMemberCount.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   CSteamId getChatMemberByIndex(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
     int iUser,
   ) =>
       _getChatMemberByIndex.call(
         this,
-        steamIDClan,
+        steamIdClan,
         iUser,
       );
 
   bool sendClanChatMessage(
-    CSteamId steamIDClanChat,
-    Pointer<Utf8> pchText,
+    CSteamId steamIdClanChat,
+    Pointer<Utf8> text,
   ) =>
       _sendClanChatMessage.call(
         this,
-        steamIDClanChat,
-        pchText,
+        steamIdClanChat,
+        text,
       );
 
   int getClanChatMessage(
-    CSteamId steamIDClanChat,
+    CSteamId steamIdClanChat,
     int iMessage,
     Pointer<Void> prgchText,
     int cchTextMax,
@@ -1331,7 +1334,7 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
   ) =>
       _getClanChatMessage.call(
         this,
-        steamIDClanChat,
+        steamIdClanChat,
         iMessage,
         prgchText,
         cchTextMax,
@@ -1340,111 +1343,111 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   bool isClanChatAdmin(
-    CSteamId steamIDClanChat,
-    CSteamId steamIDUser,
+    CSteamId steamIdClanChat,
+    CSteamId steamIdUser,
   ) =>
       _isClanChatAdmin.call(
         this,
-        steamIDClanChat,
-        steamIDUser,
+        steamIdClanChat,
+        steamIdUser,
       );
 
   bool isClanChatWindowOpenInSteam(
-    CSteamId steamIDClanChat,
+    CSteamId steamIdClanChat,
   ) =>
       _isClanChatWindowOpenInSteam.call(
         this,
-        steamIDClanChat,
+        steamIdClanChat,
       );
 
   bool openClanChatWindowInSteam(
-    CSteamId steamIDClanChat,
+    CSteamId steamIdClanChat,
   ) =>
       _openClanChatWindowInSteam.call(
         this,
-        steamIDClanChat,
+        steamIdClanChat,
       );
 
   bool closeClanChatWindowInSteam(
-    CSteamId steamIDClanChat,
+    CSteamId steamIdClanChat,
   ) =>
       _closeClanChatWindowInSteam.call(
         this,
-        steamIDClanChat,
+        steamIdClanChat,
       );
 
   bool setListenForFriendsMessages(
-    bool bInterceptEnabled,
+    bool interceptEnabled,
   ) =>
       _setListenForFriendsMessages.call(
         this,
-        bInterceptEnabled,
+        interceptEnabled,
       );
 
   bool replyToFriendMessage(
-    CSteamId steamIDFriend,
-    Pointer<Utf8> pchMsgToSend,
+    CSteamId steamIdFriend,
+    Pointer<Utf8> msgToSend,
   ) =>
       _replyToFriendMessage.call(
         this,
-        steamIDFriend,
-        pchMsgToSend,
+        steamIdFriend,
+        msgToSend,
       );
 
   int getFriendMessage(
-    CSteamId steamIDFriend,
-    int iMessageID,
+    CSteamId steamIdFriend,
+    int iMessageId,
     Pointer<Void> pvData,
     int cubData,
     Pointer<Int32> peChatEntryType,
   ) =>
       _getFriendMessage.call(
         this,
-        steamIDFriend,
-        iMessageID,
+        steamIdFriend,
+        iMessageId,
         pvData,
         cubData,
         peChatEntryType,
       );
 
   SteamApiCall getFollowerCount(
-    CSteamId steamID,
+    CSteamId steamId,
   ) =>
       _getFollowerCount.call(
         this,
-        steamID,
+        steamId,
       );
 
   SteamApiCall isFollowing(
-    CSteamId steamID,
+    CSteamId steamId,
   ) =>
       _isFollowing.call(
         this,
-        steamID,
+        steamId,
       );
 
   SteamApiCall enumerateFollowingList(
-    int unStartIndex,
+    int startIndex,
   ) =>
       _enumerateFollowingList.call(
         this,
-        unStartIndex,
+        startIndex,
       );
 
   bool isClanPublic(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _isClanPublic.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   bool isClanOfficialGameGroup(
-    CSteamId steamIDClan,
+    CSteamId steamIdClan,
   ) =>
       _isClanOfficialGameGroup.call(
         this,
-        steamIDClan,
+        steamIdClan,
       );
 
   int getNumChatsWithUnreadPriorityMessages() =>
@@ -1453,26 +1456,26 @@ extension SteamFriendsExtensions on Pointer<SteamFriends> {
       );
 
   void activateGameOverlayRemotePlayTogetherInviteDialog(
-    CSteamId steamIDLobby,
+    CSteamId steamIdLobby,
   ) =>
       _activateGameOverlayRemotePlayTogetherInviteDialog.call(
         this,
-        steamIDLobby,
+        steamIdLobby,
       );
 
   bool registerProtocolInOverlayBrowser(
-    Pointer<Utf8> pchProtocol,
+    Pointer<Utf8> protocol,
   ) =>
       _registerProtocolInOverlayBrowser.call(
         this,
-        pchProtocol,
+        protocol,
       );
 
   void activateGameOverlayInviteDialogConnectString(
-    Pointer<Utf8> pchConnectString,
+    Pointer<Utf8> connectString,
   ) =>
       _activateGameOverlayInviteDialogConnectString.call(
         this,
-        pchConnectString,
+        connectString,
       );
 }

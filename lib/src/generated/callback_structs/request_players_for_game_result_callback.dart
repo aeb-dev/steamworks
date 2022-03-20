@@ -1,16 +1,18 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 import "../enums/player_accept_state.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class RequestPlayersForGameResultCallback extends Struct {
   @Int32()
   external EResult result;
 
   @UnsignedLongLong()
-  external int lSearchId;
+  external int searchId;
 
   @UnsignedLongLong()
   external CSteamId steamIdPlayerFound;
@@ -34,5 +36,5 @@ class RequestPlayersForGameResultCallback extends Struct {
   external int suggestedTeamIndex;
 
   @UnsignedLongLong()
-  external int lUniqueGameId;
+  external int uniqueGameId;
 }

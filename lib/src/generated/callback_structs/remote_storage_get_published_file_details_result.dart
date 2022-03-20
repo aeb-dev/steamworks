@@ -7,7 +7,7 @@ import "../enums/e_result.dart";
 import "../enums/e_workshop_file_type.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class RemoteStorageGetPublishedFileDetailsResult extends Struct {
   @Int32()
   external EResult result;
@@ -51,7 +51,7 @@ class RemoteStorageGetPublishedFileDetailsResult extends Struct {
   @Bool()
   external bool tagsTruncated;
 
-  external Pointer<Utf8> pchFileName;
+  external Pointer<Utf8> fileName;
 
   @Int()
   external int fileSize;

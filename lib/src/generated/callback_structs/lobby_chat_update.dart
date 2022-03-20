@@ -1,7 +1,7 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
 
-@Packed(4)
+@Packed(8)
 class LobbyChatUpdate extends Struct {
   @UnsignedLongLong()
   external int steamIdLobby;
@@ -13,5 +13,5 @@ class LobbyChatUpdate extends Struct {
   external int steamIdMakingChange;
 
   @UnsignedInt()
-  external int gfChatMemberStateChange;
+  external int chatMemberStateChange;
 }

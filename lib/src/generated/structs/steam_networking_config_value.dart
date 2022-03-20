@@ -2,9 +2,9 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_steam_networking_config_data_type.dart";
 import "../enums/e_steam_networking_config_value.dart";
-import "../steam_api.dart";
 
 @Packed(4)
 class SteamNetworkingConfigValue extends Struct {
@@ -15,7 +15,7 @@ class SteamNetworkingConfigValue extends Struct {
   external ESteamNetworkingConfigDataType dataType;
 
   @Int64()
-  external int nt64;
+  external int int64;
 }
 
 final _setInt32 = dl.lookupFunction<
@@ -81,52 +81,52 @@ final _setString = dl.lookupFunction<
 extension SteamNetworkingConfigValueExtensions
     on Pointer<SteamNetworkingConfigValue> {
   void setInt32(
-    ESteamNetworkingConfigValue eVal,
+    ESteamNetworkingConfigValue val,
     int data,
   ) =>
       _setInt32.call(
         this,
-        eVal,
+        val,
         data,
       );
 
   void setInt64(
-    ESteamNetworkingConfigValue eVal,
+    ESteamNetworkingConfigValue val,
     int data,
   ) =>
       _setInt64.call(
         this,
-        eVal,
+        val,
         data,
       );
 
   void setFloat(
-    ESteamNetworkingConfigValue eVal,
+    ESteamNetworkingConfigValue val,
     double data,
   ) =>
       _setFloat.call(
         this,
-        eVal,
+        val,
         data,
       );
 
   void setPtr(
-    ESteamNetworkingConfigValue eVal,
+    ESteamNetworkingConfigValue val,
     Pointer<Void> data,
   ) =>
       _setPtr.call(
         this,
-        eVal,
+        val,
         data,
       );
 
   void setString(
-    ESteamNetworkingConfigValue eVal,
+    ESteamNetworkingConfigValue val,
     Pointer<Utf8> data,
   ) =>
       _setString.call(
         this,
-        eVal,
+        val,
         data,
       );
 }

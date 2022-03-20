@@ -7,7 +7,7 @@ import "../enums/e_duration_control_progress.dart";
 import "../enums/e_result.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class DurationControl extends Struct {
   @Int32()
   external EResult result;
@@ -25,7 +25,7 @@ class DurationControl extends Struct {
   external EDurationControlProgress progress;
 
   @Int32()
-  external EDurationControlNotification otification;
+  external EDurationControlNotification notification;
 
   @Int()
   external int csecsToday;

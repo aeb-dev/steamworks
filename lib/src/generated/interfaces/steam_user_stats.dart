@@ -2,16 +2,19 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_leaderboard_data_request.dart";
 import "../enums/e_leaderboard_display_type.dart";
 import "../enums/e_leaderboard_sort_method.dart";
 import "../enums/e_leaderboard_upload_score_method.dart";
-import "../steam_api.dart";
 import "../structs/leaderboard_entry.dart";
 import "../typedefs.dart";
 
+final _steamUserStats = dl.lookupFunction<Pointer<SteamUserStats> Function(),
+    Pointer<SteamUserStats> Function()>("SteamAPI_SteamUserStats_v012");
+
 class SteamUserStats extends Opaque {
-  static Pointer<SteamUserStats> steamUserStats() => nullptr;
+  static Pointer<SteamUserStats> get userInstance => _steamUserStats();
 }
 
 final _requestCurrentStats = dl.lookupFunction<
@@ -400,7 +403,7 @@ final _uploadLeaderboardScore = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamUserStats_UploadLeaderboardScore");
 
-final _attachLeaderboardUGC = dl.lookupFunction<
+final _attachLeaderboardUgc = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamUserStats>,
   UnsignedLongLong,
@@ -570,91 +573,91 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
       );
 
   bool getStatInt32(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     Pointer<Int> pData,
   ) =>
       _getStatInt32.call(
         this,
-        pchName,
+        name,
         pData,
       );
 
   bool getStatFloat(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     Pointer<Float> pData,
   ) =>
       _getStatFloat.call(
         this,
-        pchName,
+        name,
         pData,
       );
 
   bool setStatInt32(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     int nData,
   ) =>
       _setStatInt32.call(
         this,
-        pchName,
+        name,
         nData,
       );
 
   bool setStatFloat(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     double fData,
   ) =>
       _setStatFloat.call(
         this,
-        pchName,
+        name,
         fData,
       );
 
   bool updateAvgRateStat(
-    Pointer<Utf8> pchName,
-    double flCountThisSession,
+    Pointer<Utf8> name,
+    double countThisSession,
     double dSessionLength,
   ) =>
       _updateAvgRateStat.call(
         this,
-        pchName,
-        flCountThisSession,
+        name,
+        countThisSession,
         dSessionLength,
       );
 
   bool getAchievement(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     Pointer<Bool> pbAchieved,
   ) =>
       _getAchievement.call(
         this,
-        pchName,
+        name,
         pbAchieved,
       );
 
   bool setAchievement(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
   ) =>
       _setAchievement.call(
         this,
-        pchName,
+        name,
       );
 
   bool clearAchievement(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
   ) =>
       _clearAchievement.call(
         this,
-        pchName,
+        name,
       );
 
   bool getAchievementAndUnlockTime(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     Pointer<Bool> pbAchieved,
     Pointer<UnsignedInt> punUnlockTime,
   ) =>
       _getAchievementAndUnlockTime.call(
         this,
-        pchName,
+        name,
         pbAchieved,
         punUnlockTime,
       );
@@ -664,31 +667,31 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
       );
 
   int getAchievementIcon(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
   ) =>
       _getAchievementIcon.call(
         this,
-        pchName,
+        name,
       );
 
   Pointer<Utf8> getAchievementDisplayAttribute(
-    Pointer<Utf8> pchName,
-    Pointer<Utf8> pchKey,
+    Pointer<Utf8> name,
+    Pointer<Utf8> key,
   ) =>
       _getAchievementDisplayAttribute.call(
         this,
-        pchName,
-        pchKey,
+        name,
+        key,
       );
 
   bool indicateAchievementProgress(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     int nCurProgress,
     int nMaxProgress,
   ) =>
       _indicateAchievementProgress.call(
         this,
-        pchName,
+        name,
         nCurProgress,
         nMaxProgress,
       );
@@ -706,89 +709,89 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
       );
 
   SteamApiCall requestUserStats(
-    CSteamId steamIDUser,
+    CSteamId steamIdUser,
   ) =>
       _requestUserStats.call(
         this,
-        steamIDUser,
+        steamIdUser,
       );
 
   bool getUserStatInt32(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     Pointer<Int> pData,
   ) =>
       _getUserStatInt32.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         pData,
       );
 
   bool getUserStatFloat(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     Pointer<Float> pData,
   ) =>
       _getUserStatFloat.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         pData,
       );
 
   bool getUserAchievement(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     Pointer<Bool> pbAchieved,
   ) =>
       _getUserAchievement.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         pbAchieved,
       );
 
   bool getUserAchievementAndUnlockTime(
-    CSteamId steamIDUser,
-    Pointer<Utf8> pchName,
+    CSteamId steamIdUser,
+    Pointer<Utf8> name,
     Pointer<Bool> pbAchieved,
     Pointer<UnsignedInt> punUnlockTime,
   ) =>
       _getUserAchievementAndUnlockTime.call(
         this,
-        steamIDUser,
-        pchName,
+        steamIdUser,
+        name,
         pbAchieved,
         punUnlockTime,
       );
 
   bool resetAllStats(
-    bool bAchievementsToo,
+    bool achievementsToo,
   ) =>
       _resetAllStats.call(
         this,
-        bAchievementsToo,
+        achievementsToo,
       );
 
   SteamApiCall findOrCreateLeaderboard(
-    Pointer<Utf8> pchLeaderboardName,
-    ELeaderboardSortMethod eLeaderboardSortMethod,
-    ELeaderboardDisplayType eLeaderboardDisplayType,
+    Pointer<Utf8> leaderboardName,
+    ELeaderboardSortMethod leaderboardSortMethod,
+    ELeaderboardDisplayType leaderboardDisplayType,
   ) =>
       _findOrCreateLeaderboard.call(
         this,
-        pchLeaderboardName,
-        eLeaderboardSortMethod,
-        eLeaderboardDisplayType,
+        leaderboardName,
+        leaderboardSortMethod,
+        leaderboardDisplayType,
       );
 
   SteamApiCall findLeaderboard(
-    Pointer<Utf8> pchLeaderboardName,
+    Pointer<Utf8> leaderboardName,
   ) =>
       _findLeaderboard.call(
         this,
-        pchLeaderboardName,
+        leaderboardName,
       );
 
   Pointer<Utf8> getLeaderboardName(
@@ -825,14 +828,14 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
 
   SteamApiCall downloadLeaderboardEntries(
     SteamLeaderboard hSteamLeaderboard,
-    ELeaderboardDataRequest eLeaderboardDataRequest,
+    ELeaderboardDataRequest leaderboardDataRequest,
     int nRangeStart,
     int nRangeEnd,
   ) =>
       _downloadLeaderboardEntries.call(
         this,
         hSteamLeaderboard,
-        eLeaderboardDataRequest,
+        leaderboardDataRequest,
         nRangeStart,
         nRangeEnd,
       );
@@ -867,7 +870,7 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
 
   SteamApiCall uploadLeaderboardScore(
     SteamLeaderboard hSteamLeaderboard,
-    ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod,
+    ELeaderboardUploadScoreMethod leaderboardUploadScoreMethod,
     int nScore,
     Pointer<Int> pScoreDetails,
     int cScoreDetailsCount,
@@ -875,20 +878,20 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
       _uploadLeaderboardScore.call(
         this,
         hSteamLeaderboard,
-        eLeaderboardUploadScoreMethod,
+        leaderboardUploadScoreMethod,
         nScore,
         pScoreDetails,
         cScoreDetailsCount,
       );
 
-  SteamApiCall attachLeaderboardUGC(
+  SteamApiCall attachLeaderboardUgc(
     SteamLeaderboard hSteamLeaderboard,
-    UgcHandle hUGC,
+    UgcHandle hUgc,
   ) =>
-      _attachLeaderboardUGC.call(
+      _attachLeaderboardUgc.call(
         this,
         hSteamLeaderboard,
-        hUGC,
+        hUgc,
       );
 
   SteamApiCall getNumberOfCurrentPlayers() => _getNumberOfCurrentPlayers.call(
@@ -901,43 +904,43 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
       );
 
   int getMostAchievedAchievementInfo(
-    Pointer<Utf8> pchName,
-    int unNameBufLen,
-    Pointer<Float> pflPercent,
+    Pointer<Utf8> name,
+    int nameBufLen,
+    Pointer<Float> percent,
     Pointer<Bool> pbAchieved,
   ) =>
       _getMostAchievedAchievementInfo.call(
         this,
-        pchName,
-        unNameBufLen,
-        pflPercent,
+        name,
+        nameBufLen,
+        percent,
         pbAchieved,
       );
 
   int getNextMostAchievedAchievementInfo(
     int iIteratorPrevious,
-    Pointer<Utf8> pchName,
-    int unNameBufLen,
-    Pointer<Float> pflPercent,
+    Pointer<Utf8> name,
+    int nameBufLen,
+    Pointer<Float> percent,
     Pointer<Bool> pbAchieved,
   ) =>
       _getNextMostAchievedAchievementInfo.call(
         this,
         iIteratorPrevious,
-        pchName,
-        unNameBufLen,
-        pflPercent,
+        name,
+        nameBufLen,
+        percent,
         pbAchieved,
       );
 
   bool getAchievementAchievedPercent(
-    Pointer<Utf8> pchName,
-    Pointer<Float> pflPercent,
+    Pointer<Utf8> name,
+    Pointer<Float> percent,
   ) =>
       _getAchievementAchievedPercent.call(
         this,
-        pchName,
-        pflPercent,
+        name,
+        percent,
       );
 
   SteamApiCall requestGlobalStats(
@@ -949,69 +952,69 @@ extension SteamUserStatsExtensions on Pointer<SteamUserStats> {
       );
 
   bool getGlobalStatInt64(
-    Pointer<Utf8> pchStatName,
+    Pointer<Utf8> statName,
     Pointer<LongLong> pData,
   ) =>
       _getGlobalStatInt64.call(
         this,
-        pchStatName,
+        statName,
         pData,
       );
 
   bool getGlobalStatDouble(
-    Pointer<Utf8> pchStatName,
+    Pointer<Utf8> statName,
     Pointer<Double> pData,
   ) =>
       _getGlobalStatDouble.call(
         this,
-        pchStatName,
+        statName,
         pData,
       );
 
   int getGlobalStatHistoryInt64(
-    Pointer<Utf8> pchStatName,
+    Pointer<Utf8> statName,
     Pointer<LongLong> pData,
     int cubData,
   ) =>
       _getGlobalStatHistoryInt64.call(
         this,
-        pchStatName,
+        statName,
         pData,
         cubData,
       );
 
   int getGlobalStatHistoryDouble(
-    Pointer<Utf8> pchStatName,
+    Pointer<Utf8> statName,
     Pointer<Double> pData,
     int cubData,
   ) =>
       _getGlobalStatHistoryDouble.call(
         this,
-        pchStatName,
+        statName,
         pData,
         cubData,
       );
 
   bool getAchievementProgressLimitsInt32(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     Pointer<Int> pnMinProgress,
     Pointer<Int> pnMaxProgress,
   ) =>
       _getAchievementProgressLimitsInt32.call(
         this,
-        pchName,
+        name,
         pnMinProgress,
         pnMaxProgress,
       );
 
   bool getAchievementProgressLimitsFloat(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     Pointer<Float> pfMinProgress,
     Pointer<Float> pfMaxProgress,
   ) =>
       _getAchievementProgressLimitsFloat.call(
         this,
-        pchName,
+        name,
         pfMinProgress,
         pfMaxProgress,
       );

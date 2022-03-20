@@ -2,14 +2,14 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlSearchResults extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
   @UnsignedInt()
-  external int unResults;
+  external int results;
 
   @UnsignedInt()
-  external int unCurrentMatch;
+  external int currentMatch;
 }

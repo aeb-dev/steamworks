@@ -1,6 +1,6 @@
 import "dart:ffi";
 
-@Packed(4)
+@Packed(8)
 class MusicPlayerWantsShuffled extends Struct {
   @Bool()
   external bool shuffled;

@@ -1,12 +1,14 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class SteamUgcQueryCompleted extends Struct {
   @UnsignedLongLong()
-  external UgcQueryHandle andle;
+  external UgcQueryHandle handle;
 
   @Int32()
   external EResult result;

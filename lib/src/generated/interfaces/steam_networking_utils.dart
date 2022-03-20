@@ -3,6 +3,7 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 
 import "../callback_structs/steam_relay_network_status.dart";
+import "../dl.dart";
 import "../enums/e_result.dart";
 import "../enums/e_steam_networking_availability.dart";
 import "../enums/e_steam_networking_config_data_type.dart";
@@ -10,7 +11,6 @@ import "../enums/e_steam_networking_config_scope.dart";
 import "../enums/e_steam_networking_config_value.dart";
 import "../enums/e_steam_networking_fake_ip_type.dart";
 import "../enums/e_steam_networking_get_config_value_result.dart";
-import "../steam_api.dart";
 import "../structs/steam_network_ping_location.dart";
 import "../structs/steam_networking_config_value.dart";
 import "../structs/steam_networking_identity.dart";
@@ -18,9 +18,14 @@ import "../structs/steam_networking_ip_addr.dart";
 import "../structs/steam_networking_message.dart";
 import "../typedefs.dart";
 
+final _steamNetworkingUtilsSteamApi = dl.lookupFunction<
+    Pointer<SteamNetworkingUtils> Function(),
+    Pointer<SteamNetworkingUtils>
+        Function()>("SteamAPI_SteamNetworkingUtils_SteamAPI_v004");
+
 class SteamNetworkingUtils extends Opaque {
-  static Pointer<SteamNetworkingUtils> steamNetworkingUtilsSteamApi() =>
-      nullptr;
+  static Pointer<SteamNetworkingUtils> get globalInstance =>
+      _steamNetworkingUtilsSteamApi();
 }
 
 final _allocateMessage = dl.lookupFunction<
@@ -127,21 +132,21 @@ final _getPingToDataCenter = dl.lookupFunction<
 ),
     int Function(
   Pointer<SteamNetworkingUtils>,
-  SteamNetworkingPOPId,
+  SteamNetworkingPopId,
   Pointer<UnsignedInt>,
 )>("SteamAPI_ISteamNetworkingUtils_GetPingToDataCenter");
 
-final _getDirectPingToPOP = dl.lookupFunction<
+final _getDirectPingToPop = dl.lookupFunction<
     Int Function(
   Pointer<SteamNetworkingUtils>,
   UnsignedInt,
 ),
     int Function(
   Pointer<SteamNetworkingUtils>,
-  SteamNetworkingPOPId,
+  SteamNetworkingPopId,
 )>("SteamAPI_ISteamNetworkingUtils_GetDirectPingToPOP");
 
-final _getPOPCount = dl.lookupFunction<
+final _getPopCount = dl.lookupFunction<
     Int Function(
   Pointer<SteamNetworkingUtils>,
 ),
@@ -149,7 +154,7 @@ final _getPOPCount = dl.lookupFunction<
   Pointer<SteamNetworkingUtils>,
 )>("SteamAPI_ISteamNetworkingUtils_GetPOPCount");
 
-final _getPOPList = dl.lookupFunction<
+final _getPopList = dl.lookupFunction<
     Int Function(
   Pointer<SteamNetworkingUtils>,
   Pointer<UnsignedInt>,
@@ -169,7 +174,7 @@ final _getLocalTimestamp = dl.lookupFunction<
   Pointer<SteamNetworkingUtils>,
 )>("SteamAPI_ISteamNetworkingUtils_GetLocalTimestamp");
 
-final _isFakeIPv4 = dl.lookupFunction<
+final _isFakeIpv4 = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingUtils>,
   UnsignedInt,
@@ -179,7 +184,7 @@ final _isFakeIPv4 = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamNetworkingUtils_IsFakeIPv4");
 
-final _getIPv4FakeIPType = dl.lookupFunction<
+final _getIpv4FakeIpType = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamNetworkingUtils>,
   UnsignedInt,
@@ -189,7 +194,7 @@ final _getIPv4FakeIPType = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamNetworkingUtils_GetIPv4FakeIPType");
 
-final _getRealIdentityForFakeIP = dl.lookupFunction<
+final _getRealIdentityForFakeIp = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
@@ -369,7 +374,7 @@ final _iterateGenericEditableConfigValues = dl.lookupFunction<
   bool,
 )>("SteamAPI_ISteamNetworkingUtils_IterateGenericEditableConfigValues");
 
-final _steamNetworkingIPAddrToString = dl.lookupFunction<
+final _steamNetworkingIpAddrToString = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
@@ -385,7 +390,7 @@ final _steamNetworkingIPAddrToString = dl.lookupFunction<
   bool,
 )>("SteamAPI_ISteamNetworkingUtils_SteamNetworkingIPAddr_ToString");
 
-final _steamNetworkingIPAddrParseString = dl.lookupFunction<
+final _steamNetworkingIpAddrParseString = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
@@ -397,7 +402,7 @@ final _steamNetworkingIPAddrParseString = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamNetworkingUtils_SteamNetworkingIPAddr_ParseString");
 
-final _steamNetworkingIPAddrGetFakeIPType = dl.lookupFunction<
+final _steamNetworkingIpAddrGetFakeIpType = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
@@ -503,40 +508,40 @@ extension SteamNetworkingUtilsExtensions on Pointer<SteamNetworkingUtils> {
       );
 
   bool checkPingDataUpToDate(
-    double flMaxAgeSeconds,
+    double maxAgeSeconds,
   ) =>
       _checkPingDataUpToDate.call(
         this,
-        flMaxAgeSeconds,
+        maxAgeSeconds,
       );
 
   int getPingToDataCenter(
-    SteamNetworkingPOPId popID,
+    SteamNetworkingPopId popId,
     Pointer<UnsignedInt> pViaRelayPoP,
   ) =>
       _getPingToDataCenter.call(
         this,
-        popID,
+        popId,
         pViaRelayPoP,
       );
 
-  int getDirectPingToPOP(
-    SteamNetworkingPOPId popID,
+  int getDirectPingToPop(
+    SteamNetworkingPopId popId,
   ) =>
-      _getDirectPingToPOP.call(
+      _getDirectPingToPop.call(
         this,
-        popID,
+        popId,
       );
 
-  int getPOPCount() => _getPOPCount.call(
+  int getPopCount() => _getPopCount.call(
         this,
       );
 
-  int getPOPList(
+  int getPopList(
     Pointer<UnsignedInt> list,
     int nListSz,
   ) =>
-      _getPOPList.call(
+      _getPopList.call(
         this,
         list,
         nListSz,
@@ -546,139 +551,139 @@ extension SteamNetworkingUtilsExtensions on Pointer<SteamNetworkingUtils> {
         this,
       );
 
-  bool isFakeIPv4(
-    int nIPv4,
+  bool isFakeIpv4(
+    int nIpv4,
   ) =>
-      _isFakeIPv4.call(
+      _isFakeIpv4.call(
         this,
-        nIPv4,
+        nIpv4,
       );
 
-  ESteamNetworkingFakeIpType getIPv4FakeIPType(
-    int nIPv4,
+  ESteamNetworkingFakeIpType getIpv4FakeIpType(
+    int nIpv4,
   ) =>
-      _getIPv4FakeIPType.call(
+      _getIpv4FakeIpType.call(
         this,
-        nIPv4,
+        nIpv4,
       );
 
-  EResult getRealIdentityForFakeIP(
-    Pointer<SteamNetworkingIpAddr> fakeIP,
+  EResult getRealIdentityForFakeIp(
+    Pointer<SteamNetworkingIpAddr> fakeIp,
     Pointer<SteamNetworkingIdentity> pOutRealIdentity,
   ) =>
-      _getRealIdentityForFakeIP.call(
+      _getRealIdentityForFakeIp.call(
         this,
-        fakeIP,
+        fakeIp,
         pOutRealIdentity,
       );
 
   bool setGlobalConfigValueInt32(
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     int val,
   ) =>
       _setGlobalConfigValueInt32.call(
         this,
-        eValue,
+        value,
         val,
       );
 
   bool setGlobalConfigValueFloat(
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     double val,
   ) =>
       _setGlobalConfigValueFloat.call(
         this,
-        eValue,
+        value,
         val,
       );
 
   bool setGlobalConfigValueString(
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     Pointer<Utf8> val,
   ) =>
       _setGlobalConfigValueString.call(
         this,
-        eValue,
+        value,
         val,
       );
 
   bool setGlobalConfigValuePtr(
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     Pointer<Void> val,
   ) =>
       _setGlobalConfigValuePtr.call(
         this,
-        eValue,
+        value,
         val,
       );
 
   bool setConnectionConfigValueInt32(
     HSteamNetConnection hConn,
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     int val,
   ) =>
       _setConnectionConfigValueInt32.call(
         this,
         hConn,
-        eValue,
+        value,
         val,
       );
 
   bool setConnectionConfigValueFloat(
     HSteamNetConnection hConn,
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     double val,
   ) =>
       _setConnectionConfigValueFloat.call(
         this,
         hConn,
-        eValue,
+        value,
         val,
       );
 
   bool setConnectionConfigValueString(
     HSteamNetConnection hConn,
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     Pointer<Utf8> val,
   ) =>
       _setConnectionConfigValueString.call(
         this,
         hConn,
-        eValue,
+        value,
         val,
       );
 
   bool setConfigValue(
-    ESteamNetworkingConfigValue eValue,
-    ESteamNetworkingConfigScope eScopeType,
+    ESteamNetworkingConfigValue value,
+    ESteamNetworkingConfigScope scopeType,
     int scopeObj,
-    ESteamNetworkingConfigDataType eDataType,
+    ESteamNetworkingConfigDataType dataType,
     Pointer<Void> pArg,
   ) =>
       _setConfigValue.call(
         this,
-        eValue,
-        eScopeType,
+        value,
+        scopeType,
         scopeObj,
-        eDataType,
+        dataType,
         pArg,
       );
 
   bool setConfigValueStruct(
     Pointer<SteamNetworkingConfigValue> opt,
-    ESteamNetworkingConfigScope eScopeType,
+    ESteamNetworkingConfigScope scopeType,
     int scopeObj,
   ) =>
       _setConfigValueStruct.call(
         this,
         opt,
-        eScopeType,
+        scopeType,
         scopeObj,
       );
 
   ESteamNetworkingGetConfigValueResult getConfigValue(
-    ESteamNetworkingConfigValue eValue,
-    ESteamNetworkingConfigScope eScopeType,
+    ESteamNetworkingConfigValue value,
+    ESteamNetworkingConfigScope scopeType,
     int scopeObj,
     Pointer<Int32> pOutDataType,
     Pointer<Void> pResult,
@@ -686,8 +691,8 @@ extension SteamNetworkingUtilsExtensions on Pointer<SteamNetworkingUtils> {
   ) =>
       _getConfigValue.call(
         this,
-        eValue,
-        eScopeType,
+        value,
+        scopeType,
         scopeObj,
         pOutDataType,
         pResult,
@@ -695,55 +700,55 @@ extension SteamNetworkingUtilsExtensions on Pointer<SteamNetworkingUtils> {
       );
 
   Pointer<Utf8> getConfigValueInfo(
-    ESteamNetworkingConfigValue eValue,
+    ESteamNetworkingConfigValue value,
     Pointer<Int32> pOutDataType,
     Pointer<Int32> pOutScope,
   ) =>
       _getConfigValueInfo.call(
         this,
-        eValue,
+        value,
         pOutDataType,
         pOutScope,
       );
 
   ESteamNetworkingConfigValue iterateGenericEditableConfigValues(
-    ESteamNetworkingConfigValue eCurrent,
-    bool bEnumerateDevVars,
+    ESteamNetworkingConfigValue current,
+    bool enumerateDevVars,
   ) =>
       _iterateGenericEditableConfigValues.call(
         this,
-        eCurrent,
-        bEnumerateDevVars,
+        current,
+        enumerateDevVars,
       );
 
-  void steamNetworkingIPAddrToString(
+  void steamNetworkingIpAddrToString(
     Pointer<SteamNetworkingIpAddr> addr,
     Pointer<Utf8> buf,
     int cbBuf,
-    bool bWithPort,
+    bool withPort,
   ) =>
-      _steamNetworkingIPAddrToString.call(
+      _steamNetworkingIpAddrToString.call(
         this,
         addr,
         buf,
         cbBuf,
-        bWithPort,
+        withPort,
       );
 
-  bool steamNetworkingIPAddrParseString(
+  bool steamNetworkingIpAddrParseString(
     Pointer<SteamNetworkingIpAddr> pAddr,
     Pointer<Utf8> pszStr,
   ) =>
-      _steamNetworkingIPAddrParseString.call(
+      _steamNetworkingIpAddrParseString.call(
         this,
         pAddr,
         pszStr,
       );
 
-  ESteamNetworkingFakeIpType steamNetworkingIPAddrGetFakeIPType(
+  ESteamNetworkingFakeIpType steamNetworkingIpAddrGetFakeIpType(
     Pointer<SteamNetworkingIpAddr> addr,
   ) =>
-      _steamNetworkingIPAddrGetFakeIPType.call(
+      _steamNetworkingIpAddrGetFakeIpType.call(
         this,
         addr,
       );

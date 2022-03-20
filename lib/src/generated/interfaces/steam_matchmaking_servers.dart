@@ -2,17 +2,23 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../interfaces/steam_matchmaking_ping_response.dart";
 import "../interfaces/steam_matchmaking_players_response.dart";
 import "../interfaces/steam_matchmaking_rules_response.dart";
 import "../interfaces/steam_matchmaking_server_list_response.dart";
-import "../steam_api.dart";
 import "../structs/game_server_item.dart";
 import "../structs/match_making_key_value_pair.dart";
 import "../typedefs.dart";
 
+final _steamMatchmakingServers = dl.lookupFunction<
+    Pointer<SteamMatchmakingServers> Function(),
+    Pointer<SteamMatchmakingServers>
+        Function()>("SteamAPI_SteamMatchmakingServers_v002");
+
 class SteamMatchmakingServers extends Opaque {
-  static Pointer<SteamMatchmakingServers> steamMatchmakingServers() => nullptr;
+  static Pointer<SteamMatchmakingServers> get userInstance =>
+      _steamMatchmakingServers();
 }
 
 final _requestInternetServerList = dl.lookupFunction<
@@ -376,38 +382,38 @@ extension SteamMatchmakingServersExtensions
       );
 
   HServerQuery pingServer(
-    int unIP,
-    int usPort,
+    int ip,
+    int port,
     Pointer<SteamMatchmakingPingResponse> pRequestServersResponse,
   ) =>
       _pingServer.call(
         this,
-        unIP,
-        usPort,
+        ip,
+        port,
         pRequestServersResponse,
       );
 
   HServerQuery playerDetails(
-    int unIP,
-    int usPort,
+    int ip,
+    int port,
     Pointer<SteamMatchmakingPlayersResponse> pRequestServersResponse,
   ) =>
       _playerDetails.call(
         this,
-        unIP,
-        usPort,
+        ip,
+        port,
         pRequestServersResponse,
       );
 
   HServerQuery serverRules(
-    int unIP,
-    int usPort,
+    int ip,
+    int port,
     Pointer<SteamMatchmakingRulesResponse> pRequestServersResponse,
   ) =>
       _serverRules.call(
         this,
-        unIP,
-        usPort,
+        ip,
+        port,
         pRequestServersResponse,
       );
 

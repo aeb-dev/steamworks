@@ -44,6 +44,6 @@ class EHttpStatusCodeEnum {
   static const int statusCode502BadGateway = 502;
   static const int statusCode503ServiceUnavailable = 503;
   static const int statusCode504GatewayTimeout = 504;
-  static const int statusCode505HTTPVersionNotSupported = 505;
+  static const int statusCode505HttpVersionNotSupported = 505;
   static const int statusCode5xxUnknown = 599;
 }

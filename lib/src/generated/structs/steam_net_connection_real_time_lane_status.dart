@@ -2,7 +2,7 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class SteamNetConnectionRealTimeLaneStatus extends Struct {
   @Int()
   external int pendingUnreliableSize;
@@ -17,7 +17,7 @@ class SteamNetConnectionRealTimeLaneStatus extends Struct {
   external int reservePad1;
 
   @LongLong()
-  external SteamNetworkingMicroseconds ecQueueTime;
+  external SteamNetworkingMicroseconds queueTime;
 
   @Array<UnsignedInt>(10)
   external Array<UnsignedInt> reserved;

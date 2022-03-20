@@ -2,25 +2,25 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class HtmlNewWindow extends Struct {
   @UnsignedInt()
-  external HHtmlBrowser unBrowserHandle;
+  external HHtmlBrowser browserHandle;
 
-  external Pointer<Utf8> pchUrl;
-
-  @UnsignedInt()
-  external int unX;
+  external Pointer<Utf8> url;
 
   @UnsignedInt()
-  external int unY;
+  external int x;
 
   @UnsignedInt()
-  external int unWide;
+  external int y;
 
   @UnsignedInt()
-  external int unTall;
+  external int wide;
 
   @UnsignedInt()
-  external HHtmlBrowser unNewWindowBrowserHandleIGNORE;
+  external int tall;
+
+  @UnsignedInt()
+  external HHtmlBrowser newWindowBrowserHandleIGNORE;
 }

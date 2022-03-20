@@ -1,13 +1,16 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+import "../dl.dart";
 import "../typedefs.dart";
 
+final _steamApps = dl.lookupFunction<Pointer<SteamApps> Function(),
+    Pointer<SteamApps> Function()>("SteamAPI_SteamApps_v008");
+
 class SteamApps extends Opaque {
-  static Pointer<SteamApps> steamApps() => nullptr;
+  static Pointer<SteamApps> get userInstance => _steamApps();
 }
 
-final _bIsSubscribed = dl.lookupFunction<
+final _isSubscribed = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
 ),
@@ -15,7 +18,7 @@ final _bIsSubscribed = dl.lookupFunction<
   Pointer<SteamApps>,
 )>("SteamAPI_ISteamApps_BIsSubscribed");
 
-final _bIsLowViolence = dl.lookupFunction<
+final _isLowViolence = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
 ),
@@ -23,7 +26,7 @@ final _bIsLowViolence = dl.lookupFunction<
   Pointer<SteamApps>,
 )>("SteamAPI_ISteamApps_BIsLowViolence");
 
-final _bIsCybercafe = dl.lookupFunction<
+final _isCybercafe = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
 ),
@@ -31,7 +34,7 @@ final _bIsCybercafe = dl.lookupFunction<
   Pointer<SteamApps>,
 )>("SteamAPI_ISteamApps_BIsCybercafe");
 
-final _bIsVACBanned = dl.lookupFunction<
+final _isVACBanned = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
 ),
@@ -55,7 +58,7 @@ final _getAvailableGameLanguages = dl.lookupFunction<
   Pointer<SteamApps>,
 )>("SteamAPI_ISteamApps_GetAvailableGameLanguages");
 
-final _bIsSubscribedApp = dl.lookupFunction<
+final _isSubscribedApp = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
   UnsignedInt,
@@ -65,7 +68,7 @@ final _bIsSubscribedApp = dl.lookupFunction<
   AppId,
 )>("SteamAPI_ISteamApps_BIsSubscribedApp");
 
-final _bIsDlcInstalled = dl.lookupFunction<
+final _isDlcInstalled = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
   UnsignedInt,
@@ -85,7 +88,7 @@ final _getEarliestPurchaseUnixTime = dl.lookupFunction<
   AppId,
 )>("SteamAPI_ISteamApps_GetEarliestPurchaseUnixTime");
 
-final _bIsSubscribedFromFreeWeekend = dl.lookupFunction<
+final _isSubscribedFromFreeWeekend = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
 ),
@@ -199,7 +202,7 @@ final _getAppInstallDir = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamApps_GetAppInstallDir");
 
-final _bIsAppInstalled = dl.lookupFunction<
+final _isAppInstalled = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
   UnsignedInt,
@@ -279,7 +282,7 @@ final _getLaunchCommandLine = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamApps_GetLaunchCommandLine");
 
-final _bIsSubscribedFromFamilySharing = dl.lookupFunction<
+final _isSubscribedFromFamilySharing = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
 ),
@@ -287,7 +290,7 @@ final _bIsSubscribedFromFamilySharing = dl.lookupFunction<
   Pointer<SteamApps>,
 )>("SteamAPI_ISteamApps_BIsSubscribedFromFamilySharing");
 
-final _bIsTimedTrial = dl.lookupFunction<
+final _isTimedTrial = dl.lookupFunction<
     Bool Function(
   Pointer<SteamApps>,
   Pointer<UnsignedInt>,
@@ -300,19 +303,19 @@ final _bIsTimedTrial = dl.lookupFunction<
 )>("SteamAPI_ISteamApps_BIsTimedTrial");
 
 extension SteamAppsExtensions on Pointer<SteamApps> {
-  bool bIsSubscribed() => _bIsSubscribed.call(
+  bool isSubscribed() => _isSubscribed.call(
         this,
       );
 
-  bool bIsLowViolence() => _bIsLowViolence.call(
+  bool isLowViolence() => _isLowViolence.call(
         this,
       );
 
-  bool bIsCybercafe() => _bIsCybercafe.call(
+  bool isCybercafe() => _isCybercafe.call(
         this,
       );
 
-  bool bIsVACBanned() => _bIsVACBanned.call(
+  bool isVACBanned() => _isVACBanned.call(
         this,
       );
 
@@ -324,31 +327,31 @@ extension SteamAppsExtensions on Pointer<SteamApps> {
         this,
       );
 
-  bool bIsSubscribedApp(
-    AppId appID,
+  bool isSubscribedApp(
+    AppId appId,
   ) =>
-      _bIsSubscribedApp.call(
+      _isSubscribedApp.call(
         this,
-        appID,
+        appId,
       );
 
-  bool bIsDlcInstalled(
-    AppId appID,
+  bool isDlcInstalled(
+    AppId appId,
   ) =>
-      _bIsDlcInstalled.call(
+      _isDlcInstalled.call(
         this,
-        appID,
+        appId,
       );
 
   int getEarliestPurchaseUnixTime(
-    AppId nAppID,
+    AppId nAppId,
   ) =>
       _getEarliestPurchaseUnixTime.call(
         this,
-        nAppID,
+        nAppId,
       );
 
-  bool bIsSubscribedFromFreeWeekend() => _bIsSubscribedFromFreeWeekend.call(
+  bool isSubscribedFromFreeWeekend() => _isSubscribedFromFreeWeekend.call(
         this,
       );
 
@@ -358,92 +361,92 @@ extension SteamAppsExtensions on Pointer<SteamApps> {
 
   bool bGetDLCDataByIndex(
     int iDLC,
-    Pointer<UnsignedInt> pAppID,
+    Pointer<UnsignedInt> pAppId,
     Pointer<Bool> pbAvailable,
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     int cchNameBufferSize,
   ) =>
       _bGetDLCDataByIndex.call(
         this,
         iDLC,
-        pAppID,
+        pAppId,
         pbAvailable,
-        pchName,
+        name,
         cchNameBufferSize,
       );
 
   void installDLC(
-    AppId nAppID,
+    AppId nAppId,
   ) =>
       _installDLC.call(
         this,
-        nAppID,
+        nAppId,
       );
 
   void uninstallDLC(
-    AppId nAppID,
+    AppId nAppId,
   ) =>
       _uninstallDLC.call(
         this,
-        nAppID,
+        nAppId,
       );
 
   void requestAppProofOfPurchaseKey(
-    AppId nAppID,
+    AppId nAppId,
   ) =>
       _requestAppProofOfPurchaseKey.call(
         this,
-        nAppID,
+        nAppId,
       );
 
   bool getCurrentBetaName(
-    Pointer<Utf8> pchName,
+    Pointer<Utf8> name,
     int cchNameBufferSize,
   ) =>
       _getCurrentBetaName.call(
         this,
-        pchName,
+        name,
         cchNameBufferSize,
       );
 
   bool markContentCorrupt(
-    bool bMissingFilesOnly,
+    bool missingFilesOnly,
   ) =>
       _markContentCorrupt.call(
         this,
-        bMissingFilesOnly,
+        missingFilesOnly,
       );
 
   int getInstalledDepots(
-    AppId appID,
+    AppId appId,
     Pointer<UnsignedInt> pvecDepots,
     int cMaxDepots,
   ) =>
       _getInstalledDepots.call(
         this,
-        appID,
+        appId,
         pvecDepots,
         cMaxDepots,
       );
 
   int getAppInstallDir(
-    AppId appID,
-    Pointer<Utf8> pchFolder,
+    AppId appId,
+    Pointer<Utf8> folder,
     int cchFolderBufferSize,
   ) =>
       _getAppInstallDir.call(
         this,
-        appID,
-        pchFolder,
+        appId,
+        folder,
         cchFolderBufferSize,
       );
 
-  bool bIsAppInstalled(
-    AppId appID,
+  bool isAppInstalled(
+    AppId appId,
   ) =>
-      _bIsAppInstalled.call(
+      _isAppInstalled.call(
         this,
-        appID,
+        appId,
       );
 
   CSteamId getAppOwner() => _getAppOwner.call(
@@ -451,21 +454,21 @@ extension SteamAppsExtensions on Pointer<SteamApps> {
       );
 
   Pointer<Utf8> getLaunchQueryParam(
-    Pointer<Utf8> pchKey,
+    Pointer<Utf8> key,
   ) =>
       _getLaunchQueryParam.call(
         this,
-        pchKey,
+        key,
       );
 
   bool getDlcDownloadProgress(
-    AppId nAppID,
+    AppId nAppId,
     Pointer<UnsignedLongLong> punBytesDownloaded,
     Pointer<UnsignedLongLong> punBytesTotal,
   ) =>
       _getDlcDownloadProgress.call(
         this,
-        nAppID,
+        nAppId,
         punBytesDownloaded,
         punBytesTotal,
       );
@@ -496,15 +499,15 @@ extension SteamAppsExtensions on Pointer<SteamApps> {
         cubCommandLine,
       );
 
-  bool bIsSubscribedFromFamilySharing() => _bIsSubscribedFromFamilySharing.call(
+  bool isSubscribedFromFamilySharing() => _isSubscribedFromFamilySharing.call(
         this,
       );
 
-  bool bIsTimedTrial(
+  bool isTimedTrial(
     Pointer<UnsignedInt> punSecondsAllowed,
     Pointer<UnsignedInt> punSecondsPlayed,
   ) =>
-      _bIsTimedTrial.call(
+      _isTimedTrial.call(
         this,
         punSecondsAllowed,
         punSecondsPlayed,

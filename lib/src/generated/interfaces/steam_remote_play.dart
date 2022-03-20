@@ -2,12 +2,15 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_steam_device_form_factor.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamRemotePlay = dl.lookupFunction<Pointer<SteamRemotePlay> Function(),
+    Pointer<SteamRemotePlay> Function()>("SteamAPI_SteamRemotePlay_v001");
+
 class SteamRemotePlay extends Opaque {
-  static Pointer<SteamRemotePlay> steamRemotePlay() => nullptr;
+  static Pointer<SteamRemotePlay> get userInstance => _steamRemotePlay();
 }
 
 final _getSessionCount = dl.lookupFunction<
@@ -18,7 +21,7 @@ final _getSessionCount = dl.lookupFunction<
   Pointer<SteamRemotePlay>,
 )>("SteamAPI_ISteamRemotePlay_GetSessionCount");
 
-final _getSessionID = dl.lookupFunction<
+final _getSessionId = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamRemotePlay>,
   Int,
@@ -28,7 +31,7 @@ final _getSessionID = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamRemotePlay_GetSessionID");
 
-final _getSessionSteamID = dl.lookupFunction<
+final _getSessionSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamRemotePlay>,
   UnsignedInt,
@@ -87,55 +90,55 @@ extension SteamRemotePlayExtensions on Pointer<SteamRemotePlay> {
         this,
       );
 
-  RemotePlaySessionId getSessionID(
+  RemotePlaySessionId getSessionId(
     int iSessionIndex,
   ) =>
-      _getSessionID.call(
+      _getSessionId.call(
         this,
         iSessionIndex,
       );
 
-  CSteamId getSessionSteamID(
-    RemotePlaySessionId unSessionID,
+  CSteamId getSessionSteamId(
+    RemotePlaySessionId sessionId,
   ) =>
-      _getSessionSteamID.call(
+      _getSessionSteamId.call(
         this,
-        unSessionID,
+        sessionId,
       );
 
   Pointer<Utf8> getSessionClientName(
-    RemotePlaySessionId unSessionID,
+    RemotePlaySessionId sessionId,
   ) =>
       _getSessionClientName.call(
         this,
-        unSessionID,
+        sessionId,
       );
 
   ESteamDeviceFormFactor getSessionClientFormFactor(
-    RemotePlaySessionId unSessionID,
+    RemotePlaySessionId sessionId,
   ) =>
       _getSessionClientFormFactor.call(
         this,
-        unSessionID,
+        sessionId,
       );
 
   bool bGetSessionClientResolution(
-    RemotePlaySessionId unSessionID,
+    RemotePlaySessionId sessionId,
     Pointer<Int> pnResolutionX,
     Pointer<Int> pnResolutionY,
   ) =>
       _bGetSessionClientResolution.call(
         this,
-        unSessionID,
+        sessionId,
         pnResolutionX,
         pnResolutionY,
       );
 
   bool bSendRemotePlayTogetherInvite(
-    CSteamId steamIDFriend,
+    CSteamId steamIdFriend,
   ) =>
       _bSendRemotePlayTogetherInvite.call(
         this,
-        steamIDFriend,
+        steamIdFriend,
       );
 }

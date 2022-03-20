@@ -2,18 +2,21 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_controller_action_origin.dart";
 import "../enums/e_steam_controller_pad.dart";
 import "../enums/e_steam_input_type.dart";
 import "../enums/e_xbox_origin.dart";
-import "../steam_api.dart";
 import "../structs/input_analog_action_data.dart";
 import "../structs/input_digital_action_data.dart";
 import "../structs/input_motion_data.dart";
 import "../typedefs.dart";
 
+final _steamController = dl.lookupFunction<Pointer<SteamController> Function(),
+    Pointer<SteamController> Function()>("SteamAPI_SteamController_v008");
+
 class SteamController extends Opaque {
-  static Pointer<SteamController> steamController() => nullptr;
+  static Pointer<SteamController> get userInstance => _steamController();
 }
 
 final _init = dl.lookupFunction<
@@ -294,7 +297,7 @@ final _triggerVibration = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamController_TriggerVibration");
 
-final _setLEDColor = dl.lookupFunction<
+final _setLedColor = dl.lookupFunction<
     Void Function(
   Pointer<SteamController>,
   UnsignedLongLong,
@@ -560,29 +563,29 @@ extension SteamControllerExtensions on Pointer<SteamController> {
       );
 
   Pointer<Utf8> getGlyphForActionOrigin(
-    EControllerActionOrigin eOrigin,
+    EControllerActionOrigin origin,
   ) =>
       _getGlyphForActionOrigin.call(
         this,
-        eOrigin,
+        origin,
       );
 
   Pointer<Utf8> getStringForActionOrigin(
-    EControllerActionOrigin eOrigin,
+    EControllerActionOrigin origin,
   ) =>
       _getStringForActionOrigin.call(
         this,
-        eOrigin,
+        origin,
       );
 
   void stopAnalogActionMomentum(
     ControllerHandle controllerHandle,
-    ControllerAnalogActionHandle eAction,
+    ControllerAnalogActionHandle action,
   ) =>
       _stopAnalogActionMomentum.call(
         this,
         controllerHandle,
-        eAction,
+        action,
       );
 
   InputMotionData getMotionData(
@@ -595,54 +598,54 @@ extension SteamControllerExtensions on Pointer<SteamController> {
 
   void triggerHapticPulse(
     ControllerHandle controllerHandle,
-    ESteamControllerPad eTargetPad,
-    int usDurationMicroSec,
+    ESteamControllerPad targetPad,
+    int durationMicroSec,
   ) =>
       _triggerHapticPulse.call(
         this,
         controllerHandle,
-        eTargetPad,
-        usDurationMicroSec,
+        targetPad,
+        durationMicroSec,
       );
 
   void triggerRepeatedHapticPulse(
     ControllerHandle controllerHandle,
-    ESteamControllerPad eTargetPad,
-    int usDurationMicroSec,
-    int usOffMicroSec,
-    int unRepeat,
+    ESteamControllerPad targetPad,
+    int durationMicroSec,
+    int offMicroSec,
+    int repeat,
     int nFlags,
   ) =>
       _triggerRepeatedHapticPulse.call(
         this,
         controllerHandle,
-        eTargetPad,
-        usDurationMicroSec,
-        usOffMicroSec,
-        unRepeat,
+        targetPad,
+        durationMicroSec,
+        offMicroSec,
+        repeat,
         nFlags,
       );
 
   void triggerVibration(
     ControllerHandle controllerHandle,
-    int usLeftSpeed,
-    int usRightSpeed,
+    int leftSpeed,
+    int rightSpeed,
   ) =>
       _triggerVibration.call(
         this,
         controllerHandle,
-        usLeftSpeed,
-        usRightSpeed,
+        leftSpeed,
+        rightSpeed,
       );
 
-  void setLEDColor(
+  void setLedColor(
     ControllerHandle controllerHandle,
     int nColorR,
     int nColorG,
     int nColorB,
     int nFlags,
   ) =>
-      _setLEDColor.call(
+      _setLedColor.call(
         this,
         controllerHandle,
         nColorR,
@@ -684,39 +687,39 @@ extension SteamControllerExtensions on Pointer<SteamController> {
       );
 
   Pointer<Utf8> getStringForXboxOrigin(
-    EXboxOrigin eOrigin,
+    EXboxOrigin origin,
   ) =>
       _getStringForXboxOrigin.call(
         this,
-        eOrigin,
+        origin,
       );
 
   Pointer<Utf8> getGlyphForXboxOrigin(
-    EXboxOrigin eOrigin,
+    EXboxOrigin origin,
   ) =>
       _getGlyphForXboxOrigin.call(
         this,
-        eOrigin,
+        origin,
       );
 
   EControllerActionOrigin getActionOriginFromXboxOrigin(
     ControllerHandle controllerHandle,
-    EXboxOrigin eOrigin,
+    EXboxOrigin origin,
   ) =>
       _getActionOriginFromXboxOrigin.call(
         this,
         controllerHandle,
-        eOrigin,
+        origin,
       );
 
   EControllerActionOrigin translateActionOrigin(
-    ESteamInputType eDestinationInputType,
-    EControllerActionOrigin eSourceOrigin,
+    ESteamInputType destinationInputType,
+    EControllerActionOrigin sourceOrigin,
   ) =>
       _translateActionOrigin.call(
         this,
-        eDestinationInputType,
-        eSourceOrigin,
+        destinationInputType,
+        sourceOrigin,
       );
 
   bool getControllerBindingRevision(

@@ -2,13 +2,17 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_html_key_modifiers.dart";
 import "../enums/e_html_mouse_button.dart";
-import "../steam_api.dart";
 import "../typedefs.dart";
 
+final _steamHtmlSurface = dl.lookupFunction<
+    Pointer<SteamHtmlSurface> Function(),
+    Pointer<SteamHtmlSurface> Function()>("SteamAPI_SteamHTMLSurface_v005");
+
 class SteamHtmlSurface extends Opaque {
-  static Pointer<SteamHtmlSurface> steamHtmlSurface() => nullptr;
+  static Pointer<SteamHtmlSurface> get userInstance => _steamHtmlSurface();
 }
 
 final _init = dl.lookupFunction<
@@ -49,7 +53,7 @@ final _removeBrowser = dl.lookupFunction<
   HHtmlBrowser,
 )>("SteamAPI_ISteamHTMLSurface_RemoveBrowser");
 
-final _loadURL = dl.lookupFunction<
+final _loadUrl = dl.lookupFunction<
     Void Function(
   Pointer<SteamHtmlSurface>,
   UnsignedInt,
@@ -439,7 +443,7 @@ final _allowStartRequest = dl.lookupFunction<
   bool,
 )>("SteamAPI_ISteamHTMLSurface_AllowStartRequest");
 
-final _jSDialogResponse = dl.lookupFunction<
+final _jsDialogResponse = dl.lookupFunction<
     Void Function(
   Pointer<SteamHtmlSurface>,
   UnsignedInt,
@@ -473,368 +477,368 @@ extension SteamHtmlSurfaceExtensions on Pointer<SteamHtmlSurface> {
       );
 
   SteamApiCall createBrowser(
-    Pointer<Utf8> pchUserAgent,
-    Pointer<Utf8> pchUserCSS,
+    Pointer<Utf8> userAgent,
+    Pointer<Utf8> userCSS,
   ) =>
       _createBrowser.call(
         this,
-        pchUserAgent,
-        pchUserCSS,
+        userAgent,
+        userCSS,
       );
 
   void removeBrowser(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _removeBrowser.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
-  void loadURL(
-    HHtmlBrowser unBrowserHandle,
-    Pointer<Utf8> pchURL,
-    Pointer<Utf8> pchPostData,
+  void loadUrl(
+    HHtmlBrowser browserHandle,
+    Pointer<Utf8> url,
+    Pointer<Utf8> postData,
   ) =>
-      _loadURL.call(
+      _loadUrl.call(
         this,
-        unBrowserHandle,
-        pchURL,
-        pchPostData,
+        browserHandle,
+        url,
+        postData,
       );
 
   void setSize(
-    HHtmlBrowser unBrowserHandle,
-    int unWidth,
-    int unHeight,
+    HHtmlBrowser browserHandle,
+    int width,
+    int height,
   ) =>
       _setSize.call(
         this,
-        unBrowserHandle,
-        unWidth,
-        unHeight,
+        browserHandle,
+        width,
+        height,
       );
 
   void stopLoad(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _stopLoad.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void reload(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _reload.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void goBack(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _goBack.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void goForward(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _goForward.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void addHeader(
-    HHtmlBrowser unBrowserHandle,
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
+    HHtmlBrowser browserHandle,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
   ) =>
       _addHeader.call(
         this,
-        unBrowserHandle,
-        pchKey,
-        pchValue,
+        browserHandle,
+        key,
+        value,
       );
 
   void executeJavascript(
-    HHtmlBrowser unBrowserHandle,
-    Pointer<Utf8> pchScript,
+    HHtmlBrowser browserHandle,
+    Pointer<Utf8> script,
   ) =>
       _executeJavascript.call(
         this,
-        unBrowserHandle,
-        pchScript,
+        browserHandle,
+        script,
       );
 
   void mouseUp(
-    HHtmlBrowser unBrowserHandle,
-    EHtmlMouseButton eMouseButton,
+    HHtmlBrowser browserHandle,
+    EHtmlMouseButton mouseButton,
   ) =>
       _mouseUp.call(
         this,
-        unBrowserHandle,
-        eMouseButton,
+        browserHandle,
+        mouseButton,
       );
 
   void mouseDown(
-    HHtmlBrowser unBrowserHandle,
-    EHtmlMouseButton eMouseButton,
+    HHtmlBrowser browserHandle,
+    EHtmlMouseButton mouseButton,
   ) =>
       _mouseDown.call(
         this,
-        unBrowserHandle,
-        eMouseButton,
+        browserHandle,
+        mouseButton,
       );
 
   void mouseDoubleClick(
-    HHtmlBrowser unBrowserHandle,
-    EHtmlMouseButton eMouseButton,
+    HHtmlBrowser browserHandle,
+    EHtmlMouseButton mouseButton,
   ) =>
       _mouseDoubleClick.call(
         this,
-        unBrowserHandle,
-        eMouseButton,
+        browserHandle,
+        mouseButton,
       );
 
   void mouseMove(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int x,
     int y,
   ) =>
       _mouseMove.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         x,
         y,
       );
 
   void mouseWheel(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int nDelta,
   ) =>
       _mouseWheel.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         nDelta,
       );
 
   void keyDown(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int nNativeKeyCode,
-    EHtmlKeyModifiers eHTMLKeyModifiers,
-    bool bIsSystemKey,
+    EHtmlKeyModifiers htmlKeyModifiers,
+    bool isSystemKey,
   ) =>
       _keyDown.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         nNativeKeyCode,
-        eHTMLKeyModifiers,
-        bIsSystemKey,
+        htmlKeyModifiers,
+        isSystemKey,
       );
 
   void keyUp(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int nNativeKeyCode,
-    EHtmlKeyModifiers eHTMLKeyModifiers,
+    EHtmlKeyModifiers htmlKeyModifiers,
   ) =>
       _keyUp.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         nNativeKeyCode,
-        eHTMLKeyModifiers,
+        htmlKeyModifiers,
       );
 
   void keyChar(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int cUnicodeChar,
-    EHtmlKeyModifiers eHTMLKeyModifiers,
+    EHtmlKeyModifiers htmlKeyModifiers,
   ) =>
       _keyChar.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         cUnicodeChar,
-        eHTMLKeyModifiers,
+        htmlKeyModifiers,
       );
 
   void setHorizontalScroll(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int nAbsolutePixelScroll,
   ) =>
       _setHorizontalScroll.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         nAbsolutePixelScroll,
       );
 
   void setVerticalScroll(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int nAbsolutePixelScroll,
   ) =>
       _setVerticalScroll.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         nAbsolutePixelScroll,
       );
 
   void setKeyFocus(
-    HHtmlBrowser unBrowserHandle,
-    bool bHasKeyFocus,
+    HHtmlBrowser browserHandle,
+    bool hasKeyFocus,
   ) =>
       _setKeyFocus.call(
         this,
-        unBrowserHandle,
-        bHasKeyFocus,
+        browserHandle,
+        hasKeyFocus,
       );
 
   void viewSource(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _viewSource.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void copyToClipboard(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _copyToClipboard.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void pasteFromClipboard(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _pasteFromClipboard.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void find(
-    HHtmlBrowser unBrowserHandle,
-    Pointer<Utf8> pchSearchStr,
-    bool bCurrentlyInFind,
-    bool bReverse,
+    HHtmlBrowser browserHandle,
+    Pointer<Utf8> searchStr,
+    bool currentlyInFind,
+    bool reverse,
   ) =>
       _find.call(
         this,
-        unBrowserHandle,
-        pchSearchStr,
-        bCurrentlyInFind,
-        bReverse,
+        browserHandle,
+        searchStr,
+        currentlyInFind,
+        reverse,
       );
 
   void stopFind(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _stopFind.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void getLinkAtPosition(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
     int x,
     int y,
   ) =>
       _getLinkAtPosition.call(
         this,
-        unBrowserHandle,
+        browserHandle,
         x,
         y,
       );
 
   void setCookie(
-    Pointer<Utf8> pchHostname,
-    Pointer<Utf8> pchKey,
-    Pointer<Utf8> pchValue,
-    Pointer<Utf8> pchPath,
+    Pointer<Utf8> hostname,
+    Pointer<Utf8> key,
+    Pointer<Utf8> value,
+    Pointer<Utf8> path,
     RTime32 nExpires,
-    bool bSecure,
-    bool bHTTPOnly,
+    bool secure,
+    bool httpOnly,
   ) =>
       _setCookie.call(
         this,
-        pchHostname,
-        pchKey,
-        pchValue,
-        pchPath,
+        hostname,
+        key,
+        value,
+        path,
         nExpires,
-        bSecure,
-        bHTTPOnly,
+        secure,
+        httpOnly,
       );
 
   void setPageScaleFactor(
-    HHtmlBrowser unBrowserHandle,
-    double flZoom,
+    HHtmlBrowser browserHandle,
+    double zoom,
     int nPointX,
     int nPointY,
   ) =>
       _setPageScaleFactor.call(
         this,
-        unBrowserHandle,
-        flZoom,
+        browserHandle,
+        zoom,
         nPointX,
         nPointY,
       );
 
   void setBackgroundMode(
-    HHtmlBrowser unBrowserHandle,
-    bool bBackgroundMode,
+    HHtmlBrowser browserHandle,
+    bool backgroundMode,
   ) =>
       _setBackgroundMode.call(
         this,
-        unBrowserHandle,
-        bBackgroundMode,
+        browserHandle,
+        backgroundMode,
       );
 
   void setDPIScalingFactor(
-    HHtmlBrowser unBrowserHandle,
-    double flDPIScaling,
+    HHtmlBrowser browserHandle,
+    double dPIScaling,
   ) =>
       _setDPIScalingFactor.call(
         this,
-        unBrowserHandle,
-        flDPIScaling,
+        browserHandle,
+        dPIScaling,
       );
 
   void openDeveloperTools(
-    HHtmlBrowser unBrowserHandle,
+    HHtmlBrowser browserHandle,
   ) =>
       _openDeveloperTools.call(
         this,
-        unBrowserHandle,
+        browserHandle,
       );
 
   void allowStartRequest(
-    HHtmlBrowser unBrowserHandle,
-    bool bAllowed,
+    HHtmlBrowser browserHandle,
+    bool allowed,
   ) =>
       _allowStartRequest.call(
         this,
-        unBrowserHandle,
-        bAllowed,
+        browserHandle,
+        allowed,
       );
 
-  void jSDialogResponse(
-    HHtmlBrowser unBrowserHandle,
-    bool bResult,
+  void jsDialogResponse(
+    HHtmlBrowser browserHandle,
+    bool result,
   ) =>
-      _jSDialogResponse.call(
+      _jsDialogResponse.call(
         this,
-        unBrowserHandle,
-        bResult,
+        browserHandle,
+        result,
       );
 
   void fileLoadDialogResponse(
-    HHtmlBrowser unBrowserHandle,
-    Pointer<Pointer<Utf8>> pchSelectedFiles,
+    HHtmlBrowser browserHandle,
+    Pointer<Pointer<Utf8>> selectedFiles,
   ) =>
       _fileLoadDialogResponse.call(
         this,
-        unBrowserHandle,
-        pchSelectedFiles,
+        browserHandle,
+        selectedFiles,
       );
 }

@@ -6,17 +6,17 @@ import "../structs/steam_datagram_hosted_address.dart";
 import "../structs/steam_networking_identity.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class SteamDatagramGameCoordinatorServerLogin extends Struct {
-  external SteamNetworkingIdentity dentity;
+  external SteamNetworkingIdentity identity;
 
-  external SteamDatagramHostedAddress outing;
+  external SteamDatagramHostedAddress routing;
 
   @UnsignedInt()
   external AppId appId;
 
   @UnsignedInt()
-  external RTime32 time;
+  external RTime32 rtime;
 
   @Int()
   external int appDataSize;

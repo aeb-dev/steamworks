@@ -2,14 +2,14 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_steam_networking_fake_ip_type.dart";
-import "../steam_api.dart";
 
-@Packed(4)
+@Packed(1)
 class SteamNetworkingIpAddr extends Struct {
   static const int maxString = 48;
   @Array<UnsignedChar>(16)
-  external Array<UnsignedChar> pv6;
+  external Array<UnsignedChar> ipv6;
 
   @UnsignedShort()
   external int port;
@@ -23,7 +23,7 @@ final _clear = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIPAddr_Clear");
 
-final _isIPv6AllZeros = dl.lookupFunction<
+final _isIpv6AllZeros = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingIpAddr>,
 ),
@@ -31,7 +31,7 @@ final _isIPv6AllZeros = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIPAddr_IsIPv6AllZeros");
 
-final _setIPv6 = dl.lookupFunction<
+final _setIpv6 = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIpAddr>,
   Pointer<UnsignedChar>,
@@ -43,7 +43,7 @@ final _setIPv6 = dl.lookupFunction<
   int,
 )>("SteamAPI_SteamNetworkingIPAddr_SetIPv6");
 
-final _setIPv4 = dl.lookupFunction<
+final _setIpv4 = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIpAddr>,
   UnsignedInt,
@@ -55,7 +55,7 @@ final _setIPv4 = dl.lookupFunction<
   int,
 )>("SteamAPI_SteamNetworkingIPAddr_SetIPv4");
 
-final _isIPv4 = dl.lookupFunction<
+final _isIpv4 = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingIpAddr>,
 ),
@@ -63,7 +63,7 @@ final _isIPv4 = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIPAddr_IsIPv4");
 
-final _getIPv4 = dl.lookupFunction<
+final _getIpv4 = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingIpAddr>,
 ),
@@ -71,7 +71,7 @@ final _getIPv4 = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIPAddr_GetIPv4");
 
-final _setIPv6LocalHost = dl.lookupFunction<
+final _setIpv6LocalHost = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIpAddr>,
   UnsignedShort,
@@ -123,7 +123,7 @@ final _isEqualTo = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIPAddr_IsEqualTo");
 
-final _getFakeIPType = dl.lookupFunction<
+final _getFakeIpType = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamNetworkingIpAddr>,
 ),
@@ -131,7 +131,7 @@ final _getFakeIPType = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIPAddr_GetFakeIPType");
 
-final _isFakeIP = dl.lookupFunction<
+final _isFakeIp = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingIpAddr>,
 ),
@@ -144,42 +144,42 @@ extension SteamNetworkingIpAddrExtensions on Pointer<SteamNetworkingIpAddr> {
         this,
       );
 
-  bool isIPv6AllZeros() => _isIPv6AllZeros.call(
+  bool isIpv6AllZeros() => _isIpv6AllZeros.call(
         this,
       );
 
-  void setIPv6(
+  void setIpv6(
     Pointer<UnsignedChar> ipv6,
     int nPort,
   ) =>
-      _setIPv6.call(
+      _setIpv6.call(
         this,
         ipv6,
         nPort,
       );
 
-  void setIPv4(
-    int nIP,
+  void setIpv4(
+    int nIp,
     int nPort,
   ) =>
-      _setIPv4.call(
+      _setIpv4.call(
         this,
-        nIP,
+        nIp,
         nPort,
       );
 
-  bool isIPv4() => _isIPv4.call(
+  bool isIpv4() => _isIpv4.call(
         this,
       );
 
-  int getIPv4() => _getIPv4.call(
+  int getIpv4() => _getIpv4.call(
         this,
       );
 
-  void setIPv6LocalHost(
+  void setIpv6LocalHost(
     int nPort,
   ) =>
-      _setIPv6LocalHost.call(
+      _setIpv6LocalHost.call(
         this,
         nPort,
       );
@@ -191,13 +191,13 @@ extension SteamNetworkingIpAddrExtensions on Pointer<SteamNetworkingIpAddr> {
   void toString_(
     Pointer<Utf8> buf,
     int cbBuf,
-    bool bWithPort,
+    bool withPort,
   ) =>
       _toString_.call(
         this,
         buf,
         cbBuf,
-        bWithPort,
+        withPort,
       );
 
   bool parseString(
@@ -216,11 +216,11 @@ extension SteamNetworkingIpAddrExtensions on Pointer<SteamNetworkingIpAddr> {
         x,
       );
 
-  ESteamNetworkingFakeIpType getFakeIPType() => _getFakeIPType.call(
+  ESteamNetworkingFakeIpType getFakeIpType() => _getFakeIpType.call(
         this,
       );
 
-  bool isFakeIP() => _isFakeIP.call(
+  bool isFakeIp() => _isFakeIp.call(
         this,
       );
 }

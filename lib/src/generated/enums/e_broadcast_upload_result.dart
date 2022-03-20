@@ -7,7 +7,7 @@ class EBroadcastUploadResultEnum {
   static const int frameFailed = 3;
   static const int timeout = 4;
   static const int bandwidthExceeded = 5;
-  static const int lowFPS = 6;
+  static const int lowFps = 6;
   static const int missingKeyFrames = 7;
   static const int noConnection = 8;
   static const int relayFailed = 9;

@@ -2,6 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_account_type.dart";
 import "../interfaces/steam_app_list.dart";
 import "../interfaces/steam_apps.dart";
@@ -29,7 +30,6 @@ import "../interfaces/steam_user.dart";
 import "../interfaces/steam_user_stats.dart";
 import "../interfaces/steam_utils.dart";
 import "../interfaces/steam_video.dart";
-import "../steam_api.dart";
 import "../structs/steam_ip_address.dart";
 import "../typedefs.dart";
 
@@ -115,7 +115,7 @@ final _getISteamGameServer = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamClient_GetISteamGameServer");
 
-final _setLocalIPBinding = dl.lookupFunction<
+final _setLocalIpBinding = dl.lookupFunction<
     Void Function(
   Pointer<SteamClient>,
   Pointer<SteamIpAddress>,
@@ -293,7 +293,7 @@ final _getISteamGameSearch = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamClient_GetISteamGameSearch");
 
-final _getIPCCallCount = dl.lookupFunction<
+final _getIpcCallCount = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamClient>,
 ),
@@ -309,7 +309,7 @@ final _bShutdownIfAllPipesClosed = dl.lookupFunction<
   Pointer<SteamClient>,
 )>("SteamAPI_ISteamClient_BShutdownIfAllPipesClosed");
 
-final _getISteamHTTP = dl.lookupFunction<
+final _getISteamHttp = dl.lookupFunction<
     Pointer<SteamHttp> Function(
   Pointer<SteamClient>,
   Int,
@@ -337,7 +337,7 @@ final _getISteamController = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamClient_GetISteamController");
 
-final _getISteamUGC = dl.lookupFunction<
+final _getISteamUgc = dl.lookupFunction<
     Pointer<SteamUgc> Function(
   Pointer<SteamClient>,
   Int,
@@ -393,7 +393,7 @@ final _getISteamMusicRemote = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_ISteamClient_GetISteamMusicRemote");
 
-final _getISteamHTMLSurface = dl.lookupFunction<
+final _getISteamHtmlSurface = dl.lookupFunction<
     Pointer<SteamHtmlSurface> Function(
   Pointer<SteamClient>,
   Int,
@@ -514,12 +514,12 @@ extension SteamClientExtensions on Pointer<SteamClient> {
 
   HSteamUser createLocalUser(
     Pointer<Int32> phSteamPipe,
-    EAccountType eAccountType,
+    EAccountType accountType,
   ) =>
       _createLocalUser.call(
         this,
         phSteamPipe,
-        eAccountType,
+        accountType,
       );
 
   void releaseUser(
@@ -535,180 +535,180 @@ extension SteamClientExtensions on Pointer<SteamClient> {
   Pointer<SteamUser> getISteamUser(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamUser.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamGameServer> getISteamGameServer(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamGameServer.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
-  void setLocalIPBinding(
-    Pointer<SteamIpAddress> unIP,
-    int usPort,
+  void setLocalIpBinding(
+    Pointer<SteamIpAddress> ip,
+    int port,
   ) =>
-      _setLocalIPBinding.call(
+      _setLocalIpBinding.call(
         this,
-        unIP,
-        usPort,
+        ip,
+        port,
       );
 
   Pointer<SteamFriends> getISteamFriends(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamFriends.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamUtils> getISteamUtils(
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamUtils.call(
         this,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamMatchmaking> getISteamMatchmaking(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamMatchmaking.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamMatchmakingServers> getISteamMatchmakingServers(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamMatchmakingServers.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<Void> getISteamGenericInterface(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamGenericInterface.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamUserStats> getISteamUserStats(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamUserStats.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamGameServerStats> getISteamGameServerStats(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamGameServerStats.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamApps> getISteamApps(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamApps.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamNetworking> getISteamNetworking(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamNetworking.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamRemoteStorage> getISteamRemoteStorage(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamRemoteStorage.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamScreenshots> getISteamScreenshots(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamScreenshots.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamGameSearch> getISteamGameSearch(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamGameSearch.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
-  int getIPCCallCount() => _getIPCCallCount.call(
+  int getIpcCallCount() => _getIpcCallCount.call(
         this,
       );
 
@@ -716,159 +716,159 @@ extension SteamClientExtensions on Pointer<SteamClient> {
         this,
       );
 
-  Pointer<SteamHttp> getISteamHTTP(
+  Pointer<SteamHttp> getISteamHttp(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
-      _getISteamHTTP.call(
+      _getISteamHttp.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamController> getISteamController(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamController.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
-  Pointer<SteamUgc> getISteamUGC(
+  Pointer<SteamUgc> getISteamUgc(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
-      _getISteamUGC.call(
+      _getISteamUgc.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamAppList> getISteamAppList(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamAppList.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamMusic> getISteamMusic(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamMusic.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamMusicRemote> getISteamMusicRemote(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamMusicRemote.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
-  Pointer<SteamHtmlSurface> getISteamHTMLSurface(
+  Pointer<SteamHtmlSurface> getISteamHtmlSurface(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
-      _getISteamHTMLSurface.call(
+      _getISteamHtmlSurface.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamInventory> getISteamInventory(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamInventory.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamVideo> getISteamVideo(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamVideo.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamParentalSettings> getISteamParentalSettings(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamParentalSettings.call(
         this,
         hSteamuser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamInput> getISteamInput(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamInput.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamParties> getISteamParties(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamParties.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 
   Pointer<SteamRemotePlay> getISteamRemotePlay(
     HSteamUser hSteamUser,
     HSteamPipe hSteamPipe,
-    Pointer<Utf8> pchVersion,
+    Pointer<Utf8> version,
   ) =>
       _getISteamRemotePlay.call(
         this,
         hSteamUser,
         hSteamPipe,
-        pchVersion,
+        version,
       );
 }

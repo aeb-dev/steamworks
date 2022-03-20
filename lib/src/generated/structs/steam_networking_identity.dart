@@ -2,13 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_steam_networking_fake_ip_type.dart";
 import "../enums/e_steam_networking_identity_type.dart";
-import "../steam_api.dart";
 import "../structs/steam_networking_ip_addr.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(1)
 class SteamNetworkingIdentity extends Struct {
   static const int maxString = 128;
   static const int maxGenericString = 32;
@@ -39,7 +39,7 @@ final _isInvalid = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_IsInvalid");
 
-final _setSteamID = dl.lookupFunction<
+final _setSteamId = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIdentity>,
   UnsignedLongLong,
@@ -49,7 +49,7 @@ final _setSteamID = dl.lookupFunction<
   CSteamId,
 )>("SteamAPI_SteamNetworkingIdentity_SetSteamID");
 
-final _getSteamID = dl.lookupFunction<
+final _getSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -57,7 +57,7 @@ final _getSteamID = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetSteamID");
 
-final _setSteamID64 = dl.lookupFunction<
+final _setSteamId64 = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIdentity>,
   UnsignedLongLong,
@@ -67,7 +67,7 @@ final _setSteamID64 = dl.lookupFunction<
   int,
 )>("SteamAPI_SteamNetworkingIdentity_SetSteamID64");
 
-final _getSteamID64 = dl.lookupFunction<
+final _getSteamId64 = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -75,7 +75,7 @@ final _getSteamID64 = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetSteamID64");
 
-final _setXboxPairwiseID = dl.lookupFunction<
+final _setXboxPairwiseId = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingIdentity>,
   Pointer<Utf8>,
@@ -85,7 +85,7 @@ final _setXboxPairwiseID = dl.lookupFunction<
   Pointer<Utf8>,
 )>("SteamAPI_SteamNetworkingIdentity_SetXboxPairwiseID");
 
-final _getXboxPairwiseID = dl.lookupFunction<
+final _getXboxPairwiseId = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -93,7 +93,7 @@ final _getXboxPairwiseID = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetXboxPairwiseID");
 
-final _setPSNID = dl.lookupFunction<
+final _setPsnId = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIdentity>,
   UnsignedLongLong,
@@ -103,7 +103,7 @@ final _setPSNID = dl.lookupFunction<
   int,
 )>("SteamAPI_SteamNetworkingIdentity_SetPSNID");
 
-final _getPSNID = dl.lookupFunction<
+final _getPsnId = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -111,7 +111,7 @@ final _getPSNID = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetPSNID");
 
-final _setStadiaID = dl.lookupFunction<
+final _setStadiaId = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIdentity>,
   UnsignedLongLong,
@@ -121,7 +121,7 @@ final _setStadiaID = dl.lookupFunction<
   int,
 )>("SteamAPI_SteamNetworkingIdentity_SetStadiaID");
 
-final _getStadiaID = dl.lookupFunction<
+final _getStadiaId = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -129,7 +129,7 @@ final _getStadiaID = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetStadiaID");
 
-final _setIPAddr = dl.lookupFunction<
+final _setIpAddr = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIdentity>,
   Pointer<SteamNetworkingIpAddr>,
@@ -139,7 +139,7 @@ final _setIPAddr = dl.lookupFunction<
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIdentity_SetIPAddr");
 
-final _getIPAddr = dl.lookupFunction<
+final _getIpAddr = dl.lookupFunction<
     Pointer<SteamNetworkingIpAddr> Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -147,7 +147,7 @@ final _getIPAddr = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetIPAddr");
 
-final _setIPv4Addr = dl.lookupFunction<
+final _setIpv4Addr = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingIdentity>,
   UnsignedInt,
@@ -159,7 +159,7 @@ final _setIPv4Addr = dl.lookupFunction<
   int,
 )>("SteamAPI_SteamNetworkingIdentity_SetIPv4Addr");
 
-final _getIPv4 = dl.lookupFunction<
+final _getIpv4 = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -167,7 +167,7 @@ final _getIPv4 = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetIPv4");
 
-final _getFakeIPType = dl.lookupFunction<
+final _getFakeIpType = dl.lookupFunction<
     Int32 Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -175,7 +175,7 @@ final _getFakeIPType = dl.lookupFunction<
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetFakeIPType");
 
-final _isFakeIP = dl.lookupFunction<
+final _isFakeIp = dl.lookupFunction<
     Bool Function(
   Pointer<SteamNetworkingIdentity>,
 ),
@@ -281,97 +281,97 @@ extension SteamNetworkingIdentityExtensions
         this,
       );
 
-  void setSteamID(
-    CSteamId steamID,
+  void setSteamId(
+    CSteamId steamId,
   ) =>
-      _setSteamID.call(
+      _setSteamId.call(
         this,
-        steamID,
+        steamId,
       );
 
-  CSteamId getSteamID() => _getSteamID.call(
+  CSteamId getSteamId() => _getSteamId.call(
         this,
       );
 
-  void setSteamID64(
-    int steamID,
+  void setSteamId64(
+    int steamId,
   ) =>
-      _setSteamID64.call(
+      _setSteamId64.call(
         this,
-        steamID,
+        steamId,
       );
 
-  int getSteamID64() => _getSteamID64.call(
+  int getSteamId64() => _getSteamId64.call(
         this,
       );
 
-  bool setXboxPairwiseID(
+  bool setXboxPairwiseId(
     Pointer<Utf8> pszString,
   ) =>
-      _setXboxPairwiseID.call(
+      _setXboxPairwiseId.call(
         this,
         pszString,
       );
 
-  Pointer<Utf8> getXboxPairwiseID() => _getXboxPairwiseID.call(
+  Pointer<Utf8> getXboxPairwiseId() => _getXboxPairwiseId.call(
         this,
       );
 
-  void setPSNID(
+  void setPsnId(
     int id,
   ) =>
-      _setPSNID.call(
+      _setPsnId.call(
         this,
         id,
       );
 
-  int getPSNID() => _getPSNID.call(
+  int getPsnId() => _getPsnId.call(
         this,
       );
 
-  void setStadiaID(
+  void setStadiaId(
     int id,
   ) =>
-      _setStadiaID.call(
+      _setStadiaId.call(
         this,
         id,
       );
 
-  int getStadiaID() => _getStadiaID.call(
+  int getStadiaId() => _getStadiaId.call(
         this,
       );
 
-  void setIPAddr(
+  void setIpAddr(
     Pointer<SteamNetworkingIpAddr> addr,
   ) =>
-      _setIPAddr.call(
+      _setIpAddr.call(
         this,
         addr,
       );
 
-  Pointer<SteamNetworkingIpAddr> getIPAddr() => _getIPAddr.call(
+  Pointer<SteamNetworkingIpAddr> getIpAddr() => _getIpAddr.call(
         this,
       );
 
-  void setIPv4Addr(
-    int nIPv4,
+  void setIpv4Addr(
+    int nIpv4,
     int nPort,
   ) =>
-      _setIPv4Addr.call(
+      _setIpv4Addr.call(
         this,
-        nIPv4,
+        nIpv4,
         nPort,
       );
 
-  int getIPv4() => _getIPv4.call(
+  int getIpv4() => _getIpv4.call(
         this,
       );
 
-  ESteamNetworkingFakeIpType getFakeIPType() => _getFakeIPType.call(
+  ESteamNetworkingFakeIpType getFakeIpType() => _getFakeIpType.call(
         this,
       );
 
-  bool isFakeIP() => _isFakeIP.call(
+  bool isFakeIp() => _isFakeIp.call(
         this,
       );
 

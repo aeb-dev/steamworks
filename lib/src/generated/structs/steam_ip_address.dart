@@ -1,12 +1,14 @@
 import "dart:ffi";
-import "package:ffi/ffi.dart";
-import "../enums/e_steam_ip_type.dart";
-import "../steam_api.dart";
 
-@Packed(4)
+import "package:ffi/ffi.dart";
+
+import "../dl.dart";
+import "../enums/e_steam_ip_type.dart";
+
+@Packed(1)
 class SteamIpAddress extends Struct {
   @Array<UnsignedChar>(16)
-  external Array<UnsignedChar> gubIpv6;
+  external Array<UnsignedChar> ipv6;
 
   @Int32()
   external ESteamIpType type;

@@ -1,4 +1,4 @@
 import "dart:ffi";
 
-@Packed(4)
+@Packed(8)
 class FloatingGamepadTextInputDismissed extends Opaque {}

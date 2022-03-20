@@ -1,13 +1,16 @@
 import "dart:ffi";
 import "package:ffi/ffi.dart";
-import "../steam_api.dart";
+import "../dl.dart";
 import "../typedefs.dart";
 
+final _steamVideo = dl.lookupFunction<Pointer<SteamVideo> Function(),
+    Pointer<SteamVideo> Function()>("SteamAPI_SteamVideo_v002");
+
 class SteamVideo extends Opaque {
-  static Pointer<SteamVideo> steamVideo() => nullptr;
+  static Pointer<SteamVideo> get userInstance => _steamVideo();
 }
 
-final _getVideoURL = dl.lookupFunction<
+final _getVideoUrl = dl.lookupFunction<
     Void Function(
   Pointer<SteamVideo>,
   UnsignedInt,
@@ -27,7 +30,7 @@ final _isBroadcasting = dl.lookupFunction<
   Pointer<Int>,
 )>("SteamAPI_ISteamVideo_IsBroadcasting");
 
-final _getOPFSettings = dl.lookupFunction<
+final _getOpfSettings = dl.lookupFunction<
     Void Function(
   Pointer<SteamVideo>,
   UnsignedInt,
@@ -37,7 +40,7 @@ final _getOPFSettings = dl.lookupFunction<
   AppId,
 )>("SteamAPI_ISteamVideo_GetOPFSettings");
 
-final _getOPFStringForApp = dl.lookupFunction<
+final _getOpfStringForApp = dl.lookupFunction<
     Bool Function(
   Pointer<SteamVideo>,
   UnsignedInt,
@@ -52,12 +55,12 @@ final _getOPFStringForApp = dl.lookupFunction<
 )>("SteamAPI_ISteamVideo_GetOPFStringForApp");
 
 extension SteamVideoExtensions on Pointer<SteamVideo> {
-  void getVideoURL(
-    AppId unVideoAppID,
+  void getVideoUrl(
+    AppId videoAppId,
   ) =>
-      _getVideoURL.call(
+      _getVideoUrl.call(
         this,
-        unVideoAppID,
+        videoAppId,
       );
 
   bool isBroadcasting(
@@ -68,23 +71,23 @@ extension SteamVideoExtensions on Pointer<SteamVideo> {
         pnNumViewers,
       );
 
-  void getOPFSettings(
-    AppId unVideoAppID,
+  void getOpfSettings(
+    AppId videoAppId,
   ) =>
-      _getOPFSettings.call(
+      _getOpfSettings.call(
         this,
-        unVideoAppID,
+        videoAppId,
       );
 
-  bool getOPFStringForApp(
-    AppId unVideoAppID,
-    Pointer<Utf8> pchBuffer,
+  bool getOpfStringForApp(
+    AppId videoAppId,
+    Pointer<Utf8> buffer,
     Pointer<Int> pnBufferSize,
   ) =>
-      _getOPFStringForApp.call(
+      _getOpfStringForApp.call(
         this,
-        unVideoAppID,
-        pchBuffer,
+        videoAppId,
+        buffer,
         pnBufferSize,
       );
 }

@@ -1,6 +1,6 @@
 import "dart:ffi";
 
-@Packed(4)
+@Packed(1)
 class InputMotionData extends Struct {
   @Float()
   external double rotQuatX;

@@ -45,5 +45,5 @@ typedef HSteamNetConnection = int;
 typedef HSteamListenSocket = int;
 typedef HSteamNetPollGroup = int;
 typedef SteamNetworkingErrMsg = String;
-typedef SteamNetworkingPOPId = int;
+typedef SteamNetworkingPopId = int;
 typedef SteamNetworkingMicroseconds = int;

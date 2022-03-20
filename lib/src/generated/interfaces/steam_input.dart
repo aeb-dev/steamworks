@@ -2,20 +2,23 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
+import "../dl.dart";
 import "../enums/e_controller_haptic_location.dart";
 import "../enums/e_input_action_origin.dart";
 import "../enums/e_steam_controller_pad.dart";
 import "../enums/e_steam_input_glyph_size.dart";
 import "../enums/e_steam_input_type.dart";
 import "../enums/e_xbox_origin.dart";
-import "../steam_api.dart";
 import "../structs/input_analog_action_data.dart";
 import "../structs/input_digital_action_data.dart";
 import "../structs/input_motion_data.dart";
 import "../typedefs.dart";
 
+final _steamInput = dl.lookupFunction<Pointer<SteamInput> Function(),
+    Pointer<SteamInput> Function()>("SteamAPI_SteamInput_v006");
+
 class SteamInput extends Opaque {
-  static Pointer<SteamInput> steamInput() => nullptr;
+  static Pointer<SteamInput> get userInstance => _steamInput();
 }
 
 final _init = dl.lookupFunction<
@@ -388,7 +391,7 @@ final _triggerSimpleHapticEvent = dl.lookupFunction<
   int,
 )>("SteamAPI_ISteamInput_TriggerSimpleHapticEvent");
 
-final _setLEDColor = dl.lookupFunction<
+final _setLedColor = dl.lookupFunction<
     Void Function(
   Pointer<SteamInput>,
   UnsignedLongLong,
@@ -538,7 +541,7 @@ final _getDeviceBindingRevision = dl.lookupFunction<
   Pointer<Int>,
 )>("SteamAPI_ISteamInput_GetDeviceBindingRevision");
 
-final _getRemotePlaySessionID = dl.lookupFunction<
+final _getRemotePlaySessionId = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<SteamInput>,
   UnsignedLongLong,
@@ -558,11 +561,11 @@ final _getSessionInputConfigurationSettings = dl.lookupFunction<
 
 extension SteamInputExtensions on Pointer<SteamInput> {
   bool init(
-    bool bExplicitlyCallRunFrame,
+    bool explicitlyCallRunFrame,
   ) =>
       _init.call(
         this,
-        bExplicitlyCallRunFrame,
+        explicitlyCallRunFrame,
       );
 
   bool shutdown() => _shutdown.call(
@@ -570,29 +573,29 @@ extension SteamInputExtensions on Pointer<SteamInput> {
       );
 
   bool setInputActionManifestFilePath(
-    Pointer<Utf8> pchInputActionManifestAbsolutePath,
+    Pointer<Utf8> inputActionManifestAbsolutePath,
   ) =>
       _setInputActionManifestFilePath.call(
         this,
-        pchInputActionManifestAbsolutePath,
+        inputActionManifestAbsolutePath,
       );
 
   void runFrame(
-    bool bReservedValue,
+    bool reservedValue,
   ) =>
       _runFrame.call(
         this,
-        bReservedValue,
+        reservedValue,
       );
 
   bool bWaitForData(
-    bool bWaitForever,
-    int unTimeout,
+    bool waitForever,
+    int timeout,
   ) =>
       _bWaitForData.call(
         this,
-        bWaitForever,
-        unTimeout,
+        waitForever,
+        timeout,
       );
 
   bool bNewDataAvailable() => _bNewDataAvailable.call(
@@ -708,11 +711,11 @@ extension SteamInputExtensions on Pointer<SteamInput> {
       );
 
   Pointer<Utf8> getStringForDigitalActionName(
-    InputDigitalActionHandle eActionHandle,
+    InputDigitalActionHandle actionHandle,
   ) =>
       _getStringForDigitalActionName.call(
         this,
-        eActionHandle,
+        actionHandle,
       );
 
   InputAnalogActionHandle getAnalogActionHandle(
@@ -748,59 +751,59 @@ extension SteamInputExtensions on Pointer<SteamInput> {
       );
 
   Pointer<Utf8> getGlyphPNGForActionOrigin(
-    EInputActionOrigin eOrigin,
-    ESteamInputGlyphSize eSize,
-    int unFlags,
+    EInputActionOrigin origin,
+    ESteamInputGlyphSize size,
+    int flags,
   ) =>
       _getGlyphPNGForActionOrigin.call(
         this,
-        eOrigin,
-        eSize,
-        unFlags,
+        origin,
+        size,
+        flags,
       );
 
   Pointer<Utf8> getGlyphSVGForActionOrigin(
-    EInputActionOrigin eOrigin,
-    int unFlags,
+    EInputActionOrigin origin,
+    int flags,
   ) =>
       _getGlyphSVGForActionOrigin.call(
         this,
-        eOrigin,
-        unFlags,
+        origin,
+        flags,
       );
 
   Pointer<Utf8> getGlyphForActionOriginLegacy(
-    EInputActionOrigin eOrigin,
+    EInputActionOrigin origin,
   ) =>
       _getGlyphForActionOriginLegacy.call(
         this,
-        eOrigin,
+        origin,
       );
 
   Pointer<Utf8> getStringForActionOrigin(
-    EInputActionOrigin eOrigin,
+    EInputActionOrigin origin,
   ) =>
       _getStringForActionOrigin.call(
         this,
-        eOrigin,
+        origin,
       );
 
   Pointer<Utf8> getStringForAnalogActionName(
-    InputAnalogActionHandle eActionHandle,
+    InputAnalogActionHandle actionHandle,
   ) =>
       _getStringForAnalogActionName.call(
         this,
-        eActionHandle,
+        actionHandle,
       );
 
   void stopAnalogActionMomentum(
     InputHandle inputHandle,
-    InputAnalogActionHandle eAction,
+    InputAnalogActionHandle action,
   ) =>
       _stopAnalogActionMomentum.call(
         this,
         inputHandle,
-        eAction,
+        action,
       );
 
   InputMotionData getMotionData(
@@ -813,35 +816,35 @@ extension SteamInputExtensions on Pointer<SteamInput> {
 
   void triggerVibration(
     InputHandle inputHandle,
-    int usLeftSpeed,
-    int usRightSpeed,
+    int leftSpeed,
+    int rightSpeed,
   ) =>
       _triggerVibration.call(
         this,
         inputHandle,
-        usLeftSpeed,
-        usRightSpeed,
+        leftSpeed,
+        rightSpeed,
       );
 
   void triggerVibrationExtended(
     InputHandle inputHandle,
-    int usLeftSpeed,
-    int usRightSpeed,
-    int usLeftTriggerSpeed,
-    int usRightTriggerSpeed,
+    int leftSpeed,
+    int rightSpeed,
+    int leftTriggerSpeed,
+    int rightTriggerSpeed,
   ) =>
       _triggerVibrationExtended.call(
         this,
         inputHandle,
-        usLeftSpeed,
-        usRightSpeed,
-        usLeftTriggerSpeed,
-        usRightTriggerSpeed,
+        leftSpeed,
+        rightSpeed,
+        leftTriggerSpeed,
+        rightTriggerSpeed,
       );
 
   void triggerSimpleHapticEvent(
     InputHandle inputHandle,
-    EControllerHapticLocation eHapticLocation,
+    EControllerHapticLocation hapticLocation,
     int nIntensity,
     int nGainDB,
     int nOtherIntensity,
@@ -850,21 +853,21 @@ extension SteamInputExtensions on Pointer<SteamInput> {
       _triggerSimpleHapticEvent.call(
         this,
         inputHandle,
-        eHapticLocation,
+        hapticLocation,
         nIntensity,
         nGainDB,
         nOtherIntensity,
         nOtherGainDB,
       );
 
-  void setLEDColor(
+  void setLedColor(
     InputHandle inputHandle,
     int nColorR,
     int nColorG,
     int nColorB,
     int nFlags,
   ) =>
-      _setLEDColor.call(
+      _setLedColor.call(
         this,
         inputHandle,
         nColorR,
@@ -875,31 +878,31 @@ extension SteamInputExtensions on Pointer<SteamInput> {
 
   void legacyTriggerHapticPulse(
     InputHandle inputHandle,
-    ESteamControllerPad eTargetPad,
-    int usDurationMicroSec,
+    ESteamControllerPad targetPad,
+    int durationMicroSec,
   ) =>
       _legacyTriggerHapticPulse.call(
         this,
         inputHandle,
-        eTargetPad,
-        usDurationMicroSec,
+        targetPad,
+        durationMicroSec,
       );
 
   void legacyTriggerRepeatedHapticPulse(
     InputHandle inputHandle,
-    ESteamControllerPad eTargetPad,
-    int usDurationMicroSec,
-    int usOffMicroSec,
-    int unRepeat,
+    ESteamControllerPad targetPad,
+    int durationMicroSec,
+    int offMicroSec,
+    int repeat,
     int nFlags,
   ) =>
       _legacyTriggerRepeatedHapticPulse.call(
         this,
         inputHandle,
-        eTargetPad,
-        usDurationMicroSec,
-        usOffMicroSec,
-        unRepeat,
+        targetPad,
+        durationMicroSec,
+        offMicroSec,
+        repeat,
         nFlags,
       );
 
@@ -936,39 +939,39 @@ extension SteamInputExtensions on Pointer<SteamInput> {
       );
 
   Pointer<Utf8> getStringForXboxOrigin(
-    EXboxOrigin eOrigin,
+    EXboxOrigin origin,
   ) =>
       _getStringForXboxOrigin.call(
         this,
-        eOrigin,
+        origin,
       );
 
   Pointer<Utf8> getGlyphForXboxOrigin(
-    EXboxOrigin eOrigin,
+    EXboxOrigin origin,
   ) =>
       _getGlyphForXboxOrigin.call(
         this,
-        eOrigin,
+        origin,
       );
 
   EInputActionOrigin getActionOriginFromXboxOrigin(
     InputHandle inputHandle,
-    EXboxOrigin eOrigin,
+    EXboxOrigin origin,
   ) =>
       _getActionOriginFromXboxOrigin.call(
         this,
         inputHandle,
-        eOrigin,
+        origin,
       );
 
   EInputActionOrigin translateActionOrigin(
-    ESteamInputType eDestinationInputType,
-    EInputActionOrigin eSourceOrigin,
+    ESteamInputType destinationInputType,
+    EInputActionOrigin sourceOrigin,
   ) =>
       _translateActionOrigin.call(
         this,
-        eDestinationInputType,
-        eSourceOrigin,
+        destinationInputType,
+        sourceOrigin,
       );
 
   bool getDeviceBindingRevision(
@@ -983,10 +986,10 @@ extension SteamInputExtensions on Pointer<SteamInput> {
         pMinor,
       );
 
-  int getRemotePlaySessionID(
+  int getRemotePlaySessionId(
     InputHandle inputHandle,
   ) =>
-      _getRemotePlaySessionID.call(
+      _getRemotePlaySessionId.call(
         this,
         inputHandle,
       );

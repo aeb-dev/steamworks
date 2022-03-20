@@ -1,15 +1,17 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 
-@Packed(4)
+@Packed(8)
 class RequestPlayersForGameFinalResultCallback extends Struct {
   @Int32()
   external EResult result;
 
   @UnsignedLongLong()
-  external int lSearchId;
+  external int searchId;
 
   @UnsignedLongLong()
-  external int lUniqueGameId;
+  external int uniqueGameId;
 }

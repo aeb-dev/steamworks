@@ -1,5 +1,7 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 
 @Packed(8)
@@ -8,7 +10,7 @@ class FriendsEnumerateFollowingList extends Struct {
   external EResult result;
 
   @Array<UnsignedLongLong>(50)
-  external Array<UnsignedLongLong> gSteamId;
+  external Array<UnsignedLongLong> steamId;
 
   @Int()
   external int resultsReturned;

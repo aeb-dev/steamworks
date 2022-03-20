@@ -1,9 +1,11 @@
 import "dart:ffi";
+
 import "package:ffi/ffi.dart";
+
 import "../enums/e_result.dart";
 import "../typedefs.dart";
 
-@Packed(4)
+@Packed(8)
 class GetAppDependenciesResult extends Struct {
   @Int32()
   external EResult result;
@@ -12,7 +14,7 @@ class GetAppDependenciesResult extends Struct {
   external PublishedFileId publishedFileId;
 
   @Array<UnsignedInt>(32)
-  external Array<UnsignedInt> gAppIds;
+  external Array<UnsignedInt> appIds;
 
   @UnsignedInt()
   external int numAppDependencies;
