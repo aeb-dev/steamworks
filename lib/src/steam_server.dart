@@ -4,6 +4,7 @@ import "package:ffi/ffi.dart";
 
 import "dispatcher.dart";
 import "generated/global_interfaces/steam_game_server.dart";
+import "generated/typedefs.dart";
 
 class SteamServer {
   static void init({
@@ -21,7 +22,7 @@ class SteamServer {
       ).rawAddress.map((e) => e.toRadixString(16).padRight(2, "0")).join(),
     );
 
-    SteamGameServer.init(
+    bool isInitialized = SteamGameServer.init(
       ipAsInt,
       steamPort,
       gamePort,
@@ -30,10 +31,17 @@ class SteamServer {
       versionString.toNativeUtf8(),
     );
 
-    Dispatcher.init();
+    if (!isInitialized) {
+      throw "Steam server failed to initialize";
+    }
+
+    HSteamPipe pipe = SteamGameServer.getHSteamPipe();
+    Dispatcher.init(
+      pipe: pipe,
+    );
   }
 
-  static void runFrames() {
+  static void runFrame() {
     Dispatcher.runFrame();
   }
 }

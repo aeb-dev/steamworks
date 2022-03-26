@@ -1,14 +1,21 @@
 import "dispatcher.dart";
 import "generated/global_interfaces/steam_api.dart";
+import "generated/typedefs.dart";
 
 class SteamClient {
   static void init() {
-    bool r = SteamApi.init();
+    bool isInitialized = SteamApi.init();
+    if (!isInitialized) {
+      throw "Steam failed to initialize";
+    }
 
-    Dispatcher.init();
+    HSteamPipe pipe = SteamApi.getHSteamPipe();
+    Dispatcher.init(
+      pipe: pipe,
+    );
   }
 
-  static void runFrames() {
+  static void runFrame() {
     Dispatcher.runFrame();
   }
 }
