@@ -5,7 +5,7 @@ import "package:ffi/ffi.dart";
 import "call_result.dart";
 import "callback.dart";
 import "generated/callback_structs/steam_api_call_completed.dart";
-import "generated/global_interfaces/dispatch.dart";
+import "generated/initializers/dispatch.dart";
 import "generated/structs/callback_msg.dart";
 import "generated/typedefs.dart";
 
@@ -52,7 +52,7 @@ class Dispatcher {
     callResultList?.remove(callResult);
   }
 
-  static Future<void> runFrame() {
+  static Future<void> runFrame() async {
     Dispatch.runFrame(pipe);
 
     while (Dispatch.getNextCallback(pipe, cbm)) {
@@ -76,12 +76,14 @@ class Dispatcher {
             continue;
           }
 
-          if (_registeredCallResults[sacc.asyncCall] == null) {
+          Set<CallResult>? crSet = _registeredCallResults[sacc.asyncCall];
+
+          if (crSet == null || crSet.isEmpty) {
             // TODO: warn that no callback is registered but a request has been made
             continue;
           }
 
-          for (CallResult cr in _registeredCallResults[sacc.asyncCall]!) {
+          for (CallResult cr in crSet) {
             if (cr.callbackId != sacc.callback) {
               // TODO: warn that callback id and T of the CallResult does not match
               continue;
@@ -91,19 +93,20 @@ class Dispatcher {
               data: tmpCallResult,
               hasFailed: hasFailed.value,
             );
-
-            _registeredCallResults[sacc.asyncCall]?.remove(cr);
           }
+
+          crSet.clear();
 
           malloc.free(tmpCallResult);
           malloc.free(hasFailed);
         } else {
-          if (_registeredCallResults[cbm.callback] == null) {
+          Set<Callback>? cbSet = _registeredCallbacks[cbm.callback];
+          if (cbSet == null || cbSet.isEmpty) {
             // TODO: warn that no callback is registered but a request has been made
             continue;
           }
 
-          for (Callback cr in _registeredCallbacks[cbm.callback]!) {
+          for (Callback cr in cbSet) {
             cr.onCb(
               data: cbm.paramPtr,
             );
@@ -115,7 +118,5 @@ class Dispatcher {
         Dispatch.freeLastCallback(pipe);
       }
     }
-
-    return Future<void>.value();
   }
 }

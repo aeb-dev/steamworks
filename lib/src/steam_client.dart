@@ -1,5 +1,5 @@
 import "dispatcher.dart";
-import "generated/global_interfaces/steam_api.dart";
+import "generated/initializers/steam_api.dart";
 import "generated/typedefs.dart";
 
 class SteamClient {

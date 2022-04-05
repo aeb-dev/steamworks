@@ -3,7 +3,7 @@ import "dart:io";
 import "package:ffi/ffi.dart";
 
 import "dispatcher.dart";
-import "generated/global_interfaces/steam_game_server.dart";
+import "generated/initializers/steam_game_server.dart";
 import "generated/typedefs.dart";
 
 class SteamServer {
