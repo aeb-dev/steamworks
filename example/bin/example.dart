@@ -11,7 +11,7 @@ Future<Never> main() async {
   SteamApiCall callId = ISteamUserStats.userInstance.requestUserStats(steamId);
   print("SteamApiCall first: $callId");
   CallResult cr1 = CallResult<UserStatsReceived>(
-    callId: callId,
+    asyncCallId: callId,
     cb: (ptrUserStatus, hasFailed) {
       print("User stats first");
       print("GameId: ${ptrUserStatus.gameId}");
@@ -23,7 +23,7 @@ Future<Never> main() async {
   print("SteamApiCall second: $callId");
 
   CallResult cr2 = CallResult<UserStatsReceived>(
-    callId: callId,
+    asyncCallId: callId,
     cb: (ptrUserStatus, hasFailed) {
       print("User stats second");
       print("GameId: ${ptrUserStatus.gameId}");

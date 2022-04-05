@@ -10,25 +10,31 @@ import "generated/initializers/dispatch.dart";
 import "generated/structs/callback_msg.dart";
 import "generated/typedefs.dart";
 
+/// A dispatcher for asynchrouns events
 class Dispatcher {
   static final Map<int, Set<Callback>> _registeredCallbacks = {};
   static final Map<int, Set<CallResult>> _registeredCallResults = {};
-  static final Pointer<CallbackMsg> cbm = malloc.call<CallbackMsg>();
+  static final Pointer<CallbackMsg> _cbm = malloc.call<CallbackMsg>();
+
+  /// Current steam pipe
   static late HSteamPipe pipe;
 
-  // don't use other than debugging purposes
-  static void Function(List<dynamic> arguments)? debugPrint;
+  // /// A callback for printing logs for the received callback.
+  // /// Don't use this other than debugging purposes
+  // static void Function(List<dynamic> arguments)? debugPrint;
 
+  /// Initializes [Dispatcher]
   static void init({
     required HSteamPipe pipe,
-    void Function(List<dynamic> arguments)? debugPrint,
+    // void Function(List<dynamic> arguments)? debugPrint,
   }) {
     Dispatcher.pipe = pipe;
-    Dispatcher.debugPrint = debugPrint;
+    // Dispatcher.debugPrint = debugPrint;
 
     Dispatch.init();
   }
 
+  /// Registers a [Callback]
   static void registerCallback(
     Callback callback,
   ) {
@@ -36,14 +42,16 @@ class Dispatcher {
     callResultList.add(callback);
   }
 
+  /// Registers a [CallResult]
   static void registerCallResult(
     CallResult callResult,
   ) {
     Set<CallResult> callResultList =
-        _registeredCallResults[callResult.callId] ??= {};
+        _registeredCallResults[callResult.asyncCallId] ??= {};
     callResultList.add(callResult);
   }
 
+  /// Unregisters a [Callback]
   static void unregisterCallback(
     Callback callback,
   ) {
@@ -51,21 +59,25 @@ class Dispatcher {
     callResultList?.remove(callback);
   }
 
+  /// Unregisters a [CallResult]
   static void unregisterCallResult(
     CallResult callResult,
   ) {
-    Set<CallResult>? callResultList = _registeredCallResults[callResult.callId];
+    Set<CallResult>? callResultList =
+        _registeredCallResults[callResult.asyncCallId];
     callResultList?.remove(callResult);
   }
 
+  /// This function has to be called in short periods
+  /// to run callbacks
   static Future<void> runFrame() async {
     Dispatch.runFrame(pipe);
 
-    while (Dispatch.getNextCallback(pipe, cbm)) {
+    while (Dispatch.getNextCallback(pipe, _cbm)) {
       try {
-        if (cbm.callback == SteamApiCallCompleted.callbackId) {
+        if (_cbm.callback == SteamApiCallCompleted.callbackId) {
           Pointer<SteamApiCallCompleted> sacc =
-              cbm.paramPtr.cast<SteamApiCallCompleted>();
+              _cbm.paramPtr.cast<SteamApiCallCompleted>();
           Pointer<Void> tmpCallResult = malloc.allocate<Void>(sacc.paramSize);
           Pointer<Bool> hasFailed = malloc.call<Bool>();
           bool hasResult = Dispatch.getApiCallResult(
@@ -122,10 +134,10 @@ class Dispatcher {
           malloc.free(tmpCallResult);
           malloc.free(hasFailed);
         } else {
-          Set<Callback>? cbSet = _registeredCallbacks[cbm.callback];
+          Set<Callback>? cbSet = _registeredCallbacks[_cbm.callback];
           if (cbSet == null || cbSet.isEmpty) {
             log(
-              "Callback request has been made but there were no callback registered for it. CallbackId: ${cbm.callback}",
+              "Callback request has been made but there were no callback registered for it. CallbackId: ${_cbm.callback}",
               time: DateTime.now(),
               level: 900, // warning
               name: "Dispatcher",
@@ -135,7 +147,7 @@ class Dispatcher {
 
           for (Callback cr in cbSet) {
             cr.onCb(
-              data: cbm.paramPtr,
+              data: _cbm.paramPtr,
             );
           }
         }
