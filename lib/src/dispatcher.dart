@@ -1,3 +1,4 @@
+import "dart:developer";
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -15,10 +16,15 @@ class Dispatcher {
   static final Pointer<CallbackMsg> cbm = malloc.call<CallbackMsg>();
   static late HSteamPipe pipe;
 
+  // don't use other than debugging purposes
+  static void Function(List<dynamic> arguments)? debugPrint;
+
   static void init({
     required HSteamPipe pipe,
+    void Function(List<dynamic> arguments)? debugPrint,
   }) {
     Dispatcher.pipe = pipe;
+    Dispatcher.debugPrint = debugPrint;
 
     Dispatch.init();
   }
@@ -71,21 +77,37 @@ class Dispatcher {
             hasFailed,
           );
 
-          if (!hasResult || hasFailed.value) {
-            // TODO warn that getting result has failed
-            continue;
-          }
-
           Set<CallResult>? crSet = _registeredCallResults[sacc.asyncCall];
 
           if (crSet == null || crSet.isEmpty) {
-            // TODO: warn that no callback is registered but a request has been made
+            log(
+              "CallResult request has been made but there was no callback registered for it. CallbackId: ${sacc.callback} CallId: ${sacc.asyncCall}",
+              time: DateTime.now(),
+              level: 900, // warning
+              name: "Dispatcher",
+            );
+            continue;
+          }
+
+          if (!hasResult || hasFailed.value) {
+            log(
+              "CallResult failed. CallbackId: ${sacc.callback} CallId: ${sacc.asyncCall}",
+              time: DateTime.now(),
+              level: 900, // warning
+              name: "Dispatcher",
+            );
+            crSet.clear();
             continue;
           }
 
           for (CallResult cr in crSet) {
             if (cr.callbackId != sacc.callback) {
-              // TODO: warn that callback id and T of the CallResult does not match
+              log(
+                "CallbackId of the Registered CallResult does not match the response from steam",
+                time: DateTime.now(),
+                level: 900, // warning
+                name: "Dispatcher",
+              );
               continue;
             }
 
@@ -102,7 +124,12 @@ class Dispatcher {
         } else {
           Set<Callback>? cbSet = _registeredCallbacks[cbm.callback];
           if (cbSet == null || cbSet.isEmpty) {
-            // TODO: warn that no callback is registered but a request has been made
+            log(
+              "Callback request has been made but there were no callback registered for it. CallbackId: ${cbm.callback}",
+              time: DateTime.now(),
+              level: 900, // warning
+              name: "Dispatcher",
+            );
             continue;
           }
 
@@ -112,8 +139,14 @@ class Dispatcher {
             );
           }
         }
-      } on Exception catch (e) {
-        // TODO log
+      } on Exception catch (e, stackTrace) {
+        log(
+          "An error occured while running callback/callresult(s). Message: ${e.toString()}",
+          time: DateTime.now(),
+          level: 1000, // severe
+          name: "Dispatcher",
+          stackTrace: stackTrace,
+        );
       } finally {
         Dispatch.freeLastCallback(pipe);
       }
