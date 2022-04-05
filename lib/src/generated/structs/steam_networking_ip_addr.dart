@@ -3,11 +3,11 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 
 import "../dl.dart";
-import "../enums/e_steam_networking_fake_ip_type.dart";
+import "../enums/esteam_networking_fake_ip_type.dart";
 
 @Packed(1)
 class SteamNetworkingIpAddr extends Struct {
-  static const int maxString = 48;
+  static int get maxString => 48;
   @Array<UnsignedChar>(16)
   external Array<UnsignedChar> ipv6;
 
@@ -223,4 +223,8 @@ extension SteamNetworkingIpAddrExtensions on Pointer<SteamNetworkingIpAddr> {
   bool isFakeIp() => _isFakeIp.call(
         this,
       );
+
+  Array<UnsignedChar> get ipv6 => ref.ipv6;
+
+  int get port => ref.port;
 }

@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class HtmlNeedsPaint extends Struct {
+  static int get callbackId => 4502;
+
   @UnsignedInt()
   external HHtmlBrowser browserHandle;
 
@@ -38,4 +40,30 @@ class HtmlNeedsPaint extends Struct {
 
   @UnsignedInt()
   external int pageSerial;
+}
+
+extension HtmlNeedsPaintExtensions on Pointer<HtmlNeedsPaint> {
+  HHtmlBrowser get browserHandle => ref.browserHandle;
+
+  Pointer<Utf8> get pBGRA => ref.pBGRA;
+
+  int get wide => ref.wide;
+
+  int get tall => ref.tall;
+
+  int get updateX => ref.updateX;
+
+  int get updateY => ref.updateY;
+
+  int get updateWide => ref.updateWide;
+
+  int get updateTall => ref.updateTall;
+
+  int get scrollX => ref.scrollX;
+
+  int get scrollY => ref.scrollY;
+
+  double get pageScale => ref.pageScale;
+
+  int get pageSerial => ref.pageSerial;
 }

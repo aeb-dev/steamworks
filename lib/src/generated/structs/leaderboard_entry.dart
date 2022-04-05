@@ -19,3 +19,15 @@ class LeaderboardEntry extends Struct {
   @UnsignedLongLong()
   external UgcHandle ugc;
 }
+
+extension LeaderboardEntryExtensions on Pointer<LeaderboardEntry> {
+  CSteamId get steamIdUser => ref.steamIdUser;
+
+  int get globalRank => ref.globalRank;
+
+  int get score => ref.score;
+
+  int get details => ref.details;
+
+  UgcHandle get ugc => ref.ugc;
+}

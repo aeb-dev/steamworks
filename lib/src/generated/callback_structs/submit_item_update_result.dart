@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class SubmitItemUpdateResult extends Struct {
+  static int get callbackId => 3404;
+
   @Int32()
   external EResult result;
 
@@ -15,4 +17,13 @@ class SubmitItemUpdateResult extends Struct {
 
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
+}
+
+extension SubmitItemUpdateResultExtensions on Pointer<SubmitItemUpdateResult> {
+  EResult get result => ref.result;
+
+  bool get userNeedsToAcceptWorkshopLegalAgreement =>
+      ref.userNeedsToAcceptWorkshopLegalAgreement;
+
+  PublishedFileId get publishedFileId => ref.publishedFileId;
 }

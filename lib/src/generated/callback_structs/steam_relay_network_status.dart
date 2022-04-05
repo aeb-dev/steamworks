@@ -2,10 +2,12 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_steam_networking_availability.dart";
+import "../enums/esteam_networking_availability.dart";
 
 @Packed(8)
 class SteamRelayNetworkStatus extends Struct {
+  static int get callbackId => 1281;
+
   @Int32()
   external ESteamNetworkingAvailability avail;
 
@@ -19,4 +21,17 @@ class SteamRelayNetworkStatus extends Struct {
   external ESteamNetworkingAvailability availAnyRelay;
 
   external Pointer<Utf8> debugMsg;
+}
+
+extension SteamRelayNetworkStatusExtensions
+    on Pointer<SteamRelayNetworkStatus> {
+  ESteamNetworkingAvailability get avail => ref.avail;
+
+  int get pingMeasurementInProgress => ref.pingMeasurementInProgress;
+
+  ESteamNetworkingAvailability get availNetworkConfig => ref.availNetworkConfig;
+
+  ESteamNetworkingAvailability get availAnyRelay => ref.availAnyRelay;
+
+  Pointer<Utf8> get debugMsg => ref.debugMsg;
 }

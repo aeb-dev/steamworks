@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class SearchForGameResultCallback extends Struct {
+  static int get callbackId => 5202;
+
   @UnsignedLongLong()
   external int searchId;
 
@@ -24,4 +26,19 @@ class SearchForGameResultCallback extends Struct {
 
   @Bool()
   external bool finalCallback;
+}
+
+extension SearchForGameResultCallbackExtensions
+    on Pointer<SearchForGameResultCallback> {
+  int get searchId => ref.searchId;
+
+  EResult get result => ref.result;
+
+  int get countPlayersInGame => ref.countPlayersInGame;
+
+  int get countAcceptedGame => ref.countAcceptedGame;
+
+  CSteamId get steamIdHost => ref.steamIdHost;
+
+  bool get finalCallback => ref.finalCallback;
 }

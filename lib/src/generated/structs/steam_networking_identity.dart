@@ -3,17 +3,17 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 
 import "../dl.dart";
-import "../enums/e_steam_networking_fake_ip_type.dart";
-import "../enums/e_steam_networking_identity_type.dart";
+import "../enums/esteam_networking_fake_ip_type.dart";
+import "../enums/esteam_networking_identity_type.dart";
 import "../structs/steam_networking_ip_addr.dart";
 import "../typedefs.dart";
 
 @Packed(1)
 class SteamNetworkingIdentity extends Struct {
-  static const int maxString = 128;
-  static const int maxGenericString = 32;
-  static const int maxXboxPairwiseId = 33;
-  static const int maxGenericBytes = 32;
+  static int get maxString => 128;
+  static int get maxGenericString => 32;
+  static int get maxXboxPairwiseId => 33;
+  static int get maxGenericBytes => 32;
   @Int32()
   external ESteamNetworkingIdentityType type;
 
@@ -438,4 +438,10 @@ extension SteamNetworkingIdentityExtensions
         this,
         pszStr,
       );
+
+  ESteamNetworkingIdentityType get type => ref.type;
+
+  int get size => ref.size;
+
+  Pointer<Utf8> get unknownRawString => ref.unknownRawString;
 }

@@ -2,7 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_steam_party_beacon_location_type.dart";
+import "../enums/esteam_party_beacon_location_type.dart";
 
 @Packed(8)
 class SteamPartyBeaconLocation extends Struct {
@@ -11,4 +11,11 @@ class SteamPartyBeaconLocation extends Struct {
 
   @UnsignedLongLong()
   external int locationId;
+}
+
+extension SteamPartyBeaconLocationExtensions
+    on Pointer<SteamPartyBeaconLocation> {
+  ESteamPartyBeaconLocationType get type => ref.type;
+
+  int get locationId => ref.locationId;
 }

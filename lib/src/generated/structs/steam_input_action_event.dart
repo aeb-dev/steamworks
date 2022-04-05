@@ -2,7 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_steam_input_action_event_type.dart";
+import "../enums/esteam_input_action_event_type.dart";
 import "../structs/analog_action.dart";
 import "../typedefs.dart";
 
@@ -15,4 +15,12 @@ class SteamInputActionEvent extends Struct {
   external ESteamInputActionEventType eventType;
 
   external AnalogAction analogAction;
+}
+
+extension SteamInputActionEventExtensions on Pointer<SteamInputActionEvent> {
+  InputHandle get controllerHandle => ref.controllerHandle;
+
+  ESteamInputActionEventType get eventType => ref.eventType;
+
+  AnalogAction get analogAction => ref.analogAction;
 }

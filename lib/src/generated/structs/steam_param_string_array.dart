@@ -8,3 +8,9 @@ class SteamParamStringArray extends Struct {
   @Int()
   external int numStrings;
 }
+
+extension SteamParamStringArrayExtensions on Pointer<SteamParamStringArray> {
+  Pointer<Pointer<Utf8>> get strings => ref.strings;
+
+  int get numStrings => ref.numStrings;
+}

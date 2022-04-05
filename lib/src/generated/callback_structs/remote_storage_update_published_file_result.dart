@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class RemoteStorageUpdatePublishedFileResult extends Struct {
+  static int get callbackId => 1316;
+
   @Int32()
   external EResult result;
 
@@ -15,4 +17,14 @@ class RemoteStorageUpdatePublishedFileResult extends Struct {
 
   @Bool()
   external bool userNeedsToAcceptWorkshopLegalAgreement;
+}
+
+extension RemoteStorageUpdatePublishedFileResultExtensions
+    on Pointer<RemoteStorageUpdatePublishedFileResult> {
+  EResult get result => ref.result;
+
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  bool get userNeedsToAcceptWorkshopLegalAgreement =>
+      ref.userNeedsToAcceptWorkshopLegalAgreement;
 }

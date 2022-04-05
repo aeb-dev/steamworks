@@ -23,3 +23,18 @@ class SteamDatagramGameCoordinatorServerLogin extends Struct {
 
   external Pointer<Utf8> appData;
 }
+
+extension SteamDatagramGameCoordinatorServerLoginExtensions
+    on Pointer<SteamDatagramGameCoordinatorServerLogin> {
+  SteamNetworkingIdentity get identity => ref.identity;
+
+  SteamDatagramHostedAddress get routing => ref.routing;
+
+  AppId get appId => ref.appId;
+
+  RTime32 get rtime => ref.rtime;
+
+  int get appDataSize => ref.appDataSize;
+
+  Pointer<Utf8> get appData => ref.appData;
+}

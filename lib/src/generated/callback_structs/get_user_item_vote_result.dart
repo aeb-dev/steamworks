@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class GetUserItemVoteResult extends Struct {
+  static int get callbackId => 3409;
+
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
 
@@ -21,4 +23,16 @@ class GetUserItemVoteResult extends Struct {
 
   @Bool()
   external bool voteSkipped;
+}
+
+extension GetUserItemVoteResultExtensions on Pointer<GetUserItemVoteResult> {
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  EResult get result => ref.result;
+
+  bool get votedUp => ref.votedUp;
+
+  bool get votedDown => ref.votedDown;
+
+  bool get voteSkipped => ref.voteSkipped;
 }

@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class RemoteStoragePublishedFileUpdated extends Struct {
+  static int get callbackId => 1330;
+
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
 
@@ -12,4 +14,13 @@ class RemoteStoragePublishedFileUpdated extends Struct {
 
   @UnsignedLongLong()
   external int unused;
+}
+
+extension RemoteStoragePublishedFileUpdatedExtensions
+    on Pointer<RemoteStoragePublishedFileUpdated> {
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  AppId get appId => ref.appId;
+
+  int get unused => ref.unused;
 }

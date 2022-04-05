@@ -16,3 +16,13 @@ class SteamItemDetails extends Struct {
   @UnsignedShort()
   external int flags;
 }
+
+extension SteamItemDetailsExtensions on Pointer<SteamItemDetails> {
+  SteamItemInstanceId get itemId => ref.itemId;
+
+  SteamItemDef get definition => ref.definition;
+
+  int get quantity => ref.quantity;
+
+  int get flags => ref.flags;
+}

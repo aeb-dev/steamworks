@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class GsClientGroupStatus extends Struct {
+  static int get callbackId => 208;
+
   @UnsignedLongLong()
   external CSteamId steamIdUser;
 
@@ -15,4 +17,14 @@ class GsClientGroupStatus extends Struct {
 
   @Bool()
   external bool officer;
+}
+
+extension GsClientGroupStatusExtensions on Pointer<GsClientGroupStatus> {
+  CSteamId get steamIdUser => ref.steamIdUser;
+
+  CSteamId get steamIdGroup => ref.steamIdGroup;
+
+  bool get member => ref.member;
+
+  bool get officer => ref.officer;
 }

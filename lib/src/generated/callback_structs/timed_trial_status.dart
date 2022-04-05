@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class TimedTrialStatus extends Struct {
+  static int get callbackId => 1030;
+
   @UnsignedInt()
   external AppId appId;
 
@@ -15,4 +17,14 @@ class TimedTrialStatus extends Struct {
 
   @UnsignedInt()
   external int secondsPlayed;
+}
+
+extension TimedTrialStatusExtensions on Pointer<TimedTrialStatus> {
+  AppId get appId => ref.appId;
+
+  bool get isOffline => ref.isOffline;
+
+  int get secondsAllowed => ref.secondsAllowed;
+
+  int get secondsPlayed => ref.secondsPlayed;
 }

@@ -4,9 +4,17 @@ import "../typedefs.dart";
 
 @Packed(8)
 class ItemInstalled extends Struct {
+  static int get callbackId => 3405;
+
   @UnsignedInt()
   external AppId appId;
 
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
+}
+
+extension ItemInstalledExtensions on Pointer<ItemInstalled> {
+  AppId get appId => ref.appId;
+
+  PublishedFileId get publishedFileId => ref.publishedFileId;
 }

@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_auth_session_response.dart";
+import "../enums/eauth_session_response.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class ValidateAuthTicketResponse extends Struct {
+  static int get callbackId => 143;
+
   @UnsignedLongLong()
   external CSteamId steamId;
 
@@ -15,4 +17,13 @@ class ValidateAuthTicketResponse extends Struct {
 
   @UnsignedLongLong()
   external CSteamId ownerSteamId;
+}
+
+extension ValidateAuthTicketResponseExtensions
+    on Pointer<ValidateAuthTicketResponse> {
+  CSteamId get steamId => ref.steamId;
+
+  EAuthSessionResponse get authSessionResponse => ref.authSessionResponse;
+
+  CSteamId get ownerSteamId => ref.ownerSteamId;
 }

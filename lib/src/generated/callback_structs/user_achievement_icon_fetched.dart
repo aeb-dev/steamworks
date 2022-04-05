@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class UserAchievementIconFetched extends Struct {
+  static int get callbackId => 1109;
+
   @UnsignedLongLong()
   external CGameId gameId;
 
@@ -14,4 +16,15 @@ class UserAchievementIconFetched extends Struct {
 
   @Int()
   external int iconHandle;
+}
+
+extension UserAchievementIconFetchedExtensions
+    on Pointer<UserAchievementIconFetched> {
+  CGameId get gameId => ref.gameId;
+
+  Pointer<Utf8> get achievementName => ref.achievementName;
+
+  bool get achieved => ref.achieved;
+
+  int get iconHandle => ref.iconHandle;
 }

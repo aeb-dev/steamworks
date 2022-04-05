@@ -2,13 +2,15 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_remote_storage_published_file_visibility.dart";
-import "../enums/e_result.dart";
-import "../enums/e_workshop_file_type.dart";
+import "../enums/eremote_storage_published_file_visibility.dart";
+import "../enums/eresult.dart";
+import "../enums/eworkshop_file_type.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class RemoteStorageGetPublishedFileDetailsResult extends Struct {
+  static int get callbackId => 1318;
+
   @Int32()
   external EResult result;
 
@@ -66,4 +68,49 @@ class RemoteStorageGetPublishedFileDetailsResult extends Struct {
 
   @Bool()
   external bool acceptedForUse;
+}
+
+extension RemoteStorageGetPublishedFileDetailsResultExtensions
+    on Pointer<RemoteStorageGetPublishedFileDetailsResult> {
+  EResult get result => ref.result;
+
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  AppId get creatorAppId => ref.creatorAppId;
+
+  AppId get consumerAppId => ref.consumerAppId;
+
+  Pointer<Utf8> get title => ref.title;
+
+  Pointer<Utf8> get description => ref.description;
+
+  UgcHandle get file => ref.file;
+
+  UgcHandle get previewFile => ref.previewFile;
+
+  int get steamIdOwner => ref.steamIdOwner;
+
+  int get timeCreated => ref.timeCreated;
+
+  int get timeUpdated => ref.timeUpdated;
+
+  ERemoteStoragePublishedFileVisibility get visibility => ref.visibility;
+
+  bool get banned => ref.banned;
+
+  Pointer<Utf8> get tags => ref.tags;
+
+  bool get tagsTruncated => ref.tagsTruncated;
+
+  Pointer<Utf8> get fileName => ref.fileName;
+
+  int get fileSize => ref.fileSize;
+
+  int get previewFileSize => ref.previewFileSize;
+
+  Pointer<Utf8> get url => ref.url;
+
+  EWorkshopFileType get fileType => ref.fileType;
+
+  bool get acceptedForUse => ref.acceptedForUse;
 }

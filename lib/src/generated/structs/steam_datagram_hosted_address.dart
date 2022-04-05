@@ -62,4 +62,8 @@ extension SteamDatagramHostedAddressExtensions
         nPort,
         popid,
       );
+
+  int get size => ref.size;
+
+  Pointer<Utf8> get data => ref.data;
 }

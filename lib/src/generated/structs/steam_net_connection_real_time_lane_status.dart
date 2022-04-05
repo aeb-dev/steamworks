@@ -22,3 +22,18 @@ class SteamNetConnectionRealTimeLaneStatus extends Struct {
   @Array<UnsignedInt>(10)
   external Array<UnsignedInt> reserved;
 }
+
+extension SteamNetConnectionRealTimeLaneStatusExtensions
+    on Pointer<SteamNetConnectionRealTimeLaneStatus> {
+  int get pendingUnreliableSize => ref.pendingUnreliableSize;
+
+  int get pendingReliableSize => ref.pendingReliableSize;
+
+  int get sentUnackedReliableSize => ref.sentUnackedReliableSize;
+
+  int get reservePad1 => ref.reservePad1;
+
+  SteamNetworkingMicroseconds get queueTime => ref.queueTime;
+
+  Array<UnsignedInt> get reserved => ref.reserved;
+}

@@ -19,3 +19,15 @@ class FriendGameInfo extends Struct {
   @UnsignedLongLong()
   external CSteamId steamIdLobby;
 }
+
+extension FriendGameInfoExtensions on Pointer<FriendGameInfo> {
+  CGameId get gameId => ref.gameId;
+
+  int get gameIp => ref.gameIp;
+
+  int get gamePort => ref.gamePort;
+
+  int get queryPort => ref.queryPort;
+
+  CSteamId get steamIdLobby => ref.steamIdLobby;
+}

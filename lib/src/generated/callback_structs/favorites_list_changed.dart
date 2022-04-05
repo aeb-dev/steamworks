@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class FavoritesListChanged extends Struct {
+  static int get callbackId => 502;
+
   @UnsignedInt()
   external int ip;
 
@@ -24,4 +26,20 @@ class FavoritesListChanged extends Struct {
 
   @UnsignedInt()
   external AccountId accountId;
+}
+
+extension FavoritesListChangedExtensions on Pointer<FavoritesListChanged> {
+  int get ip => ref.ip;
+
+  int get queryPort => ref.queryPort;
+
+  int get connPort => ref.connPort;
+
+  int get appId => ref.appId;
+
+  int get flags => ref.flags;
+
+  bool get add => ref.add;
+
+  AccountId get accountId => ref.accountId;
 }

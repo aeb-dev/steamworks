@@ -4,9 +4,17 @@ import "../typedefs.dart";
 
 @Packed(8)
 class GameConnectedChatJoin extends Struct {
+  static int get callbackId => 339;
+
   @UnsignedLongLong()
   external CSteamId steamIdClanChat;
 
   @UnsignedLongLong()
   external CSteamId steamIdUser;
+}
+
+extension GameConnectedChatJoinExtensions on Pointer<GameConnectedChatJoin> {
+  CSteamId get steamIdClanChat => ref.steamIdClanChat;
+
+  CSteamId get steamIdUser => ref.steamIdUser;
 }

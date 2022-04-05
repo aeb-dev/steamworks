@@ -2,13 +2,15 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_duration_control_notification.dart";
-import "../enums/e_duration_control_progress.dart";
-import "../enums/e_result.dart";
+import "../enums/eduration_control_notification.dart";
+import "../enums/eduration_control_progress.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class DurationControl extends Struct {
+  static int get callbackId => 167;
+
   @Int32()
   external EResult result;
 
@@ -32,4 +34,22 @@ class DurationControl extends Struct {
 
   @Int()
   external int csecsRemaining;
+}
+
+extension DurationControlExtensions on Pointer<DurationControl> {
+  EResult get result => ref.result;
+
+  AppId get appid => ref.appid;
+
+  bool get applicable => ref.applicable;
+
+  int get csecsLast5h => ref.csecsLast5h;
+
+  EDurationControlProgress get progress => ref.progress;
+
+  EDurationControlNotification get notification => ref.notification;
+
+  int get csecsToday => ref.csecsToday;
+
+  int get csecsRemaining => ref.csecsRemaining;
 }

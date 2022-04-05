@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class SteamInventoryEligiblePromoItemDefIds extends Struct {
+  static int get callbackId => 4703;
+
   @Int32()
   external EResult result;
 
@@ -18,4 +20,15 @@ class SteamInventoryEligiblePromoItemDefIds extends Struct {
 
   @Bool()
   external bool cachedData;
+}
+
+extension SteamInventoryEligiblePromoItemDefIdsExtensions
+    on Pointer<SteamInventoryEligiblePromoItemDefIds> {
+  EResult get result => ref.result;
+
+  CSteamId get steamId => ref.steamId;
+
+  int get numEligiblePromoItemDefs => ref.numEligiblePromoItemDefs;
+
+  bool get cachedData => ref.cachedData;
 }

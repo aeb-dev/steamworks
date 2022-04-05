@@ -15,3 +15,13 @@ class CallbackMsg extends Struct {
   @Int()
   external int paramSize;
 }
+
+extension CallbackMsgExtensions on Pointer<CallbackMsg> {
+  HSteamUser get steamUser => ref.steamUser;
+
+  int get callback => ref.callback;
+
+  Pointer<UnsignedChar> get paramPtr => ref.paramPtr;
+
+  int get paramSize => ref.paramSize;
+}

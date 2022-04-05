@@ -3,6 +3,8 @@ import "package:ffi/ffi.dart";
 
 @Packed(8)
 class LobbyKicked extends Struct {
+  static int get callbackId => 512;
+
   @UnsignedLongLong()
   external int steamIdLobby;
 
@@ -11,4 +13,12 @@ class LobbyKicked extends Struct {
 
   @UnsignedChar()
   external int kickedDueToDisconnect;
+}
+
+extension LobbyKickedExtensions on Pointer<LobbyKicked> {
+  int get steamIdLobby => ref.steamIdLobby;
+
+  int get steamIdAdmin => ref.steamIdAdmin;
+
+  int get kickedDueToDisconnect => ref.kickedDueToDisconnect;
 }

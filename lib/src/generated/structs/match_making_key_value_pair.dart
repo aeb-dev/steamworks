@@ -22,4 +22,8 @@ extension MatchMakingKeyValuePairExtensions
   void construct() => _construct.call(
         this,
       );
+
+  Pointer<Utf8> get key => ref.key;
+
+  Pointer<Utf8> get value => ref.value;
 }

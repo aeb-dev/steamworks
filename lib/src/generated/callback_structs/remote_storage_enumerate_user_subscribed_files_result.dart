@@ -2,10 +2,12 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 
 @Packed(8)
 class RemoteStorageEnumerateUserSubscribedFilesResult extends Struct {
+  static int get callbackId => 1314;
+
   @Int32()
   external EResult result;
 
@@ -20,4 +22,17 @@ class RemoteStorageEnumerateUserSubscribedFilesResult extends Struct {
 
   @Array<UnsignedInt>(50)
   external Array<UnsignedInt> rTimeSubscribed;
+}
+
+extension RemoteStorageEnumerateUserSubscribedFilesResultExtensions
+    on Pointer<RemoteStorageEnumerateUserSubscribedFilesResult> {
+  EResult get result => ref.result;
+
+  int get resultsReturned => ref.resultsReturned;
+
+  int get totalResultCount => ref.totalResultCount;
+
+  Array<UnsignedLongLong> get publishedFileId => ref.publishedFileId;
+
+  Array<UnsignedInt> get rTimeSubscribed => ref.rTimeSubscribed;
 }

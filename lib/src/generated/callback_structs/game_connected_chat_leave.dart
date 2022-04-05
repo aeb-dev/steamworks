@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class GameConnectedChatLeave extends Struct {
+  static int get callbackId => 340;
+
   @UnsignedLongLong()
   external CSteamId steamIdClanChat;
 
@@ -15,4 +17,14 @@ class GameConnectedChatLeave extends Struct {
 
   @Bool()
   external bool dropped;
+}
+
+extension GameConnectedChatLeaveExtensions on Pointer<GameConnectedChatLeave> {
+  CSteamId get steamIdClanChat => ref.steamIdClanChat;
+
+  CSteamId get steamIdUser => ref.steamIdUser;
+
+  bool get kicked => ref.kicked;
+
+  bool get dropped => ref.dropped;
 }

@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class HtmlHorizontalScroll extends Struct {
+  static int get callbackId => 4511;
+
   @UnsignedInt()
   external HHtmlBrowser browserHandle;
 
@@ -21,4 +23,18 @@ class HtmlHorizontalScroll extends Struct {
 
   @UnsignedInt()
   external int pageSize;
+}
+
+extension HtmlHorizontalScrollExtensions on Pointer<HtmlHorizontalScroll> {
+  HHtmlBrowser get browserHandle => ref.browserHandle;
+
+  int get scrollMax => ref.scrollMax;
+
+  int get scrollCurrent => ref.scrollCurrent;
+
+  double get pageScale => ref.pageScale;
+
+  bool get visible => ref.visible;
+
+  int get pageSize => ref.pageSize;
 }

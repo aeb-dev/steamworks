@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class RemoveAppDependencyResult extends Struct {
+  static int get callbackId => 3415;
+
   @Int32()
   external EResult result;
 
@@ -15,4 +17,13 @@ class RemoveAppDependencyResult extends Struct {
 
   @UnsignedInt()
   external AppId appId;
+}
+
+extension RemoveAppDependencyResultExtensions
+    on Pointer<RemoveAppDependencyResult> {
+  EResult get result => ref.result;
+
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  AppId get appId => ref.appId;
 }

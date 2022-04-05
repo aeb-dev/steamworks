@@ -2,7 +2,7 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_steam_networking_connection_state.dart";
+import "../enums/esteam_networking_connection_state.dart";
 import "../typedefs.dart";
 
 @Packed(8)
@@ -48,4 +48,35 @@ class SteamNetConnectionRealTimeStatus extends Struct {
 
   @Array<UnsignedInt>(16)
   external Array<UnsignedInt> reserved;
+}
+
+extension SteamNetConnectionRealTimeStatusExtensions
+    on Pointer<SteamNetConnectionRealTimeStatus> {
+  ESteamNetworkingConnectionState get state => ref.state;
+
+  int get ping => ref.ping;
+
+  double get connectionQualityLocal => ref.connectionQualityLocal;
+
+  double get connectionQualityRemote => ref.connectionQualityRemote;
+
+  double get outPacketsPerSec => ref.outPacketsPerSec;
+
+  double get outBytesPerSec => ref.outBytesPerSec;
+
+  double get inPacketsPerSec => ref.inPacketsPerSec;
+
+  double get inBytesPerSec => ref.inBytesPerSec;
+
+  int get sendRateBytesPerSecond => ref.sendRateBytesPerSecond;
+
+  int get pendingUnreliableSize => ref.pendingUnreliableSize;
+
+  int get pendingReliableSize => ref.pendingReliableSize;
+
+  int get sentUnackedReliableSize => ref.sentUnackedReliableSize;
+
+  SteamNetworkingMicroseconds get queueTime => ref.queueTime;
+
+  Array<UnsignedInt> get reserved => ref.reserved;
 }

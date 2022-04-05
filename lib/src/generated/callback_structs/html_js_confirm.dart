@@ -4,8 +4,16 @@ import "../typedefs.dart";
 
 @Packed(8)
 class HtmlJsConfirm extends Struct {
+  static int get callbackId => 4515;
+
   @UnsignedInt()
   external HHtmlBrowser browserHandle;
 
   external Pointer<Utf8> message;
+}
+
+extension HtmlJsConfirmExtensions on Pointer<HtmlJsConfirm> {
+  HHtmlBrowser get browserHandle => ref.browserHandle;
+
+  Pointer<Utf8> get message => ref.message;
 }

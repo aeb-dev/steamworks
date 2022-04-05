@@ -2,10 +2,12 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 
 @Packed(8)
 class FileDetailsResult extends Struct {
+  static int get callbackId => 1023;
+
   @Int32()
   external EResult result;
 
@@ -17,4 +19,14 @@ class FileDetailsResult extends Struct {
 
   @UnsignedInt()
   external int flags;
+}
+
+extension FileDetailsResultExtensions on Pointer<FileDetailsResult> {
+  EResult get result => ref.result;
+
+  int get fileSize => ref.fileSize;
+
+  Array<UnsignedChar> get fileSHA => ref.fileSHA;
+
+  int get flags => ref.flags;
 }

@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class UserFavoriteItemsListChanged extends Struct {
+  static int get callbackId => 3407;
+
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
 
@@ -15,4 +17,13 @@ class UserFavoriteItemsListChanged extends Struct {
 
   @Bool()
   external bool wasAddRequest;
+}
+
+extension UserFavoriteItemsListChangedExtensions
+    on Pointer<UserFavoriteItemsListChanged> {
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  EResult get result => ref.result;
+
+  bool get wasAddRequest => ref.wasAddRequest;
 }

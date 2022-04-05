@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class HtmlUrlChanged extends Struct {
+  static int get callbackId => 4505;
+
   @UnsignedInt()
   external HHtmlBrowser browserHandle;
 
@@ -18,4 +20,18 @@ class HtmlUrlChanged extends Struct {
 
   @Bool()
   external bool newNavigation;
+}
+
+extension HtmlUrlChangedExtensions on Pointer<HtmlUrlChanged> {
+  HHtmlBrowser get browserHandle => ref.browserHandle;
+
+  Pointer<Utf8> get url => ref.url;
+
+  Pointer<Utf8> get postData => ref.postData;
+
+  bool get isRedirect => ref.isRedirect;
+
+  Pointer<Utf8> get pageTitle => ref.pageTitle;
+
+  bool get newNavigation => ref.newNavigation;
 }

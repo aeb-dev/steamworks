@@ -4,6 +4,13 @@ import "../typedefs.dart";
 
 @Packed(8)
 class SteamRemotePlaySessionDisconnected extends Struct {
+  static int get callbackId => 5702;
+
   @UnsignedInt()
   external RemotePlaySessionId sessionId;
+}
+
+extension SteamRemotePlaySessionDisconnectedExtensions
+    on Pointer<SteamRemotePlaySessionDisconnected> {
+  RemotePlaySessionId get sessionId => ref.sessionId;
 }

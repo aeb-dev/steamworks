@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class WorkshopEulaStatus extends Struct {
+  static int get callbackId => 3420;
+
   @Int32()
   external EResult result;
 
@@ -24,4 +26,18 @@ class WorkshopEulaStatus extends Struct {
 
   @Bool()
   external bool needsAction;
+}
+
+extension WorkshopEulaStatusExtensions on Pointer<WorkshopEulaStatus> {
+  EResult get result => ref.result;
+
+  AppId get appId => ref.appId;
+
+  int get version => ref.version;
+
+  RTime32 get action => ref.action;
+
+  bool get accepted => ref.accepted;
+
+  bool get needsAction => ref.needsAction;
 }

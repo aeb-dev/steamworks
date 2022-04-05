@@ -3,6 +3,8 @@ import "package:ffi/ffi.dart";
 
 @Packed(8)
 class LobbyDataUpdate extends Struct {
+  static int get callbackId => 505;
+
   @UnsignedLongLong()
   external int steamIdLobby;
 
@@ -11,4 +13,12 @@ class LobbyDataUpdate extends Struct {
 
   @UnsignedChar()
   external int success;
+}
+
+extension LobbyDataUpdateExtensions on Pointer<LobbyDataUpdate> {
+  int get steamIdLobby => ref.steamIdLobby;
+
+  int get steamIdMember => ref.steamIdMember;
+
+  int get success => ref.success;
 }

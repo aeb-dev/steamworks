@@ -3,7 +3,7 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 
 import "../dl.dart";
-import "../enums/e_steam_ip_type.dart";
+import "../enums/esteam_ip_type.dart";
 
 @Packed(1)
 class SteamIpAddress extends Struct {
@@ -26,4 +26,8 @@ extension SteamIpAddressExtensions on Pointer<SteamIpAddress> {
   bool isSet() => _isSet.call(
         this,
       );
+
+  Array<UnsignedChar> get ipv6 => ref.ipv6;
+
+  ESteamIpType get type => ref.type;
 }

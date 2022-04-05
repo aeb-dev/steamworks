@@ -6,3 +6,8 @@ class SteamNetworkPingLocation extends Struct {
   @Array<UnsignedChar>(512)
   external Array<UnsignedChar> data;
 }
+
+extension SteamNetworkPingLocationExtensions
+    on Pointer<SteamNetworkPingLocation> {
+  Array<UnsignedChar> get data => ref.data;
+}

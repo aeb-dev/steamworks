@@ -100,4 +100,38 @@ extension GameServerItemExtensions on Pointer<GameServerItem> {
         this,
         pName,
       );
+
+  ServerNetAdr get netAdr => ref.netAdr;
+
+  int get ping => ref.ping;
+
+  bool get hadSuccessfulResponse => ref.hadSuccessfulResponse;
+
+  bool get doNotRefresh => ref.doNotRefresh;
+
+  Pointer<Utf8> get gameDir => ref.gameDir;
+
+  Pointer<Utf8> get map => ref.map;
+
+  Pointer<Utf8> get gameDescription => ref.gameDescription;
+
+  int get appId => ref.appId;
+
+  int get players => ref.players;
+
+  int get maxPlayers => ref.maxPlayers;
+
+  int get botPlayers => ref.botPlayers;
+
+  bool get password => ref.password;
+
+  bool get secure => ref.secure;
+
+  int get timeLastPlayed => ref.timeLastPlayed;
+
+  int get serverVersion => ref.serverVersion;
+
+  Pointer<Utf8> get gameTags => ref.gameTags;
+
+  CSteamId get steamId => ref.steamId;
 }

@@ -63,4 +63,38 @@ extension SteamNetworkingMessageExtensions on Pointer<SteamNetworkingMessage> {
   void release() => _release.call(
         this,
       );
+
+  Pointer<Void> get pData => ref.pData;
+
+  int get size => ref.size;
+
+  HSteamNetConnection get conn => ref.conn;
+
+  SteamNetworkingIdentity get identityPeer => ref.identityPeer;
+
+  int get connUserData => ref.connUserData;
+
+  SteamNetworkingMicroseconds get timeReceived => ref.timeReceived;
+
+  int get messageNumber => ref.messageNumber;
+
+  Pointer<
+          NativeFunction<
+              Pointer<Void> Function(Pointer<SteamNetworkingMessage>)>>
+      get pfnFreeData => ref.pfnFreeData;
+
+  Pointer<
+          NativeFunction<
+              Pointer<Void> Function(Pointer<SteamNetworkingMessage>)>>
+      get pfnRelease => ref.pfnRelease;
+
+  int get channel => ref.channel;
+
+  int get flags => ref.flags;
+
+  int get userData => ref.userData;
+
+  int get idxLane => ref.idxLane;
+
+  int get pad1 => ref.pad1;
 }

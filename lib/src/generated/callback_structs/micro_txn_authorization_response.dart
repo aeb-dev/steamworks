@@ -3,6 +3,8 @@ import "package:ffi/ffi.dart";
 
 @Packed(8)
 class MicroTxnAuthorizationResponse extends Struct {
+  static int get callbackId => 152;
+
   @UnsignedInt()
   external int appId;
 
@@ -11,4 +13,13 @@ class MicroTxnAuthorizationResponse extends Struct {
 
   @UnsignedChar()
   external int authorized;
+}
+
+extension MicroTxnAuthorizationResponseExtensions
+    on Pointer<MicroTxnAuthorizationResponse> {
+  int get appId => ref.appId;
+
+  int get orderId => ref.orderId;
+
+  int get authorized => ref.authorized;
 }

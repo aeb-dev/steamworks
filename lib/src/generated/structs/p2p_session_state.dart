@@ -27,3 +27,21 @@ class P2pSessionState extends Struct {
   @UnsignedShort()
   external int remotePort;
 }
+
+extension P2pSessionStateExtensions on Pointer<P2pSessionState> {
+  int get connectionActive => ref.connectionActive;
+
+  int get connecting => ref.connecting;
+
+  int get p2pSessionError => ref.p2pSessionError;
+
+  int get usingRelay => ref.usingRelay;
+
+  int get bytesQueuedForSend => ref.bytesQueuedForSend;
+
+  int get packetsQueuedForSend => ref.packetsQueuedForSend;
+
+  int get remoteIp => ref.remoteIp;
+
+  int get remotePort => ref.remotePort;
+}

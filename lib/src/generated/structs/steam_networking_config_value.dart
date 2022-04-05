@@ -3,8 +3,8 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 
 import "../dl.dart";
-import "../enums/e_steam_networking_config_data_type.dart";
-import "../enums/e_steam_networking_config_value.dart";
+import "../enums/esteam_networking_config_data_type.dart";
+import "../enums/esteam_networking_config_value.dart";
 
 @Packed(4)
 class SteamNetworkingConfigValue extends Struct {
@@ -129,4 +129,10 @@ extension SteamNetworkingConfigValueExtensions
         val,
         data,
       );
+
+  ESteamNetworkingConfigValue get value => ref.value;
+
+  ESteamNetworkingConfigDataType get dataType => ref.dataType;
+
+  int get int64 => ref.int64;
 }

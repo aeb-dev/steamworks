@@ -4,6 +4,8 @@ import "../typedefs.dart";
 
 @Packed(8)
 class SocketStatusCallback extends Struct {
+  static int get callbackId => 1201;
+
   @UnsignedInt()
   external SnetSocket socket;
 
@@ -15,4 +17,14 @@ class SocketStatusCallback extends Struct {
 
   @Int()
   external int snetSocketState;
+}
+
+extension SocketStatusCallbackExtensions on Pointer<SocketStatusCallback> {
+  SnetSocket get socket => ref.socket;
+
+  SnetListenSocket get listenSocket => ref.listenSocket;
+
+  CSteamId get steamIdRemote => ref.steamIdRemote;
+
+  int get snetSocketState => ref.snetSocketState;
 }

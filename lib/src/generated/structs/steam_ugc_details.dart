@@ -2,9 +2,9 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_remote_storage_published_file_visibility.dart";
-import "../enums/e_result.dart";
-import "../enums/e_workshop_file_type.dart";
+import "../enums/eremote_storage_published_file_visibility.dart";
+import "../enums/eresult.dart";
+import "../enums/eworkshop_file_type.dart";
 import "../typedefs.dart";
 
 @Packed(8)
@@ -81,4 +81,58 @@ class SteamUgcDetails extends Struct {
 
   @UnsignedInt()
   external int numChildren;
+}
+
+extension SteamUgcDetailsExtensions on Pointer<SteamUgcDetails> {
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  EResult get result => ref.result;
+
+  EWorkshopFileType get fileType => ref.fileType;
+
+  AppId get creatorAppId => ref.creatorAppId;
+
+  AppId get consumerAppId => ref.consumerAppId;
+
+  Pointer<Utf8> get title => ref.title;
+
+  Pointer<Utf8> get description => ref.description;
+
+  int get steamIdOwner => ref.steamIdOwner;
+
+  int get timeCreated => ref.timeCreated;
+
+  int get timeUpdated => ref.timeUpdated;
+
+  int get timeAddedToUserList => ref.timeAddedToUserList;
+
+  ERemoteStoragePublishedFileVisibility get visibility => ref.visibility;
+
+  bool get banned => ref.banned;
+
+  bool get acceptedForUse => ref.acceptedForUse;
+
+  bool get tagsTruncated => ref.tagsTruncated;
+
+  Pointer<Utf8> get tags => ref.tags;
+
+  UgcHandle get file => ref.file;
+
+  UgcHandle get previewFile => ref.previewFile;
+
+  Pointer<Utf8> get fileName => ref.fileName;
+
+  int get fileSize => ref.fileSize;
+
+  int get previewFileSize => ref.previewFileSize;
+
+  Pointer<Utf8> get url => ref.url;
+
+  int get votesUp => ref.votesUp;
+
+  int get votesDown => ref.votesDown;
+
+  double get score => ref.score;
+
+  int get numChildren => ref.numChildren;
 }

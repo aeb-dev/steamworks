@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class ComputeNewPlayerCompatibilityResult extends Struct {
+  static int get callbackId => 211;
+
   @Int32()
   external EResult result;
 
@@ -21,4 +23,18 @@ class ComputeNewPlayerCompatibilityResult extends Struct {
 
   @UnsignedLongLong()
   external CSteamId steamIdCandidate;
+}
+
+extension ComputeNewPlayerCompatibilityResultExtensions
+    on Pointer<ComputeNewPlayerCompatibilityResult> {
+  EResult get result => ref.result;
+
+  int get playersThatDontLikeCandidate => ref.playersThatDontLikeCandidate;
+
+  int get playersThatCandidateDoesntLike => ref.playersThatCandidateDoesntLike;
+
+  int get clanPlayersThatDontLikeCandidate =>
+      ref.clanPlayersThatDontLikeCandidate;
+
+  CSteamId get steamIdCandidate => ref.steamIdCandidate;
 }

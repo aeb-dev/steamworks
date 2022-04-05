@@ -2,12 +2,14 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
-import "../enums/e_workshop_file_action.dart";
+import "../enums/eresult.dart";
+import "../enums/eworkshop_file_action.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class RemoteStorageSetUserPublishedFileActionResult extends Struct {
+  static int get callbackId => 1327;
+
   @Int32()
   external EResult result;
 
@@ -16,4 +18,13 @@ class RemoteStorageSetUserPublishedFileActionResult extends Struct {
 
   @Int32()
   external EWorkshopFileAction action;
+}
+
+extension RemoteStorageSetUserPublishedFileActionResultExtensions
+    on Pointer<RemoteStorageSetUserPublishedFileActionResult> {
+  EResult get result => ref.result;
+
+  PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  EWorkshopFileAction get action => ref.action;
 }

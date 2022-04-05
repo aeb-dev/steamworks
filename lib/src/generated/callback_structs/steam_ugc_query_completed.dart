@@ -2,11 +2,13 @@ import "dart:ffi";
 
 import "package:ffi/ffi.dart";
 
-import "../enums/e_result.dart";
+import "../enums/eresult.dart";
 import "../typedefs.dart";
 
 @Packed(8)
 class SteamUgcQueryCompleted extends Struct {
+  static int get callbackId => 3401;
+
   @UnsignedLongLong()
   external UgcQueryHandle handle;
 
@@ -23,4 +25,18 @@ class SteamUgcQueryCompleted extends Struct {
   external bool cachedData;
 
   external Pointer<Utf8> nextCursor;
+}
+
+extension SteamUgcQueryCompletedExtensions on Pointer<SteamUgcQueryCompleted> {
+  UgcQueryHandle get handle => ref.handle;
+
+  EResult get result => ref.result;
+
+  int get numResultsReturned => ref.numResultsReturned;
+
+  int get totalMatchingResults => ref.totalMatchingResults;
+
+  bool get cachedData => ref.cachedData;
+
+  Pointer<Utf8> get nextCursor => ref.nextCursor;
 }
