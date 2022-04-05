@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs
 typedef ESteamInputGlyphStyle = int;
 
 class ESteamInputGlyphStyleEnum {

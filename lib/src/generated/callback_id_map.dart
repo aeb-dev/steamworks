@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs
 import "callback_structs/active_beacons_updated.dart";
 import "callback_structs/add_app_dependency_result.dart";
 import "callback_structs/add_ugc_dependency_result.dart";

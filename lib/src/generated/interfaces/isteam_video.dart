@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs
 import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../dl.dart";
