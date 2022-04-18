@@ -7,7 +7,6 @@ import "../dl.dart";
 import "../enums/eaccount_type.dart";
 import "../interfaces/isteam_app_list.dart";
 import "../interfaces/isteam_apps.dart";
-import "../interfaces/isteam_controller.dart";
 import "../interfaces/isteam_friends.dart";
 import "../interfaces/isteam_game_search.dart";
 import "../interfaces/isteam_game_server.dart";
@@ -323,20 +322,6 @@ final _getISteamHttp = dl.lookupFunction<
   HSteamPipe,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamClient_GetISteamHTTP");
-
-final _getISteamController = dl.lookupFunction<
-    Pointer<ISteamController> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
-    Pointer<ISteamController> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamController");
 
 final _getISteamUgc = dl.lookupFunction<
     Pointer<ISteamUgc> Function(
@@ -725,18 +710,6 @@ extension ISteamClientExtensions on Pointer<ISteamClient> {
       _getISteamHttp.call(
         this,
         hSteamuser,
-        hSteamPipe,
-        version,
-      );
-
-  Pointer<ISteamController> getISteamController(
-    HSteamUser hSteamUser,
-    HSteamPipe hSteamPipe,
-    Pointer<Utf8> version,
-  ) =>
-      _getISteamController.call(
-        this,
-        hSteamUser,
         hSteamPipe,
         version,
       );
