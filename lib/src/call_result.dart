@@ -1,8 +1,7 @@
 import "dart:ffi";
 
 import "dispatcher.dart";
-import "generated/callback_id_map.dart";
-import "generated/typedefs.dart";
+import "generated/generated.dart";
 
 /// Use this class to register a callback
 /// for an async request
@@ -17,23 +16,13 @@ class CallResult<T extends NativeType> {
   late final void Function(Pointer<T> data, bool hasFailed) cb;
 
   /// Creates a [CallResult] with given parameters to be called
-  /// after the request is completed. Do not forget to call [register]
+  /// after the request is completed. Do not forget to register
   /// in order to receive the result
   CallResult({
     required this.asyncCallId,
     required this.cb,
   }) {
     callbackId = callbackIdMapByType[T]!;
-  }
-
-  /// Register the [CallResult] to the [Dispatcher]
-  void register() {
-    Dispatcher.registerCallResult(this);
-  }
-
-  /// Unregister the [CallResult] from the [Dispatcher]
-  void unregister() {
-    Dispatcher.unregisterCallResult(this);
   }
 
   /// When the request finishes [Dispatcher] calls this function

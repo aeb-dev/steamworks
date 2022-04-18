@@ -1,15 +1,22 @@
+import "dart:ffi";
 import "dart:io";
 
 import "package:ffi/ffi.dart";
 
-import "dispatcher.dart";
-import "generated/initializers/steam_game_server.dart";
-import "generated/typedefs.dart";
+import "generated/generated.dart";
+import "steam_base.dart";
 
 /// A wrapper for the [SteamGameServer] to easily manage
 /// game server instance
-class SteamServer {
-  /// Initializes [SteamServer]
+class SteamServer extends SteamBase {
+  static late SteamServer? _instance;
+
+  /// Initalized instance of the [SteamServer]
+  /// Do not access this before calling [init]
+  static SteamServer get instance => _instance!;
+
+  /// Initalizes the [SteamServer]. Calling [init]
+  /// multiple time is noop
   static void init({
     required String ip,
     int steamPort = 0,
@@ -18,6 +25,10 @@ class SteamServer {
     int serverMode = 3,
     String versionString = "1.0.0.0",
   }) {
+    if (_instance != null) {
+      return;
+    }
+
     int ipAsInt = int.parse(
       InternetAddress(
         ip,
@@ -38,14 +49,79 @@ class SteamServer {
       throw "Steam server failed to initialize";
     }
 
-    HSteamPipe pipe = SteamGameServer.getHSteamPipe();
-    Dispatcher.init(
-      pipe: pipe,
+    _instance = SteamServer._(
+      ip: ip,
+      steamPort: steamPort,
+      gamePort: gamePort,
+      queryPort: queryPort,
+      serverMode: serverMode,
+      versionString: versionString,
     );
   }
 
-  /// Runs frames in order to receive callbacks
-  static void runFrame() {
-    Dispatcher.runFrame();
-  }
+  /// Accesses server instance of [ISteamUtils]
+  Pointer<ISteamUtils> get steamUtils => ISteamUtils.serverInstance;
+
+  /// Accesses server instance of [ISteamHttp]
+  Pointer<ISteamHttp> get steamHttp => ISteamHttp.serverInstance;
+
+  /// Accesses server instance of [ISteamUgc]
+  Pointer<ISteamUgc> get steamUgc => ISteamUgc.serverInstance;
+
+  /// Accesses server instance of [ISteamInventory]
+  Pointer<ISteamInventory> get steamInventory => ISteamInventory.serverInstance;
+
+  /// Accesses server instance of [ISteamNetworkingMessages]
+  Pointer<ISteamNetworkingMessages> get steamNetworkingMessages =>
+      ISteamNetworkingMessages.serverInstance;
+
+  /// Accesses server instance of [ISteamNetworkingSockets]
+  Pointer<ISteamNetworkingSockets> get steamNetworkingSockets =>
+      ISteamNetworkingSockets.serverInstance;
+
+  /// Accesses server instance of [ISteamNetworkingUtils]
+  Pointer<ISteamNetworkingUtils> get steamNetworkingUtils =>
+      ISteamNetworkingUtils.globalInstance;
+
+  /// Accesses server instance of [ISteamGameServer]
+  Pointer<ISteamGameServer> get steamGameServer =>
+      ISteamGameServer.serverInstance;
+
+  /// Accesses server instance of [ISteamGameServerStats]
+  Pointer<ISteamGameServerStats> get steamGameServerStats =>
+      ISteamGameServerStats.serverInstance;
+
+  /// The IP address you are going to bind to.
+  /// (This should be in host order, i.e 127.0.0.1 == 0x7f000001).
+  /// You can use INADDR_ANY to bind to all local IPv4 addresses
+  final String ip;
+
+  /// The local port used to communicate with the steam servers
+  final int steamPort;
+
+  /// The port that clients will connect to for gameplay
+  final int gamePort;
+
+  /// The port that will manage server browser
+  /// related duties and info pings from clients
+  final int queryPort;
+
+  /// Sets the authentication method of the server
+  final int serverMode;
+
+  /// The version string is usually in the form x.x.x.x, and is used
+  /// by the master server to detect when the server is out of date.
+  /// (Only servers with the latest version will be listed.)
+  final String versionString;
+
+  SteamServer._({
+    required this.ip,
+    this.steamPort = 0,
+    this.gamePort = 27015,
+    this.queryPort = 27016,
+    this.serverMode = 3,
+    this.versionString = "1.0.0.0",
+  }) : super(
+          pipe: SteamGameServer.getHSteamPipe(),
+        );
 }

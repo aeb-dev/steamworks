@@ -3,6 +3,7 @@ import "package:steamworks/steamworks.dart";
 
 Future<Never> main() async {
   SteamClient.init();
+  SteamClient steamClient = SteamClient.instance;
 
   CSteamId steamId = ISteamUser.userInstance.getSteamId();
 
@@ -17,7 +18,9 @@ Future<Never> main() async {
       print("GameId: ${ptrUserStatus.gameId}");
       print("SteamIdUser: ${ptrUserStatus.steamIdUser}");
     },
-  )..register();
+  );
+
+  steamClient.registerCallResult(cr1);
 
   callId = ISteamUserStats.userInstance.getNumberOfCurrentPlayers();
   print("SteamApiCall second: $callId");
@@ -29,7 +32,9 @@ Future<Never> main() async {
       print("GameId: ${ptrUserStatus.gameId}");
       print("SteamIdUser: ${ptrUserStatus.steamIdUser}");
     },
-  )..register();
+  );
+
+  steamClient.registerCallResult(cr2);
 
   Callback cb = Callback<PersonaStateChange>(
     cb: (a) {
@@ -37,10 +42,12 @@ Future<Never> main() async {
       print("GameId: ${a.steamId}");
       print("ChangeFlags: ${a.changeFlags}");
     },
-  )..register();
+  );
+
+  steamClient.registerCallback(cb);
 
   while (true) {
-    SteamClient.runFrame();
+    steamClient.runFrame();
     print("Running frames");
     await Future<void>.delayed(const Duration(milliseconds: 300));
   }

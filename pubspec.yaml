@@ -1,6 +1,6 @@
 name: steamworks
 description: Steamworks SDK wrapper written in a darty way to be used in dart projects
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/aeb-dev/steamworks
 repository: https://github.com/aeb-dev/steamworks
 issues: https://github.com/aeb-dev/steamworks/issues
