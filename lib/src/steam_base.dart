@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:ffi";
 
 import "call_result.dart";
 import "callback.dart";
@@ -22,25 +23,39 @@ abstract class SteamBase {
   /// Dispatcher instance
   Dispatcher get _dispatcher => Dispatcher.instance;
 
-  /// Register the [CallResult] to the [Dispatcher]
-  void registerCallResult(CallResult callResult) {
-    _dispatcher.registerCallResult(callResult);
-  }
-
-  /// Unregister the [CallResult] from the [Dispatcher]
-  void unregisterCallResult(CallResult callResult) {
-    _dispatcher.unregisterCallResult(callResult);
-  }
-
   /// Register the [Callback] to the [Dispatcher]
-  void registerCallback(Callback callback) {
-    _dispatcher.registerCallback(callback);
-  }
+  Callback<T> registerCallback<T extends NativeType>({
+    required void Function(Pointer<T> data) cb,
+  }) =>
+      _dispatcher.registerCallback<T>(
+        cb: cb,
+      );
+
+  /// Register the [CallResult] to the [Dispatcher]
+  CallResult<T> registerCallResult<T extends NativeType>({
+    required SteamApiCall asyncCallId,
+    required void Function(Pointer<T> data, bool hasFailed) cb,
+  }) =>
+      _dispatcher.registerCallResult(
+        asyncCallId: asyncCallId,
+        cb: cb,
+      );
 
   /// Unregister the [Callback] from the [Dispatcher]
-  void unregisterCallback(Callback callback) {
-    _dispatcher.unregisterCallback(callback);
-  }
+  void unregisterCallback({
+    required Callback callback,
+  }) =>
+      _dispatcher.unregisterCallback(
+        callback: callback,
+      );
+
+  /// Unregister the [CallResult] from the [Dispatcher]
+  void unregisterCallResult({
+    required CallResult callResult,
+  }) =>
+      _dispatcher.unregisterCallResult(
+        callResult: callResult,
+      );
 
   /// Runs frames in order to receive callbacks
   void runFrame() async {

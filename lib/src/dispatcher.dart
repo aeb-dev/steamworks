@@ -48,34 +48,48 @@ class Dispatcher {
   // void Function(List<dynamic> arguments)? debugPrint;
 
   /// Registers a [Callback]
-  void registerCallback(
-    Callback callback,
-  ) {
+  Callback<T> registerCallback<T extends NativeType>({
+    required void Function(Pointer<T> data) cb,
+  }) {
+    Callback<T> callback = Callback<T>(
+      cb: cb,
+    );
+
     Set<Callback> callResultList = _registeredCallbacks[callback.id] ??= {};
     callResultList.add(callback);
+
+    return callback;
   }
 
   /// Registers a [CallResult]
-  void registerCallResult(
-    CallResult callResult,
-  ) {
+  CallResult<T> registerCallResult<T extends NativeType>({
+    required SteamApiCall asyncCallId,
+    required void Function(Pointer<T> data, bool hasFailed) cb,
+  }) {
+    CallResult<T> callResult = CallResult<T>(
+      asyncCallId: asyncCallId,
+      cb: cb,
+    );
+
     Set<CallResult> callResultList =
         _registeredCallResults[callResult.asyncCallId] ??= {};
     callResultList.add(callResult);
+
+    return callResult;
   }
 
   /// Unregisters a [Callback]
-  void unregisterCallback(
-    Callback callback,
-  ) {
+  void unregisterCallback({
+    required Callback callback,
+  }) {
     Set<Callback>? callResultList = _registeredCallbacks[callback.id];
     callResultList?.remove(callback);
   }
 
   /// Unregisters a [CallResult]
-  void unregisterCallResult(
-    CallResult callResult,
-  ) {
+  void unregisterCallResult({
+    required CallResult callResult,
+  }) {
     Set<CallResult>? callResultList =
         _registeredCallResults[callResult.asyncCallId];
     callResultList?.remove(callResult);

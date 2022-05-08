@@ -5,13 +5,14 @@ Future<Never> main() async {
   SteamClient.init();
   SteamClient steamClient = SteamClient.instance;
 
-  CSteamId steamId = ISteamUser.userInstance.getSteamId();
+  CSteamId steamId = steamClient.steamUser.getSteamId();
 
   print("SteamId: $steamId");
 
-  SteamApiCall callId = ISteamUserStats.userInstance.requestUserStats(steamId);
+  SteamApiCall callId = steamClient.steamUserStats.requestUserStats(steamId);
   print("SteamApiCall first: $callId");
-  CallResult cr1 = CallResult<UserStatsReceived>(
+
+  CallResult cr1 = steamClient.registerCallResult<UserStatsReceived>(
     asyncCallId: callId,
     cb: (ptrUserStatus, hasFailed) {
       print("User stats first");
@@ -20,12 +21,10 @@ Future<Never> main() async {
     },
   );
 
-  steamClient.registerCallResult(cr1);
-
-  callId = ISteamUserStats.userInstance.getNumberOfCurrentPlayers();
+  callId = steamClient.steamUserStats.getNumberOfCurrentPlayers();
   print("SteamApiCall second: $callId");
 
-  CallResult cr2 = CallResult<UserStatsReceived>(
+  CallResult cr2 = steamClient.registerCallResult<UserStatsReceived>(
     asyncCallId: callId,
     cb: (ptrUserStatus, hasFailed) {
       print("User stats second");
@@ -34,17 +33,13 @@ Future<Never> main() async {
     },
   );
 
-  steamClient.registerCallResult(cr2);
-
-  Callback cb = Callback<PersonaStateChange>(
-    cb: (a) {
+  Callback cb1 = steamClient.registerCallback<PersonaStateChange>(
+    cb: (ptrPersona) {
       print("Persona state changed");
-      print("GameId: ${a.steamId}");
-      print("ChangeFlags: ${a.changeFlags}");
+      print("GameId: ${ptrPersona.steamId}");
+      print("ChangeFlags: ${ptrPersona.changeFlags}");
     },
   );
-
-  steamClient.registerCallback(cb);
 
   while (true) {
     steamClient.runFrame();
