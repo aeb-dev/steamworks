@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "../enums/echeck_file_signature.dart";
@@ -8,9 +8,10 @@ class CheckFileSignature extends Struct {
   static int get callbackId => 705;
 
   @Int32()
-  external ECheckFileSignature checkFileSignature;
+  external ECheckFileSignatureAliasDart checkFileSignature;
 }
 
 extension CheckFileSignatureExtensions on Pointer<CheckFileSignature> {
-  ECheckFileSignature get checkFileSignature => ref.checkFileSignature;
+  ECheckFileSignature get checkFileSignature =>
+      ECheckFileSignature.fromValue(ref.checkFileSignature);
 }

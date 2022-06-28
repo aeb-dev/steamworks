@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 
@@ -10,14 +8,14 @@ class EndGameResultCallback extends Struct {
   static int get callbackId => 5215;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external int uniqueGameId;
 }
 
 extension EndGameResultCallbackExtensions on Pointer<EndGameResultCallback> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   int get uniqueGameId => ref.uniqueGameId;
 }

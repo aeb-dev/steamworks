@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 
@@ -10,7 +8,7 @@ class RemoteStorageEnumerateUserPublishedFilesResult extends Struct {
   static int get callbackId => 1312;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @Int()
   external int resultsReturned;
@@ -24,7 +22,7 @@ class RemoteStorageEnumerateUserPublishedFilesResult extends Struct {
 
 extension RemoteStorageEnumerateUserPublishedFilesResultExtensions
     on Pointer<RemoteStorageEnumerateUserPublishedFilesResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   int get resultsReturned => ref.resultsReturned;
 

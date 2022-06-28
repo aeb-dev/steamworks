@@ -22,7 +22,7 @@ class SteamServer extends SteamBase {
     int steamPort = 0,
     int gamePort = 27015,
     int queryPort = 27016,
-    int serverMode = 3,
+    EServerMode serverMode = EServerMode.authenticationAndSecure,
     String versionString = "1.0.0.0",
   }) {
     if (_instance != null) {
@@ -107,7 +107,7 @@ class SteamServer extends SteamBase {
   final int queryPort;
 
   /// Sets the authentication method of the server
-  final int serverMode;
+  final EServerMode serverMode;
 
   /// The version string is usually in the form x.x.x.x, and is used
   /// by the master server to detect when the server is out of date.
@@ -119,7 +119,7 @@ class SteamServer extends SteamBase {
     this.steamPort = 0,
     this.gamePort = 27015,
     this.queryPort = 27016,
-    this.serverMode = 3,
+    this.serverMode = EServerMode.authenticationAndSecure,
     this.versionString = "1.0.0.0",
   }) : super(
           pipe: SteamGameServer.getHSteamPipe(),

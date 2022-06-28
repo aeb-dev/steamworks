@@ -1,22 +1,71 @@
 // ignore_for_file: public_member_api_docs
-typedef EMarketNotAllowedReasonFlags = int;
+import "dart:ffi";
 
-class EMarketNotAllowedReasonFlagsEnum {
-  static const int none = 0;
-  static const int temporaryFailure = 1;
-  static const int accountDisabled = 2;
-  static const int accountLockedDown = 4;
-  static const int accountLimited = 8;
-  static const int tradeBanned = 16;
-  static const int accountNotTrusted = 32;
-  static const int steamGuardNotEnabled = 64;
-  static const int steamGuardOnlyRecentlyEnabled = 128;
-  static const int recentPasswordReset = 256;
-  static const int newPaymentMethod = 512;
-  static const int invalidCookie = 1024;
-  static const int usingNewDevice = 2048;
-  static const int recentSelfRefund = 4096;
-  static const int newPaymentMethodCannotBeVerified = 8192;
-  static const int noRecentPurchases = 16384;
-  static const int acceptedWalletGift = 32768;
+typedef EMarketNotAllowedReasonFlagsAliasDart = int;
+typedef EMarketNotAllowedReasonFlagsAliasC = Int32;
+
+enum EMarketNotAllowedReasonFlags {
+  none(0),
+  temporaryFailure(1),
+  accountDisabled(2),
+  accountLockedDown(4),
+  accountLimited(8),
+  tradeBanned(16),
+  accountNotTrusted(32),
+  steamGuardNotEnabled(64),
+  steamGuardOnlyRecentlyEnabled(128),
+  recentPasswordReset(256),
+  newPaymentMethod(512),
+  invalidCookie(1024),
+  usingNewDevice(2048),
+  recentSelfRefund(4096),
+  newPaymentMethodCannotBeVerified(8192),
+  noRecentPurchases(16384),
+  acceptedWalletGift(32768),
+  ;
+
+  final int value;
+
+  const EMarketNotAllowedReasonFlags(this.value);
+
+  factory EMarketNotAllowedReasonFlags.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EMarketNotAllowedReasonFlags.none;
+      case 1:
+        return EMarketNotAllowedReasonFlags.temporaryFailure;
+      case 2:
+        return EMarketNotAllowedReasonFlags.accountDisabled;
+      case 4:
+        return EMarketNotAllowedReasonFlags.accountLockedDown;
+      case 8:
+        return EMarketNotAllowedReasonFlags.accountLimited;
+      case 16:
+        return EMarketNotAllowedReasonFlags.tradeBanned;
+      case 32:
+        return EMarketNotAllowedReasonFlags.accountNotTrusted;
+      case 64:
+        return EMarketNotAllowedReasonFlags.steamGuardNotEnabled;
+      case 128:
+        return EMarketNotAllowedReasonFlags.steamGuardOnlyRecentlyEnabled;
+      case 256:
+        return EMarketNotAllowedReasonFlags.recentPasswordReset;
+      case 512:
+        return EMarketNotAllowedReasonFlags.newPaymentMethod;
+      case 1024:
+        return EMarketNotAllowedReasonFlags.invalidCookie;
+      case 2048:
+        return EMarketNotAllowedReasonFlags.usingNewDevice;
+      case 4096:
+        return EMarketNotAllowedReasonFlags.recentSelfRefund;
+      case 8192:
+        return EMarketNotAllowedReasonFlags.newPaymentMethodCannotBeVerified;
+      case 16384:
+        return EMarketNotAllowedReasonFlags.noRecentPurchases;
+      case 32768:
+        return EMarketNotAllowedReasonFlags.acceptedWalletGift;
+      default:
+        throw "Unknown value for 'EMarketNotAllowedReasonFlags'. The value was: '$value'";
+    }
+  }
 }

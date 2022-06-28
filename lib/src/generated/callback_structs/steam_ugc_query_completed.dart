@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -14,7 +14,7 @@ class SteamUgcQueryCompleted extends Struct {
   external UgcQueryHandle handle;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedInt()
   external int numResultsReturned;
@@ -31,7 +31,7 @@ class SteamUgcQueryCompleted extends Struct {
 extension SteamUgcQueryCompletedExtensions on Pointer<SteamUgcQueryCompleted> {
   UgcQueryHandle get handle => ref.handle;
 
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   int get numResultsReturned => ref.numResultsReturned;
 

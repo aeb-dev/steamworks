@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -16,7 +16,7 @@ class SteamNetworkingIdentity extends Struct {
   static int get maxXboxPairwiseId => 33;
   static int get maxGenericBytes => 32;
   @Int32()
-  external ESteamNetworkingIdentityType type;
+  external ESteamNetworkingIdentityTypeAliasDart type;
 
   @Int()
   external int size;
@@ -169,10 +169,10 @@ final _getIpv4 = dl.lookupFunction<
 )>("SteamAPI_SteamNetworkingIdentity_GetIPv4");
 
 final _getFakeIpType = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingFakeIpTypeAliasC Function(
   Pointer<SteamNetworkingIdentity>,
 ),
-    ESteamNetworkingFakeIpType Function(
+    ESteamNetworkingFakeIpTypeAliasDart Function(
   Pointer<SteamNetworkingIdentity>,
 )>("SteamAPI_SteamNetworkingIdentity_GetFakeIPType");
 
@@ -368,8 +368,11 @@ extension SteamNetworkingIdentityExtensions
         this,
       );
 
-  ESteamNetworkingFakeIpType getFakeIpType() => _getFakeIpType.call(
-        this,
+  ESteamNetworkingFakeIpType getFakeIpType() =>
+      ESteamNetworkingFakeIpType.fromValue(
+        _getFakeIpType.call(
+          this,
+        ),
       );
 
   bool isFakeIp() => _isFakeIp.call(
@@ -440,7 +443,8 @@ extension SteamNetworkingIdentityExtensions
         pszStr,
       );
 
-  ESteamNetworkingIdentityType get type => ref.type;
+  ESteamNetworkingIdentityType get type =>
+      ESteamNetworkingIdentityType.fromValue(ref.type);
 
   int get size => ref.size;
 

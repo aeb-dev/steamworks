@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../dl.dart";
 import "../enums/eparental_feature.dart";
 import "../typedefs.dart";
@@ -56,21 +54,21 @@ final _isAppInBlockList = dl.lookupFunction<
 final _isFeatureBlocked = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamParentalSettings>,
-  Int32,
+  EParentalFeatureAliasC,
 ),
     bool Function(
   Pointer<ISteamParentalSettings>,
-  EParentalFeature,
+  EParentalFeatureAliasDart,
 )>("SteamAPI_ISteamParentalSettings_BIsFeatureBlocked");
 
 final _isFeatureInBlockList = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamParentalSettings>,
-  Int32,
+  EParentalFeatureAliasC,
 ),
     bool Function(
   Pointer<ISteamParentalSettings>,
-  EParentalFeature,
+  EParentalFeatureAliasDart,
 )>("SteamAPI_ISteamParentalSettings_BIsFeatureInBlockList");
 
 extension ISteamParentalSettingsExtensions on Pointer<ISteamParentalSettings> {
@@ -103,7 +101,7 @@ extension ISteamParentalSettingsExtensions on Pointer<ISteamParentalSettings> {
   ) =>
       _isFeatureBlocked.call(
         this,
-        feature,
+        feature.value,
       );
 
   bool isFeatureInBlockList(
@@ -111,6 +109,6 @@ extension ISteamParentalSettingsExtensions on Pointer<ISteamParentalSettings> {
   ) =>
       _isFeatureInBlockList.call(
         this,
-        feature,
+        feature.value,
       );
 }

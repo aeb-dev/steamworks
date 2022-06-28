@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 
@@ -13,7 +11,7 @@ class Ps3TrophiesInstalled extends Struct {
   external int gameId;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external int requiredDiskSpace;
@@ -22,7 +20,7 @@ class Ps3TrophiesInstalled extends Struct {
 extension Ps3TrophiesInstalledExtensions on Pointer<Ps3TrophiesInstalled> {
   int get gameId => ref.gameId;
 
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   int get requiredDiskSpace => ref.requiredDiskSpace;
 }

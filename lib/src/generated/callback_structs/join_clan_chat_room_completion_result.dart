@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/echat_room_enter_response.dart";
 import "../typedefs.dart";
@@ -14,12 +12,13 @@ class JoinClanChatRoomCompletionResult extends Struct {
   external CSteamId steamIdClanChat;
 
   @Int32()
-  external EChatRoomEnterResponse chatRoomEnterResponse;
+  external EChatRoomEnterResponseAliasDart chatRoomEnterResponse;
 }
 
 extension JoinClanChatRoomCompletionResultExtensions
     on Pointer<JoinClanChatRoomCompletionResult> {
   CSteamId get steamIdClanChat => ref.steamIdClanChat;
 
-  EChatRoomEnterResponse get chatRoomEnterResponse => ref.chatRoomEnterResponse;
+  EChatRoomEnterResponse get chatRoomEnterResponse =>
+      EChatRoomEnterResponse.fromValue(ref.chatRoomEnterResponse);
 }

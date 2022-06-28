@@ -204,14 +204,14 @@ final _getDigitalActionOrigins = dl.lookupFunction<
   UnsignedLongLong,
   UnsignedLongLong,
   UnsignedLongLong,
-  Pointer<Int32>,
+  Pointer<EInputActionOriginAliasC>,
 ),
     int Function(
   Pointer<ISteamInput>,
   InputHandle,
   InputActionSetHandle,
   InputDigitalActionHandle,
-  Pointer<Int32>,
+  Pointer<EInputActionOriginAliasC>,
 )>("SteamAPI_ISteamInput_GetDigitalActionOrigins");
 
 final _getStringForDigitalActionName = dl.lookupFunction<
@@ -252,60 +252,60 @@ final _getAnalogActionOrigins = dl.lookupFunction<
   UnsignedLongLong,
   UnsignedLongLong,
   UnsignedLongLong,
-  Pointer<Int32>,
+  Pointer<EInputActionOriginAliasC>,
 ),
     int Function(
   Pointer<ISteamInput>,
   InputHandle,
   InputActionSetHandle,
   InputAnalogActionHandle,
-  Pointer<Int32>,
+  Pointer<EInputActionOriginAliasC>,
 )>("SteamAPI_ISteamInput_GetAnalogActionOrigins");
 
 final _getGlyphPNGForActionOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  Int32,
-  Int32,
+  EInputActionOriginAliasC,
+  ESteamInputGlyphSizeAliasC,
   UnsignedInt,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  EInputActionOrigin,
-  ESteamInputGlyphSize,
+  EInputActionOriginAliasDart,
+  ESteamInputGlyphSizeAliasDart,
   int,
 )>("SteamAPI_ISteamInput_GetGlyphPNGForActionOrigin");
 
 final _getGlyphSVGForActionOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  Int32,
+  EInputActionOriginAliasC,
   UnsignedInt,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  EInputActionOrigin,
+  EInputActionOriginAliasDart,
   int,
 )>("SteamAPI_ISteamInput_GetGlyphSVGForActionOrigin");
 
 final _getGlyphForActionOriginLegacy = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  Int32,
+  EInputActionOriginAliasC,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  EInputActionOrigin,
+  EInputActionOriginAliasDart,
 )>("SteamAPI_ISteamInput_GetGlyphForActionOrigin_Legacy");
 
 final _getStringForActionOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  Int32,
+  EInputActionOriginAliasC,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  EInputActionOrigin,
+  EInputActionOriginAliasDart,
 )>("SteamAPI_ISteamInput_GetStringForActionOrigin");
 
 final _getStringForAnalogActionName = dl.lookupFunction<
@@ -376,7 +376,7 @@ final _triggerSimpleHapticEvent = dl.lookupFunction<
     Void Function(
   Pointer<ISteamInput>,
   UnsignedLongLong,
-  Int32,
+  EControllerHapticLocationAliasC,
   UnsignedChar,
   Char,
   UnsignedChar,
@@ -385,7 +385,7 @@ final _triggerSimpleHapticEvent = dl.lookupFunction<
     void Function(
   Pointer<ISteamInput>,
   InputHandle,
-  EControllerHapticLocation,
+  EControllerHapticLocationAliasDart,
   int,
   int,
   int,
@@ -414,13 +414,13 @@ final _legacyTriggerHapticPulse = dl.lookupFunction<
     Void Function(
   Pointer<ISteamInput>,
   UnsignedLongLong,
-  Int32,
+  ESteamControllerPadAliasC,
   UnsignedShort,
 ),
     void Function(
   Pointer<ISteamInput>,
   InputHandle,
-  ESteamControllerPad,
+  ESteamControllerPadAliasDart,
   int,
 )>("SteamAPI_ISteamInput_Legacy_TriggerHapticPulse");
 
@@ -428,7 +428,7 @@ final _legacyTriggerRepeatedHapticPulse = dl.lookupFunction<
     Void Function(
   Pointer<ISteamInput>,
   UnsignedLongLong,
-  Int32,
+  ESteamControllerPadAliasC,
   UnsignedShort,
   UnsignedShort,
   UnsignedShort,
@@ -437,7 +437,7 @@ final _legacyTriggerRepeatedHapticPulse = dl.lookupFunction<
     void Function(
   Pointer<ISteamInput>,
   InputHandle,
-  ESteamControllerPad,
+  ESteamControllerPadAliasDart,
   int,
   int,
   int,
@@ -455,11 +455,11 @@ final _showBindingPanel = dl.lookupFunction<
 )>("SteamAPI_ISteamInput_ShowBindingPanel");
 
 final _getInputTypeForHandle = dl.lookupFunction<
-    Int32 Function(
+    ESteamInputTypeAliasC Function(
   Pointer<ISteamInput>,
   UnsignedLongLong,
 ),
-    ESteamInputType Function(
+    ESteamInputTypeAliasDart Function(
   Pointer<ISteamInput>,
   InputHandle,
 )>("SteamAPI_ISteamInput_GetInputTypeForHandle");
@@ -487,45 +487,45 @@ final _getGamepadIndexForController = dl.lookupFunction<
 final _getStringForXboxOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  Int32,
+  EXboxOriginAliasC,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  EXboxOrigin,
+  EXboxOriginAliasDart,
 )>("SteamAPI_ISteamInput_GetStringForXboxOrigin");
 
 final _getGlyphForXboxOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  Int32,
+  EXboxOriginAliasC,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamInput>,
-  EXboxOrigin,
+  EXboxOriginAliasDart,
 )>("SteamAPI_ISteamInput_GetGlyphForXboxOrigin");
 
 final _getActionOriginFromXboxOrigin = dl.lookupFunction<
-    Int32 Function(
+    EInputActionOriginAliasC Function(
   Pointer<ISteamInput>,
   UnsignedLongLong,
-  Int32,
+  EXboxOriginAliasC,
 ),
-    EInputActionOrigin Function(
+    EInputActionOriginAliasDart Function(
   Pointer<ISteamInput>,
   InputHandle,
-  EXboxOrigin,
+  EXboxOriginAliasDart,
 )>("SteamAPI_ISteamInput_GetActionOriginFromXboxOrigin");
 
 final _translateActionOrigin = dl.lookupFunction<
-    Int32 Function(
+    EInputActionOriginAliasC Function(
   Pointer<ISteamInput>,
-  Int32,
-  Int32,
+  ESteamInputTypeAliasC,
+  EInputActionOriginAliasC,
 ),
-    EInputActionOrigin Function(
+    EInputActionOriginAliasDart Function(
   Pointer<ISteamInput>,
-  ESteamInputType,
-  EInputActionOrigin,
+  ESteamInputTypeAliasDart,
+  EInputActionOriginAliasDart,
 )>("SteamAPI_ISteamInput_TranslateActionOrigin");
 
 final _getDeviceBindingRevision = dl.lookupFunction<
@@ -701,7 +701,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
     InputHandle inputHandle,
     InputActionSetHandle actionSetHandle,
     InputDigitalActionHandle digitalActionHandle,
-    Pointer<Int32> originsOut,
+    Pointer<EInputActionOriginAliasC> originsOut,
   ) =>
       _getDigitalActionOrigins.call(
         this,
@@ -741,7 +741,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
     InputHandle inputHandle,
     InputActionSetHandle actionSetHandle,
     InputAnalogActionHandle analogActionHandle,
-    Pointer<Int32> originsOut,
+    Pointer<EInputActionOriginAliasC> originsOut,
   ) =>
       _getAnalogActionOrigins.call(
         this,
@@ -758,8 +758,8 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
   ) =>
       _getGlyphPNGForActionOrigin.call(
         this,
-        origin,
-        size,
+        origin.value,
+        size.value,
         flags,
       );
 
@@ -769,7 +769,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
   ) =>
       _getGlyphSVGForActionOrigin.call(
         this,
-        origin,
+        origin.value,
         flags,
       );
 
@@ -778,7 +778,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
   ) =>
       _getGlyphForActionOriginLegacy.call(
         this,
-        origin,
+        origin.value,
       );
 
   Pointer<Utf8> getStringForActionOrigin(
@@ -786,7 +786,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
   ) =>
       _getStringForActionOrigin.call(
         this,
-        origin,
+        origin.value,
       );
 
   Pointer<Utf8> getStringForAnalogActionName(
@@ -854,7 +854,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
       _triggerSimpleHapticEvent.call(
         this,
         inputHandle,
-        hapticLocation,
+        hapticLocation.value,
         nIntensity,
         nGainDB,
         nOtherIntensity,
@@ -885,7 +885,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
       _legacyTriggerHapticPulse.call(
         this,
         inputHandle,
-        targetPad,
+        targetPad.value,
         durationMicroSec,
       );
 
@@ -900,7 +900,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
       _legacyTriggerRepeatedHapticPulse.call(
         this,
         inputHandle,
-        targetPad,
+        targetPad.value,
         durationMicroSec,
         offMicroSec,
         repeat,
@@ -918,9 +918,11 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
   ESteamInputType getInputTypeForHandle(
     InputHandle inputHandle,
   ) =>
-      _getInputTypeForHandle.call(
-        this,
-        inputHandle,
+      ESteamInputType.fromValue(
+        _getInputTypeForHandle.call(
+          this,
+          inputHandle,
+        ),
       );
 
   InputHandle getControllerForGamepadIndex(
@@ -944,7 +946,7 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
   ) =>
       _getStringForXboxOrigin.call(
         this,
-        origin,
+        origin.value,
       );
 
   Pointer<Utf8> getGlyphForXboxOrigin(
@@ -952,27 +954,31 @@ extension ISteamInputExtensions on Pointer<ISteamInput> {
   ) =>
       _getGlyphForXboxOrigin.call(
         this,
-        origin,
+        origin.value,
       );
 
   EInputActionOrigin getActionOriginFromXboxOrigin(
     InputHandle inputHandle,
     EXboxOrigin origin,
   ) =>
-      _getActionOriginFromXboxOrigin.call(
-        this,
-        inputHandle,
-        origin,
+      EInputActionOrigin.fromValue(
+        _getActionOriginFromXboxOrigin.call(
+          this,
+          inputHandle,
+          origin.value,
+        ),
       );
 
   EInputActionOrigin translateActionOrigin(
     ESteamInputType destinationInputType,
     EInputActionOrigin sourceOrigin,
   ) =>
-      _translateActionOrigin.call(
-        this,
-        destinationInputType,
-        sourceOrigin,
+      EInputActionOrigin.fromValue(
+        _translateActionOrigin.call(
+          this,
+          destinationInputType.value,
+          sourceOrigin.value,
+        ),
       );
 
   bool getDeviceBindingRevision(

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -10,14 +10,14 @@ class SteamInventoryRequestPricesResult extends Struct {
   static int get callbackId => 4705;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   external Pointer<Utf8> currency;
 }
 
 extension SteamInventoryRequestPricesResultExtensions
     on Pointer<SteamInventoryRequestPricesResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   Pointer<Utf8> get currency => ref.currency;
 }

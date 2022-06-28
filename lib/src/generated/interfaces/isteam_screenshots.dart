@@ -112,13 +112,13 @@ final _isScreenshotsHooked = dl.lookupFunction<
 final _addVrScreenshotToLibrary = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<ISteamScreenshots>,
-  Int32,
+  EVrScreenshotTypeAliasC,
   Pointer<Utf8>,
   Pointer<Utf8>,
 ),
     ScreenshotHandle Function(
   Pointer<ISteamScreenshots>,
-  EVrScreenshotType,
+  EVrScreenshotTypeAliasDart,
   Pointer<Utf8>,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamScreenshots_AddVRScreenshotToLibrary");
@@ -205,7 +205,7 @@ extension ISteamScreenshotsExtensions on Pointer<ISteamScreenshots> {
   ) =>
       _addVrScreenshotToLibrary.call(
         this,
-        type,
+        type.value,
         filename,
         vrFilename,
       );

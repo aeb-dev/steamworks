@@ -1,9 +1,32 @@
 // ignore_for_file: public_member_api_docs
-typedef ELobbyDistanceFilter = int;
+import "dart:ffi";
 
-class ELobbyDistanceFilterEnum {
-  static const int close = 0;
-  static const int default_ = 1;
-  static const int far = 2;
-  static const int worldwide = 3;
+typedef ELobbyDistanceFilterAliasDart = int;
+typedef ELobbyDistanceFilterAliasC = Int32;
+
+enum ELobbyDistanceFilter {
+  close(0),
+  default_(1),
+  far(2),
+  worldwide(3),
+  ;
+
+  final int value;
+
+  const ELobbyDistanceFilter(this.value);
+
+  factory ELobbyDistanceFilter.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return ELobbyDistanceFilter.close;
+      case 1:
+        return ELobbyDistanceFilter.default_;
+      case 2:
+        return ELobbyDistanceFilter.far;
+      case 3:
+        return ELobbyDistanceFilter.worldwide;
+      default:
+        throw "Unknown value for 'ELobbyDistanceFilter'. The value was: '$value'";
+    }
+  }
 }

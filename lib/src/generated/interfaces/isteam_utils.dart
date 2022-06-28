@@ -44,10 +44,10 @@ final _getSecondsSinceComputerActive = dl.lookupFunction<
 )>("SteamAPI_ISteamUtils_GetSecondsSinceComputerActive");
 
 final _getConnectedUniverse = dl.lookupFunction<
-    Int32 Function(
+    EUniverseAliasC Function(
   Pointer<ISteamUtils>,
 ),
-    EUniverse Function(
+    EUniverseAliasDart Function(
   Pointer<ISteamUtils>,
 )>("SteamAPI_ISteamUtils_GetConnectedUniverse");
 
@@ -114,11 +114,11 @@ final _getAppId = dl.lookupFunction<
 final _setOverlayNotificationPosition = dl.lookupFunction<
     Void Function(
   Pointer<ISteamUtils>,
-  Int32,
+  ENotificationPositionAliasC,
 ),
     void Function(
   Pointer<ISteamUtils>,
-  ENotificationPosition,
+  ENotificationPositionAliasDart,
 )>("SteamAPI_ISteamUtils_SetOverlayNotificationPosition");
 
 final _isApiCallCompleted = dl.lookupFunction<
@@ -134,11 +134,11 @@ final _isApiCallCompleted = dl.lookupFunction<
 )>("SteamAPI_ISteamUtils_IsAPICallCompleted");
 
 final _getApiCallFailureReason = dl.lookupFunction<
-    Int32 Function(
+    ESteamApiCallFailureAliasC Function(
   Pointer<ISteamUtils>,
   UnsignedLongLong,
 ),
-    ESteamApiCallFailure Function(
+    ESteamApiCallFailureAliasDart Function(
   Pointer<ISteamUtils>,
   SteamApiCall,
 )>("SteamAPI_ISteamUtils_GetAPICallFailureReason");
@@ -198,16 +198,16 @@ final _checkFileSignature = dl.lookupFunction<
 final _showGamepadTextInput = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamUtils>,
-  Int32,
-  Int32,
+  EGamepadTextInputModeAliasC,
+  EGamepadTextInputLineModeAliasC,
   Pointer<Utf8>,
   UnsignedInt,
   Pointer<Utf8>,
 ),
     bool Function(
   Pointer<ISteamUtils>,
-  EGamepadTextInputMode,
-  EGamepadTextInputLineMode,
+  EGamepadTextInputModeAliasDart,
+  EGamepadTextInputLineModeAliasDart,
   Pointer<Utf8>,
   int,
   Pointer<Utf8>,
@@ -316,7 +316,7 @@ final _initFilterText = dl.lookupFunction<
 final _filterText = dl.lookupFunction<
     Int Function(
   Pointer<ISteamUtils>,
-  Int32,
+  ETextFilteringContextAliasC,
   UnsignedLongLong,
   Pointer<Utf8>,
   Pointer<Utf8>,
@@ -324,7 +324,7 @@ final _filterText = dl.lookupFunction<
 ),
     int Function(
   Pointer<ISteamUtils>,
-  ETextFilteringContext,
+  ETextFilteringContextAliasDart,
   CSteamId,
   Pointer<Utf8>,
   Pointer<Utf8>,
@@ -332,13 +332,13 @@ final _filterText = dl.lookupFunction<
 )>("SteamAPI_ISteamUtils_FilterText");
 
 final _getIpv6ConnectivityState = dl.lookupFunction<
-    Int32 Function(
+    ESteamIpv6ConnectivityStateAliasC Function(
   Pointer<ISteamUtils>,
-  Int32,
+  ESteamIpv6ConnectivityProtocolAliasC,
 ),
-    ESteamIpv6ConnectivityState Function(
+    ESteamIpv6ConnectivityStateAliasDart Function(
   Pointer<ISteamUtils>,
-  ESteamIpv6ConnectivityProtocol,
+  ESteamIpv6ConnectivityProtocolAliasDart,
 )>("SteamAPI_ISteamUtils_GetIPv6ConnectivityState");
 
 final _isSteamRunningOnSteamDeck = dl.lookupFunction<
@@ -352,7 +352,7 @@ final _isSteamRunningOnSteamDeck = dl.lookupFunction<
 final _showFloatingGamepadTextInput = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamUtils>,
-  Int32,
+  EFloatingGamepadTextInputModeAliasC,
   Int,
   Int,
   Int,
@@ -360,7 +360,7 @@ final _showFloatingGamepadTextInput = dl.lookupFunction<
 ),
     bool Function(
   Pointer<ISteamUtils>,
-  EFloatingGamepadTextInputMode,
+  EFloatingGamepadTextInputModeAliasDart,
   int,
   int,
   int,
@@ -394,8 +394,10 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
         this,
       );
 
-  EUniverse getConnectedUniverse() => _getConnectedUniverse.call(
-        this,
+  EUniverse getConnectedUniverse() => EUniverse.fromValue(
+        _getConnectedUniverse.call(
+          this,
+        ),
       );
 
   int getServerRealTime() => _getServerRealTime.call(
@@ -443,7 +445,7 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   ) =>
       _setOverlayNotificationPosition.call(
         this,
-        notificationPosition,
+        notificationPosition.value,
       );
 
   bool isApiCallCompleted(
@@ -459,9 +461,11 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   ESteamApiCallFailure getApiCallFailureReason(
     SteamApiCall hSteamApiCall,
   ) =>
-      _getApiCallFailureReason.call(
-        this,
-        hSteamApiCall,
+      ESteamApiCallFailure.fromValue(
+        _getApiCallFailureReason.call(
+          this,
+          hSteamApiCall,
+        ),
       );
 
   bool getApiCallResult(
@@ -509,8 +513,8 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   ) =>
       _showGamepadTextInput.call(
         this,
-        inputMode,
-        lineInputMode,
+        inputMode.value,
+        lineInputMode.value,
         description,
         charMax,
         existingText,
@@ -589,7 +593,7 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   ) =>
       _filterText.call(
         this,
-        context,
+        context.value,
         sourceSteamId,
         inputMessage,
         outFilteredText,
@@ -599,9 +603,11 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   ESteamIpv6ConnectivityState getIpv6ConnectivityState(
     ESteamIpv6ConnectivityProtocol protocol,
   ) =>
-      _getIpv6ConnectivityState.call(
-        this,
-        protocol,
+      ESteamIpv6ConnectivityState.fromValue(
+        _getIpv6ConnectivityState.call(
+          this,
+          protocol.value,
+        ),
       );
 
   bool isSteamRunningOnSteamDeck() => _isSteamRunningOnSteamDeck.call(
@@ -617,7 +623,7 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   ) =>
       _showFloatingGamepadTextInput.call(
         this,
-        keyboardMode,
+        keyboardMode.value,
         nTextFieldXPosition,
         nTextFieldYPosition,
         nTextFieldWidth,

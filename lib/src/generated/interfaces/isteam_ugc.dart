@@ -33,9 +33,9 @@ final _createQueryUserUgcRequest = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamUgc>,
   UnsignedInt,
-  Int32,
-  Int32,
-  Int32,
+  EUserUgcListAliasC,
+  EUgcMatchingUgcTypeAliasC,
+  EUserUgcListSortOrderAliasC,
   UnsignedInt,
   UnsignedInt,
   UnsignedInt,
@@ -43,9 +43,9 @@ final _createQueryUserUgcRequest = dl.lookupFunction<
     UgcQueryHandle Function(
   Pointer<ISteamUgc>,
   AccountId,
-  EUserUgcList,
-  EUgcMatchingUgcType,
-  EUserUgcListSortOrder,
+  EUserUgcListAliasDart,
+  EUgcMatchingUgcTypeAliasDart,
+  EUserUgcListSortOrderAliasDart,
   AppId,
   AppId,
   int,
@@ -54,16 +54,16 @@ final _createQueryUserUgcRequest = dl.lookupFunction<
 final _createQueryAllUgcRequestPage = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamUgc>,
-  Int32,
-  Int32,
+  EUgcQueryAliasC,
+  EUgcMatchingUgcTypeAliasC,
   UnsignedInt,
   UnsignedInt,
   UnsignedInt,
 ),
     UgcQueryHandle Function(
   Pointer<ISteamUgc>,
-  EUgcQuery,
-  EUgcMatchingUgcType,
+  EUgcQueryAliasDart,
+  EUgcMatchingUgcTypeAliasDart,
   AppId,
   AppId,
   int,
@@ -72,16 +72,16 @@ final _createQueryAllUgcRequestPage = dl.lookupFunction<
 final _createQueryAllUgcRequestCursor = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamUgc>,
-  Int32,
-  Int32,
+  EUgcQueryAliasC,
+  EUgcMatchingUgcTypeAliasC,
   UnsignedInt,
   UnsignedInt,
   Pointer<Utf8>,
 ),
     UgcQueryHandle Function(
   Pointer<ISteamUgc>,
-  EUgcQuery,
-  EUgcMatchingUgcType,
+  EUgcQueryAliasDart,
+  EUgcMatchingUgcTypeAliasDart,
   AppId,
   AppId,
   Pointer<Utf8>,
@@ -224,14 +224,14 @@ final _getQueryUgcStatistic = dl.lookupFunction<
   Pointer<ISteamUgc>,
   UnsignedLongLong,
   UnsignedInt,
-  Int32,
+  EItemStatisticAliasC,
   Pointer<UnsignedLongLong>,
 ),
     bool Function(
   Pointer<ISteamUgc>,
   UgcQueryHandle,
   int,
-  EItemStatistic,
+  EItemStatisticAliasDart,
   Pointer<UnsignedLongLong>,
 )>("SteamAPI_ISteamUGC_GetQueryUGCStatistic");
 
@@ -257,7 +257,7 @@ final _getQueryUgcAdditionalPreview = dl.lookupFunction<
   UnsignedInt,
   Pointer<Utf8>,
   UnsignedInt,
-  Pointer<Int32>,
+  Pointer<EItemPreviewTypeAliasC>,
 ),
     bool Function(
   Pointer<ISteamUgc>,
@@ -268,7 +268,7 @@ final _getQueryUgcAdditionalPreview = dl.lookupFunction<
   int,
   Pointer<Utf8>,
   int,
-  Pointer<Int32>,
+  Pointer<EItemPreviewTypeAliasC>,
 )>("SteamAPI_ISteamUGC_GetQueryUGCAdditionalPreview");
 
 final _getQueryUgcNumKeyValueTags = dl.lookupFunction<
@@ -595,12 +595,12 @@ final _createItem = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamUgc>,
   UnsignedInt,
-  Int32,
+  EWorkshopFileTypeAliasC,
 ),
     SteamApiCall Function(
   Pointer<ISteamUgc>,
   AppId,
-  EWorkshopFileType,
+  EWorkshopFileTypeAliasDart,
 )>("SteamAPI_ISteamUGC_CreateItem");
 
 final _startItemUpdate = dl.lookupFunction<
@@ -667,12 +667,12 @@ final _setItemVisibility = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamUgc>,
   UnsignedLongLong,
-  Int32,
+  ERemoteStoragePublishedFileVisibilityAliasC,
 ),
     bool Function(
   Pointer<ISteamUgc>,
   UgcUpdateHandle,
-  ERemoteStoragePublishedFileVisibility,
+  ERemoteStoragePublishedFileVisibilityAliasDart,
 )>("SteamAPI_ISteamUGC_SetItemVisibility");
 
 final _setItemTags = dl.lookupFunction<
@@ -764,13 +764,13 @@ final _addItemPreviewFile = dl.lookupFunction<
   Pointer<ISteamUgc>,
   UnsignedLongLong,
   Pointer<Utf8>,
-  Int32,
+  EItemPreviewTypeAliasC,
 ),
     bool Function(
   Pointer<ISteamUgc>,
   UgcUpdateHandle,
   Pointer<Utf8>,
-  EItemPreviewType,
+  EItemPreviewTypeAliasDart,
 )>("SteamAPI_ISteamUGC_AddItemPreviewFile");
 
 final _addItemPreviewVideo = dl.lookupFunction<
@@ -838,13 +838,13 @@ final _submitItemUpdate = dl.lookupFunction<
 )>("SteamAPI_ISteamUGC_SubmitItemUpdate");
 
 final _getItemUpdateProgress = dl.lookupFunction<
-    Int32 Function(
+    EItemUpdateStatusAliasC Function(
   Pointer<ISteamUgc>,
   UnsignedLongLong,
   Pointer<UnsignedLongLong>,
   Pointer<UnsignedLongLong>,
 ),
-    EItemUpdateStatus Function(
+    EItemUpdateStatusAliasDart Function(
   Pointer<ISteamUgc>,
   UgcUpdateHandle,
   Pointer<UnsignedLongLong>,
@@ -1142,9 +1142,9 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
       _createQueryUserUgcRequest.call(
         this,
         accountId,
-        listType,
-        matchingUgcType,
-        sortOrder,
+        listType.value,
+        matchingUgcType.value,
+        sortOrder.value,
         nCreatorAppId,
         nConsumerAppId,
         page,
@@ -1159,8 +1159,8 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   ) =>
       _createQueryAllUgcRequestPage.call(
         this,
-        queryType,
-        matchingeMatchingUgcTypeFileType,
+        queryType.value,
+        matchingeMatchingUgcTypeFileType.value,
         nCreatorAppId,
         nConsumerAppId,
         page,
@@ -1175,20 +1175,20 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   ) =>
       _createQueryAllUgcRequestCursor.call(
         this,
-        queryType,
-        matchingeMatchingUgcTypeFileType,
+        queryType.value,
+        matchingeMatchingUgcTypeFileType.value,
         nCreatorAppId,
         nConsumerAppId,
         cursor,
       );
 
   UgcQueryHandle createQueryUgcDetailsRequest(
-    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    Pointer<UnsignedLongLong> publishedFileId,
     int numPublishedFileIds,
   ) =>
       _createQueryUgcDetailsRequest.call(
         this,
-        pvecPublishedFileId,
+        publishedFileId,
         numPublishedFileIds,
       );
 
@@ -1285,14 +1285,14 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   bool getQueryUgcChildren(
     UgcQueryHandle handle,
     int index,
-    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    Pointer<UnsignedLongLong> publishedFileId,
     int cMaxEntries,
   ) =>
       _getQueryUgcChildren.call(
         this,
         handle,
         index,
-        pvecPublishedFileId,
+        publishedFileId,
         cMaxEntries,
       );
 
@@ -1306,7 +1306,7 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         this,
         handle,
         index,
-        statType,
+        statType.value,
         pStatValue,
       );
 
@@ -1328,7 +1328,7 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
     int cchUrlSize,
     Pointer<Utf8> originalFileName,
     int cchOriginalFileNameSize,
-    Pointer<Int32> pPreviewType,
+    Pointer<EItemPreviewTypeAliasC> pPreviewType,
   ) =>
       _getQueryUgcAdditionalPreview.call(
         this,
@@ -1619,7 +1619,7 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
       _createItem.call(
         this,
         nConsumerAppId,
-        fileType,
+        fileType.value,
       );
 
   UgcUpdateHandle startItemUpdate(
@@ -1679,7 +1679,7 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
       _setItemVisibility.call(
         this,
         handle,
-        visibility,
+        visibility.value,
       );
 
   bool setItemTags(
@@ -1761,7 +1761,7 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         this,
         handle,
         pszPreviewFile,
-        type,
+        type.value,
       );
 
   bool addItemPreviewVideo(
@@ -1820,14 +1820,16 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
 
   EItemUpdateStatus getItemUpdateProgress(
     UgcUpdateHandle handle,
-    Pointer<UnsignedLongLong> punBytesProcessed,
-    Pointer<UnsignedLongLong> punBytesTotal,
+    Pointer<UnsignedLongLong> bytesProcessed,
+    Pointer<UnsignedLongLong> bytesTotal,
   ) =>
-      _getItemUpdateProgress.call(
-        this,
-        handle,
-        punBytesProcessed,
-        punBytesTotal,
+      EItemUpdateStatus.fromValue(
+        _getItemUpdateProgress.call(
+          this,
+          handle,
+          bytesProcessed,
+          bytesTotal,
+        ),
       );
 
   SteamApiCall setUserItemVote(
@@ -1849,22 +1851,22 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
       );
 
   SteamApiCall addItemToFavorites(
-    AppId nAppId,
+    AppId appId,
     PublishedFileId nPublishedFileId,
   ) =>
       _addItemToFavorites.call(
         this,
-        nAppId,
+        appId,
         nPublishedFileId,
       );
 
   SteamApiCall removeItemFromFavorites(
-    AppId nAppId,
+    AppId appId,
     PublishedFileId nPublishedFileId,
   ) =>
       _removeItemFromFavorites.call(
         this,
-        nAppId,
+        appId,
         nPublishedFileId,
       );
 
@@ -1889,12 +1891,12 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
       );
 
   int getSubscribedItems(
-    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    Pointer<UnsignedLongLong> publishedFileId,
     int cMaxEntries,
   ) =>
       _getSubscribedItems.call(
         this,
-        pvecPublishedFileId,
+        publishedFileId,
         cMaxEntries,
       );
 
@@ -1908,30 +1910,30 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
 
   bool getItemInstallInfo(
     PublishedFileId nPublishedFileId,
-    Pointer<UnsignedLongLong> punSizeOnDisk,
+    Pointer<UnsignedLongLong> sizeOnDisk,
     Pointer<Utf8> folder,
     int cchFolderSize,
-    Pointer<UnsignedInt> punTimeStamp,
+    Pointer<UnsignedInt> timeStamp,
   ) =>
       _getItemInstallInfo.call(
         this,
         nPublishedFileId,
-        punSizeOnDisk,
+        sizeOnDisk,
         folder,
         cchFolderSize,
-        punTimeStamp,
+        timeStamp,
       );
 
   bool getItemDownloadInfo(
     PublishedFileId nPublishedFileId,
-    Pointer<UnsignedLongLong> punBytesDownloaded,
-    Pointer<UnsignedLongLong> punBytesTotal,
+    Pointer<UnsignedLongLong> bytesDownloaded,
+    Pointer<UnsignedLongLong> bytesTotal,
   ) =>
       _getItemDownloadInfo.call(
         this,
         nPublishedFileId,
-        punBytesDownloaded,
-        punBytesTotal,
+        bytesDownloaded,
+        bytesTotal,
       );
 
   bool downloadItem(
@@ -1963,22 +1965,22 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
       );
 
   SteamApiCall startPlaytimeTracking(
-    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    Pointer<UnsignedLongLong> publishedFileId,
     int numPublishedFileIds,
   ) =>
       _startPlaytimeTracking.call(
         this,
-        pvecPublishedFileId,
+        publishedFileId,
         numPublishedFileIds,
       );
 
   SteamApiCall stopPlaytimeTracking(
-    Pointer<UnsignedLongLong> pvecPublishedFileId,
+    Pointer<UnsignedLongLong> publishedFileId,
     int numPublishedFileIds,
   ) =>
       _stopPlaytimeTracking.call(
         this,
-        pvecPublishedFileId,
+        publishedFileId,
         numPublishedFileIds,
       );
 

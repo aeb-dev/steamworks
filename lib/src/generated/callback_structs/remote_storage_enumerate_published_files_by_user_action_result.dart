@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 import "../enums/eworkshop_file_action.dart";
@@ -11,10 +9,10 @@ class RemoteStorageEnumeratePublishedFilesByUserActionResult extends Struct {
   static int get callbackId => 1328;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @Int32()
-  external EWorkshopFileAction action;
+  external EWorkshopFileActionAliasDart action;
 
   @Int()
   external int resultsReturned;
@@ -31,9 +29,9 @@ class RemoteStorageEnumeratePublishedFilesByUserActionResult extends Struct {
 
 extension RemoteStorageEnumeratePublishedFilesByUserActionResultExtensions
     on Pointer<RemoteStorageEnumeratePublishedFilesByUserActionResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
-  EWorkshopFileAction get action => ref.action;
+  EWorkshopFileAction get action => EWorkshopFileAction.fromValue(ref.action);
 
   int get resultsReturned => ref.resultsReturned;
 

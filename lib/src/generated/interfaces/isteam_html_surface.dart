@@ -152,36 +152,36 @@ final _mouseUp = dl.lookupFunction<
     Void Function(
   Pointer<ISteamHtmlSurface>,
   UnsignedInt,
-  Int32,
+  EHtmlMouseButtonAliasC,
 ),
     void Function(
   Pointer<ISteamHtmlSurface>,
   HHtmlBrowser,
-  EHtmlMouseButton,
+  EHtmlMouseButtonAliasDart,
 )>("SteamAPI_ISteamHTMLSurface_MouseUp");
 
 final _mouseDown = dl.lookupFunction<
     Void Function(
   Pointer<ISteamHtmlSurface>,
   UnsignedInt,
-  Int32,
+  EHtmlMouseButtonAliasC,
 ),
     void Function(
   Pointer<ISteamHtmlSurface>,
   HHtmlBrowser,
-  EHtmlMouseButton,
+  EHtmlMouseButtonAliasDart,
 )>("SteamAPI_ISteamHTMLSurface_MouseDown");
 
 final _mouseDoubleClick = dl.lookupFunction<
     Void Function(
   Pointer<ISteamHtmlSurface>,
   UnsignedInt,
-  Int32,
+  EHtmlMouseButtonAliasC,
 ),
     void Function(
   Pointer<ISteamHtmlSurface>,
   HHtmlBrowser,
-  EHtmlMouseButton,
+  EHtmlMouseButtonAliasDart,
 )>("SteamAPI_ISteamHTMLSurface_MouseDoubleClick");
 
 final _mouseMove = dl.lookupFunction<
@@ -215,14 +215,14 @@ final _keyDown = dl.lookupFunction<
   Pointer<ISteamHtmlSurface>,
   UnsignedInt,
   UnsignedInt,
-  Int32,
+  EHtmlKeyModifiersAliasC,
   Bool,
 ),
     void Function(
   Pointer<ISteamHtmlSurface>,
   HHtmlBrowser,
   int,
-  EHtmlKeyModifiers,
+  EHtmlKeyModifiersAliasDart,
   bool,
 )>("SteamAPI_ISteamHTMLSurface_KeyDown");
 
@@ -231,13 +231,13 @@ final _keyUp = dl.lookupFunction<
   Pointer<ISteamHtmlSurface>,
   UnsignedInt,
   UnsignedInt,
-  Int32,
+  EHtmlKeyModifiersAliasC,
 ),
     void Function(
   Pointer<ISteamHtmlSurface>,
   HHtmlBrowser,
   int,
-  EHtmlKeyModifiers,
+  EHtmlKeyModifiersAliasDart,
 )>("SteamAPI_ISteamHTMLSurface_KeyUp");
 
 final _keyChar = dl.lookupFunction<
@@ -245,13 +245,13 @@ final _keyChar = dl.lookupFunction<
   Pointer<ISteamHtmlSurface>,
   UnsignedInt,
   UnsignedInt,
-  Int32,
+  EHtmlKeyModifiersAliasC,
 ),
     void Function(
   Pointer<ISteamHtmlSurface>,
   HHtmlBrowser,
   int,
-  EHtmlKeyModifiers,
+  EHtmlKeyModifiersAliasDart,
 )>("SteamAPI_ISteamHTMLSurface_KeyChar");
 
 final _setHorizontalScroll = dl.lookupFunction<
@@ -580,7 +580,7 @@ extension ISteamHtmlSurfaceExtensions on Pointer<ISteamHtmlSurface> {
       _mouseUp.call(
         this,
         browserHandle,
-        mouseButton,
+        mouseButton.value,
       );
 
   void mouseDown(
@@ -590,7 +590,7 @@ extension ISteamHtmlSurfaceExtensions on Pointer<ISteamHtmlSurface> {
       _mouseDown.call(
         this,
         browserHandle,
-        mouseButton,
+        mouseButton.value,
       );
 
   void mouseDoubleClick(
@@ -600,7 +600,7 @@ extension ISteamHtmlSurfaceExtensions on Pointer<ISteamHtmlSurface> {
       _mouseDoubleClick.call(
         this,
         browserHandle,
-        mouseButton,
+        mouseButton.value,
       );
 
   void mouseMove(
@@ -635,7 +635,7 @@ extension ISteamHtmlSurfaceExtensions on Pointer<ISteamHtmlSurface> {
         this,
         browserHandle,
         nNativeKeyCode,
-        htmlKeyModifiers,
+        htmlKeyModifiers.value,
         isSystemKey,
       );
 
@@ -648,7 +648,7 @@ extension ISteamHtmlSurfaceExtensions on Pointer<ISteamHtmlSurface> {
         this,
         browserHandle,
         nNativeKeyCode,
-        htmlKeyModifiers,
+        htmlKeyModifiers.value,
       );
 
   void keyChar(
@@ -660,7 +660,7 @@ extension ISteamHtmlSurfaceExtensions on Pointer<ISteamHtmlSurface> {
         this,
         browserHandle,
         cUnicodeChar,
-        htmlKeyModifiers,
+        htmlKeyModifiers.value,
       );
 
   void setHorizontalScroll(

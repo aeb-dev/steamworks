@@ -24,11 +24,11 @@ class ISteamInventory extends Opaque {
 }
 
 final _getResultStatus = dl.lookupFunction<
-    Int32 Function(
+    EResultAliasC Function(
   Pointer<ISteamInventory>,
   Int,
 ),
-    EResult Function(
+    EResultAliasDart Function(
   Pointer<ISteamInventory>,
   SteamInventoryResult,
 )>("SteamAPI_ISteamInventory_GetResultStatus");
@@ -100,23 +100,23 @@ final _destroyResult = dl.lookupFunction<
 final _getAllItems = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
 )>("SteamAPI_ISteamInventory_GetAllItems");
 
 final _getItemsById = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedLongLong>,
   UnsignedInt,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedLongLong>,
   int,
 )>("SteamAPI_ISteamInventory_GetItemsByID");
@@ -138,14 +138,14 @@ final _serializeResult = dl.lookupFunction<
 final _deserializeResult = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<Void>,
   UnsignedInt,
   Bool,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<Void>,
   int,
   bool,
@@ -154,15 +154,15 @@ final _deserializeResult = dl.lookupFunction<
 final _generateItems = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<Int>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
   UnsignedInt,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<Int>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
   int,
 )>("SteamAPI_ISteamInventory_GenerateItems");
@@ -170,49 +170,49 @@ final _generateItems = dl.lookupFunction<
 final _grantPromoItems = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
 )>("SteamAPI_ISteamInventory_GrantPromoItems");
 
 final _addPromoItem = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Int,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   SteamItemDef,
 )>("SteamAPI_ISteamInventory_AddPromoItem");
 
 final _addPromoItems = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<Int>,
+  Pointer<Int>,
   UnsignedInt,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<Int>,
+  Pointer<Int>,
   int,
 )>("SteamAPI_ISteamInventory_AddPromoItems");
 
 final _consumeItem = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   UnsignedLongLong,
   UnsignedInt,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   SteamItemInstanceId,
   int,
 )>("SteamAPI_ISteamInventory_ConsumeItem");
@@ -220,8 +220,8 @@ final _consumeItem = dl.lookupFunction<
 final _exchangeItems = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<Int>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
   UnsignedInt,
   Pointer<UnsignedLongLong>,
@@ -230,8 +230,8 @@ final _exchangeItems = dl.lookupFunction<
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<Int>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
   int,
   Pointer<UnsignedLongLong>,
@@ -242,14 +242,14 @@ final _exchangeItems = dl.lookupFunction<
 final _transferItemQuantity = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   UnsignedLongLong,
   UnsignedInt,
   UnsignedLongLong,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   SteamItemInstanceId,
   int,
   SteamItemInstanceId,
@@ -266,19 +266,19 @@ final _sendItemDropHeartbeat = dl.lookupFunction<
 final _triggerItemDrop = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Int,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   SteamItemDef,
 )>("SteamAPI_ISteamInventory_TriggerItemDrop");
 
 final _tradeItems = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   UnsignedLongLong,
   Pointer<UnsignedLongLong>,
   Pointer<UnsignedInt>,
@@ -289,7 +289,7 @@ final _tradeItems = dl.lookupFunction<
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   CSteamId,
   Pointer<UnsignedLongLong>,
   Pointer<UnsignedInt>,
@@ -310,12 +310,12 @@ final _loadItemDefinitions = dl.lookupFunction<
 final _getItemDefinitionIds = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
 )>("SteamAPI_ISteamInventory_GetItemDefinitionIDs");
 
@@ -349,26 +349,26 @@ final _getEligiblePromoItemDefinitionIds = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
   UnsignedLongLong,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
 ),
     bool Function(
   Pointer<ISteamInventory>,
   CSteamId,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
 )>("SteamAPI_ISteamInventory_GetEligiblePromoItemDefinitionIDs");
 
 final _startPurchase = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
   UnsignedInt,
 ),
     SteamApiCall Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedInt>,
   int,
 )>("SteamAPI_ISteamInventory_StartPurchase");
@@ -392,14 +392,14 @@ final _getNumItemsWithPrices = dl.lookupFunction<
 final _getItemsWithPrices = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedLongLong>,
   Pointer<UnsignedLongLong>,
   UnsignedInt,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<UnsignedLongLong>,
   Pointer<UnsignedLongLong>,
   int,
@@ -509,23 +509,23 @@ final _submitUpdateProperties = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
   UnsignedLongLong,
-  Pointer<Int32>,
+  Pointer<Int>,
 ),
     bool Function(
   Pointer<ISteamInventory>,
   SteamInventoryUpdateHandle,
-  Pointer<Int32>,
+  Pointer<Int>,
 )>("SteamAPI_ISteamInventory_SubmitUpdateProperties");
 
 final _inspectItem = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<Utf8>,
 ),
     bool Function(
   Pointer<ISteamInventory>,
-  Pointer<Int32>,
+  Pointer<Int>,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamInventory_InspectItem");
 
@@ -533,21 +533,23 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
   EResult getResultStatus(
     SteamInventoryResult resultHandle,
   ) =>
-      _getResultStatus.call(
-        this,
-        resultHandle,
+      EResult.fromValue(
+        _getResultStatus.call(
+          this,
+          resultHandle,
+        ),
       );
 
   bool getResultItems(
     SteamInventoryResult resultHandle,
     Pointer<SteamItemDetails> pOutItemsArray,
-    Pointer<UnsignedInt> punOutItemsArraySize,
+    Pointer<UnsignedInt> outItemsArraySize,
   ) =>
       _getResultItems.call(
         this,
         resultHandle,
         pOutItemsArray,
-        punOutItemsArraySize,
+        outItemsArraySize,
       );
 
   bool getResultItemProperty(
@@ -555,7 +557,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
     int itemIndex,
     Pointer<Utf8> propertyName,
     Pointer<Utf8> valueBuffer,
-    Pointer<UnsignedInt> punValueBufferSizeOut,
+    Pointer<UnsignedInt> valueBufferSizeOut,
   ) =>
       _getResultItemProperty.call(
         this,
@@ -563,7 +565,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
         itemIndex,
         propertyName,
         valueBuffer,
-        punValueBufferSizeOut,
+        valueBufferSizeOut,
       );
 
   int getResultTimestamp(
@@ -593,7 +595,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool getAllItems(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
   ) =>
       _getAllItems.call(
         this,
@@ -601,7 +603,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool getItemsById(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
     Pointer<UnsignedLongLong> pInstanceIds,
     int countInstanceIds,
   ) =>
@@ -615,17 +617,17 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
   bool serializeResult(
     SteamInventoryResult resultHandle,
     Pointer<Void> pOutBuffer,
-    Pointer<UnsignedInt> punOutBufferSize,
+    Pointer<UnsignedInt> outBufferSize,
   ) =>
       _serializeResult.call(
         this,
         resultHandle,
         pOutBuffer,
-        punOutBufferSize,
+        outBufferSize,
       );
 
   bool deserializeResult(
-    Pointer<Int32> pOutResultHandle,
+    Pointer<Int> pOutResultHandle,
     Pointer<Void> pBuffer,
     int bufferSize,
     bool reservedmustbefalse,
@@ -639,21 +641,21 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool generateItems(
-    Pointer<Int32> pResultHandle,
-    Pointer<Int32> pArrayItemDefs,
-    Pointer<UnsignedInt> punArrayQuantity,
+    Pointer<Int> pResultHandle,
+    Pointer<Int> pArrayItemDefs,
+    Pointer<UnsignedInt> arrayQuantity,
     int arrayLength,
   ) =>
       _generateItems.call(
         this,
         pResultHandle,
         pArrayItemDefs,
-        punArrayQuantity,
+        arrayQuantity,
         arrayLength,
       );
 
   bool grantPromoItems(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
   ) =>
       _grantPromoItems.call(
         this,
@@ -661,7 +663,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool addPromoItem(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
     SteamItemDef itemDef,
   ) =>
       _addPromoItem.call(
@@ -671,8 +673,8 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool addPromoItems(
-    Pointer<Int32> pResultHandle,
-    Pointer<Int32> pArrayItemDefs,
+    Pointer<Int> pResultHandle,
+    Pointer<Int> pArrayItemDefs,
     int arrayLength,
   ) =>
       _addPromoItems.call(
@@ -683,7 +685,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool consumeItem(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
     SteamItemInstanceId itemConsume,
     int quantity,
   ) =>
@@ -695,27 +697,27 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool exchangeItems(
-    Pointer<Int32> pResultHandle,
-    Pointer<Int32> pArrayGenerate,
-    Pointer<UnsignedInt> punArrayGenerateQuantity,
+    Pointer<Int> pResultHandle,
+    Pointer<Int> pArrayGenerate,
+    Pointer<UnsignedInt> arrayGenerateQuantity,
     int arrayGenerateLength,
     Pointer<UnsignedLongLong> pArrayDestroy,
-    Pointer<UnsignedInt> punArrayDestroyQuantity,
+    Pointer<UnsignedInt> arrayDestroyQuantity,
     int arrayDestroyLength,
   ) =>
       _exchangeItems.call(
         this,
         pResultHandle,
         pArrayGenerate,
-        punArrayGenerateQuantity,
+        arrayGenerateQuantity,
         arrayGenerateLength,
         pArrayDestroy,
-        punArrayDestroyQuantity,
+        arrayDestroyQuantity,
         arrayDestroyLength,
       );
 
   bool transferItemQuantity(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
     SteamItemInstanceId itemIdSource,
     int quantity,
     SteamItemInstanceId itemIdDest,
@@ -733,7 +735,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool triggerItemDrop(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
     SteamItemDef dropListDefinition,
   ) =>
       _triggerItemDrop.call(
@@ -743,7 +745,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool tradeItems(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
     CSteamId steamIdTradePartner,
     Pointer<UnsignedLongLong> pArrayGive,
     Pointer<UnsignedInt> pArrayGiveQuantity,
@@ -769,27 +771,27 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool getItemDefinitionIds(
-    Pointer<Int32> pItemDefIds,
-    Pointer<UnsignedInt> punItemDefIdsArraySize,
+    Pointer<Int> pItemDefIds,
+    Pointer<UnsignedInt> itemDefIdsArraySize,
   ) =>
       _getItemDefinitionIds.call(
         this,
         pItemDefIds,
-        punItemDefIdsArraySize,
+        itemDefIdsArraySize,
       );
 
   bool getItemDefinitionProperty(
     SteamItemDef iDefinition,
     Pointer<Utf8> propertyName,
     Pointer<Utf8> valueBuffer,
-    Pointer<UnsignedInt> punValueBufferSizeOut,
+    Pointer<UnsignedInt> valueBufferSizeOut,
   ) =>
       _getItemDefinitionProperty.call(
         this,
         iDefinition,
         propertyName,
         valueBuffer,
-        punValueBufferSizeOut,
+        valueBufferSizeOut,
       );
 
   SteamApiCall requestEligiblePromoItemDefinitionsIds(
@@ -802,25 +804,25 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
 
   bool getEligiblePromoItemDefinitionIds(
     CSteamId steamId,
-    Pointer<Int32> pItemDefIds,
-    Pointer<UnsignedInt> punItemDefIdsArraySize,
+    Pointer<Int> pItemDefIds,
+    Pointer<UnsignedInt> itemDefIdsArraySize,
   ) =>
       _getEligiblePromoItemDefinitionIds.call(
         this,
         steamId,
         pItemDefIds,
-        punItemDefIdsArraySize,
+        itemDefIdsArraySize,
       );
 
   SteamApiCall startPurchase(
-    Pointer<Int32> pArrayItemDefs,
-    Pointer<UnsignedInt> punArrayQuantity,
+    Pointer<Int> pArrayItemDefs,
+    Pointer<UnsignedInt> arrayQuantity,
     int arrayLength,
   ) =>
       _startPurchase.call(
         this,
         pArrayItemDefs,
-        punArrayQuantity,
+        arrayQuantity,
         arrayLength,
       );
 
@@ -833,7 +835,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool getItemsWithPrices(
-    Pointer<Int32> pArrayItemDefs,
+    Pointer<Int> pArrayItemDefs,
     Pointer<UnsignedLongLong> pCurrentPrices,
     Pointer<UnsignedLongLong> pBasePrices,
     int arrayLength,
@@ -933,7 +935,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
 
   bool submitUpdateProperties(
     SteamInventoryUpdateHandle handle,
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
   ) =>
       _submitUpdateProperties.call(
         this,
@@ -942,7 +944,7 @@ extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
       );
 
   bool inspectItem(
-    Pointer<Int32> pResultHandle,
+    Pointer<Int> pResultHandle,
     Pointer<Utf8> itemToken,
   ) =>
       _inspectItem.call(

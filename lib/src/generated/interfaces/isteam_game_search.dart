@@ -16,25 +16,25 @@ class ISteamGameSearch extends Opaque {
 }
 
 final _addGameSearchParams = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   Pointer<Utf8>,
   Pointer<Utf8>,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   Pointer<Utf8>,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamGameSearch_AddGameSearchParams");
 
 final _searchForGameWithLobby = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   UnsignedLongLong,
   Int,
   Int,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   CSteamId,
   int,
@@ -42,41 +42,41 @@ final _searchForGameWithLobby = dl.lookupFunction<
 )>("SteamAPI_ISteamGameSearch_SearchForGameWithLobby");
 
 final _searchForGameSolo = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   Int,
   Int,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   int,
   int,
 )>("SteamAPI_ISteamGameSearch_SearchForGameSolo");
 
 final _acceptGame = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
 )>("SteamAPI_ISteamGameSearch_AcceptGame");
 
 final _declineGame = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
 )>("SteamAPI_ISteamGameSearch_DeclineGame");
 
 final _retrieveConnectionDetails = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   UnsignedLongLong,
   Pointer<Utf8>,
   Int,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   CSteamId,
   Pointer<Utf8>,
@@ -84,45 +84,45 @@ final _retrieveConnectionDetails = dl.lookupFunction<
 )>("SteamAPI_ISteamGameSearch_RetrieveConnectionDetails");
 
 final _endGameSearch = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
 )>("SteamAPI_ISteamGameSearch_EndGameSearch");
 
 final _setGameHostParams = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   Pointer<Utf8>,
   Pointer<Utf8>,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   Pointer<Utf8>,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamGameSearch_SetGameHostParams");
 
 final _setConnectionDetails = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   Pointer<Utf8>,
   Int,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   Pointer<Utf8>,
   int,
 )>("SteamAPI_ISteamGameSearch_SetConnectionDetails");
 
 final _requestPlayersForGame = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   Int,
   Int,
   Int,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   int,
   int,
@@ -130,43 +130,43 @@ final _requestPlayersForGame = dl.lookupFunction<
 )>("SteamAPI_ISteamGameSearch_RequestPlayersForGame");
 
 final _hostConfirmGameStart = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   UnsignedLongLong,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   int,
 )>("SteamAPI_ISteamGameSearch_HostConfirmGameStart");
 
 final _cancelRequestPlayersForGame = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
 )>("SteamAPI_ISteamGameSearch_CancelRequestPlayersForGame");
 
 final _submitPlayerResult = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   UnsignedLongLong,
   UnsignedLongLong,
-  Int32,
+  EPlayerResultAliasC,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   int,
   CSteamId,
-  EPlayerResult,
+  EPlayerResultAliasDart,
 )>("SteamAPI_ISteamGameSearch_SubmitPlayerResult");
 
 final _endGame = dl.lookupFunction<
-    Int32 Function(
+    EGameSearchErrorCodeAliasC Function(
   Pointer<ISteamGameSearch>,
   UnsignedLongLong,
 ),
-    EGameSearchErrorCode Function(
+    EGameSearchErrorCodeAliasDart Function(
   Pointer<ISteamGameSearch>,
   int,
 )>("SteamAPI_ISteamGameSearch_EndGame");
@@ -176,10 +176,12 @@ extension ISteamGameSearchExtensions on Pointer<ISteamGameSearch> {
     Pointer<Utf8> keyToFind,
     Pointer<Utf8> valuesToFind,
   ) =>
-      _addGameSearchParams.call(
-        this,
-        keyToFind,
-        valuesToFind,
+      EGameSearchErrorCode.fromValue(
+        _addGameSearchParams.call(
+          this,
+          keyToFind,
+          valuesToFind,
+        ),
       );
 
   EGameSearchErrorCode searchForGameWithLobby(
@@ -187,29 +189,37 @@ extension ISteamGameSearchExtensions on Pointer<ISteamGameSearch> {
     int nPlayerMin,
     int nPlayerMax,
   ) =>
-      _searchForGameWithLobby.call(
-        this,
-        steamIdLobby,
-        nPlayerMin,
-        nPlayerMax,
+      EGameSearchErrorCode.fromValue(
+        _searchForGameWithLobby.call(
+          this,
+          steamIdLobby,
+          nPlayerMin,
+          nPlayerMax,
+        ),
       );
 
   EGameSearchErrorCode searchForGameSolo(
     int nPlayerMin,
     int nPlayerMax,
   ) =>
-      _searchForGameSolo.call(
-        this,
-        nPlayerMin,
-        nPlayerMax,
+      EGameSearchErrorCode.fromValue(
+        _searchForGameSolo.call(
+          this,
+          nPlayerMin,
+          nPlayerMax,
+        ),
       );
 
-  EGameSearchErrorCode acceptGame() => _acceptGame.call(
-        this,
+  EGameSearchErrorCode acceptGame() => EGameSearchErrorCode.fromValue(
+        _acceptGame.call(
+          this,
+        ),
       );
 
-  EGameSearchErrorCode declineGame() => _declineGame.call(
-        this,
+  EGameSearchErrorCode declineGame() => EGameSearchErrorCode.fromValue(
+        _declineGame.call(
+          this,
+        ),
       );
 
   EGameSearchErrorCode retrieveConnectionDetails(
@@ -217,35 +227,43 @@ extension ISteamGameSearchExtensions on Pointer<ISteamGameSearch> {
     Pointer<Utf8> connectionDetails,
     int cubConnectionDetails,
   ) =>
-      _retrieveConnectionDetails.call(
-        this,
-        steamIdHost,
-        connectionDetails,
-        cubConnectionDetails,
+      EGameSearchErrorCode.fromValue(
+        _retrieveConnectionDetails.call(
+          this,
+          steamIdHost,
+          connectionDetails,
+          cubConnectionDetails,
+        ),
       );
 
-  EGameSearchErrorCode endGameSearch() => _endGameSearch.call(
-        this,
+  EGameSearchErrorCode endGameSearch() => EGameSearchErrorCode.fromValue(
+        _endGameSearch.call(
+          this,
+        ),
       );
 
   EGameSearchErrorCode setGameHostParams(
     Pointer<Utf8> key,
     Pointer<Utf8> value,
   ) =>
-      _setGameHostParams.call(
-        this,
-        key,
-        value,
+      EGameSearchErrorCode.fromValue(
+        _setGameHostParams.call(
+          this,
+          key,
+          value,
+        ),
       );
 
   EGameSearchErrorCode setConnectionDetails(
     Pointer<Utf8> connectionDetails,
     int cubConnectionDetails,
   ) =>
-      _setConnectionDetails.call(
-        this,
-        connectionDetails,
-        cubConnectionDetails,
+      EGameSearchErrorCode.fromValue(
+        _setConnectionDetails.call(
+          this,
+          connectionDetails,
+          cubConnectionDetails,
+        ),
       );
 
   EGameSearchErrorCode requestPlayersForGame(
@@ -253,24 +271,30 @@ extension ISteamGameSearchExtensions on Pointer<ISteamGameSearch> {
     int nPlayerMax,
     int nMaxTeamSize,
   ) =>
-      _requestPlayersForGame.call(
-        this,
-        nPlayerMin,
-        nPlayerMax,
-        nMaxTeamSize,
+      EGameSearchErrorCode.fromValue(
+        _requestPlayersForGame.call(
+          this,
+          nPlayerMin,
+          nPlayerMax,
+          nMaxTeamSize,
+        ),
       );
 
   EGameSearchErrorCode hostConfirmGameStart(
     int uniqueGameId,
   ) =>
-      _hostConfirmGameStart.call(
-        this,
-        uniqueGameId,
+      EGameSearchErrorCode.fromValue(
+        _hostConfirmGameStart.call(
+          this,
+          uniqueGameId,
+        ),
       );
 
   EGameSearchErrorCode cancelRequestPlayersForGame() =>
-      _cancelRequestPlayersForGame.call(
-        this,
+      EGameSearchErrorCode.fromValue(
+        _cancelRequestPlayersForGame.call(
+          this,
+        ),
       );
 
   EGameSearchErrorCode submitPlayerResult(
@@ -278,18 +302,22 @@ extension ISteamGameSearchExtensions on Pointer<ISteamGameSearch> {
     CSteamId steamIdPlayer,
     EPlayerResult ePlayerResult,
   ) =>
-      _submitPlayerResult.call(
-        this,
-        uniqueGameId,
-        steamIdPlayer,
-        ePlayerResult,
+      EGameSearchErrorCode.fromValue(
+        _submitPlayerResult.call(
+          this,
+          uniqueGameId,
+          steamIdPlayer,
+          ePlayerResult.value,
+        ),
       );
 
   EGameSearchErrorCode endGame(
     int uniqueGameId,
   ) =>
-      _endGame.call(
-        this,
-        uniqueGameId,
+      EGameSearchErrorCode.fromValue(
+        _endGame.call(
+          this,
+          uniqueGameId,
+        ),
       );
 }

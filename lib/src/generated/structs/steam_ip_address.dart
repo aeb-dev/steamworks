@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../dl.dart";
 import "../enums/esteam_ip_type.dart";
@@ -12,7 +10,7 @@ class SteamIpAddress extends Struct {
   external Array<UnsignedChar> ipv6;
 
   @Int32()
-  external ESteamIpType type;
+  external ESteamIpTypeAliasDart type;
 }
 
 final _isSet = dl.lookupFunction<
@@ -30,5 +28,5 @@ extension SteamIpAddressExtensions on Pointer<SteamIpAddress> {
 
   Array<UnsignedChar> get ipv6 => ref.ipv6;
 
-  ESteamIpType get type => ref.type;
+  ESteamIpType get type => ESteamIpType.fromValue(ref.type);
 }

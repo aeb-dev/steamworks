@@ -13,7 +13,7 @@ final _init = dl.lookupFunction<
   UnsignedShort,
   UnsignedShort,
   UnsignedShort,
-  Int32,
+  EServerModeAliasC,
   Pointer<Utf8>,
 ),
     bool Function(
@@ -21,7 +21,7 @@ final _init = dl.lookupFunction<
   int,
   int,
   int,
-  EServerMode,
+  EServerModeAliasDart,
   Pointer<Utf8>,
 )>("SteamGameServer_Init");
 
@@ -56,7 +56,7 @@ class SteamGameServer {
         steamPort,
         gamePort,
         queryPort,
-        serverMode,
+        serverMode.value,
         versionString,
       );
 

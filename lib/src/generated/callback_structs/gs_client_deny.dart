@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -14,7 +14,7 @@ class GsClientDeny extends Struct {
   external CSteamId steamId;
 
   @Int32()
-  external EDenyReason denyReason;
+  external EDenyReasonAliasDart denyReason;
 
   external Pointer<Utf8> optionalText;
 }
@@ -22,7 +22,7 @@ class GsClientDeny extends Struct {
 extension GsClientDenyExtensions on Pointer<GsClientDeny> {
   CSteamId get steamId => ref.steamId;
 
-  EDenyReason get denyReason => ref.denyReason;
+  EDenyReason get denyReason => EDenyReason.fromValue(ref.denyReason);
 
   Pointer<Utf8> get optionalText => ref.optionalText;
 }

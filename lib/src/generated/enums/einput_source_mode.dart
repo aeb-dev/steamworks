@@ -1,22 +1,71 @@
 // ignore_for_file: public_member_api_docs
-typedef EInputSourceMode = int;
+import "dart:ffi";
 
-class EInputSourceModeEnum {
-  static const int none = 0;
-  static const int dpad = 1;
-  static const int buttons = 2;
-  static const int fourButtons = 3;
-  static const int absoluteMouse = 4;
-  static const int relativeMouse = 5;
-  static const int joystickMove = 6;
-  static const int joystickMouse = 7;
-  static const int joystickCamera = 8;
-  static const int scrollWheel = 9;
-  static const int trigger = 10;
-  static const int touchMenu = 11;
-  static const int mouseJoystick = 12;
-  static const int mouseRegion = 13;
-  static const int radialMenu = 14;
-  static const int singleButton = 15;
-  static const int switches = 16;
+typedef EInputSourceModeAliasDart = int;
+typedef EInputSourceModeAliasC = Int32;
+
+enum EInputSourceMode {
+  none(0),
+  dpad(1),
+  buttons(2),
+  fourButtons(3),
+  absoluteMouse(4),
+  relativeMouse(5),
+  joystickMove(6),
+  joystickMouse(7),
+  joystickCamera(8),
+  scrollWheel(9),
+  trigger(10),
+  touchMenu(11),
+  mouseJoystick(12),
+  mouseRegion(13),
+  radialMenu(14),
+  singleButton(15),
+  switches(16),
+  ;
+
+  final int value;
+
+  const EInputSourceMode(this.value);
+
+  factory EInputSourceMode.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EInputSourceMode.none;
+      case 1:
+        return EInputSourceMode.dpad;
+      case 2:
+        return EInputSourceMode.buttons;
+      case 3:
+        return EInputSourceMode.fourButtons;
+      case 4:
+        return EInputSourceMode.absoluteMouse;
+      case 5:
+        return EInputSourceMode.relativeMouse;
+      case 6:
+        return EInputSourceMode.joystickMove;
+      case 7:
+        return EInputSourceMode.joystickMouse;
+      case 8:
+        return EInputSourceMode.joystickCamera;
+      case 9:
+        return EInputSourceMode.scrollWheel;
+      case 10:
+        return EInputSourceMode.trigger;
+      case 11:
+        return EInputSourceMode.touchMenu;
+      case 12:
+        return EInputSourceMode.mouseJoystick;
+      case 13:
+        return EInputSourceMode.mouseRegion;
+      case 14:
+        return EInputSourceMode.radialMenu;
+      case 15:
+        return EInputSourceMode.singleButton;
+      case 16:
+        return EInputSourceMode.switches;
+      default:
+        throw "Unknown value for 'EInputSourceMode'. The value was: '$value'";
+    }
+  }
 }

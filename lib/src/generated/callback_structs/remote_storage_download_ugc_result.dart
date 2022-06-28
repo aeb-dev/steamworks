@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -11,7 +11,7 @@ class RemoteStorageDownloadUgcResult extends Struct {
   static int get callbackId => 1317;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external UgcHandle file;
@@ -30,7 +30,7 @@ class RemoteStorageDownloadUgcResult extends Struct {
 
 extension RemoteStorageDownloadUgcResultExtensions
     on Pointer<RemoteStorageDownloadUgcResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   UgcHandle get file => ref.file;
 

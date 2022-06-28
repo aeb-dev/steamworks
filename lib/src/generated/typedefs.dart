@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs
 import "dart:ffi";
 
+import "package:ffi/ffi.dart";
+
 typedef CSteamId = int;
 typedef CGameId = int;
 typedef AppId = int;
@@ -45,6 +47,6 @@ typedef RemotePlaySessionId = int;
 typedef HSteamNetConnection = int;
 typedef HSteamListenSocket = int;
 typedef HSteamNetPollGroup = int;
-typedef SteamNetworkingErrMsg = String;
+typedef SteamNetworkingErrMsg = Pointer<Utf8>;
 typedef SteamNetworkingPopId = int;
 typedef SteamNetworkingMicroseconds = int;

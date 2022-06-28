@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../dl.dart";
 import "../enums/ep2p_send.dart";
 import "../enums/esnet_socket_connection_type.dart";
@@ -31,7 +29,7 @@ final _sendP2pPacket = dl.lookupFunction<
   UnsignedLongLong,
   Pointer<Void>,
   UnsignedInt,
-  Int32,
+  EP2pSendAliasC,
   Int,
 ),
     bool Function(
@@ -39,7 +37,7 @@ final _sendP2pPacket = dl.lookupFunction<
   CSteamId,
   Pointer<Void>,
   int,
-  EP2pSend,
+  EP2pSendAliasDart,
   int,
 )>("SteamAPI_ISteamNetworking_SendP2PPacket");
 
@@ -306,11 +304,11 @@ final _getListenSocketInfo = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworking_GetListenSocketInfo");
 
 final _getSocketConnectionType = dl.lookupFunction<
-    Int32 Function(
+    ESnetSocketConnectionTypeAliasC Function(
   Pointer<ISteamNetworking>,
   UnsignedInt,
 ),
-    ESnetSocketConnectionType Function(
+    ESnetSocketConnectionTypeAliasDart Function(
   Pointer<ISteamNetworking>,
   SnetSocket,
 )>("SteamAPI_ISteamNetworking_GetSocketConnectionType");
@@ -338,7 +336,7 @@ extension ISteamNetworkingExtensions on Pointer<ISteamNetworking> {
         steamIdRemote,
         pubData,
         cubData,
-        p2pSendType,
+        p2pSendType.value,
         nChannel,
       );
 
@@ -542,16 +540,16 @@ extension ISteamNetworkingExtensions on Pointer<ISteamNetworking> {
     SnetSocket hSocket,
     Pointer<UnsignedLongLong> pSteamIdRemote,
     Pointer<Int> peSocketStatus,
-    Pointer<SteamIpAddress> punIpRemote,
-    Pointer<UnsignedShort> punPortRemote,
+    Pointer<SteamIpAddress> ipRemote,
+    Pointer<UnsignedShort> portRemote,
   ) =>
       _getSocketInfo.call(
         this,
         hSocket,
         pSteamIdRemote,
         peSocketStatus,
-        punIpRemote,
-        punPortRemote,
+        ipRemote,
+        portRemote,
       );
 
   bool getListenSocketInfo(
@@ -569,9 +567,11 @@ extension ISteamNetworkingExtensions on Pointer<ISteamNetworking> {
   ESnetSocketConnectionType getSocketConnectionType(
     SnetSocket hSocket,
   ) =>
-      _getSocketConnectionType.call(
-        this,
-        hSocket,
+      ESnetSocketConnectionType.fromValue(
+        _getSocketConnectionType.call(
+          this,
+          hSocket,
+        ),
       );
 
   int getMaxPacketSize(

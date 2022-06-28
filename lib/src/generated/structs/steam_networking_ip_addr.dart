@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -125,10 +125,10 @@ final _isEqualTo = dl.lookupFunction<
 )>("SteamAPI_SteamNetworkingIPAddr_IsEqualTo");
 
 final _getFakeIpType = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingFakeIpTypeAliasC Function(
   Pointer<SteamNetworkingIpAddr>,
 ),
-    ESteamNetworkingFakeIpType Function(
+    ESteamNetworkingFakeIpTypeAliasDart Function(
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_SteamNetworkingIPAddr_GetFakeIPType");
 
@@ -217,8 +217,11 @@ extension SteamNetworkingIpAddrExtensions on Pointer<SteamNetworkingIpAddr> {
         x,
       );
 
-  ESteamNetworkingFakeIpType getFakeIpType() => _getFakeIpType.call(
-        this,
+  ESteamNetworkingFakeIpType getFakeIpType() =>
+      ESteamNetworkingFakeIpType.fromValue(
+        _getFakeIpType.call(
+          this,
+        ),
       );
 
   bool isFakeIp() => _isFakeIp.call(

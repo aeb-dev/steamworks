@@ -259,13 +259,13 @@ final _getAuthSessionTicket = dl.lookupFunction<
 )>("SteamAPI_ISteamGameServer_GetAuthSessionTicket");
 
 final _beginAuthSession = dl.lookupFunction<
-    Int32 Function(
+    EBeginAuthSessionResultAliasC Function(
   Pointer<ISteamGameServer>,
   Pointer<Void>,
   Int,
   UnsignedLongLong,
 ),
-    EBeginAuthSessionResult Function(
+    EBeginAuthSessionResultAliasDart Function(
   Pointer<ISteamGameServer>,
   Pointer<Void>,
   int,
@@ -293,12 +293,12 @@ final _cancelAuthTicket = dl.lookupFunction<
 )>("SteamAPI_ISteamGameServer_CancelAuthTicket");
 
 final _userHasLicenseForApp = dl.lookupFunction<
-    Int32 Function(
+    EUserHasLicenseForAppResultAliasC Function(
   Pointer<ISteamGameServer>,
   UnsignedLongLong,
   UnsignedInt,
 ),
-    EUserHasLicenseForAppResult Function(
+    EUserHasLicenseForAppResultAliasDart Function(
   Pointer<ISteamGameServer>,
   CSteamId,
   AppId,
@@ -598,11 +598,13 @@ extension ISteamGameServerExtensions on Pointer<ISteamGameServer> {
     int cbAuthTicket,
     CSteamId steamId,
   ) =>
-      _beginAuthSession.call(
-        this,
-        pAuthTicket,
-        cbAuthTicket,
-        steamId,
+      EBeginAuthSessionResult.fromValue(
+        _beginAuthSession.call(
+          this,
+          pAuthTicket,
+          cbAuthTicket,
+          steamId,
+        ),
       );
 
   void endAuthSession(
@@ -625,10 +627,12 @@ extension ISteamGameServerExtensions on Pointer<ISteamGameServer> {
     CSteamId steamId,
     AppId appId,
   ) =>
-      _userHasLicenseForApp.call(
-        this,
-        steamId,
-        appId,
+      EUserHasLicenseForAppResult.fromValue(
+        _userHasLicenseForApp.call(
+          this,
+          steamId,
+          appId,
+        ),
       );
 
   bool requestUserGroupStatus(

@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/ehttp_status_code.dart";
 import "../typedefs.dart";
@@ -20,7 +18,7 @@ class HttpRequestCompleted extends Struct {
   external bool requestSuccessful;
 
   @Int32()
-  external EHttpStatusCode statusCode;
+  external EHttpStatusCodeAliasDart statusCode;
 
   @UnsignedInt()
   external int bodySize;
@@ -33,7 +31,7 @@ extension HttpRequestCompletedExtensions on Pointer<HttpRequestCompleted> {
 
   bool get requestSuccessful => ref.requestSuccessful;
 
-  EHttpStatusCode get statusCode => ref.statusCode;
+  EHttpStatusCode get statusCode => EHttpStatusCode.fromValue(ref.statusCode);
 
   int get bodySize => ref.bodySize;
 }

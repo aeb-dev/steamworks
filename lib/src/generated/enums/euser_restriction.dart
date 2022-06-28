@@ -1,13 +1,44 @@
 // ignore_for_file: public_member_api_docs
-typedef EUserRestriction = int;
+import "dart:ffi";
 
-class EUserRestrictionEnum {
-  static const int none = 0;
-  static const int unknown = 1;
-  static const int anyChat = 2;
-  static const int voiceChat = 4;
-  static const int groupChat = 8;
-  static const int rating = 16;
-  static const int gameInvites = 32;
-  static const int trading = 64;
+typedef EUserRestrictionAliasDart = int;
+typedef EUserRestrictionAliasC = Int32;
+
+enum EUserRestriction {
+  none(0),
+  unknown(1),
+  anyChat(2),
+  voiceChat(4),
+  groupChat(8),
+  rating(16),
+  gameInvites(32),
+  trading(64),
+  ;
+
+  final int value;
+
+  const EUserRestriction(this.value);
+
+  factory EUserRestriction.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EUserRestriction.none;
+      case 1:
+        return EUserRestriction.unknown;
+      case 2:
+        return EUserRestriction.anyChat;
+      case 4:
+        return EUserRestriction.voiceChat;
+      case 8:
+        return EUserRestriction.groupChat;
+      case 16:
+        return EUserRestriction.rating;
+      case 32:
+        return EUserRestriction.gameInvites;
+      case 64:
+        return EUserRestriction.trading;
+      default:
+        throw "Unknown value for 'EUserRestriction'. The value was: '$value'";
+    }
+  }
 }

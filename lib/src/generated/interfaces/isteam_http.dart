@@ -22,12 +22,12 @@ class ISteamHttp extends Opaque {
 final _createHttpRequest = dl.lookupFunction<
     UnsignedInt Function(
   Pointer<ISteamHttp>,
-  Int32,
+  EHttpMethodAliasC,
   Pointer<Utf8>,
 ),
     HttpRequestHandle Function(
   Pointer<ISteamHttp>,
-  EHttpMethod,
+  EHttpMethodAliasDart,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamHTTP_CreateHTTPRequest");
 
@@ -340,7 +340,7 @@ extension ISteamHttpExtensions on Pointer<ISteamHttp> {
   ) =>
       _createHttpRequest.call(
         this,
-        httpRequestMethod,
+        httpRequestMethod.value,
         absoluteUrl,
       );
 

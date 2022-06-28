@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "../enums/einput_source_mode.dart";
@@ -6,7 +6,7 @@ import "../enums/einput_source_mode.dart";
 @Packed(1)
 class InputAnalogActionData extends Struct {
   @Int32()
-  external EInputSourceMode mode;
+  external EInputSourceModeAliasDart mode;
 
   @Float()
   external double x;
@@ -19,7 +19,7 @@ class InputAnalogActionData extends Struct {
 }
 
 extension InputAnalogActionDataExtensions on Pointer<InputAnalogActionData> {
-  EInputSourceMode get mode => ref.mode;
+  EInputSourceMode get mode => EInputSourceMode.fromValue(ref.mode);
 
   double get x => ref.x;
 

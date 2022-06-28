@@ -1,22 +1,71 @@
 // ignore_for_file: public_member_api_docs
-typedef ESteamInputType = int;
+import "dart:ffi";
 
-class ESteamInputTypeEnum {
-  static const int unknown = 0;
-  static const int steamController = 1;
-  static const int xBox360Controller = 2;
-  static const int xBoxOneController = 3;
-  static const int genericGamepad = 4;
-  static const int ps4Controller = 5;
-  static const int appleMFiController = 6;
-  static const int androidController = 7;
-  static const int switchJoyConPair = 8;
-  static const int switchJoyConSingle = 9;
-  static const int switchProController = 10;
-  static const int mobileTouch = 11;
-  static const int ps3Controller = 12;
-  static const int ps5Controller = 13;
-  static const int steamDeckController = 14;
-  static const int count = 15;
-  static const int maximumPossibleValue = 255;
+typedef ESteamInputTypeAliasDart = int;
+typedef ESteamInputTypeAliasC = Int32;
+
+enum ESteamInputType {
+  unknown(0),
+  steamController(1),
+  xBox360Controller(2),
+  xBoxOneController(3),
+  genericGamepad(4),
+  ps4Controller(5),
+  appleMFiController(6),
+  androidController(7),
+  switchJoyConPair(8),
+  switchJoyConSingle(9),
+  switchProController(10),
+  mobileTouch(11),
+  ps3Controller(12),
+  ps5Controller(13),
+  steamDeckController(14),
+  count(15),
+  maximumPossibleValue(255),
+  ;
+
+  final int value;
+
+  const ESteamInputType(this.value);
+
+  factory ESteamInputType.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return ESteamInputType.unknown;
+      case 1:
+        return ESteamInputType.steamController;
+      case 2:
+        return ESteamInputType.xBox360Controller;
+      case 3:
+        return ESteamInputType.xBoxOneController;
+      case 4:
+        return ESteamInputType.genericGamepad;
+      case 5:
+        return ESteamInputType.ps4Controller;
+      case 6:
+        return ESteamInputType.appleMFiController;
+      case 7:
+        return ESteamInputType.androidController;
+      case 8:
+        return ESteamInputType.switchJoyConPair;
+      case 9:
+        return ESteamInputType.switchJoyConSingle;
+      case 10:
+        return ESteamInputType.switchProController;
+      case 11:
+        return ESteamInputType.mobileTouch;
+      case 12:
+        return ESteamInputType.ps3Controller;
+      case 13:
+        return ESteamInputType.ps5Controller;
+      case 14:
+        return ESteamInputType.steamDeckController;
+      case 15:
+        return ESteamInputType.count;
+      case 255:
+        return ESteamInputType.maximumPossibleValue;
+      default:
+        throw "Unknown value for 'ESteamInputType'. The value was: '$value'";
+    }
+  }
 }

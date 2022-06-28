@@ -75,12 +75,12 @@ extension ISteamAppListExtensions on Pointer<ISteamAppList> {
       );
 
   int getInstalledApps(
-    Pointer<UnsignedInt> pvecAppId,
+    Pointer<UnsignedInt> appId,
     int maxAppIds,
   ) =>
       _getInstalledApps.call(
         this,
-        pvecAppId,
+        appId,
         maxAppIds,
       );
 

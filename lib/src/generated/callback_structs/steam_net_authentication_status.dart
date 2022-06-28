@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -10,14 +10,15 @@ class SteamNetAuthenticationStatus extends Struct {
   static int get callbackId => 1222;
 
   @Int32()
-  external ESteamNetworkingAvailability avail;
+  external ESteamNetworkingAvailabilityAliasDart avail;
 
   external Pointer<Utf8> debugMsg;
 }
 
 extension SteamNetAuthenticationStatusExtensions
     on Pointer<SteamNetAuthenticationStatus> {
-  ESteamNetworkingAvailability get avail => ref.avail;
+  ESteamNetworkingAvailability get avail =>
+      ESteamNetworkingAvailability.fromValue(ref.avail);
 
   Pointer<Utf8> get debugMsg => ref.debugMsg;
 }

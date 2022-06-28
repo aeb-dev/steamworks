@@ -53,11 +53,11 @@ final _getSessionClientName = dl.lookupFunction<
 )>("SteamAPI_ISteamRemotePlay_GetSessionClientName");
 
 final _getSessionClientFormFactor = dl.lookupFunction<
-    Int32 Function(
+    ESteamDeviceFormFactorAliasC Function(
   Pointer<ISteamRemotePlay>,
   UnsignedInt,
 ),
-    ESteamDeviceFormFactor Function(
+    ESteamDeviceFormFactorAliasDart Function(
   Pointer<ISteamRemotePlay>,
   RemotePlaySessionId,
 )>("SteamAPI_ISteamRemotePlay_GetSessionClientFormFactor");
@@ -118,9 +118,11 @@ extension ISteamRemotePlayExtensions on Pointer<ISteamRemotePlay> {
   ESteamDeviceFormFactor getSessionClientFormFactor(
     RemotePlaySessionId sessionId,
   ) =>
-      _getSessionClientFormFactor.call(
-        this,
-        sessionId,
+      ESteamDeviceFormFactor.fromValue(
+        _getSessionClientFormFactor.call(
+          this,
+          sessionId,
+        ),
       );
 
   bool bGetSessionClientResolution(

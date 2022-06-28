@@ -278,14 +278,14 @@ final _findOrCreateLeaderboard = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamUserStats>,
   Pointer<Utf8>,
-  Int32,
-  Int32,
+  ELeaderboardSortMethodAliasC,
+  ELeaderboardDisplayTypeAliasC,
 ),
     SteamApiCall Function(
   Pointer<ISteamUserStats>,
   Pointer<Utf8>,
-  ELeaderboardSortMethod,
-  ELeaderboardDisplayType,
+  ELeaderboardSortMethodAliasDart,
+  ELeaderboardDisplayTypeAliasDart,
 )>("SteamAPI_ISteamUserStats_FindOrCreateLeaderboard");
 
 final _findLeaderboard = dl.lookupFunction<
@@ -319,21 +319,21 @@ final _getLeaderboardEntryCount = dl.lookupFunction<
 )>("SteamAPI_ISteamUserStats_GetLeaderboardEntryCount");
 
 final _getLeaderboardSortMethod = dl.lookupFunction<
-    Int32 Function(
+    ELeaderboardSortMethodAliasC Function(
   Pointer<ISteamUserStats>,
   UnsignedLongLong,
 ),
-    ELeaderboardSortMethod Function(
+    ELeaderboardSortMethodAliasDart Function(
   Pointer<ISteamUserStats>,
   SteamLeaderboard,
 )>("SteamAPI_ISteamUserStats_GetLeaderboardSortMethod");
 
 final _getLeaderboardDisplayType = dl.lookupFunction<
-    Int32 Function(
+    ELeaderboardDisplayTypeAliasC Function(
   Pointer<ISteamUserStats>,
   UnsignedLongLong,
 ),
-    ELeaderboardDisplayType Function(
+    ELeaderboardDisplayTypeAliasDart Function(
   Pointer<ISteamUserStats>,
   SteamLeaderboard,
 )>("SteamAPI_ISteamUserStats_GetLeaderboardDisplayType");
@@ -342,14 +342,14 @@ final _downloadLeaderboardEntries = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamUserStats>,
   UnsignedLongLong,
-  Int32,
+  ELeaderboardDataRequestAliasC,
   Int,
   Int,
 ),
     SteamApiCall Function(
   Pointer<ISteamUserStats>,
   SteamLeaderboard,
-  ELeaderboardDataRequest,
+  ELeaderboardDataRequestAliasDart,
   int,
   int,
 )>("SteamAPI_ISteamUserStats_DownloadLeaderboardEntries");
@@ -390,7 +390,7 @@ final _uploadLeaderboardScore = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamUserStats>,
   UnsignedLongLong,
-  Int32,
+  ELeaderboardUploadScoreMethodAliasC,
   Int,
   Pointer<Int>,
   Int,
@@ -398,7 +398,7 @@ final _uploadLeaderboardScore = dl.lookupFunction<
     SteamApiCall Function(
   Pointer<ISteamUserStats>,
   SteamLeaderboard,
-  ELeaderboardUploadScoreMethod,
+  ELeaderboardUploadScoreMethodAliasDart,
   int,
   Pointer<Int>,
   int,
@@ -654,13 +654,13 @@ extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
   bool getAchievementAndUnlockTime(
     Pointer<Utf8> name,
     Pointer<Bool> pbAchieved,
-    Pointer<UnsignedInt> punUnlockTime,
+    Pointer<UnsignedInt> unlockTime,
   ) =>
       _getAchievementAndUnlockTime.call(
         this,
         name,
         pbAchieved,
-        punUnlockTime,
+        unlockTime,
       );
 
   bool storeStats() => _storeStats.call(
@@ -757,14 +757,14 @@ extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
     CSteamId steamIdUser,
     Pointer<Utf8> name,
     Pointer<Bool> pbAchieved,
-    Pointer<UnsignedInt> punUnlockTime,
+    Pointer<UnsignedInt> unlockTime,
   ) =>
       _getUserAchievementAndUnlockTime.call(
         this,
         steamIdUser,
         name,
         pbAchieved,
-        punUnlockTime,
+        unlockTime,
       );
 
   bool resetAllStats(
@@ -783,8 +783,8 @@ extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
       _findOrCreateLeaderboard.call(
         this,
         leaderboardName,
-        leaderboardSortMethod,
-        leaderboardDisplayType,
+        leaderboardSortMethod.value,
+        leaderboardDisplayType.value,
       );
 
   SteamApiCall findLeaderboard(
@@ -814,17 +814,21 @@ extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
   ELeaderboardSortMethod getLeaderboardSortMethod(
     SteamLeaderboard hSteamLeaderboard,
   ) =>
-      _getLeaderboardSortMethod.call(
-        this,
-        hSteamLeaderboard,
+      ELeaderboardSortMethod.fromValue(
+        _getLeaderboardSortMethod.call(
+          this,
+          hSteamLeaderboard,
+        ),
       );
 
   ELeaderboardDisplayType getLeaderboardDisplayType(
     SteamLeaderboard hSteamLeaderboard,
   ) =>
-      _getLeaderboardDisplayType.call(
-        this,
-        hSteamLeaderboard,
+      ELeaderboardDisplayType.fromValue(
+        _getLeaderboardDisplayType.call(
+          this,
+          hSteamLeaderboard,
+        ),
       );
 
   SteamApiCall downloadLeaderboardEntries(
@@ -836,7 +840,7 @@ extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
       _downloadLeaderboardEntries.call(
         this,
         hSteamLeaderboard,
-        leaderboardDataRequest,
+        leaderboardDataRequest.value,
         nRangeStart,
         nRangeEnd,
       );
@@ -879,7 +883,7 @@ extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
       _uploadLeaderboardScore.call(
         this,
         hSteamLeaderboard,
-        leaderboardUploadScoreMethod,
+        leaderboardUploadScoreMethod.value,
         nScore,
         pScoreDetails,
         cScoreDetailsCount,

@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 import "../typedefs.dart";
@@ -14,11 +12,11 @@ class ScreenshotReady extends Struct {
   external ScreenshotHandle local;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 }
 
 extension ScreenshotReadyExtensions on Pointer<ScreenshotReady> {
   ScreenshotHandle get local => ref.local;
 
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 }

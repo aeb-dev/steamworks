@@ -48,11 +48,11 @@ final _initRelayNetworkAccess = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworkingUtils_InitRelayNetworkAccess");
 
 final _getRelayNetworkStatus = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingAvailabilityAliasC Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamRelayNetworkStatus>,
 ),
-    ESteamNetworkingAvailability Function(
+    ESteamNetworkingAvailabilityAliasDart Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamRelayNetworkStatus>,
 )>("SteamAPI_ISteamNetworkingUtils_GetRelayNetworkStatus");
@@ -186,22 +186,22 @@ final _isFakeIpv4 = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworkingUtils_IsFakeIPv4");
 
 final _getIpv4FakeIpType = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingFakeIpTypeAliasC Function(
   Pointer<ISteamNetworkingUtils>,
   UnsignedInt,
 ),
-    ESteamNetworkingFakeIpType Function(
+    ESteamNetworkingFakeIpTypeAliasDart Function(
   Pointer<ISteamNetworkingUtils>,
   int,
 )>("SteamAPI_ISteamNetworkingUtils_GetIPv4FakeIPType");
 
 final _getRealIdentityForFakeIp = dl.lookupFunction<
-    Int32 Function(
+    EResultAliasC Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
   Pointer<SteamNetworkingIdentity>,
 ),
-    EResult Function(
+    EResultAliasDart Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
   Pointer<SteamNetworkingIdentity>,
@@ -210,48 +210,48 @@ final _getRealIdentityForFakeIp = dl.lookupFunction<
 final _setGlobalConfigValueInt32 = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Int,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   int,
 )>("SteamAPI_ISteamNetworkingUtils_SetGlobalConfigValueInt32");
 
 final _setGlobalConfigValueFloat = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Float,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   double,
 )>("SteamAPI_ISteamNetworkingUtils_SetGlobalConfigValueFloat");
 
 final _setGlobalConfigValueString = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Pointer<Utf8>,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamNetworkingUtils_SetGlobalConfigValueString");
 
 final _setGlobalConfigValuePtr = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Pointer<Void>,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   Pointer<Void>,
 )>("SteamAPI_ISteamNetworkingUtils_SetGlobalConfigValuePtr");
 
@@ -259,13 +259,13 @@ final _setConnectionConfigValueInt32 = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
   UnsignedInt,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Int,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
   HSteamNetConnection,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   int,
 )>("SteamAPI_ISteamNetworkingUtils_SetConnectionConfigValueInt32");
 
@@ -273,13 +273,13 @@ final _setConnectionConfigValueFloat = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
   UnsignedInt,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Float,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
   HSteamNetConnection,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   double,
 )>("SteamAPI_ISteamNetworkingUtils_SetConnectionConfigValueFloat");
 
@@ -287,31 +287,31 @@ final _setConnectionConfigValueString = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
   UnsignedInt,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Pointer<Utf8>,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
   HSteamNetConnection,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamNetworkingUtils_SetConnectionConfigValueString");
 
 final _setConfigValue = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
+  ESteamNetworkingConfigScopeAliasC,
   IntPtr,
-  Int32,
+  ESteamNetworkingConfigDataTypeAliasC,
   Pointer<Void>,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
-  ESteamNetworkingConfigScope,
+  ESteamNetworkingConfigValueAliasDart,
+  ESteamNetworkingConfigScopeAliasDart,
   int,
-  ESteamNetworkingConfigDataType,
+  ESteamNetworkingConfigDataTypeAliasDart,
   Pointer<Void>,
 )>("SteamAPI_ISteamNetworkingUtils_SetConfigValue");
 
@@ -319,32 +319,32 @@ final _setConfigValueStruct = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamNetworkingConfigValue>,
-  Int32,
+  ESteamNetworkingConfigScopeAliasC,
   IntPtr,
 ),
     bool Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamNetworkingConfigValue>,
-  ESteamNetworkingConfigScope,
+  ESteamNetworkingConfigScopeAliasDart,
   int,
 )>("SteamAPI_ISteamNetworkingUtils_SetConfigValueStruct");
 
 final _getConfigValue = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingGetConfigValueResultAliasC Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
+  ESteamNetworkingConfigScopeAliasC,
   IntPtr,
-  Pointer<Int32>,
+  Pointer<ESteamNetworkingConfigDataTypeAliasC>,
   Pointer<Void>,
   Pointer<Size>,
 ),
-    ESteamNetworkingGetConfigValueResult Function(
+    ESteamNetworkingGetConfigValueResultAliasDart Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
-  ESteamNetworkingConfigScope,
+  ESteamNetworkingConfigValueAliasDart,
+  ESteamNetworkingConfigScopeAliasDart,
   int,
-  Pointer<Int32>,
+  Pointer<ESteamNetworkingConfigDataTypeAliasC>,
   Pointer<Void>,
   Pointer<Size>,
 )>("SteamAPI_ISteamNetworkingUtils_GetConfigValue");
@@ -352,26 +352,26 @@ final _getConfigValue = dl.lookupFunction<
 final _getConfigValueInfo = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  ESteamNetworkingConfigValueAliasC,
+  Pointer<ESteamNetworkingConfigDataTypeAliasC>,
+  Pointer<ESteamNetworkingConfigScopeAliasC>,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  ESteamNetworkingConfigValueAliasDart,
+  Pointer<ESteamNetworkingConfigDataTypeAliasC>,
+  Pointer<ESteamNetworkingConfigScopeAliasC>,
 )>("SteamAPI_ISteamNetworkingUtils_GetConfigValueInfo");
 
 final _iterateGenericEditableConfigValues = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingConfigValueAliasC Function(
   Pointer<ISteamNetworkingUtils>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Bool,
 ),
-    ESteamNetworkingConfigValue Function(
+    ESteamNetworkingConfigValueAliasDart Function(
   Pointer<ISteamNetworkingUtils>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   bool,
 )>("SteamAPI_ISteamNetworkingUtils_IterateGenericEditableConfigValues");
 
@@ -404,11 +404,11 @@ final _steamNetworkingIpAddrParseString = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworkingUtils_SteamNetworkingIPAddr_ParseString");
 
 final _steamNetworkingIpAddrGetFakeIpType = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingFakeIpTypeAliasC Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
 ),
-    ESteamNetworkingFakeIpType Function(
+    ESteamNetworkingFakeIpTypeAliasDart Function(
   Pointer<ISteamNetworkingUtils>,
   Pointer<SteamNetworkingIpAddr>,
 )>("SteamAPI_ISteamNetworkingUtils_SteamNetworkingIPAddr_GetFakeIPType");
@@ -455,9 +455,11 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ESteamNetworkingAvailability getRelayNetworkStatus(
     Pointer<SteamRelayNetworkStatus> pDetails,
   ) =>
-      _getRelayNetworkStatus.call(
-        this,
-        pDetails,
+      ESteamNetworkingAvailability.fromValue(
+        _getRelayNetworkStatus.call(
+          this,
+          pDetails,
+        ),
       );
 
   double getLocalPingLocation(
@@ -563,19 +565,23 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ESteamNetworkingFakeIpType getIpv4FakeIpType(
     int nIpv4,
   ) =>
-      _getIpv4FakeIpType.call(
-        this,
-        nIpv4,
+      ESteamNetworkingFakeIpType.fromValue(
+        _getIpv4FakeIpType.call(
+          this,
+          nIpv4,
+        ),
       );
 
   EResult getRealIdentityForFakeIp(
     Pointer<SteamNetworkingIpAddr> fakeIp,
     Pointer<SteamNetworkingIdentity> pOutRealIdentity,
   ) =>
-      _getRealIdentityForFakeIp.call(
-        this,
-        fakeIp,
-        pOutRealIdentity,
+      EResult.fromValue(
+        _getRealIdentityForFakeIp.call(
+          this,
+          fakeIp,
+          pOutRealIdentity,
+        ),
       );
 
   bool setGlobalConfigValueInt32(
@@ -584,7 +590,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ) =>
       _setGlobalConfigValueInt32.call(
         this,
-        value,
+        value.value,
         val,
       );
 
@@ -594,7 +600,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ) =>
       _setGlobalConfigValueFloat.call(
         this,
-        value,
+        value.value,
         val,
       );
 
@@ -604,7 +610,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ) =>
       _setGlobalConfigValueString.call(
         this,
-        value,
+        value.value,
         val,
       );
 
@@ -614,7 +620,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ) =>
       _setGlobalConfigValuePtr.call(
         this,
-        value,
+        value.value,
         val,
       );
 
@@ -626,7 +632,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
       _setConnectionConfigValueInt32.call(
         this,
         hConn,
-        value,
+        value.value,
         val,
       );
 
@@ -638,7 +644,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
       _setConnectionConfigValueFloat.call(
         this,
         hConn,
-        value,
+        value.value,
         val,
       );
 
@@ -650,7 +656,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
       _setConnectionConfigValueString.call(
         this,
         hConn,
-        value,
+        value.value,
         val,
       );
 
@@ -663,10 +669,10 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ) =>
       _setConfigValue.call(
         this,
-        value,
-        scopeType,
+        value.value,
+        scopeType.value,
         scopeObj,
-        dataType,
+        dataType.value,
         pArg,
       );
 
@@ -678,7 +684,7 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
       _setConfigValueStruct.call(
         this,
         opt,
-        scopeType,
+        scopeType.value,
         scopeObj,
       );
 
@@ -686,28 +692,30 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
     ESteamNetworkingConfigValue value,
     ESteamNetworkingConfigScope scopeType,
     int scopeObj,
-    Pointer<Int32> pOutDataType,
+    Pointer<ESteamNetworkingConfigDataTypeAliasC> pOutDataType,
     Pointer<Void> pResult,
     Pointer<Size> cbResult,
   ) =>
-      _getConfigValue.call(
-        this,
-        value,
-        scopeType,
-        scopeObj,
-        pOutDataType,
-        pResult,
-        cbResult,
+      ESteamNetworkingGetConfigValueResult.fromValue(
+        _getConfigValue.call(
+          this,
+          value.value,
+          scopeType.value,
+          scopeObj,
+          pOutDataType,
+          pResult,
+          cbResult,
+        ),
       );
 
   Pointer<Utf8> getConfigValueInfo(
     ESteamNetworkingConfigValue value,
-    Pointer<Int32> pOutDataType,
-    Pointer<Int32> pOutScope,
+    Pointer<ESteamNetworkingConfigDataTypeAliasC> pOutDataType,
+    Pointer<ESteamNetworkingConfigScopeAliasC> pOutScope,
   ) =>
       _getConfigValueInfo.call(
         this,
-        value,
+        value.value,
         pOutDataType,
         pOutScope,
       );
@@ -716,10 +724,12 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
     ESteamNetworkingConfigValue current,
     bool enumerateDevVars,
   ) =>
-      _iterateGenericEditableConfigValues.call(
-        this,
-        current,
-        enumerateDevVars,
+      ESteamNetworkingConfigValue.fromValue(
+        _iterateGenericEditableConfigValues.call(
+          this,
+          current.value,
+          enumerateDevVars,
+        ),
       );
 
   void steamNetworkingIpAddrToString(
@@ -749,9 +759,11 @@ extension ISteamNetworkingUtilsExtensions on Pointer<ISteamNetworkingUtils> {
   ESteamNetworkingFakeIpType steamNetworkingIpAddrGetFakeIpType(
     Pointer<SteamNetworkingIpAddr> addr,
   ) =>
-      _steamNetworkingIpAddrGetFakeIpType.call(
-        this,
-        addr,
+      ESteamNetworkingFakeIpType.fromValue(
+        _steamNetworkingIpAddrGetFakeIpType.call(
+          this,
+          addr,
+        ),
       );
 
   void steamNetworkingIdentityToString(

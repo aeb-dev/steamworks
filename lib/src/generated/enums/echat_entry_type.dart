@@ -1,17 +1,56 @@
 // ignore_for_file: public_member_api_docs
-typedef EChatEntryType = int;
+import "dart:ffi";
 
-class EChatEntryTypeEnum {
-  static const int invalid = 0;
-  static const int chatMsg = 1;
-  static const int typing = 2;
-  static const int inviteGame = 3;
-  static const int emote = 4;
-  static const int leftConversation = 6;
-  static const int entered = 7;
-  static const int wasKicked = 8;
-  static const int wasBanned = 9;
-  static const int disconnected = 10;
-  static const int historicalChat = 11;
-  static const int linkBlocked = 14;
+typedef EChatEntryTypeAliasDart = int;
+typedef EChatEntryTypeAliasC = Int32;
+
+enum EChatEntryType {
+  invalid(0),
+  chatMsg(1),
+  typing(2),
+  inviteGame(3),
+  emote(4),
+  leftConversation(6),
+  entered(7),
+  wasKicked(8),
+  wasBanned(9),
+  disconnected(10),
+  historicalChat(11),
+  linkBlocked(14),
+  ;
+
+  final int value;
+
+  const EChatEntryType(this.value);
+
+  factory EChatEntryType.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EChatEntryType.invalid;
+      case 1:
+        return EChatEntryType.chatMsg;
+      case 2:
+        return EChatEntryType.typing;
+      case 3:
+        return EChatEntryType.inviteGame;
+      case 4:
+        return EChatEntryType.emote;
+      case 6:
+        return EChatEntryType.leftConversation;
+      case 7:
+        return EChatEntryType.entered;
+      case 8:
+        return EChatEntryType.wasKicked;
+      case 9:
+        return EChatEntryType.wasBanned;
+      case 10:
+        return EChatEntryType.disconnected;
+      case 11:
+        return EChatEntryType.historicalChat;
+      case 14:
+        return EChatEntryType.linkBlocked;
+      default:
+        throw "Unknown value for 'EChatEntryType'. The value was: '$value'";
+    }
+  }
 }

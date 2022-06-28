@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../dl.dart";
 import "../enums/ematch_making_server_response.dart";
 import "../typedefs.dart";
@@ -37,12 +35,12 @@ final _refreshComplete = dl.lookupFunction<
     Void Function(
   Pointer<ISteamMatchmakingServerListResponse>,
   Pointer<Void>,
-  Int32,
+  EMatchMakingServerResponseAliasC,
 ),
     void Function(
   Pointer<ISteamMatchmakingServerListResponse>,
   HServerListRequest,
-  EMatchMakingServerResponse,
+  EMatchMakingServerResponseAliasDart,
 )>("SteamAPI_ISteamMatchmakingServerListResponse_RefreshComplete");
 
 extension ISteamMatchmakingServerListResponseExtensions
@@ -74,6 +72,6 @@ extension ISteamMatchmakingServerListResponseExtensions
       _refreshComplete.call(
         this,
         hRequest,
-        response,
+        response.value,
       );
 }

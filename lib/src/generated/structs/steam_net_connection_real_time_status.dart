@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/esteam_networking_connection_state.dart";
 import "../typedefs.dart";
@@ -9,7 +7,7 @@ import "../typedefs.dart";
 @Packed(8)
 class SteamNetConnectionRealTimeStatus extends Struct {
   @Int32()
-  external ESteamNetworkingConnectionState state;
+  external ESteamNetworkingConnectionStateAliasDart state;
 
   @Int()
   external int ping;
@@ -53,7 +51,8 @@ class SteamNetConnectionRealTimeStatus extends Struct {
 
 extension SteamNetConnectionRealTimeStatusExtensions
     on Pointer<SteamNetConnectionRealTimeStatus> {
-  ESteamNetworkingConnectionState get state => ref.state;
+  ESteamNetworkingConnectionState get state =>
+      ESteamNetworkingConnectionState.fromValue(ref.state);
 
   int get ping => ref.ping;
 

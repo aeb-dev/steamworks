@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -13,7 +13,7 @@ class RemoteStorageGetPublishedFileDetailsResult extends Struct {
   static int get callbackId => 1318;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
@@ -44,7 +44,7 @@ class RemoteStorageGetPublishedFileDetailsResult extends Struct {
   external int timeUpdated;
 
   @Int32()
-  external ERemoteStoragePublishedFileVisibility visibility;
+  external ERemoteStoragePublishedFileVisibilityAliasDart visibility;
 
   @Bool()
   external bool banned;
@@ -65,7 +65,7 @@ class RemoteStorageGetPublishedFileDetailsResult extends Struct {
   external Pointer<Utf8> url;
 
   @Int32()
-  external EWorkshopFileType fileType;
+  external EWorkshopFileTypeAliasDart fileType;
 
   @Bool()
   external bool acceptedForUse;
@@ -73,7 +73,7 @@ class RemoteStorageGetPublishedFileDetailsResult extends Struct {
 
 extension RemoteStorageGetPublishedFileDetailsResultExtensions
     on Pointer<RemoteStorageGetPublishedFileDetailsResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   PublishedFileId get publishedFileId => ref.publishedFileId;
 
@@ -95,7 +95,8 @@ extension RemoteStorageGetPublishedFileDetailsResultExtensions
 
   int get timeUpdated => ref.timeUpdated;
 
-  ERemoteStoragePublishedFileVisibility get visibility => ref.visibility;
+  ERemoteStoragePublishedFileVisibility get visibility =>
+      ERemoteStoragePublishedFileVisibility.fromValue(ref.visibility);
 
   bool get banned => ref.banned;
 
@@ -111,7 +112,7 @@ extension RemoteStorageGetPublishedFileDetailsResultExtensions
 
   Pointer<Utf8> get url => ref.url;
 
-  EWorkshopFileType get fileType => ref.fileType;
+  EWorkshopFileType get fileType => EWorkshopFileType.fromValue(ref.fileType);
 
   bool get acceptedForUse => ref.acceptedForUse;
 }

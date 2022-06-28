@@ -1,18 +1,59 @@
 // ignore_for_file: public_member_api_docs
-typedef EItemStatistic = int;
+import "dart:ffi";
 
-class EItemStatisticEnum {
-  static const int numSubscriptions = 0;
-  static const int numFavorites = 1;
-  static const int numFollowers = 2;
-  static const int numUniqueSubscriptions = 3;
-  static const int numUniqueFavorites = 4;
-  static const int numUniqueFollowers = 5;
-  static const int numUniqueWebsiteViews = 6;
-  static const int reportScore = 7;
-  static const int numSecondsPlayed = 8;
-  static const int numPlaytimeSessions = 9;
-  static const int numComments = 10;
-  static const int numSecondsPlayedDuringTimePeriod = 11;
-  static const int numPlaytimeSessionsDuringTimePeriod = 12;
+typedef EItemStatisticAliasDart = int;
+typedef EItemStatisticAliasC = Int32;
+
+enum EItemStatistic {
+  numSubscriptions(0),
+  numFavorites(1),
+  numFollowers(2),
+  numUniqueSubscriptions(3),
+  numUniqueFavorites(4),
+  numUniqueFollowers(5),
+  numUniqueWebsiteViews(6),
+  reportScore(7),
+  numSecondsPlayed(8),
+  numPlaytimeSessions(9),
+  numComments(10),
+  numSecondsPlayedDuringTimePeriod(11),
+  numPlaytimeSessionsDuringTimePeriod(12),
+  ;
+
+  final int value;
+
+  const EItemStatistic(this.value);
+
+  factory EItemStatistic.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EItemStatistic.numSubscriptions;
+      case 1:
+        return EItemStatistic.numFavorites;
+      case 2:
+        return EItemStatistic.numFollowers;
+      case 3:
+        return EItemStatistic.numUniqueSubscriptions;
+      case 4:
+        return EItemStatistic.numUniqueFavorites;
+      case 5:
+        return EItemStatistic.numUniqueFollowers;
+      case 6:
+        return EItemStatistic.numUniqueWebsiteViews;
+      case 7:
+        return EItemStatistic.reportScore;
+      case 8:
+        return EItemStatistic.numSecondsPlayed;
+      case 9:
+        return EItemStatistic.numPlaytimeSessions;
+      case 10:
+        return EItemStatistic.numComments;
+      case 11:
+        return EItemStatistic.numSecondsPlayedDuringTimePeriod;
+      case 12:
+        return EItemStatistic.numPlaytimeSessionsDuringTimePeriod;
+      default:
+        throw "Unknown value for 'EItemStatistic'. The value was: '$value'";
+    }
+  }
 }

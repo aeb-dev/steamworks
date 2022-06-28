@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eauth_session_response.dart";
 import "../typedefs.dart";
@@ -14,7 +12,7 @@ class ValidateAuthTicketResponse extends Struct {
   external CSteamId steamId;
 
   @Int32()
-  external EAuthSessionResponse authSessionResponse;
+  external EAuthSessionResponseAliasDart authSessionResponse;
 
   @UnsignedLongLong()
   external CSteamId ownerSteamId;
@@ -24,7 +22,8 @@ extension ValidateAuthTicketResponseExtensions
     on Pointer<ValidateAuthTicketResponse> {
   CSteamId get steamId => ref.steamId;
 
-  EAuthSessionResponse get authSessionResponse => ref.authSessionResponse;
+  EAuthSessionResponse get authSessionResponse =>
+      EAuthSessionResponse.fromValue(ref.authSessionResponse);
 
   CSteamId get ownerSteamId => ref.ownerSteamId;
 }

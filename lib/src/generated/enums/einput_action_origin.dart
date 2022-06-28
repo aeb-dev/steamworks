@@ -1,413 +1,1244 @@
 // ignore_for_file: public_member_api_docs
-typedef EInputActionOrigin = int;
+import "dart:ffi";
 
-class EInputActionOriginEnum {
-  static const int none = 0;
-  static const int steamControllerA = 1;
-  static const int steamControllerB = 2;
-  static const int steamControllerX = 3;
-  static const int steamControllerY = 4;
-  static const int steamControllerLeftBumper = 5;
-  static const int steamControllerRightBumper = 6;
-  static const int steamControllerLeftGrip = 7;
-  static const int steamControllerRightGrip = 8;
-  static const int steamControllerStart = 9;
-  static const int steamControllerBack = 10;
-  static const int steamControllerLeftPadTouch = 11;
-  static const int steamControllerLeftPadSwipe = 12;
-  static const int steamControllerLeftPadClick = 13;
-  static const int steamControllerLeftPadDPadNorth = 14;
-  static const int steamControllerLeftPadDPadSouth = 15;
-  static const int steamControllerLeftPadDPadWest = 16;
-  static const int steamControllerLeftPadDPadEast = 17;
-  static const int steamControllerRightPadTouch = 18;
-  static const int steamControllerRightPadSwipe = 19;
-  static const int steamControllerRightPadClick = 20;
-  static const int steamControllerRightPadDPadNorth = 21;
-  static const int steamControllerRightPadDPadSouth = 22;
-  static const int steamControllerRightPadDPadWest = 23;
-  static const int steamControllerRightPadDPadEast = 24;
-  static const int steamControllerLeftTriggerPull = 25;
-  static const int steamControllerLeftTriggerClick = 26;
-  static const int steamControllerRightTriggerPull = 27;
-  static const int steamControllerRightTriggerClick = 28;
-  static const int steamControllerLeftStickMove = 29;
-  static const int steamControllerLeftStickClick = 30;
-  static const int steamControllerLeftStickDPadNorth = 31;
-  static const int steamControllerLeftStickDPadSouth = 32;
-  static const int steamControllerLeftStickDPadWest = 33;
-  static const int steamControllerLeftStickDPadEast = 34;
-  static const int steamControllerGyroMove = 35;
-  static const int steamControllerGyroPitch = 36;
-  static const int steamControllerGyroYaw = 37;
-  static const int steamControllerGyroRoll = 38;
-  static const int steamControllerReserved0 = 39;
-  static const int steamControllerReserved1 = 40;
-  static const int steamControllerReserved2 = 41;
-  static const int steamControllerReserved3 = 42;
-  static const int steamControllerReserved4 = 43;
-  static const int steamControllerReserved5 = 44;
-  static const int steamControllerReserved6 = 45;
-  static const int steamControllerReserved7 = 46;
-  static const int steamControllerReserved8 = 47;
-  static const int steamControllerReserved9 = 48;
-  static const int steamControllerReserved10 = 49;
-  static const int ps4X = 50;
-  static const int ps4Circle = 51;
-  static const int ps4Triangle = 52;
-  static const int ps4Square = 53;
-  static const int ps4LeftBumper = 54;
-  static const int ps4RightBumper = 55;
-  static const int ps4Options = 56;
-  static const int ps4Share = 57;
-  static const int ps4LeftPadTouch = 58;
-  static const int ps4LeftPadSwipe = 59;
-  static const int ps4LeftPadClick = 60;
-  static const int ps4LeftPadDPadNorth = 61;
-  static const int ps4LeftPadDPadSouth = 62;
-  static const int ps4LeftPadDPadWest = 63;
-  static const int ps4LeftPadDPadEast = 64;
-  static const int ps4RightPadTouch = 65;
-  static const int ps4RightPadSwipe = 66;
-  static const int ps4RightPadClick = 67;
-  static const int ps4RightPadDPadNorth = 68;
-  static const int ps4RightPadDPadSouth = 69;
-  static const int ps4RightPadDPadWest = 70;
-  static const int ps4RightPadDPadEast = 71;
-  static const int ps4CenterPadTouch = 72;
-  static const int ps4CenterPadSwipe = 73;
-  static const int ps4CenterPadClick = 74;
-  static const int ps4CenterPadDPadNorth = 75;
-  static const int ps4CenterPadDPadSouth = 76;
-  static const int ps4CenterPadDPadWest = 77;
-  static const int ps4CenterPadDPadEast = 78;
-  static const int ps4LeftTriggerPull = 79;
-  static const int ps4LeftTriggerClick = 80;
-  static const int ps4RightTriggerPull = 81;
-  static const int ps4RightTriggerClick = 82;
-  static const int ps4LeftStickMove = 83;
-  static const int ps4LeftStickClick = 84;
-  static const int ps4LeftStickDPadNorth = 85;
-  static const int ps4LeftStickDPadSouth = 86;
-  static const int ps4LeftStickDPadWest = 87;
-  static const int ps4LeftStickDPadEast = 88;
-  static const int ps4RightStickMove = 89;
-  static const int ps4RightStickClick = 90;
-  static const int ps4RightStickDPadNorth = 91;
-  static const int ps4RightStickDPadSouth = 92;
-  static const int ps4RightStickDPadWest = 93;
-  static const int ps4RightStickDPadEast = 94;
-  static const int ps4DPadNorth = 95;
-  static const int ps4DPadSouth = 96;
-  static const int ps4DPadWest = 97;
-  static const int ps4DPadEast = 98;
-  static const int ps4GyroMove = 99;
-  static const int ps4GyroPitch = 100;
-  static const int ps4GyroYaw = 101;
-  static const int ps4GyroRoll = 102;
-  static const int ps4DPadMove = 103;
-  static const int ps4Reserved1 = 104;
-  static const int ps4Reserved2 = 105;
-  static const int ps4Reserved3 = 106;
-  static const int ps4Reserved4 = 107;
-  static const int ps4Reserved5 = 108;
-  static const int ps4Reserved6 = 109;
-  static const int ps4Reserved7 = 110;
-  static const int ps4Reserved8 = 111;
-  static const int ps4Reserved9 = 112;
-  static const int ps4Reserved10 = 113;
-  static const int xBoxOneA = 114;
-  static const int xBoxOneB = 115;
-  static const int xBoxOneX = 116;
-  static const int xBoxOneY = 117;
-  static const int xBoxOneLeftBumper = 118;
-  static const int xBoxOneRightBumper = 119;
-  static const int xBoxOneMenu = 120;
-  static const int xBoxOneView = 121;
-  static const int xBoxOneLeftTriggerPull = 122;
-  static const int xBoxOneLeftTriggerClick = 123;
-  static const int xBoxOneRightTriggerPull = 124;
-  static const int xBoxOneRightTriggerClick = 125;
-  static const int xBoxOneLeftStickMove = 126;
-  static const int xBoxOneLeftStickClick = 127;
-  static const int xBoxOneLeftStickDPadNorth = 128;
-  static const int xBoxOneLeftStickDPadSouth = 129;
-  static const int xBoxOneLeftStickDPadWest = 130;
-  static const int xBoxOneLeftStickDPadEast = 131;
-  static const int xBoxOneRightStickMove = 132;
-  static const int xBoxOneRightStickClick = 133;
-  static const int xBoxOneRightStickDPadNorth = 134;
-  static const int xBoxOneRightStickDPadSouth = 135;
-  static const int xBoxOneRightStickDPadWest = 136;
-  static const int xBoxOneRightStickDPadEast = 137;
-  static const int xBoxOneDPadNorth = 138;
-  static const int xBoxOneDPadSouth = 139;
-  static const int xBoxOneDPadWest = 140;
-  static const int xBoxOneDPadEast = 141;
-  static const int xBoxOneDPadMove = 142;
-  static const int xBoxOneLeftGripLower = 143;
-  static const int xBoxOneLeftGripUpper = 144;
-  static const int xBoxOneRightGripLower = 145;
-  static const int xBoxOneRightGripUpper = 146;
-  static const int xBoxOneShare = 147;
-  static const int xBoxOneReserved6 = 148;
-  static const int xBoxOneReserved7 = 149;
-  static const int xBoxOneReserved8 = 150;
-  static const int xBoxOneReserved9 = 151;
-  static const int xBoxOneReserved10 = 152;
-  static const int xBox360A = 153;
-  static const int xBox360B = 154;
-  static const int xBox360X = 155;
-  static const int xBox360Y = 156;
-  static const int xBox360LeftBumper = 157;
-  static const int xBox360RightBumper = 158;
-  static const int xBox360Start = 159;
-  static const int xBox360Back = 160;
-  static const int xBox360LeftTriggerPull = 161;
-  static const int xBox360LeftTriggerClick = 162;
-  static const int xBox360RightTriggerPull = 163;
-  static const int xBox360RightTriggerClick = 164;
-  static const int xBox360LeftStickMove = 165;
-  static const int xBox360LeftStickClick = 166;
-  static const int xBox360LeftStickDPadNorth = 167;
-  static const int xBox360LeftStickDPadSouth = 168;
-  static const int xBox360LeftStickDPadWest = 169;
-  static const int xBox360LeftStickDPadEast = 170;
-  static const int xBox360RightStickMove = 171;
-  static const int xBox360RightStickClick = 172;
-  static const int xBox360RightStickDPadNorth = 173;
-  static const int xBox360RightStickDPadSouth = 174;
-  static const int xBox360RightStickDPadWest = 175;
-  static const int xBox360RightStickDPadEast = 176;
-  static const int xBox360DPadNorth = 177;
-  static const int xBox360DPadSouth = 178;
-  static const int xBox360DPadWest = 179;
-  static const int xBox360DPadEast = 180;
-  static const int xBox360DPadMove = 181;
-  static const int xBox360Reserved1 = 182;
-  static const int xBox360Reserved2 = 183;
-  static const int xBox360Reserved3 = 184;
-  static const int xBox360Reserved4 = 185;
-  static const int xBox360Reserved5 = 186;
-  static const int xBox360Reserved6 = 187;
-  static const int xBox360Reserved7 = 188;
-  static const int xBox360Reserved8 = 189;
-  static const int xBox360Reserved9 = 190;
-  static const int xBox360Reserved10 = 191;
-  static const int switchA = 192;
-  static const int switchB = 193;
-  static const int switchX = 194;
-  static const int switchY = 195;
-  static const int switchLeftBumper = 196;
-  static const int switchRightBumper = 197;
-  static const int switchPlus = 198;
-  static const int switchMinus = 199;
-  static const int switchCapture = 200;
-  static const int switchLeftTriggerPull = 201;
-  static const int switchLeftTriggerClick = 202;
-  static const int switchRightTriggerPull = 203;
-  static const int switchRightTriggerClick = 204;
-  static const int switchLeftStickMove = 205;
-  static const int switchLeftStickClick = 206;
-  static const int switchLeftStickDPadNorth = 207;
-  static const int switchLeftStickDPadSouth = 208;
-  static const int switchLeftStickDPadWest = 209;
-  static const int switchLeftStickDPadEast = 210;
-  static const int switchRightStickMove = 211;
-  static const int switchRightStickClick = 212;
-  static const int switchRightStickDPadNorth = 213;
-  static const int switchRightStickDPadSouth = 214;
-  static const int switchRightStickDPadWest = 215;
-  static const int switchRightStickDPadEast = 216;
-  static const int switchDPadNorth = 217;
-  static const int switchDPadSouth = 218;
-  static const int switchDPadWest = 219;
-  static const int switchDPadEast = 220;
-  static const int switchProGyroMove = 221;
-  static const int switchProGyroPitch = 222;
-  static const int switchProGyroYaw = 223;
-  static const int switchProGyroRoll = 224;
-  static const int switchDPadMove = 225;
-  static const int switchReserved1 = 226;
-  static const int switchReserved2 = 227;
-  static const int switchReserved3 = 228;
-  static const int switchReserved4 = 229;
-  static const int switchReserved5 = 230;
-  static const int switchReserved6 = 231;
-  static const int switchReserved7 = 232;
-  static const int switchReserved8 = 233;
-  static const int switchReserved9 = 234;
-  static const int switchReserved10 = 235;
-  static const int switchRightGyroMove = 236;
-  static const int switchRightGyroPitch = 237;
-  static const int switchRightGyroYaw = 238;
-  static const int switchRightGyroRoll = 239;
-  static const int switchLeftGyroMove = 240;
-  static const int switchLeftGyroPitch = 241;
-  static const int switchLeftGyroYaw = 242;
-  static const int switchLeftGyroRoll = 243;
-  static const int switchLeftGripLower = 244;
-  static const int switchLeftGripUpper = 245;
-  static const int switchRightGripLower = 246;
-  static const int switchRightGripUpper = 247;
-  static const int switchReserved11 = 248;
-  static const int switchReserved12 = 249;
-  static const int switchReserved13 = 250;
-  static const int switchReserved14 = 251;
-  static const int switchReserved15 = 252;
-  static const int switchReserved16 = 253;
-  static const int switchReserved17 = 254;
-  static const int switchReserved18 = 255;
-  static const int switchReserved19 = 256;
-  static const int switchReserved20 = 257;
-  static const int ps5X = 258;
-  static const int ps5Circle = 259;
-  static const int ps5Triangle = 260;
-  static const int ps5Square = 261;
-  static const int ps5LeftBumper = 262;
-  static const int ps5RightBumper = 263;
-  static const int ps5Option = 264;
-  static const int ps5Create = 265;
-  static const int ps5Mute = 266;
-  static const int ps5LeftPadTouch = 267;
-  static const int ps5LeftPadSwipe = 268;
-  static const int ps5LeftPadClick = 269;
-  static const int ps5LeftPadDPadNorth = 270;
-  static const int ps5LeftPadDPadSouth = 271;
-  static const int ps5LeftPadDPadWest = 272;
-  static const int ps5LeftPadDPadEast = 273;
-  static const int ps5RightPadTouch = 274;
-  static const int ps5RightPadSwipe = 275;
-  static const int ps5RightPadClick = 276;
-  static const int ps5RightPadDPadNorth = 277;
-  static const int ps5RightPadDPadSouth = 278;
-  static const int ps5RightPadDPadWest = 279;
-  static const int ps5RightPadDPadEast = 280;
-  static const int ps5CenterPadTouch = 281;
-  static const int ps5CenterPadSwipe = 282;
-  static const int ps5CenterPadClick = 283;
-  static const int ps5CenterPadDPadNorth = 284;
-  static const int ps5CenterPadDPadSouth = 285;
-  static const int ps5CenterPadDPadWest = 286;
-  static const int ps5CenterPadDPadEast = 287;
-  static const int ps5LeftTriggerPull = 288;
-  static const int ps5LeftTriggerClick = 289;
-  static const int ps5RightTriggerPull = 290;
-  static const int ps5RightTriggerClick = 291;
-  static const int ps5LeftStickMove = 292;
-  static const int ps5LeftStickClick = 293;
-  static const int ps5LeftStickDPadNorth = 294;
-  static const int ps5LeftStickDPadSouth = 295;
-  static const int ps5LeftStickDPadWest = 296;
-  static const int ps5LeftStickDPadEast = 297;
-  static const int ps5RightStickMove = 298;
-  static const int ps5RightStickClick = 299;
-  static const int ps5RightStickDPadNorth = 300;
-  static const int ps5RightStickDPadSouth = 301;
-  static const int ps5RightStickDPadWest = 302;
-  static const int ps5RightStickDPadEast = 303;
-  static const int ps5DPadNorth = 304;
-  static const int ps5DPadSouth = 305;
-  static const int ps5DPadWest = 306;
-  static const int ps5DPadEast = 307;
-  static const int ps5GyroMove = 308;
-  static const int ps5GyroPitch = 309;
-  static const int ps5GyroYaw = 310;
-  static const int ps5GyroRoll = 311;
-  static const int ps5DPadMove = 312;
-  static const int ps5Reserved1 = 313;
-  static const int ps5Reserved2 = 314;
-  static const int ps5Reserved3 = 315;
-  static const int ps5Reserved4 = 316;
-  static const int ps5Reserved5 = 317;
-  static const int ps5Reserved6 = 318;
-  static const int ps5Reserved7 = 319;
-  static const int ps5Reserved8 = 320;
-  static const int ps5Reserved9 = 321;
-  static const int ps5Reserved10 = 322;
-  static const int ps5Reserved11 = 323;
-  static const int ps5Reserved12 = 324;
-  static const int ps5Reserved13 = 325;
-  static const int ps5Reserved14 = 326;
-  static const int ps5Reserved15 = 327;
-  static const int ps5Reserved16 = 328;
-  static const int ps5Reserved17 = 329;
-  static const int ps5Reserved18 = 330;
-  static const int ps5Reserved19 = 331;
-  static const int ps5Reserved20 = 332;
-  static const int steamDeckA = 333;
-  static const int steamDeckB = 334;
-  static const int steamDeckX = 335;
-  static const int steamDeckY = 336;
-  static const int steamDeckL1 = 337;
-  static const int steamDeckR1 = 338;
-  static const int steamDeckMenu = 339;
-  static const int steamDeckView = 340;
-  static const int steamDeckLeftPadTouch = 341;
-  static const int steamDeckLeftPadSwipe = 342;
-  static const int steamDeckLeftPadClick = 343;
-  static const int steamDeckLeftPadDPadNorth = 344;
-  static const int steamDeckLeftPadDPadSouth = 345;
-  static const int steamDeckLeftPadDPadWest = 346;
-  static const int steamDeckLeftPadDPadEast = 347;
-  static const int steamDeckRightPadTouch = 348;
-  static const int steamDeckRightPadSwipe = 349;
-  static const int steamDeckRightPadClick = 350;
-  static const int steamDeckRightPadDPadNorth = 351;
-  static const int steamDeckRightPadDPadSouth = 352;
-  static const int steamDeckRightPadDPadWest = 353;
-  static const int steamDeckRightPadDPadEast = 354;
-  static const int steamDeckL2SoftPull = 355;
-  static const int steamDeckL2 = 356;
-  static const int steamDeckR2SoftPull = 357;
-  static const int steamDeckR2 = 358;
-  static const int steamDeckLeftStickMove = 359;
-  static const int steamDeckL3 = 360;
-  static const int steamDeckLeftStickDPadNorth = 361;
-  static const int steamDeckLeftStickDPadSouth = 362;
-  static const int steamDeckLeftStickDPadWest = 363;
-  static const int steamDeckLeftStickDPadEast = 364;
-  static const int steamDeckLeftStickTouch = 365;
-  static const int steamDeckRightStickMove = 366;
-  static const int steamDeckR3 = 367;
-  static const int steamDeckRightStickDPadNorth = 368;
-  static const int steamDeckRightStickDPadSouth = 369;
-  static const int steamDeckRightStickDPadWest = 370;
-  static const int steamDeckRightStickDPadEast = 371;
-  static const int steamDeckRightStickTouch = 372;
-  static const int steamDeckL4 = 373;
-  static const int steamDeckR4 = 374;
-  static const int steamDeckL5 = 375;
-  static const int steamDeckR5 = 376;
-  static const int steamDeckDPadMove = 377;
-  static const int steamDeckDPadNorth = 378;
-  static const int steamDeckDPadSouth = 379;
-  static const int steamDeckDPadWest = 380;
-  static const int steamDeckDPadEast = 381;
-  static const int steamDeckGyroMove = 382;
-  static const int steamDeckGyroPitch = 383;
-  static const int steamDeckGyroYaw = 384;
-  static const int steamDeckGyroRoll = 385;
-  static const int steamDeckReserved1 = 386;
-  static const int steamDeckReserved2 = 387;
-  static const int steamDeckReserved3 = 388;
-  static const int steamDeckReserved4 = 389;
-  static const int steamDeckReserved5 = 390;
-  static const int steamDeckReserved6 = 391;
-  static const int steamDeckReserved7 = 392;
-  static const int steamDeckReserved8 = 393;
-  static const int steamDeckReserved9 = 394;
-  static const int steamDeckReserved10 = 395;
-  static const int steamDeckReserved11 = 396;
-  static const int steamDeckReserved12 = 397;
-  static const int steamDeckReserved13 = 398;
-  static const int steamDeckReserved14 = 399;
-  static const int steamDeckReserved15 = 400;
-  static const int steamDeckReserved16 = 401;
-  static const int steamDeckReserved17 = 402;
-  static const int steamDeckReserved18 = 403;
-  static const int steamDeckReserved19 = 404;
-  static const int steamDeckReserved20 = 405;
-  static const int count = 406;
-  static const int maximumPossibleValue = 32767;
+typedef EInputActionOriginAliasDart = int;
+typedef EInputActionOriginAliasC = Int32;
+
+enum EInputActionOrigin {
+  none(0),
+  steamControllerA(1),
+  steamControllerB(2),
+  steamControllerX(3),
+  steamControllerY(4),
+  steamControllerLeftBumper(5),
+  steamControllerRightBumper(6),
+  steamControllerLeftGrip(7),
+  steamControllerRightGrip(8),
+  steamControllerStart(9),
+  steamControllerBack(10),
+  steamControllerLeftPadTouch(11),
+  steamControllerLeftPadSwipe(12),
+  steamControllerLeftPadClick(13),
+  steamControllerLeftPadDPadNorth(14),
+  steamControllerLeftPadDPadSouth(15),
+  steamControllerLeftPadDPadWest(16),
+  steamControllerLeftPadDPadEast(17),
+  steamControllerRightPadTouch(18),
+  steamControllerRightPadSwipe(19),
+  steamControllerRightPadClick(20),
+  steamControllerRightPadDPadNorth(21),
+  steamControllerRightPadDPadSouth(22),
+  steamControllerRightPadDPadWest(23),
+  steamControllerRightPadDPadEast(24),
+  steamControllerLeftTriggerPull(25),
+  steamControllerLeftTriggerClick(26),
+  steamControllerRightTriggerPull(27),
+  steamControllerRightTriggerClick(28),
+  steamControllerLeftStickMove(29),
+  steamControllerLeftStickClick(30),
+  steamControllerLeftStickDPadNorth(31),
+  steamControllerLeftStickDPadSouth(32),
+  steamControllerLeftStickDPadWest(33),
+  steamControllerLeftStickDPadEast(34),
+  steamControllerGyroMove(35),
+  steamControllerGyroPitch(36),
+  steamControllerGyroYaw(37),
+  steamControllerGyroRoll(38),
+  steamControllerReserved0(39),
+  steamControllerReserved1(40),
+  steamControllerReserved2(41),
+  steamControllerReserved3(42),
+  steamControllerReserved4(43),
+  steamControllerReserved5(44),
+  steamControllerReserved6(45),
+  steamControllerReserved7(46),
+  steamControllerReserved8(47),
+  steamControllerReserved9(48),
+  steamControllerReserved10(49),
+  ps4X(50),
+  ps4Circle(51),
+  ps4Triangle(52),
+  ps4Square(53),
+  ps4LeftBumper(54),
+  ps4RightBumper(55),
+  ps4Options(56),
+  ps4Share(57),
+  ps4LeftPadTouch(58),
+  ps4LeftPadSwipe(59),
+  ps4LeftPadClick(60),
+  ps4LeftPadDPadNorth(61),
+  ps4LeftPadDPadSouth(62),
+  ps4LeftPadDPadWest(63),
+  ps4LeftPadDPadEast(64),
+  ps4RightPadTouch(65),
+  ps4RightPadSwipe(66),
+  ps4RightPadClick(67),
+  ps4RightPadDPadNorth(68),
+  ps4RightPadDPadSouth(69),
+  ps4RightPadDPadWest(70),
+  ps4RightPadDPadEast(71),
+  ps4CenterPadTouch(72),
+  ps4CenterPadSwipe(73),
+  ps4CenterPadClick(74),
+  ps4CenterPadDPadNorth(75),
+  ps4CenterPadDPadSouth(76),
+  ps4CenterPadDPadWest(77),
+  ps4CenterPadDPadEast(78),
+  ps4LeftTriggerPull(79),
+  ps4LeftTriggerClick(80),
+  ps4RightTriggerPull(81),
+  ps4RightTriggerClick(82),
+  ps4LeftStickMove(83),
+  ps4LeftStickClick(84),
+  ps4LeftStickDPadNorth(85),
+  ps4LeftStickDPadSouth(86),
+  ps4LeftStickDPadWest(87),
+  ps4LeftStickDPadEast(88),
+  ps4RightStickMove(89),
+  ps4RightStickClick(90),
+  ps4RightStickDPadNorth(91),
+  ps4RightStickDPadSouth(92),
+  ps4RightStickDPadWest(93),
+  ps4RightStickDPadEast(94),
+  ps4DPadNorth(95),
+  ps4DPadSouth(96),
+  ps4DPadWest(97),
+  ps4DPadEast(98),
+  ps4GyroMove(99),
+  ps4GyroPitch(100),
+  ps4GyroYaw(101),
+  ps4GyroRoll(102),
+  ps4DPadMove(103),
+  ps4Reserved1(104),
+  ps4Reserved2(105),
+  ps4Reserved3(106),
+  ps4Reserved4(107),
+  ps4Reserved5(108),
+  ps4Reserved6(109),
+  ps4Reserved7(110),
+  ps4Reserved8(111),
+  ps4Reserved9(112),
+  ps4Reserved10(113),
+  xBoxOneA(114),
+  xBoxOneB(115),
+  xBoxOneX(116),
+  xBoxOneY(117),
+  xBoxOneLeftBumper(118),
+  xBoxOneRightBumper(119),
+  xBoxOneMenu(120),
+  xBoxOneView(121),
+  xBoxOneLeftTriggerPull(122),
+  xBoxOneLeftTriggerClick(123),
+  xBoxOneRightTriggerPull(124),
+  xBoxOneRightTriggerClick(125),
+  xBoxOneLeftStickMove(126),
+  xBoxOneLeftStickClick(127),
+  xBoxOneLeftStickDPadNorth(128),
+  xBoxOneLeftStickDPadSouth(129),
+  xBoxOneLeftStickDPadWest(130),
+  xBoxOneLeftStickDPadEast(131),
+  xBoxOneRightStickMove(132),
+  xBoxOneRightStickClick(133),
+  xBoxOneRightStickDPadNorth(134),
+  xBoxOneRightStickDPadSouth(135),
+  xBoxOneRightStickDPadWest(136),
+  xBoxOneRightStickDPadEast(137),
+  xBoxOneDPadNorth(138),
+  xBoxOneDPadSouth(139),
+  xBoxOneDPadWest(140),
+  xBoxOneDPadEast(141),
+  xBoxOneDPadMove(142),
+  xBoxOneLeftGripLower(143),
+  xBoxOneLeftGripUpper(144),
+  xBoxOneRightGripLower(145),
+  xBoxOneRightGripUpper(146),
+  xBoxOneShare(147),
+  xBoxOneReserved6(148),
+  xBoxOneReserved7(149),
+  xBoxOneReserved8(150),
+  xBoxOneReserved9(151),
+  xBoxOneReserved10(152),
+  xBox360A(153),
+  xBox360B(154),
+  xBox360X(155),
+  xBox360Y(156),
+  xBox360LeftBumper(157),
+  xBox360RightBumper(158),
+  xBox360Start(159),
+  xBox360Back(160),
+  xBox360LeftTriggerPull(161),
+  xBox360LeftTriggerClick(162),
+  xBox360RightTriggerPull(163),
+  xBox360RightTriggerClick(164),
+  xBox360LeftStickMove(165),
+  xBox360LeftStickClick(166),
+  xBox360LeftStickDPadNorth(167),
+  xBox360LeftStickDPadSouth(168),
+  xBox360LeftStickDPadWest(169),
+  xBox360LeftStickDPadEast(170),
+  xBox360RightStickMove(171),
+  xBox360RightStickClick(172),
+  xBox360RightStickDPadNorth(173),
+  xBox360RightStickDPadSouth(174),
+  xBox360RightStickDPadWest(175),
+  xBox360RightStickDPadEast(176),
+  xBox360DPadNorth(177),
+  xBox360DPadSouth(178),
+  xBox360DPadWest(179),
+  xBox360DPadEast(180),
+  xBox360DPadMove(181),
+  xBox360Reserved1(182),
+  xBox360Reserved2(183),
+  xBox360Reserved3(184),
+  xBox360Reserved4(185),
+  xBox360Reserved5(186),
+  xBox360Reserved6(187),
+  xBox360Reserved7(188),
+  xBox360Reserved8(189),
+  xBox360Reserved9(190),
+  xBox360Reserved10(191),
+  switchA(192),
+  switchB(193),
+  switchX(194),
+  switchY(195),
+  switchLeftBumper(196),
+  switchRightBumper(197),
+  switchPlus(198),
+  switchMinus(199),
+  switchCapture(200),
+  switchLeftTriggerPull(201),
+  switchLeftTriggerClick(202),
+  switchRightTriggerPull(203),
+  switchRightTriggerClick(204),
+  switchLeftStickMove(205),
+  switchLeftStickClick(206),
+  switchLeftStickDPadNorth(207),
+  switchLeftStickDPadSouth(208),
+  switchLeftStickDPadWest(209),
+  switchLeftStickDPadEast(210),
+  switchRightStickMove(211),
+  switchRightStickClick(212),
+  switchRightStickDPadNorth(213),
+  switchRightStickDPadSouth(214),
+  switchRightStickDPadWest(215),
+  switchRightStickDPadEast(216),
+  switchDPadNorth(217),
+  switchDPadSouth(218),
+  switchDPadWest(219),
+  switchDPadEast(220),
+  switchProGyroMove(221),
+  switchProGyroPitch(222),
+  switchProGyroYaw(223),
+  switchProGyroRoll(224),
+  switchDPadMove(225),
+  switchReserved1(226),
+  switchReserved2(227),
+  switchReserved3(228),
+  switchReserved4(229),
+  switchReserved5(230),
+  switchReserved6(231),
+  switchReserved7(232),
+  switchReserved8(233),
+  switchReserved9(234),
+  switchReserved10(235),
+  switchRightGyroMove(236),
+  switchRightGyroPitch(237),
+  switchRightGyroYaw(238),
+  switchRightGyroRoll(239),
+  switchLeftGyroMove(240),
+  switchLeftGyroPitch(241),
+  switchLeftGyroYaw(242),
+  switchLeftGyroRoll(243),
+  switchLeftGripLower(244),
+  switchLeftGripUpper(245),
+  switchRightGripLower(246),
+  switchRightGripUpper(247),
+  switchReserved11(248),
+  switchReserved12(249),
+  switchReserved13(250),
+  switchReserved14(251),
+  switchReserved15(252),
+  switchReserved16(253),
+  switchReserved17(254),
+  switchReserved18(255),
+  switchReserved19(256),
+  switchReserved20(257),
+  ps5X(258),
+  ps5Circle(259),
+  ps5Triangle(260),
+  ps5Square(261),
+  ps5LeftBumper(262),
+  ps5RightBumper(263),
+  ps5Option(264),
+  ps5Create(265),
+  ps5Mute(266),
+  ps5LeftPadTouch(267),
+  ps5LeftPadSwipe(268),
+  ps5LeftPadClick(269),
+  ps5LeftPadDPadNorth(270),
+  ps5LeftPadDPadSouth(271),
+  ps5LeftPadDPadWest(272),
+  ps5LeftPadDPadEast(273),
+  ps5RightPadTouch(274),
+  ps5RightPadSwipe(275),
+  ps5RightPadClick(276),
+  ps5RightPadDPadNorth(277),
+  ps5RightPadDPadSouth(278),
+  ps5RightPadDPadWest(279),
+  ps5RightPadDPadEast(280),
+  ps5CenterPadTouch(281),
+  ps5CenterPadSwipe(282),
+  ps5CenterPadClick(283),
+  ps5CenterPadDPadNorth(284),
+  ps5CenterPadDPadSouth(285),
+  ps5CenterPadDPadWest(286),
+  ps5CenterPadDPadEast(287),
+  ps5LeftTriggerPull(288),
+  ps5LeftTriggerClick(289),
+  ps5RightTriggerPull(290),
+  ps5RightTriggerClick(291),
+  ps5LeftStickMove(292),
+  ps5LeftStickClick(293),
+  ps5LeftStickDPadNorth(294),
+  ps5LeftStickDPadSouth(295),
+  ps5LeftStickDPadWest(296),
+  ps5LeftStickDPadEast(297),
+  ps5RightStickMove(298),
+  ps5RightStickClick(299),
+  ps5RightStickDPadNorth(300),
+  ps5RightStickDPadSouth(301),
+  ps5RightStickDPadWest(302),
+  ps5RightStickDPadEast(303),
+  ps5DPadNorth(304),
+  ps5DPadSouth(305),
+  ps5DPadWest(306),
+  ps5DPadEast(307),
+  ps5GyroMove(308),
+  ps5GyroPitch(309),
+  ps5GyroYaw(310),
+  ps5GyroRoll(311),
+  ps5DPadMove(312),
+  ps5Reserved1(313),
+  ps5Reserved2(314),
+  ps5Reserved3(315),
+  ps5Reserved4(316),
+  ps5Reserved5(317),
+  ps5Reserved6(318),
+  ps5Reserved7(319),
+  ps5Reserved8(320),
+  ps5Reserved9(321),
+  ps5Reserved10(322),
+  ps5Reserved11(323),
+  ps5Reserved12(324),
+  ps5Reserved13(325),
+  ps5Reserved14(326),
+  ps5Reserved15(327),
+  ps5Reserved16(328),
+  ps5Reserved17(329),
+  ps5Reserved18(330),
+  ps5Reserved19(331),
+  ps5Reserved20(332),
+  steamDeckA(333),
+  steamDeckB(334),
+  steamDeckX(335),
+  steamDeckY(336),
+  steamDeckL1(337),
+  steamDeckR1(338),
+  steamDeckMenu(339),
+  steamDeckView(340),
+  steamDeckLeftPadTouch(341),
+  steamDeckLeftPadSwipe(342),
+  steamDeckLeftPadClick(343),
+  steamDeckLeftPadDPadNorth(344),
+  steamDeckLeftPadDPadSouth(345),
+  steamDeckLeftPadDPadWest(346),
+  steamDeckLeftPadDPadEast(347),
+  steamDeckRightPadTouch(348),
+  steamDeckRightPadSwipe(349),
+  steamDeckRightPadClick(350),
+  steamDeckRightPadDPadNorth(351),
+  steamDeckRightPadDPadSouth(352),
+  steamDeckRightPadDPadWest(353),
+  steamDeckRightPadDPadEast(354),
+  steamDeckL2SoftPull(355),
+  steamDeckL2(356),
+  steamDeckR2SoftPull(357),
+  steamDeckR2(358),
+  steamDeckLeftStickMove(359),
+  steamDeckL3(360),
+  steamDeckLeftStickDPadNorth(361),
+  steamDeckLeftStickDPadSouth(362),
+  steamDeckLeftStickDPadWest(363),
+  steamDeckLeftStickDPadEast(364),
+  steamDeckLeftStickTouch(365),
+  steamDeckRightStickMove(366),
+  steamDeckR3(367),
+  steamDeckRightStickDPadNorth(368),
+  steamDeckRightStickDPadSouth(369),
+  steamDeckRightStickDPadWest(370),
+  steamDeckRightStickDPadEast(371),
+  steamDeckRightStickTouch(372),
+  steamDeckL4(373),
+  steamDeckR4(374),
+  steamDeckL5(375),
+  steamDeckR5(376),
+  steamDeckDPadMove(377),
+  steamDeckDPadNorth(378),
+  steamDeckDPadSouth(379),
+  steamDeckDPadWest(380),
+  steamDeckDPadEast(381),
+  steamDeckGyroMove(382),
+  steamDeckGyroPitch(383),
+  steamDeckGyroYaw(384),
+  steamDeckGyroRoll(385),
+  steamDeckReserved1(386),
+  steamDeckReserved2(387),
+  steamDeckReserved3(388),
+  steamDeckReserved4(389),
+  steamDeckReserved5(390),
+  steamDeckReserved6(391),
+  steamDeckReserved7(392),
+  steamDeckReserved8(393),
+  steamDeckReserved9(394),
+  steamDeckReserved10(395),
+  steamDeckReserved11(396),
+  steamDeckReserved12(397),
+  steamDeckReserved13(398),
+  steamDeckReserved14(399),
+  steamDeckReserved15(400),
+  steamDeckReserved16(401),
+  steamDeckReserved17(402),
+  steamDeckReserved18(403),
+  steamDeckReserved19(404),
+  steamDeckReserved20(405),
+  count(406),
+  maximumPossibleValue(32767),
+  ;
+
+  final int value;
+
+  const EInputActionOrigin(this.value);
+
+  factory EInputActionOrigin.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EInputActionOrigin.none;
+      case 1:
+        return EInputActionOrigin.steamControllerA;
+      case 2:
+        return EInputActionOrigin.steamControllerB;
+      case 3:
+        return EInputActionOrigin.steamControllerX;
+      case 4:
+        return EInputActionOrigin.steamControllerY;
+      case 5:
+        return EInputActionOrigin.steamControllerLeftBumper;
+      case 6:
+        return EInputActionOrigin.steamControllerRightBumper;
+      case 7:
+        return EInputActionOrigin.steamControllerLeftGrip;
+      case 8:
+        return EInputActionOrigin.steamControllerRightGrip;
+      case 9:
+        return EInputActionOrigin.steamControllerStart;
+      case 10:
+        return EInputActionOrigin.steamControllerBack;
+      case 11:
+        return EInputActionOrigin.steamControllerLeftPadTouch;
+      case 12:
+        return EInputActionOrigin.steamControllerLeftPadSwipe;
+      case 13:
+        return EInputActionOrigin.steamControllerLeftPadClick;
+      case 14:
+        return EInputActionOrigin.steamControllerLeftPadDPadNorth;
+      case 15:
+        return EInputActionOrigin.steamControllerLeftPadDPadSouth;
+      case 16:
+        return EInputActionOrigin.steamControllerLeftPadDPadWest;
+      case 17:
+        return EInputActionOrigin.steamControllerLeftPadDPadEast;
+      case 18:
+        return EInputActionOrigin.steamControllerRightPadTouch;
+      case 19:
+        return EInputActionOrigin.steamControllerRightPadSwipe;
+      case 20:
+        return EInputActionOrigin.steamControllerRightPadClick;
+      case 21:
+        return EInputActionOrigin.steamControllerRightPadDPadNorth;
+      case 22:
+        return EInputActionOrigin.steamControllerRightPadDPadSouth;
+      case 23:
+        return EInputActionOrigin.steamControllerRightPadDPadWest;
+      case 24:
+        return EInputActionOrigin.steamControllerRightPadDPadEast;
+      case 25:
+        return EInputActionOrigin.steamControllerLeftTriggerPull;
+      case 26:
+        return EInputActionOrigin.steamControllerLeftTriggerClick;
+      case 27:
+        return EInputActionOrigin.steamControllerRightTriggerPull;
+      case 28:
+        return EInputActionOrigin.steamControllerRightTriggerClick;
+      case 29:
+        return EInputActionOrigin.steamControllerLeftStickMove;
+      case 30:
+        return EInputActionOrigin.steamControllerLeftStickClick;
+      case 31:
+        return EInputActionOrigin.steamControllerLeftStickDPadNorth;
+      case 32:
+        return EInputActionOrigin.steamControllerLeftStickDPadSouth;
+      case 33:
+        return EInputActionOrigin.steamControllerLeftStickDPadWest;
+      case 34:
+        return EInputActionOrigin.steamControllerLeftStickDPadEast;
+      case 35:
+        return EInputActionOrigin.steamControllerGyroMove;
+      case 36:
+        return EInputActionOrigin.steamControllerGyroPitch;
+      case 37:
+        return EInputActionOrigin.steamControllerGyroYaw;
+      case 38:
+        return EInputActionOrigin.steamControllerGyroRoll;
+      case 39:
+        return EInputActionOrigin.steamControllerReserved0;
+      case 40:
+        return EInputActionOrigin.steamControllerReserved1;
+      case 41:
+        return EInputActionOrigin.steamControllerReserved2;
+      case 42:
+        return EInputActionOrigin.steamControllerReserved3;
+      case 43:
+        return EInputActionOrigin.steamControllerReserved4;
+      case 44:
+        return EInputActionOrigin.steamControllerReserved5;
+      case 45:
+        return EInputActionOrigin.steamControllerReserved6;
+      case 46:
+        return EInputActionOrigin.steamControllerReserved7;
+      case 47:
+        return EInputActionOrigin.steamControllerReserved8;
+      case 48:
+        return EInputActionOrigin.steamControllerReserved9;
+      case 49:
+        return EInputActionOrigin.steamControllerReserved10;
+      case 50:
+        return EInputActionOrigin.ps4X;
+      case 51:
+        return EInputActionOrigin.ps4Circle;
+      case 52:
+        return EInputActionOrigin.ps4Triangle;
+      case 53:
+        return EInputActionOrigin.ps4Square;
+      case 54:
+        return EInputActionOrigin.ps4LeftBumper;
+      case 55:
+        return EInputActionOrigin.ps4RightBumper;
+      case 56:
+        return EInputActionOrigin.ps4Options;
+      case 57:
+        return EInputActionOrigin.ps4Share;
+      case 58:
+        return EInputActionOrigin.ps4LeftPadTouch;
+      case 59:
+        return EInputActionOrigin.ps4LeftPadSwipe;
+      case 60:
+        return EInputActionOrigin.ps4LeftPadClick;
+      case 61:
+        return EInputActionOrigin.ps4LeftPadDPadNorth;
+      case 62:
+        return EInputActionOrigin.ps4LeftPadDPadSouth;
+      case 63:
+        return EInputActionOrigin.ps4LeftPadDPadWest;
+      case 64:
+        return EInputActionOrigin.ps4LeftPadDPadEast;
+      case 65:
+        return EInputActionOrigin.ps4RightPadTouch;
+      case 66:
+        return EInputActionOrigin.ps4RightPadSwipe;
+      case 67:
+        return EInputActionOrigin.ps4RightPadClick;
+      case 68:
+        return EInputActionOrigin.ps4RightPadDPadNorth;
+      case 69:
+        return EInputActionOrigin.ps4RightPadDPadSouth;
+      case 70:
+        return EInputActionOrigin.ps4RightPadDPadWest;
+      case 71:
+        return EInputActionOrigin.ps4RightPadDPadEast;
+      case 72:
+        return EInputActionOrigin.ps4CenterPadTouch;
+      case 73:
+        return EInputActionOrigin.ps4CenterPadSwipe;
+      case 74:
+        return EInputActionOrigin.ps4CenterPadClick;
+      case 75:
+        return EInputActionOrigin.ps4CenterPadDPadNorth;
+      case 76:
+        return EInputActionOrigin.ps4CenterPadDPadSouth;
+      case 77:
+        return EInputActionOrigin.ps4CenterPadDPadWest;
+      case 78:
+        return EInputActionOrigin.ps4CenterPadDPadEast;
+      case 79:
+        return EInputActionOrigin.ps4LeftTriggerPull;
+      case 80:
+        return EInputActionOrigin.ps4LeftTriggerClick;
+      case 81:
+        return EInputActionOrigin.ps4RightTriggerPull;
+      case 82:
+        return EInputActionOrigin.ps4RightTriggerClick;
+      case 83:
+        return EInputActionOrigin.ps4LeftStickMove;
+      case 84:
+        return EInputActionOrigin.ps4LeftStickClick;
+      case 85:
+        return EInputActionOrigin.ps4LeftStickDPadNorth;
+      case 86:
+        return EInputActionOrigin.ps4LeftStickDPadSouth;
+      case 87:
+        return EInputActionOrigin.ps4LeftStickDPadWest;
+      case 88:
+        return EInputActionOrigin.ps4LeftStickDPadEast;
+      case 89:
+        return EInputActionOrigin.ps4RightStickMove;
+      case 90:
+        return EInputActionOrigin.ps4RightStickClick;
+      case 91:
+        return EInputActionOrigin.ps4RightStickDPadNorth;
+      case 92:
+        return EInputActionOrigin.ps4RightStickDPadSouth;
+      case 93:
+        return EInputActionOrigin.ps4RightStickDPadWest;
+      case 94:
+        return EInputActionOrigin.ps4RightStickDPadEast;
+      case 95:
+        return EInputActionOrigin.ps4DPadNorth;
+      case 96:
+        return EInputActionOrigin.ps4DPadSouth;
+      case 97:
+        return EInputActionOrigin.ps4DPadWest;
+      case 98:
+        return EInputActionOrigin.ps4DPadEast;
+      case 99:
+        return EInputActionOrigin.ps4GyroMove;
+      case 100:
+        return EInputActionOrigin.ps4GyroPitch;
+      case 101:
+        return EInputActionOrigin.ps4GyroYaw;
+      case 102:
+        return EInputActionOrigin.ps4GyroRoll;
+      case 103:
+        return EInputActionOrigin.ps4DPadMove;
+      case 104:
+        return EInputActionOrigin.ps4Reserved1;
+      case 105:
+        return EInputActionOrigin.ps4Reserved2;
+      case 106:
+        return EInputActionOrigin.ps4Reserved3;
+      case 107:
+        return EInputActionOrigin.ps4Reserved4;
+      case 108:
+        return EInputActionOrigin.ps4Reserved5;
+      case 109:
+        return EInputActionOrigin.ps4Reserved6;
+      case 110:
+        return EInputActionOrigin.ps4Reserved7;
+      case 111:
+        return EInputActionOrigin.ps4Reserved8;
+      case 112:
+        return EInputActionOrigin.ps4Reserved9;
+      case 113:
+        return EInputActionOrigin.ps4Reserved10;
+      case 114:
+        return EInputActionOrigin.xBoxOneA;
+      case 115:
+        return EInputActionOrigin.xBoxOneB;
+      case 116:
+        return EInputActionOrigin.xBoxOneX;
+      case 117:
+        return EInputActionOrigin.xBoxOneY;
+      case 118:
+        return EInputActionOrigin.xBoxOneLeftBumper;
+      case 119:
+        return EInputActionOrigin.xBoxOneRightBumper;
+      case 120:
+        return EInputActionOrigin.xBoxOneMenu;
+      case 121:
+        return EInputActionOrigin.xBoxOneView;
+      case 122:
+        return EInputActionOrigin.xBoxOneLeftTriggerPull;
+      case 123:
+        return EInputActionOrigin.xBoxOneLeftTriggerClick;
+      case 124:
+        return EInputActionOrigin.xBoxOneRightTriggerPull;
+      case 125:
+        return EInputActionOrigin.xBoxOneRightTriggerClick;
+      case 126:
+        return EInputActionOrigin.xBoxOneLeftStickMove;
+      case 127:
+        return EInputActionOrigin.xBoxOneLeftStickClick;
+      case 128:
+        return EInputActionOrigin.xBoxOneLeftStickDPadNorth;
+      case 129:
+        return EInputActionOrigin.xBoxOneLeftStickDPadSouth;
+      case 130:
+        return EInputActionOrigin.xBoxOneLeftStickDPadWest;
+      case 131:
+        return EInputActionOrigin.xBoxOneLeftStickDPadEast;
+      case 132:
+        return EInputActionOrigin.xBoxOneRightStickMove;
+      case 133:
+        return EInputActionOrigin.xBoxOneRightStickClick;
+      case 134:
+        return EInputActionOrigin.xBoxOneRightStickDPadNorth;
+      case 135:
+        return EInputActionOrigin.xBoxOneRightStickDPadSouth;
+      case 136:
+        return EInputActionOrigin.xBoxOneRightStickDPadWest;
+      case 137:
+        return EInputActionOrigin.xBoxOneRightStickDPadEast;
+      case 138:
+        return EInputActionOrigin.xBoxOneDPadNorth;
+      case 139:
+        return EInputActionOrigin.xBoxOneDPadSouth;
+      case 140:
+        return EInputActionOrigin.xBoxOneDPadWest;
+      case 141:
+        return EInputActionOrigin.xBoxOneDPadEast;
+      case 142:
+        return EInputActionOrigin.xBoxOneDPadMove;
+      case 143:
+        return EInputActionOrigin.xBoxOneLeftGripLower;
+      case 144:
+        return EInputActionOrigin.xBoxOneLeftGripUpper;
+      case 145:
+        return EInputActionOrigin.xBoxOneRightGripLower;
+      case 146:
+        return EInputActionOrigin.xBoxOneRightGripUpper;
+      case 147:
+        return EInputActionOrigin.xBoxOneShare;
+      case 148:
+        return EInputActionOrigin.xBoxOneReserved6;
+      case 149:
+        return EInputActionOrigin.xBoxOneReserved7;
+      case 150:
+        return EInputActionOrigin.xBoxOneReserved8;
+      case 151:
+        return EInputActionOrigin.xBoxOneReserved9;
+      case 152:
+        return EInputActionOrigin.xBoxOneReserved10;
+      case 153:
+        return EInputActionOrigin.xBox360A;
+      case 154:
+        return EInputActionOrigin.xBox360B;
+      case 155:
+        return EInputActionOrigin.xBox360X;
+      case 156:
+        return EInputActionOrigin.xBox360Y;
+      case 157:
+        return EInputActionOrigin.xBox360LeftBumper;
+      case 158:
+        return EInputActionOrigin.xBox360RightBumper;
+      case 159:
+        return EInputActionOrigin.xBox360Start;
+      case 160:
+        return EInputActionOrigin.xBox360Back;
+      case 161:
+        return EInputActionOrigin.xBox360LeftTriggerPull;
+      case 162:
+        return EInputActionOrigin.xBox360LeftTriggerClick;
+      case 163:
+        return EInputActionOrigin.xBox360RightTriggerPull;
+      case 164:
+        return EInputActionOrigin.xBox360RightTriggerClick;
+      case 165:
+        return EInputActionOrigin.xBox360LeftStickMove;
+      case 166:
+        return EInputActionOrigin.xBox360LeftStickClick;
+      case 167:
+        return EInputActionOrigin.xBox360LeftStickDPadNorth;
+      case 168:
+        return EInputActionOrigin.xBox360LeftStickDPadSouth;
+      case 169:
+        return EInputActionOrigin.xBox360LeftStickDPadWest;
+      case 170:
+        return EInputActionOrigin.xBox360LeftStickDPadEast;
+      case 171:
+        return EInputActionOrigin.xBox360RightStickMove;
+      case 172:
+        return EInputActionOrigin.xBox360RightStickClick;
+      case 173:
+        return EInputActionOrigin.xBox360RightStickDPadNorth;
+      case 174:
+        return EInputActionOrigin.xBox360RightStickDPadSouth;
+      case 175:
+        return EInputActionOrigin.xBox360RightStickDPadWest;
+      case 176:
+        return EInputActionOrigin.xBox360RightStickDPadEast;
+      case 177:
+        return EInputActionOrigin.xBox360DPadNorth;
+      case 178:
+        return EInputActionOrigin.xBox360DPadSouth;
+      case 179:
+        return EInputActionOrigin.xBox360DPadWest;
+      case 180:
+        return EInputActionOrigin.xBox360DPadEast;
+      case 181:
+        return EInputActionOrigin.xBox360DPadMove;
+      case 182:
+        return EInputActionOrigin.xBox360Reserved1;
+      case 183:
+        return EInputActionOrigin.xBox360Reserved2;
+      case 184:
+        return EInputActionOrigin.xBox360Reserved3;
+      case 185:
+        return EInputActionOrigin.xBox360Reserved4;
+      case 186:
+        return EInputActionOrigin.xBox360Reserved5;
+      case 187:
+        return EInputActionOrigin.xBox360Reserved6;
+      case 188:
+        return EInputActionOrigin.xBox360Reserved7;
+      case 189:
+        return EInputActionOrigin.xBox360Reserved8;
+      case 190:
+        return EInputActionOrigin.xBox360Reserved9;
+      case 191:
+        return EInputActionOrigin.xBox360Reserved10;
+      case 192:
+        return EInputActionOrigin.switchA;
+      case 193:
+        return EInputActionOrigin.switchB;
+      case 194:
+        return EInputActionOrigin.switchX;
+      case 195:
+        return EInputActionOrigin.switchY;
+      case 196:
+        return EInputActionOrigin.switchLeftBumper;
+      case 197:
+        return EInputActionOrigin.switchRightBumper;
+      case 198:
+        return EInputActionOrigin.switchPlus;
+      case 199:
+        return EInputActionOrigin.switchMinus;
+      case 200:
+        return EInputActionOrigin.switchCapture;
+      case 201:
+        return EInputActionOrigin.switchLeftTriggerPull;
+      case 202:
+        return EInputActionOrigin.switchLeftTriggerClick;
+      case 203:
+        return EInputActionOrigin.switchRightTriggerPull;
+      case 204:
+        return EInputActionOrigin.switchRightTriggerClick;
+      case 205:
+        return EInputActionOrigin.switchLeftStickMove;
+      case 206:
+        return EInputActionOrigin.switchLeftStickClick;
+      case 207:
+        return EInputActionOrigin.switchLeftStickDPadNorth;
+      case 208:
+        return EInputActionOrigin.switchLeftStickDPadSouth;
+      case 209:
+        return EInputActionOrigin.switchLeftStickDPadWest;
+      case 210:
+        return EInputActionOrigin.switchLeftStickDPadEast;
+      case 211:
+        return EInputActionOrigin.switchRightStickMove;
+      case 212:
+        return EInputActionOrigin.switchRightStickClick;
+      case 213:
+        return EInputActionOrigin.switchRightStickDPadNorth;
+      case 214:
+        return EInputActionOrigin.switchRightStickDPadSouth;
+      case 215:
+        return EInputActionOrigin.switchRightStickDPadWest;
+      case 216:
+        return EInputActionOrigin.switchRightStickDPadEast;
+      case 217:
+        return EInputActionOrigin.switchDPadNorth;
+      case 218:
+        return EInputActionOrigin.switchDPadSouth;
+      case 219:
+        return EInputActionOrigin.switchDPadWest;
+      case 220:
+        return EInputActionOrigin.switchDPadEast;
+      case 221:
+        return EInputActionOrigin.switchProGyroMove;
+      case 222:
+        return EInputActionOrigin.switchProGyroPitch;
+      case 223:
+        return EInputActionOrigin.switchProGyroYaw;
+      case 224:
+        return EInputActionOrigin.switchProGyroRoll;
+      case 225:
+        return EInputActionOrigin.switchDPadMove;
+      case 226:
+        return EInputActionOrigin.switchReserved1;
+      case 227:
+        return EInputActionOrigin.switchReserved2;
+      case 228:
+        return EInputActionOrigin.switchReserved3;
+      case 229:
+        return EInputActionOrigin.switchReserved4;
+      case 230:
+        return EInputActionOrigin.switchReserved5;
+      case 231:
+        return EInputActionOrigin.switchReserved6;
+      case 232:
+        return EInputActionOrigin.switchReserved7;
+      case 233:
+        return EInputActionOrigin.switchReserved8;
+      case 234:
+        return EInputActionOrigin.switchReserved9;
+      case 235:
+        return EInputActionOrigin.switchReserved10;
+      case 236:
+        return EInputActionOrigin.switchRightGyroMove;
+      case 237:
+        return EInputActionOrigin.switchRightGyroPitch;
+      case 238:
+        return EInputActionOrigin.switchRightGyroYaw;
+      case 239:
+        return EInputActionOrigin.switchRightGyroRoll;
+      case 240:
+        return EInputActionOrigin.switchLeftGyroMove;
+      case 241:
+        return EInputActionOrigin.switchLeftGyroPitch;
+      case 242:
+        return EInputActionOrigin.switchLeftGyroYaw;
+      case 243:
+        return EInputActionOrigin.switchLeftGyroRoll;
+      case 244:
+        return EInputActionOrigin.switchLeftGripLower;
+      case 245:
+        return EInputActionOrigin.switchLeftGripUpper;
+      case 246:
+        return EInputActionOrigin.switchRightGripLower;
+      case 247:
+        return EInputActionOrigin.switchRightGripUpper;
+      case 248:
+        return EInputActionOrigin.switchReserved11;
+      case 249:
+        return EInputActionOrigin.switchReserved12;
+      case 250:
+        return EInputActionOrigin.switchReserved13;
+      case 251:
+        return EInputActionOrigin.switchReserved14;
+      case 252:
+        return EInputActionOrigin.switchReserved15;
+      case 253:
+        return EInputActionOrigin.switchReserved16;
+      case 254:
+        return EInputActionOrigin.switchReserved17;
+      case 255:
+        return EInputActionOrigin.switchReserved18;
+      case 256:
+        return EInputActionOrigin.switchReserved19;
+      case 257:
+        return EInputActionOrigin.switchReserved20;
+      case 258:
+        return EInputActionOrigin.ps5X;
+      case 259:
+        return EInputActionOrigin.ps5Circle;
+      case 260:
+        return EInputActionOrigin.ps5Triangle;
+      case 261:
+        return EInputActionOrigin.ps5Square;
+      case 262:
+        return EInputActionOrigin.ps5LeftBumper;
+      case 263:
+        return EInputActionOrigin.ps5RightBumper;
+      case 264:
+        return EInputActionOrigin.ps5Option;
+      case 265:
+        return EInputActionOrigin.ps5Create;
+      case 266:
+        return EInputActionOrigin.ps5Mute;
+      case 267:
+        return EInputActionOrigin.ps5LeftPadTouch;
+      case 268:
+        return EInputActionOrigin.ps5LeftPadSwipe;
+      case 269:
+        return EInputActionOrigin.ps5LeftPadClick;
+      case 270:
+        return EInputActionOrigin.ps5LeftPadDPadNorth;
+      case 271:
+        return EInputActionOrigin.ps5LeftPadDPadSouth;
+      case 272:
+        return EInputActionOrigin.ps5LeftPadDPadWest;
+      case 273:
+        return EInputActionOrigin.ps5LeftPadDPadEast;
+      case 274:
+        return EInputActionOrigin.ps5RightPadTouch;
+      case 275:
+        return EInputActionOrigin.ps5RightPadSwipe;
+      case 276:
+        return EInputActionOrigin.ps5RightPadClick;
+      case 277:
+        return EInputActionOrigin.ps5RightPadDPadNorth;
+      case 278:
+        return EInputActionOrigin.ps5RightPadDPadSouth;
+      case 279:
+        return EInputActionOrigin.ps5RightPadDPadWest;
+      case 280:
+        return EInputActionOrigin.ps5RightPadDPadEast;
+      case 281:
+        return EInputActionOrigin.ps5CenterPadTouch;
+      case 282:
+        return EInputActionOrigin.ps5CenterPadSwipe;
+      case 283:
+        return EInputActionOrigin.ps5CenterPadClick;
+      case 284:
+        return EInputActionOrigin.ps5CenterPadDPadNorth;
+      case 285:
+        return EInputActionOrigin.ps5CenterPadDPadSouth;
+      case 286:
+        return EInputActionOrigin.ps5CenterPadDPadWest;
+      case 287:
+        return EInputActionOrigin.ps5CenterPadDPadEast;
+      case 288:
+        return EInputActionOrigin.ps5LeftTriggerPull;
+      case 289:
+        return EInputActionOrigin.ps5LeftTriggerClick;
+      case 290:
+        return EInputActionOrigin.ps5RightTriggerPull;
+      case 291:
+        return EInputActionOrigin.ps5RightTriggerClick;
+      case 292:
+        return EInputActionOrigin.ps5LeftStickMove;
+      case 293:
+        return EInputActionOrigin.ps5LeftStickClick;
+      case 294:
+        return EInputActionOrigin.ps5LeftStickDPadNorth;
+      case 295:
+        return EInputActionOrigin.ps5LeftStickDPadSouth;
+      case 296:
+        return EInputActionOrigin.ps5LeftStickDPadWest;
+      case 297:
+        return EInputActionOrigin.ps5LeftStickDPadEast;
+      case 298:
+        return EInputActionOrigin.ps5RightStickMove;
+      case 299:
+        return EInputActionOrigin.ps5RightStickClick;
+      case 300:
+        return EInputActionOrigin.ps5RightStickDPadNorth;
+      case 301:
+        return EInputActionOrigin.ps5RightStickDPadSouth;
+      case 302:
+        return EInputActionOrigin.ps5RightStickDPadWest;
+      case 303:
+        return EInputActionOrigin.ps5RightStickDPadEast;
+      case 304:
+        return EInputActionOrigin.ps5DPadNorth;
+      case 305:
+        return EInputActionOrigin.ps5DPadSouth;
+      case 306:
+        return EInputActionOrigin.ps5DPadWest;
+      case 307:
+        return EInputActionOrigin.ps5DPadEast;
+      case 308:
+        return EInputActionOrigin.ps5GyroMove;
+      case 309:
+        return EInputActionOrigin.ps5GyroPitch;
+      case 310:
+        return EInputActionOrigin.ps5GyroYaw;
+      case 311:
+        return EInputActionOrigin.ps5GyroRoll;
+      case 312:
+        return EInputActionOrigin.ps5DPadMove;
+      case 313:
+        return EInputActionOrigin.ps5Reserved1;
+      case 314:
+        return EInputActionOrigin.ps5Reserved2;
+      case 315:
+        return EInputActionOrigin.ps5Reserved3;
+      case 316:
+        return EInputActionOrigin.ps5Reserved4;
+      case 317:
+        return EInputActionOrigin.ps5Reserved5;
+      case 318:
+        return EInputActionOrigin.ps5Reserved6;
+      case 319:
+        return EInputActionOrigin.ps5Reserved7;
+      case 320:
+        return EInputActionOrigin.ps5Reserved8;
+      case 321:
+        return EInputActionOrigin.ps5Reserved9;
+      case 322:
+        return EInputActionOrigin.ps5Reserved10;
+      case 323:
+        return EInputActionOrigin.ps5Reserved11;
+      case 324:
+        return EInputActionOrigin.ps5Reserved12;
+      case 325:
+        return EInputActionOrigin.ps5Reserved13;
+      case 326:
+        return EInputActionOrigin.ps5Reserved14;
+      case 327:
+        return EInputActionOrigin.ps5Reserved15;
+      case 328:
+        return EInputActionOrigin.ps5Reserved16;
+      case 329:
+        return EInputActionOrigin.ps5Reserved17;
+      case 330:
+        return EInputActionOrigin.ps5Reserved18;
+      case 331:
+        return EInputActionOrigin.ps5Reserved19;
+      case 332:
+        return EInputActionOrigin.ps5Reserved20;
+      case 333:
+        return EInputActionOrigin.steamDeckA;
+      case 334:
+        return EInputActionOrigin.steamDeckB;
+      case 335:
+        return EInputActionOrigin.steamDeckX;
+      case 336:
+        return EInputActionOrigin.steamDeckY;
+      case 337:
+        return EInputActionOrigin.steamDeckL1;
+      case 338:
+        return EInputActionOrigin.steamDeckR1;
+      case 339:
+        return EInputActionOrigin.steamDeckMenu;
+      case 340:
+        return EInputActionOrigin.steamDeckView;
+      case 341:
+        return EInputActionOrigin.steamDeckLeftPadTouch;
+      case 342:
+        return EInputActionOrigin.steamDeckLeftPadSwipe;
+      case 343:
+        return EInputActionOrigin.steamDeckLeftPadClick;
+      case 344:
+        return EInputActionOrigin.steamDeckLeftPadDPadNorth;
+      case 345:
+        return EInputActionOrigin.steamDeckLeftPadDPadSouth;
+      case 346:
+        return EInputActionOrigin.steamDeckLeftPadDPadWest;
+      case 347:
+        return EInputActionOrigin.steamDeckLeftPadDPadEast;
+      case 348:
+        return EInputActionOrigin.steamDeckRightPadTouch;
+      case 349:
+        return EInputActionOrigin.steamDeckRightPadSwipe;
+      case 350:
+        return EInputActionOrigin.steamDeckRightPadClick;
+      case 351:
+        return EInputActionOrigin.steamDeckRightPadDPadNorth;
+      case 352:
+        return EInputActionOrigin.steamDeckRightPadDPadSouth;
+      case 353:
+        return EInputActionOrigin.steamDeckRightPadDPadWest;
+      case 354:
+        return EInputActionOrigin.steamDeckRightPadDPadEast;
+      case 355:
+        return EInputActionOrigin.steamDeckL2SoftPull;
+      case 356:
+        return EInputActionOrigin.steamDeckL2;
+      case 357:
+        return EInputActionOrigin.steamDeckR2SoftPull;
+      case 358:
+        return EInputActionOrigin.steamDeckR2;
+      case 359:
+        return EInputActionOrigin.steamDeckLeftStickMove;
+      case 360:
+        return EInputActionOrigin.steamDeckL3;
+      case 361:
+        return EInputActionOrigin.steamDeckLeftStickDPadNorth;
+      case 362:
+        return EInputActionOrigin.steamDeckLeftStickDPadSouth;
+      case 363:
+        return EInputActionOrigin.steamDeckLeftStickDPadWest;
+      case 364:
+        return EInputActionOrigin.steamDeckLeftStickDPadEast;
+      case 365:
+        return EInputActionOrigin.steamDeckLeftStickTouch;
+      case 366:
+        return EInputActionOrigin.steamDeckRightStickMove;
+      case 367:
+        return EInputActionOrigin.steamDeckR3;
+      case 368:
+        return EInputActionOrigin.steamDeckRightStickDPadNorth;
+      case 369:
+        return EInputActionOrigin.steamDeckRightStickDPadSouth;
+      case 370:
+        return EInputActionOrigin.steamDeckRightStickDPadWest;
+      case 371:
+        return EInputActionOrigin.steamDeckRightStickDPadEast;
+      case 372:
+        return EInputActionOrigin.steamDeckRightStickTouch;
+      case 373:
+        return EInputActionOrigin.steamDeckL4;
+      case 374:
+        return EInputActionOrigin.steamDeckR4;
+      case 375:
+        return EInputActionOrigin.steamDeckL5;
+      case 376:
+        return EInputActionOrigin.steamDeckR5;
+      case 377:
+        return EInputActionOrigin.steamDeckDPadMove;
+      case 378:
+        return EInputActionOrigin.steamDeckDPadNorth;
+      case 379:
+        return EInputActionOrigin.steamDeckDPadSouth;
+      case 380:
+        return EInputActionOrigin.steamDeckDPadWest;
+      case 381:
+        return EInputActionOrigin.steamDeckDPadEast;
+      case 382:
+        return EInputActionOrigin.steamDeckGyroMove;
+      case 383:
+        return EInputActionOrigin.steamDeckGyroPitch;
+      case 384:
+        return EInputActionOrigin.steamDeckGyroYaw;
+      case 385:
+        return EInputActionOrigin.steamDeckGyroRoll;
+      case 386:
+        return EInputActionOrigin.steamDeckReserved1;
+      case 387:
+        return EInputActionOrigin.steamDeckReserved2;
+      case 388:
+        return EInputActionOrigin.steamDeckReserved3;
+      case 389:
+        return EInputActionOrigin.steamDeckReserved4;
+      case 390:
+        return EInputActionOrigin.steamDeckReserved5;
+      case 391:
+        return EInputActionOrigin.steamDeckReserved6;
+      case 392:
+        return EInputActionOrigin.steamDeckReserved7;
+      case 393:
+        return EInputActionOrigin.steamDeckReserved8;
+      case 394:
+        return EInputActionOrigin.steamDeckReserved9;
+      case 395:
+        return EInputActionOrigin.steamDeckReserved10;
+      case 396:
+        return EInputActionOrigin.steamDeckReserved11;
+      case 397:
+        return EInputActionOrigin.steamDeckReserved12;
+      case 398:
+        return EInputActionOrigin.steamDeckReserved13;
+      case 399:
+        return EInputActionOrigin.steamDeckReserved14;
+      case 400:
+        return EInputActionOrigin.steamDeckReserved15;
+      case 401:
+        return EInputActionOrigin.steamDeckReserved16;
+      case 402:
+        return EInputActionOrigin.steamDeckReserved17;
+      case 403:
+        return EInputActionOrigin.steamDeckReserved18;
+      case 404:
+        return EInputActionOrigin.steamDeckReserved19;
+      case 405:
+        return EInputActionOrigin.steamDeckReserved20;
+      case 406:
+        return EInputActionOrigin.count;
+      case 32767:
+        return EInputActionOrigin.maximumPossibleValue;
+      default:
+        throw "Unknown value for 'EInputActionOrigin'. The value was: '$value'";
+    }
+  }
 }

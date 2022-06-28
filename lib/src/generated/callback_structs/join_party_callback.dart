@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -11,7 +11,7 @@ class JoinPartyCallback extends Struct {
   static int get callbackId => 5301;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external PartyBeaconId beaconId;
@@ -23,7 +23,7 @@ class JoinPartyCallback extends Struct {
 }
 
 extension JoinPartyCallbackExtensions on Pointer<JoinPartyCallback> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   PartyBeaconId get beaconId => ref.beaconId;
 

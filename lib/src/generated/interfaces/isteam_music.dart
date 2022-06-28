@@ -28,10 +28,10 @@ final _isPlaying = dl.lookupFunction<
 )>("SteamAPI_ISteamMusic_BIsPlaying");
 
 final _getPlaybackStatus = dl.lookupFunction<
-    Int32 Function(
+    AudioPlaybackStatusAliasC Function(
   Pointer<ISteamMusic>,
 ),
-    AudioPlaybackStatus Function(
+    AudioPlaybackStatusAliasDart Function(
   Pointer<ISteamMusic>,
 )>("SteamAPI_ISteamMusic_GetPlaybackStatus");
 
@@ -94,8 +94,10 @@ extension ISteamMusicExtensions on Pointer<ISteamMusic> {
         this,
       );
 
-  AudioPlaybackStatus getPlaybackStatus() => _getPlaybackStatus.call(
-        this,
+  AudioPlaybackStatus getPlaybackStatus() => AudioPlaybackStatus.fromValue(
+        _getPlaybackStatus.call(
+          this,
+        ),
       );
 
   void play() => _play.call(

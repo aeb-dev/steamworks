@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 import "../structs/steam_networking_identity.dart";
@@ -12,7 +10,7 @@ class SteamNetworkingFakeIpResult extends Struct {
 
   static int get maxReturnPorts => 8;
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   external SteamNetworkingIdentity identity;
 
@@ -25,7 +23,7 @@ class SteamNetworkingFakeIpResult extends Struct {
 
 extension SteamNetworkingFakeIpResultExtensions
     on Pointer<SteamNetworkingFakeIpResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   SteamNetworkingIdentity get identity => ref.identity;
 

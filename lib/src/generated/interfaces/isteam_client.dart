@@ -66,13 +66,13 @@ final _connectToGlobalUser = dl.lookupFunction<
 final _createLocalUser = dl.lookupFunction<
     Int Function(
   Pointer<ISteamClient>,
-  Pointer<Int32>,
-  Int32,
+  Pointer<Int>,
+  EAccountTypeAliasC,
 ),
     HSteamUser Function(
   Pointer<ISteamClient>,
-  Pointer<Int32>,
-  EAccountType,
+  Pointer<Int>,
+  EAccountTypeAliasDart,
 )>("SteamAPI_ISteamClient_CreateLocalUser");
 
 final _releaseUser = dl.lookupFunction<
@@ -499,13 +499,13 @@ extension ISteamClientExtensions on Pointer<ISteamClient> {
       );
 
   HSteamUser createLocalUser(
-    Pointer<Int32> phSteamPipe,
+    Pointer<Int> phSteamPipe,
     EAccountType accountType,
   ) =>
       _createLocalUser.call(
         this,
         phSteamPipe,
-        accountType,
+        accountType.value,
       );
 
   void releaseUser(

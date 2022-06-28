@@ -1,7 +1,26 @@
 // ignore_for_file: public_member_api_docs
-typedef ESteamInputActionEventType = int;
+import "dart:ffi";
 
-class ESteamInputActionEventTypeEnum {
-  static const int digitalAction = 0;
-  static const int analogAction = 1;
+typedef ESteamInputActionEventTypeAliasDart = int;
+typedef ESteamInputActionEventTypeAliasC = Int32;
+
+enum ESteamInputActionEventType {
+  digitalAction(0),
+  analogAction(1),
+  ;
+
+  final int value;
+
+  const ESteamInputActionEventType(this.value);
+
+  factory ESteamInputActionEventType.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return ESteamInputActionEventType.digitalAction;
+      case 1:
+        return ESteamInputActionEventType.analogAction;
+      default:
+        throw "Unknown value for 'ESteamInputActionEventType'. The value was: '$value'";
+    }
+  }
 }

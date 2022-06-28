@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 import "../typedefs.dart";
@@ -14,7 +12,7 @@ class UserFavoriteItemsListChanged extends Struct {
   external PublishedFileId publishedFileId;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @Bool()
   external bool wasAddRequest;
@@ -24,7 +22,7 @@ extension UserFavoriteItemsListChangedExtensions
     on Pointer<UserFavoriteItemsListChanged> {
   PublishedFileId get publishedFileId => ref.publishedFileId;
 
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   bool get wasAddRequest => ref.wasAddRequest;
 }

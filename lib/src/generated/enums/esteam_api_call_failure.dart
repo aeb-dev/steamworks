@@ -1,10 +1,35 @@
 // ignore_for_file: public_member_api_docs
-typedef ESteamApiCallFailure = int;
+import "dart:ffi";
 
-class ESteamApiCallFailureEnum {
-  static const int none = -1;
-  static const int steamGone = 0;
-  static const int networkFailure = 1;
-  static const int invalidHandle = 2;
-  static const int mismatchedCallback = 3;
+typedef ESteamApiCallFailureAliasDart = int;
+typedef ESteamApiCallFailureAliasC = Int32;
+
+enum ESteamApiCallFailure {
+  none(-1),
+  steamGone(0),
+  networkFailure(1),
+  invalidHandle(2),
+  mismatchedCallback(3),
+  ;
+
+  final int value;
+
+  const ESteamApiCallFailure(this.value);
+
+  factory ESteamApiCallFailure.fromValue(int value) {
+    switch (value) {
+      case -1:
+        return ESteamApiCallFailure.none;
+      case 0:
+        return ESteamApiCallFailure.steamGone;
+      case 1:
+        return ESteamApiCallFailure.networkFailure;
+      case 2:
+        return ESteamApiCallFailure.invalidHandle;
+      case 3:
+        return ESteamApiCallFailure.mismatchedCallback;
+      default:
+        throw "Unknown value for 'ESteamApiCallFailure'. The value was: '$value'";
+    }
+  }
 }

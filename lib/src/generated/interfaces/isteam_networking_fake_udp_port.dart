@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../dl.dart";
 import "../enums/eresult.dart";
 import "../structs/steam_networking_ip_addr.dart";
@@ -19,14 +17,14 @@ final _destroyFakeUdpPort = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworkingFakeUDPPort_DestroyFakeUDPPort");
 
 final _sendMessageToFakeIp = dl.lookupFunction<
-    Int32 Function(
+    EResultAliasC Function(
   Pointer<ISteamNetworkingFakeUdpPort>,
   Pointer<SteamNetworkingIpAddr>,
   Pointer<Void>,
   UnsignedInt,
   Int,
 ),
-    EResult Function(
+    EResultAliasDart Function(
   Pointer<ISteamNetworkingFakeUdpPort>,
   Pointer<SteamNetworkingIpAddr>,
   Pointer<Void>,
@@ -68,12 +66,14 @@ extension ISteamNetworkingFakeUdpPortExtensions
     int cbData,
     int nSendFlags,
   ) =>
-      _sendMessageToFakeIp.call(
-        this,
-        remoteAddress,
-        pData,
-        cbData,
-        nSendFlags,
+      EResult.fromValue(
+        _sendMessageToFakeIp.call(
+          this,
+          remoteAddress,
+          pData,
+          cbData,
+          nSendFlags,
+        ),
       );
 
   int receiveMessages(

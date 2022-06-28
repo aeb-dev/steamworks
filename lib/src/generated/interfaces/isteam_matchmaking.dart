@@ -4,6 +4,7 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 
 import "../dl.dart";
+import "../enums/echat_entry_type.dart";
 import "../enums/elobby_comparison.dart";
 import "../enums/elobby_distance_filter.dart";
 import "../enums/elobby_type.dart";
@@ -98,13 +99,13 @@ final _addRequestLobbyListStringFilter = dl.lookupFunction<
   Pointer<ISteamMatchmaking>,
   Pointer<Utf8>,
   Pointer<Utf8>,
-  Int32,
+  ELobbyComparisonAliasC,
 ),
     void Function(
   Pointer<ISteamMatchmaking>,
   Pointer<Utf8>,
   Pointer<Utf8>,
-  ELobbyComparison,
+  ELobbyComparisonAliasDart,
 )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListStringFilter");
 
 final _addRequestLobbyListNumericalFilter = dl.lookupFunction<
@@ -112,13 +113,13 @@ final _addRequestLobbyListNumericalFilter = dl.lookupFunction<
   Pointer<ISteamMatchmaking>,
   Pointer<Utf8>,
   Int,
-  Int32,
+  ELobbyComparisonAliasC,
 ),
     void Function(
   Pointer<ISteamMatchmaking>,
   Pointer<Utf8>,
   int,
-  ELobbyComparison,
+  ELobbyComparisonAliasDart,
 )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListNumericalFilter");
 
 final _addRequestLobbyListNearValueFilter = dl.lookupFunction<
@@ -146,11 +147,11 @@ final _addRequestLobbyListFilterSlotsAvailable = dl.lookupFunction<
 final _addRequestLobbyListDistanceFilter = dl.lookupFunction<
     Void Function(
   Pointer<ISteamMatchmaking>,
-  Int32,
+  ELobbyDistanceFilterAliasC,
 ),
     void Function(
   Pointer<ISteamMatchmaking>,
-  ELobbyDistanceFilter,
+  ELobbyDistanceFilterAliasDart,
 )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListDistanceFilter");
 
 final _addRequestLobbyListResultCountFilter = dl.lookupFunction<
@@ -186,12 +187,12 @@ final _getLobbyByIndex = dl.lookupFunction<
 final _createLobby = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamMatchmaking>,
-  Int32,
+  ELobbyTypeAliasC,
   Int,
 ),
     SteamApiCall Function(
   Pointer<ISteamMatchmaking>,
-  ELobbyType,
+  ELobbyTypeAliasDart,
   int,
 )>("SteamAPI_ISteamMatchmaking_CreateLobby");
 
@@ -367,7 +368,7 @@ final _getLobbyChatEntry = dl.lookupFunction<
   Pointer<UnsignedLongLong>,
   Pointer<Void>,
   Int,
-  Pointer<Int32>,
+  Pointer<EChatEntryTypeAliasC>,
 ),
     int Function(
   Pointer<ISteamMatchmaking>,
@@ -376,7 +377,7 @@ final _getLobbyChatEntry = dl.lookupFunction<
   Pointer<UnsignedLongLong>,
   Pointer<Void>,
   int,
-  Pointer<Int32>,
+  Pointer<EChatEntryTypeAliasC>,
 )>("SteamAPI_ISteamMatchmaking_GetLobbyChatEntry");
 
 final _requestLobbyData = dl.lookupFunction<
@@ -447,12 +448,12 @@ final _setLobbyType = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamMatchmaking>,
   UnsignedLongLong,
-  Int32,
+  ELobbyTypeAliasC,
 ),
     bool Function(
   Pointer<ISteamMatchmaking>,
   CSteamId,
-  ELobbyType,
+  ELobbyTypeAliasDart,
 )>("SteamAPI_ISteamMatchmaking_SetLobbyType");
 
 final _setLobbyJoinable = dl.lookupFunction<
@@ -512,7 +513,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
     Pointer<UnsignedInt> pnIp,
     Pointer<UnsignedShort> pnConnPort,
     Pointer<UnsignedShort> pnQueryPort,
-    Pointer<UnsignedInt> punFlags,
+    Pointer<UnsignedInt> flags,
     Pointer<UnsignedInt> pRTime32LastPlayedOnServer,
   ) =>
       _getFavoriteGame.call(
@@ -522,7 +523,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
         pnIp,
         pnConnPort,
         pnQueryPort,
-        punFlags,
+        flags,
         pRTime32LastPlayedOnServer,
       );
 
@@ -573,7 +574,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
         this,
         keyToMatch,
         valueToMatch,
-        comparisonType,
+        comparisonType.value,
       );
 
   void addRequestLobbyListNumericalFilter(
@@ -585,7 +586,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
         this,
         keyToMatch,
         nValueToMatch,
-        comparisonType,
+        comparisonType.value,
       );
 
   void addRequestLobbyListNearValueFilter(
@@ -611,7 +612,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
   ) =>
       _addRequestLobbyListDistanceFilter.call(
         this,
-        lobbyDistanceFilter,
+        lobbyDistanceFilter.value,
       );
 
   void addRequestLobbyListResultCountFilter(
@@ -644,7 +645,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
   ) =>
       _createLobby.call(
         this,
-        lobbyType,
+        lobbyType.value,
         cMaxMembers,
       );
 
@@ -792,7 +793,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
     Pointer<UnsignedLongLong> pSteamIdUser,
     Pointer<Void> pvData,
     int cubData,
-    Pointer<Int32> peChatEntryType,
+    Pointer<EChatEntryTypeAliasC> peChatEntryType,
   ) =>
       _getLobbyChatEntry.call(
         this,
@@ -828,15 +829,15 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
 
   bool getLobbyGameServer(
     CSteamId steamIdLobby,
-    Pointer<UnsignedInt> punGameServerIp,
-    Pointer<UnsignedShort> punGameServerPort,
+    Pointer<UnsignedInt> gameServerIp,
+    Pointer<UnsignedShort> gameServerPort,
     Pointer<UnsignedLongLong> psteamIdGameServer,
   ) =>
       _getLobbyGameServer.call(
         this,
         steamIdLobby,
-        punGameServerIp,
-        punGameServerPort,
+        gameServerIp,
+        gameServerPort,
         psteamIdGameServer,
       );
 
@@ -865,7 +866,7 @@ extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
       _setLobbyType.call(
         this,
         steamIdLobby,
-        lobbyType,
+        lobbyType.value,
       );
 
   bool setLobbyJoinable(

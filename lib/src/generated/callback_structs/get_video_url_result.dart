@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -11,7 +11,7 @@ class GetVideoUrlResult extends Struct {
   static int get callbackId => 4611;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedInt()
   external AppId videoAppId;
@@ -20,7 +20,7 @@ class GetVideoUrlResult extends Struct {
 }
 
 extension GetVideoUrlResultExtensions on Pointer<GetVideoUrlResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   AppId get videoAppId => ref.videoAppId;
 

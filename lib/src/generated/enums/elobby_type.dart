@@ -1,10 +1,35 @@
 // ignore_for_file: public_member_api_docs
-typedef ELobbyType = int;
+import "dart:ffi";
 
-class ELobbyTypeEnum {
-  static const int private = 0;
-  static const int friendsOnly = 1;
-  static const int public = 2;
-  static const int invisible = 3;
-  static const int privateUnique = 4;
+typedef ELobbyTypeAliasDart = int;
+typedef ELobbyTypeAliasC = Int32;
+
+enum ELobbyType {
+  private(0),
+  friendsOnly(1),
+  public(2),
+  invisible(3),
+  privateUnique(4),
+  ;
+
+  final int value;
+
+  const ELobbyType(this.value);
+
+  factory ELobbyType.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return ELobbyType.private;
+      case 1:
+        return ELobbyType.friendsOnly;
+      case 2:
+        return ELobbyType.public;
+      case 3:
+        return ELobbyType.invisible;
+      case 4:
+        return ELobbyType.privateUnique;
+      default:
+        throw "Unknown value for 'ELobbyType'. The value was: '$value'";
+    }
+  }
 }

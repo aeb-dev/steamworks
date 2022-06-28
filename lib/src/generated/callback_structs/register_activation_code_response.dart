@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eregister_activation_code_result.dart";
 
@@ -10,7 +8,7 @@ class RegisterActivationCodeResponse extends Struct {
   static int get callbackId => 1008;
 
   @Int32()
-  external ERegisterActivationCodeResult result;
+  external ERegisterActivationCodeResultAliasDart result;
 
   @UnsignedInt()
   external int packageRegistered;
@@ -18,7 +16,8 @@ class RegisterActivationCodeResponse extends Struct {
 
 extension RegisterActivationCodeResponseExtensions
     on Pointer<RegisterActivationCodeResponse> {
-  ERegisterActivationCodeResult get result => ref.result;
+  ERegisterActivationCodeResult get result =>
+      ERegisterActivationCodeResult.fromValue(ref.result);
 
   int get packageRegistered => ref.packageRegistered;
 }

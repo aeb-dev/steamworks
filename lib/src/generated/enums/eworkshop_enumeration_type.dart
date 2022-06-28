@@ -1,12 +1,41 @@
 // ignore_for_file: public_member_api_docs
-typedef EWorkshopEnumerationType = int;
+import "dart:ffi";
 
-class EWorkshopEnumerationTypeEnum {
-  static const int rankedByVote = 0;
-  static const int recent = 1;
-  static const int trending = 2;
-  static const int favoritesOfFriends = 3;
-  static const int votedByFriends = 4;
-  static const int contentByFriends = 5;
-  static const int recentFromFollowedUsers = 6;
+typedef EWorkshopEnumerationTypeAliasDart = int;
+typedef EWorkshopEnumerationTypeAliasC = Int32;
+
+enum EWorkshopEnumerationType {
+  rankedByVote(0),
+  recent(1),
+  trending(2),
+  favoritesOfFriends(3),
+  votedByFriends(4),
+  contentByFriends(5),
+  recentFromFollowedUsers(6),
+  ;
+
+  final int value;
+
+  const EWorkshopEnumerationType(this.value);
+
+  factory EWorkshopEnumerationType.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EWorkshopEnumerationType.rankedByVote;
+      case 1:
+        return EWorkshopEnumerationType.recent;
+      case 2:
+        return EWorkshopEnumerationType.trending;
+      case 3:
+        return EWorkshopEnumerationType.favoritesOfFriends;
+      case 4:
+        return EWorkshopEnumerationType.votedByFriends;
+      case 5:
+        return EWorkshopEnumerationType.contentByFriends;
+      case 6:
+        return EWorkshopEnumerationType.recentFromFollowedUsers;
+      default:
+        throw "Unknown value for 'EWorkshopEnumerationType'. The value was: '$value'";
+    }
+  }
 }

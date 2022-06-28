@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../dl.dart";
 import "../enums/eresult.dart";
 import "../enums/esteam_networking_connection_state.dart";
@@ -30,7 +28,7 @@ class ISteamNetworkingMessages extends Opaque {
 }
 
 final _sendMessageToUser = dl.lookupFunction<
-    Int32 Function(
+    EResultAliasC Function(
   Pointer<ISteamNetworkingMessages>,
   Pointer<SteamNetworkingIdentity>,
   Pointer<Void>,
@@ -38,7 +36,7 @@ final _sendMessageToUser = dl.lookupFunction<
   Int,
   Int,
 ),
-    EResult Function(
+    EResultAliasDart Function(
   Pointer<ISteamNetworkingMessages>,
   Pointer<SteamNetworkingIdentity>,
   Pointer<Void>,
@@ -94,13 +92,13 @@ final _closeChannelWithUser = dl.lookupFunction<
 )>("SteamAPI_ISteamNetworkingMessages_CloseChannelWithUser");
 
 final _getSessionConnectionInfo = dl.lookupFunction<
-    Int32 Function(
+    ESteamNetworkingConnectionStateAliasC Function(
   Pointer<ISteamNetworkingMessages>,
   Pointer<SteamNetworkingIdentity>,
   Pointer<SteamNetConnectionInfo>,
   Pointer<SteamNetConnectionRealTimeStatus>,
 ),
-    ESteamNetworkingConnectionState Function(
+    ESteamNetworkingConnectionStateAliasDart Function(
   Pointer<ISteamNetworkingMessages>,
   Pointer<SteamNetworkingIdentity>,
   Pointer<SteamNetConnectionInfo>,
@@ -116,13 +114,15 @@ extension ISteamNetworkingMessagesExtensions
     int nSendFlags,
     int nRemoteChannel,
   ) =>
-      _sendMessageToUser.call(
-        this,
-        identityRemote,
-        pubData,
-        cubData,
-        nSendFlags,
-        nRemoteChannel,
+      EResult.fromValue(
+        _sendMessageToUser.call(
+          this,
+          identityRemote,
+          pubData,
+          cubData,
+          nSendFlags,
+          nRemoteChannel,
+        ),
       );
 
   int receiveMessagesOnChannel(
@@ -168,10 +168,12 @@ extension ISteamNetworkingMessagesExtensions
     Pointer<SteamNetConnectionInfo> pConnectionInfo,
     Pointer<SteamNetConnectionRealTimeStatus> pQuickStatus,
   ) =>
-      _getSessionConnectionInfo.call(
-        this,
-        identityRemote,
-        pConnectionInfo,
-        pQuickStatus,
+      ESteamNetworkingConnectionState.fromValue(
+        _getSessionConnectionInfo.call(
+          this,
+          identityRemote,
+          pConnectionInfo,
+          pQuickStatus,
+        ),
       );
 }

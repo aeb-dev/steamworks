@@ -4,6 +4,8 @@ import "dart:ffi";
 import "package:ffi/ffi.dart";
 
 import "../dl.dart";
+import "../enums/eremote_storage_file_path_type.dart";
+import "../enums/eremote_storage_local_file_change.dart";
 import "../enums/eremote_storage_platform.dart";
 import "../enums/eremote_storage_published_file_visibility.dart";
 import "../enums/eugc_read_action.dart";
@@ -127,12 +129,12 @@ final _setSyncPlatforms = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamRemoteStorage>,
   Pointer<Utf8>,
-  Int32,
+  ERemoteStoragePlatformAliasC,
 ),
     bool Function(
   Pointer<ISteamRemoteStorage>,
   Pointer<Utf8>,
-  ERemoteStoragePlatform,
+  ERemoteStoragePlatformAliasDart,
 )>("SteamAPI_ISteamRemoteStorage_SetSyncPlatforms");
 
 final _fileWriteStreamOpen = dl.lookupFunction<
@@ -220,11 +222,11 @@ final _getFileTimestamp = dl.lookupFunction<
 )>("SteamAPI_ISteamRemoteStorage_GetFileTimestamp");
 
 final _getSyncPlatforms = dl.lookupFunction<
-    Int32 Function(
+    ERemoteStoragePlatformAliasC Function(
   Pointer<ISteamRemoteStorage>,
   Pointer<Utf8>,
 ),
-    ERemoteStoragePlatform Function(
+    ERemoteStoragePlatformAliasDart Function(
   Pointer<ISteamRemoteStorage>,
   Pointer<Utf8>,
 )>("SteamAPI_ISteamRemoteStorage_GetSyncPlatforms");
@@ -338,7 +340,7 @@ final _ugcRead = dl.lookupFunction<
   Pointer<Void>,
   Int,
   UnsignedInt,
-  Int32,
+  EUgcReadActionAliasC,
 ),
     int Function(
   Pointer<ISteamRemoteStorage>,
@@ -346,7 +348,7 @@ final _ugcRead = dl.lookupFunction<
   Pointer<Void>,
   int,
   int,
-  EUgcReadAction,
+  EUgcReadActionAliasDart,
 )>("SteamAPI_ISteamRemoteStorage_UGCRead");
 
 final _getCachedUgcCount = dl.lookupFunction<
@@ -375,9 +377,9 @@ final _publishWorkshopFile = dl.lookupFunction<
   UnsignedInt,
   Pointer<Utf8>,
   Pointer<Utf8>,
-  Int32,
+  ERemoteStoragePublishedFileVisibilityAliasC,
   Pointer<SteamParamStringArray>,
-  Int32,
+  EWorkshopFileTypeAliasC,
 ),
     SteamApiCall Function(
   Pointer<ISteamRemoteStorage>,
@@ -386,9 +388,9 @@ final _publishWorkshopFile = dl.lookupFunction<
   AppId,
   Pointer<Utf8>,
   Pointer<Utf8>,
-  ERemoteStoragePublishedFileVisibility,
+  ERemoteStoragePublishedFileVisibilityAliasDart,
   Pointer<SteamParamStringArray>,
-  EWorkshopFileType,
+  EWorkshopFileTypeAliasDart,
 )>("SteamAPI_ISteamRemoteStorage_PublishWorkshopFile");
 
 final _createPublishedFileUpdateRequest = dl.lookupFunction<
@@ -453,12 +455,12 @@ final _updatePublishedFileVisibility = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamRemoteStorage>,
   UnsignedLongLong,
-  Int32,
+  ERemoteStoragePublishedFileVisibilityAliasC,
 ),
     bool Function(
   Pointer<ISteamRemoteStorage>,
   PublishedFileUpdateHandle,
-  ERemoteStoragePublishedFileVisibility,
+  ERemoteStoragePublishedFileVisibilityAliasDart,
 )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileVisibility");
 
 final _updatePublishedFileTags = dl.lookupFunction<
@@ -608,26 +610,26 @@ final _enumerateUserSharedWorkshopFiles = dl.lookupFunction<
 final _publishVideo = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamRemoteStorage>,
-  Int32,
+  EWorkshopVideoProviderAliasC,
   Pointer<Utf8>,
   Pointer<Utf8>,
   Pointer<Utf8>,
   UnsignedInt,
   Pointer<Utf8>,
   Pointer<Utf8>,
-  Int32,
+  ERemoteStoragePublishedFileVisibilityAliasC,
   Pointer<SteamParamStringArray>,
 ),
     SteamApiCall Function(
   Pointer<ISteamRemoteStorage>,
-  EWorkshopVideoProvider,
+  EWorkshopVideoProviderAliasDart,
   Pointer<Utf8>,
   Pointer<Utf8>,
   Pointer<Utf8>,
   AppId,
   Pointer<Utf8>,
   Pointer<Utf8>,
-  ERemoteStoragePublishedFileVisibility,
+  ERemoteStoragePublishedFileVisibilityAliasDart,
   Pointer<SteamParamStringArray>,
 )>("SteamAPI_ISteamRemoteStorage_PublishVideo");
 
@@ -635,30 +637,30 @@ final _setUserPublishedFileAction = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamRemoteStorage>,
   UnsignedLongLong,
-  Int32,
+  EWorkshopFileActionAliasC,
 ),
     SteamApiCall Function(
   Pointer<ISteamRemoteStorage>,
   PublishedFileId,
-  EWorkshopFileAction,
+  EWorkshopFileActionAliasDart,
 )>("SteamAPI_ISteamRemoteStorage_SetUserPublishedFileAction");
 
 final _enumeratePublishedFilesByUserAction = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamRemoteStorage>,
-  Int32,
+  EWorkshopFileActionAliasC,
   UnsignedInt,
 ),
     SteamApiCall Function(
   Pointer<ISteamRemoteStorage>,
-  EWorkshopFileAction,
+  EWorkshopFileActionAliasDart,
   int,
 )>("SteamAPI_ISteamRemoteStorage_EnumeratePublishedFilesByUserAction");
 
 final _enumeratePublishedWorkshopFiles = dl.lookupFunction<
     UnsignedLongLong Function(
   Pointer<ISteamRemoteStorage>,
-  Int32,
+  EWorkshopEnumerationTypeAliasC,
   UnsignedInt,
   UnsignedInt,
   UnsignedInt,
@@ -667,7 +669,7 @@ final _enumeratePublishedWorkshopFiles = dl.lookupFunction<
 ),
     SteamApiCall Function(
   Pointer<ISteamRemoteStorage>,
-  EWorkshopEnumerationType,
+  EWorkshopEnumerationTypeAliasDart,
   int,
   int,
   int,
@@ -701,14 +703,14 @@ final _getLocalFileChange = dl.lookupFunction<
     Pointer<Utf8> Function(
   Pointer<ISteamRemoteStorage>,
   Int,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<ERemoteStorageLocalFileChangeAliasC>,
+  Pointer<ERemoteStorageFilePathTypeAliasC>,
 ),
     Pointer<Utf8> Function(
   Pointer<ISteamRemoteStorage>,
   int,
-  Pointer<Int32>,
-  Pointer<Int32>,
+  Pointer<ERemoteStorageLocalFileChangeAliasC>,
+  Pointer<ERemoteStorageFilePathTypeAliasC>,
 )>("SteamAPI_ISteamRemoteStorage_GetLocalFileChange");
 
 final _beginFileWriteBatch = dl.lookupFunction<
@@ -819,7 +821,7 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
       _setSyncPlatforms.call(
         this,
         file,
-        remoteStoragePlatform,
+        remoteStoragePlatform.value,
       );
 
   UgcFileWriteStreamHandle fileWriteStreamOpen(
@@ -893,9 +895,11 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
   ERemoteStoragePlatform getSyncPlatforms(
     Pointer<Utf8> file,
   ) =>
-      _getSyncPlatforms.call(
-        this,
-        file,
+      ERemoteStoragePlatform.fromValue(
+        _getSyncPlatforms.call(
+          this,
+          file,
+        ),
       );
 
   int getFileCount() => _getFileCount.call(
@@ -989,7 +993,7 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
         pvData,
         cubDataToRead,
         cOffset,
-        action,
+        action.value,
       );
 
   int getCachedUgcCount() => _getCachedUgcCount.call(
@@ -1021,9 +1025,9 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
         nConsumerAppId,
         title,
         description,
-        visibility,
+        visibility.value,
         pTags,
-        workshopFileType,
+        workshopFileType.value,
       );
 
   PublishedFileUpdateHandle createPublishedFileUpdateRequest(
@@ -1081,7 +1085,7 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
       _updatePublishedFileVisibility.call(
         this,
         updateHandle,
-        visibility,
+        visibility.value,
       );
 
   bool updatePublishedFileTags(
@@ -1215,14 +1219,14 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
   ) =>
       _publishVideo.call(
         this,
-        videoProvider,
+        videoProvider.value,
         videoAccount,
         videoIdentifier,
         previewFile,
         nConsumerAppId,
         title,
         description,
-        visibility,
+        visibility.value,
         pTags,
       );
 
@@ -1233,7 +1237,7 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
       _setUserPublishedFileAction.call(
         this,
         publishedFileId,
-        action,
+        action.value,
       );
 
   SteamApiCall enumeratePublishedFilesByUserAction(
@@ -1242,7 +1246,7 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
   ) =>
       _enumeratePublishedFilesByUserAction.call(
         this,
-        action,
+        action.value,
         startIndex,
       );
 
@@ -1256,7 +1260,7 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
   ) =>
       _enumeratePublishedWorkshopFiles.call(
         this,
-        enumerationType,
+        enumerationType.value,
         startIndex,
         count,
         days,
@@ -1282,8 +1286,8 @@ extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
 
   Pointer<Utf8> getLocalFileChange(
     int iFile,
-    Pointer<Int32> pEChangeType,
-    Pointer<Int32> pEFilePathType,
+    Pointer<ERemoteStorageLocalFileChangeAliasC> pEChangeType,
+    Pointer<ERemoteStorageFilePathTypeAliasC> pEFilePathType,
   ) =>
       _getLocalFileChange.call(
         this,

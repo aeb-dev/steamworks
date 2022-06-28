@@ -420,13 +420,13 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
 
   int getInstalledDepots(
     AppId appId,
-    Pointer<UnsignedInt> pvecDepots,
+    Pointer<UnsignedInt> depots,
     int cMaxDepots,
   ) =>
       _getInstalledDepots.call(
         this,
         appId,
-        pvecDepots,
+        depots,
         cMaxDepots,
       );
 
@@ -464,14 +464,14 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
 
   bool getDlcDownloadProgress(
     AppId nAppId,
-    Pointer<UnsignedLongLong> punBytesDownloaded,
-    Pointer<UnsignedLongLong> punBytesTotal,
+    Pointer<UnsignedLongLong> bytesDownloaded,
+    Pointer<UnsignedLongLong> bytesTotal,
   ) =>
       _getDlcDownloadProgress.call(
         this,
         nAppId,
-        punBytesDownloaded,
-        punBytesTotal,
+        bytesDownloaded,
+        bytesTotal,
       );
 
   int getAppBuildId() => _getAppBuildId.call(
@@ -505,12 +505,12 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
       );
 
   bool isTimedTrial(
-    Pointer<UnsignedInt> punSecondsAllowed,
-    Pointer<UnsignedInt> punSecondsPlayed,
+    Pointer<UnsignedInt> secondsAllowed,
+    Pointer<UnsignedInt> secondsPlayed,
   ) =>
       _isTimedTrial.call(
         this,
-        punSecondsAllowed,
-        punSecondsPlayed,
+        secondsAllowed,
+        secondsPlayed,
       );
 }

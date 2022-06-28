@@ -135,11 +135,11 @@ final _enablePlaylists = dl.lookupFunction<
 final _updatePlaybackStatus = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamMusicRemote>,
-  Int32,
+  AudioPlaybackStatusAliasC,
 ),
     bool Function(
   Pointer<ISteamMusicRemote>,
-  AudioPlaybackStatus,
+  AudioPlaybackStatusAliasDart,
 )>("SteamAPI_ISteamMusicRemote_UpdatePlaybackStatus");
 
 final _updateShuffled = dl.lookupFunction<
@@ -422,7 +422,7 @@ extension ISteamMusicRemoteExtensions on Pointer<ISteamMusicRemote> {
   ) =>
       _updatePlaybackStatus.call(
         this,
-        nStatus,
+        nStatus.value,
       );
 
   bool updateShuffled(

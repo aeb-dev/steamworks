@@ -1,29 +1,92 @@
 // ignore_for_file: public_member_api_docs
-typedef EBroadcastUploadResult = int;
+import "dart:ffi";
 
-class EBroadcastUploadResultEnum {
-  static const int none = 0;
-  static const int ok = 1;
-  static const int initFailed = 2;
-  static const int frameFailed = 3;
-  static const int timeout = 4;
-  static const int bandwidthExceeded = 5;
-  static const int lowFps = 6;
-  static const int missingKeyFrames = 7;
-  static const int noConnection = 8;
-  static const int relayFailed = 9;
-  static const int settingsChanged = 10;
-  static const int missingAudio = 11;
-  static const int tooFarBehind = 12;
-  static const int transcodeBehind = 13;
-  static const int notAllowedToPlay = 14;
-  static const int busy = 15;
-  static const int banned = 16;
-  static const int alreadyActive = 17;
-  static const int forcedOff = 18;
-  static const int audioBehind = 19;
-  static const int shutdown = 20;
-  static const int disconnect = 21;
-  static const int videoInitFailed = 22;
-  static const int audioInitFailed = 23;
+typedef EBroadcastUploadResultAliasDart = int;
+typedef EBroadcastUploadResultAliasC = Int32;
+
+enum EBroadcastUploadResult {
+  none(0),
+  ok(1),
+  initFailed(2),
+  frameFailed(3),
+  timeout(4),
+  bandwidthExceeded(5),
+  lowFps(6),
+  missingKeyFrames(7),
+  noConnection(8),
+  relayFailed(9),
+  settingsChanged(10),
+  missingAudio(11),
+  tooFarBehind(12),
+  transcodeBehind(13),
+  notAllowedToPlay(14),
+  busy(15),
+  banned(16),
+  alreadyActive(17),
+  forcedOff(18),
+  audioBehind(19),
+  shutdown(20),
+  disconnect(21),
+  videoInitFailed(22),
+  audioInitFailed(23),
+  ;
+
+  final int value;
+
+  const EBroadcastUploadResult(this.value);
+
+  factory EBroadcastUploadResult.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EBroadcastUploadResult.none;
+      case 1:
+        return EBroadcastUploadResult.ok;
+      case 2:
+        return EBroadcastUploadResult.initFailed;
+      case 3:
+        return EBroadcastUploadResult.frameFailed;
+      case 4:
+        return EBroadcastUploadResult.timeout;
+      case 5:
+        return EBroadcastUploadResult.bandwidthExceeded;
+      case 6:
+        return EBroadcastUploadResult.lowFps;
+      case 7:
+        return EBroadcastUploadResult.missingKeyFrames;
+      case 8:
+        return EBroadcastUploadResult.noConnection;
+      case 9:
+        return EBroadcastUploadResult.relayFailed;
+      case 10:
+        return EBroadcastUploadResult.settingsChanged;
+      case 11:
+        return EBroadcastUploadResult.missingAudio;
+      case 12:
+        return EBroadcastUploadResult.tooFarBehind;
+      case 13:
+        return EBroadcastUploadResult.transcodeBehind;
+      case 14:
+        return EBroadcastUploadResult.notAllowedToPlay;
+      case 15:
+        return EBroadcastUploadResult.busy;
+      case 16:
+        return EBroadcastUploadResult.banned;
+      case 17:
+        return EBroadcastUploadResult.alreadyActive;
+      case 18:
+        return EBroadcastUploadResult.forcedOff;
+      case 19:
+        return EBroadcastUploadResult.audioBehind;
+      case 20:
+        return EBroadcastUploadResult.shutdown;
+      case 21:
+        return EBroadcastUploadResult.disconnect;
+      case 22:
+        return EBroadcastUploadResult.videoInitFailed;
+      case 23:
+        return EBroadcastUploadResult.audioInitFailed;
+      default:
+        throw "Unknown value for 'EBroadcastUploadResult'. The value was: '$value'";
+    }
+  }
 }

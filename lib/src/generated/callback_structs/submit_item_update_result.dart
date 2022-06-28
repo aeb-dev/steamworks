@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 import "../typedefs.dart";
@@ -11,7 +9,7 @@ class SubmitItemUpdateResult extends Struct {
   static int get callbackId => 3404;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @Bool()
   external bool userNeedsToAcceptWorkshopLegalAgreement;
@@ -21,7 +19,7 @@ class SubmitItemUpdateResult extends Struct {
 }
 
 extension SubmitItemUpdateResultExtensions on Pointer<SubmitItemUpdateResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   bool get userNeedsToAcceptWorkshopLegalAgreement =>
       ref.userNeedsToAcceptWorkshopLegalAgreement;

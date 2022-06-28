@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -14,10 +14,10 @@ class SteamUgcDetails extends Struct {
   external PublishedFileId publishedFileId;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @Int32()
-  external EWorkshopFileType fileType;
+  external EWorkshopFileTypeAliasDart fileType;
 
   @UnsignedInt()
   external AppId creatorAppId;
@@ -42,7 +42,7 @@ class SteamUgcDetails extends Struct {
   external int timeAddedToUserList;
 
   @Int32()
-  external ERemoteStoragePublishedFileVisibility visibility;
+  external ERemoteStoragePublishedFileVisibilityAliasDart visibility;
 
   @Bool()
   external bool banned;
@@ -87,9 +87,9 @@ class SteamUgcDetails extends Struct {
 extension SteamUgcDetailsExtensions on Pointer<SteamUgcDetails> {
   PublishedFileId get publishedFileId => ref.publishedFileId;
 
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
-  EWorkshopFileType get fileType => ref.fileType;
+  EWorkshopFileType get fileType => EWorkshopFileType.fromValue(ref.fileType);
 
   AppId get creatorAppId => ref.creatorAppId;
 
@@ -107,7 +107,8 @@ extension SteamUgcDetailsExtensions on Pointer<SteamUgcDetails> {
 
   int get timeAddedToUserList => ref.timeAddedToUserList;
 
-  ERemoteStoragePublishedFileVisibility get visibility => ref.visibility;
+  ERemoteStoragePublishedFileVisibility get visibility =>
+      ERemoteStoragePublishedFileVisibility.fromValue(ref.visibility);
 
   bool get banned => ref.banned;
 

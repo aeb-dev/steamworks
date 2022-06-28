@@ -1,10 +1,35 @@
 // ignore_for_file: public_member_api_docs
-typedef ESteamInputGlyphStyle = int;
+import "dart:ffi";
 
-class ESteamInputGlyphStyleEnum {
-  static const int knockout = 0;
-  static const int light = 1;
-  static const int dark = 2;
-  static const int neutralColorABXY = 16;
-  static const int solidABXY = 32;
+typedef ESteamInputGlyphStyleAliasDart = int;
+typedef ESteamInputGlyphStyleAliasC = Int32;
+
+enum ESteamInputGlyphStyle {
+  knockout(0),
+  light(1),
+  dark(2),
+  neutralColorABXY(16),
+  solidABXY(32),
+  ;
+
+  final int value;
+
+  const ESteamInputGlyphStyle(this.value);
+
+  factory ESteamInputGlyphStyle.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return ESteamInputGlyphStyle.knockout;
+      case 1:
+        return ESteamInputGlyphStyle.light;
+      case 2:
+        return ESteamInputGlyphStyle.dark;
+      case 16:
+        return ESteamInputGlyphStyle.neutralColorABXY;
+      case 32:
+        return ESteamInputGlyphStyle.solidABXY;
+      default:
+        throw "Unknown value for 'ESteamInputGlyphStyle'. The value was: '$value'";
+    }
+  }
 }

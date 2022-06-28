@@ -1,10 +1,35 @@
 // ignore_for_file: public_member_api_docs
-typedef EChatMemberStateChange = int;
+import "dart:ffi";
 
-class EChatMemberStateChangeEnum {
-  static const int entered = 1;
-  static const int left = 2;
-  static const int disconnected = 4;
-  static const int kicked = 8;
-  static const int banned = 16;
+typedef EChatMemberStateChangeAliasDart = int;
+typedef EChatMemberStateChangeAliasC = Int32;
+
+enum EChatMemberStateChange {
+  entered(1),
+  left(2),
+  disconnected(4),
+  kicked(8),
+  banned(16),
+  ;
+
+  final int value;
+
+  const EChatMemberStateChange(this.value);
+
+  factory EChatMemberStateChange.fromValue(int value) {
+    switch (value) {
+      case 1:
+        return EChatMemberStateChange.entered;
+      case 2:
+        return EChatMemberStateChange.left;
+      case 4:
+        return EChatMemberStateChange.disconnected;
+      case 8:
+        return EChatMemberStateChange.kicked;
+      case 16:
+        return EChatMemberStateChange.banned;
+      default:
+        throw "Unknown value for 'EChatMemberStateChange'. The value was: '$value'";
+    }
+  }
 }

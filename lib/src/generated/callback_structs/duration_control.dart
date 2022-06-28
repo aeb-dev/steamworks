@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eduration_control_notification.dart";
 import "../enums/eduration_control_progress.dart";
@@ -13,7 +11,7 @@ class DurationControl extends Struct {
   static int get callbackId => 167;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedInt()
   external AppId appid;
@@ -25,10 +23,10 @@ class DurationControl extends Struct {
   external int csecsLast5h;
 
   @Int32()
-  external EDurationControlProgress progress;
+  external EDurationControlProgressAliasDart progress;
 
   @Int32()
-  external EDurationControlNotification notification;
+  external EDurationControlNotificationAliasDart notification;
 
   @Int()
   external int csecsToday;
@@ -38,7 +36,7 @@ class DurationControl extends Struct {
 }
 
 extension DurationControlExtensions on Pointer<DurationControl> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   AppId get appid => ref.appid;
 
@@ -46,9 +44,11 @@ extension DurationControlExtensions on Pointer<DurationControl> {
 
   int get csecsLast5h => ref.csecsLast5h;
 
-  EDurationControlProgress get progress => ref.progress;
+  EDurationControlProgress get progress =>
+      EDurationControlProgress.fromValue(ref.progress);
 
-  EDurationControlNotification get notification => ref.notification;
+  EDurationControlNotification get notification =>
+      EDurationControlNotification.fromValue(ref.notification);
 
   int get csecsToday => ref.csecsToday;
 

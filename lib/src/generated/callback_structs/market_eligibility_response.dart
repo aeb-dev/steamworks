@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/emarket_not_allowed_reason_flags.dart";
 import "../typedefs.dart";
@@ -14,7 +12,7 @@ class MarketEligibilityResponse extends Struct {
   external bool allowed;
 
   @Int32()
-  external EMarketNotAllowedReasonFlags notAllowedReason;
+  external EMarketNotAllowedReasonFlagsAliasDart notAllowedReason;
 
   @UnsignedInt()
   external RTime32 allowedAtTime;
@@ -30,7 +28,8 @@ extension MarketEligibilityResponseExtensions
     on Pointer<MarketEligibilityResponse> {
   bool get allowed => ref.allowed;
 
-  EMarketNotAllowedReasonFlags get notAllowedReason => ref.notAllowedReason;
+  EMarketNotAllowedReasonFlags get notAllowedReason =>
+      EMarketNotAllowedReasonFlags.fromValue(ref.notAllowedReason);
 
   RTime32 get allowedAtTime => ref.allowedAtTime;
 

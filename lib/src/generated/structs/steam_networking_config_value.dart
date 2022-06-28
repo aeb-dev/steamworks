@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -10,10 +10,10 @@ import "../enums/esteam_networking_config_value.dart";
 @Packed(4)
 class SteamNetworkingConfigValue extends Struct {
   @Int32()
-  external ESteamNetworkingConfigValue value;
+  external ESteamNetworkingConfigValueAliasDart value;
 
   @Int32()
-  external ESteamNetworkingConfigDataType dataType;
+  external ESteamNetworkingConfigDataTypeAliasDart dataType;
 
   @Int64()
   external int int64;
@@ -22,60 +22,60 @@ class SteamNetworkingConfigValue extends Struct {
 final _setInt32 = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingConfigValue>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Int32,
 ),
     void Function(
   Pointer<SteamNetworkingConfigValue>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   int,
 )>("SteamAPI_SteamNetworkingConfigValue_t_SetInt32");
 
 final _setInt64 = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingConfigValue>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Int64,
 ),
     void Function(
   Pointer<SteamNetworkingConfigValue>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   int,
 )>("SteamAPI_SteamNetworkingConfigValue_t_SetInt64");
 
 final _setFloat = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingConfigValue>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Float,
 ),
     void Function(
   Pointer<SteamNetworkingConfigValue>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   double,
 )>("SteamAPI_SteamNetworkingConfigValue_t_SetFloat");
 
 final _setPtr = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingConfigValue>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Pointer<Void>,
 ),
     void Function(
   Pointer<SteamNetworkingConfigValue>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   Pointer<Void>,
 )>("SteamAPI_SteamNetworkingConfigValue_t_SetPtr");
 
 final _setString = dl.lookupFunction<
     Void Function(
   Pointer<SteamNetworkingConfigValue>,
-  Int32,
+  ESteamNetworkingConfigValueAliasC,
   Pointer<Utf8>,
 ),
     void Function(
   Pointer<SteamNetworkingConfigValue>,
-  ESteamNetworkingConfigValue,
+  ESteamNetworkingConfigValueAliasDart,
   Pointer<Utf8>,
 )>("SteamAPI_SteamNetworkingConfigValue_t_SetString");
 
@@ -87,7 +87,7 @@ extension SteamNetworkingConfigValueExtensions
   ) =>
       _setInt32.call(
         this,
-        val,
+        val.value,
         data,
       );
 
@@ -97,7 +97,7 @@ extension SteamNetworkingConfigValueExtensions
   ) =>
       _setInt64.call(
         this,
-        val,
+        val.value,
         data,
       );
 
@@ -107,7 +107,7 @@ extension SteamNetworkingConfigValueExtensions
   ) =>
       _setFloat.call(
         this,
-        val,
+        val.value,
         data,
       );
 
@@ -117,7 +117,7 @@ extension SteamNetworkingConfigValueExtensions
   ) =>
       _setPtr.call(
         this,
-        val,
+        val.value,
         data,
       );
 
@@ -127,13 +127,15 @@ extension SteamNetworkingConfigValueExtensions
   ) =>
       _setString.call(
         this,
-        val,
+        val.value,
         data,
       );
 
-  ESteamNetworkingConfigValue get value => ref.value;
+  ESteamNetworkingConfigValue get value =>
+      ESteamNetworkingConfigValue.fromValue(ref.value);
 
-  ESteamNetworkingConfigDataType get dataType => ref.dataType;
+  ESteamNetworkingConfigDataType get dataType =>
+      ESteamNetworkingConfigDataType.fromValue(ref.dataType);
 
   int get int64 => ref.int64;
 }

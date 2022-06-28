@@ -1,14 +1,47 @@
 // ignore_for_file: public_member_api_docs
-typedef EPersonaState = int;
+import "dart:ffi";
 
-class EPersonaStateEnum {
-  static const int offline = 0;
-  static const int online = 1;
-  static const int busy = 2;
-  static const int away = 3;
-  static const int snooze = 4;
-  static const int lookingToTrade = 5;
-  static const int lookingToPlay = 6;
-  static const int invisible = 7;
-  static const int max = 8;
+typedef EPersonaStateAliasDart = int;
+typedef EPersonaStateAliasC = Int32;
+
+enum EPersonaState {
+  offline(0),
+  online(1),
+  busy(2),
+  away(3),
+  snooze(4),
+  lookingToTrade(5),
+  lookingToPlay(6),
+  invisible(7),
+  max(8),
+  ;
+
+  final int value;
+
+  const EPersonaState(this.value);
+
+  factory EPersonaState.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EPersonaState.offline;
+      case 1:
+        return EPersonaState.online;
+      case 2:
+        return EPersonaState.busy;
+      case 3:
+        return EPersonaState.away;
+      case 4:
+        return EPersonaState.snooze;
+      case 5:
+        return EPersonaState.lookingToTrade;
+      case 6:
+        return EPersonaState.lookingToPlay;
+      case 7:
+        return EPersonaState.invisible;
+      case 8:
+        return EPersonaState.max;
+      default:
+        throw "Unknown value for 'EPersonaState'. The value was: '$value'";
+    }
+  }
 }

@@ -1,7 +1,26 @@
 // ignore_for_file: public_member_api_docs
-typedef EWorkshopFileAction = int;
+import "dart:ffi";
 
-class EWorkshopFileActionEnum {
-  static const int played = 0;
-  static const int completed = 1;
+typedef EWorkshopFileActionAliasDart = int;
+typedef EWorkshopFileActionAliasC = Int32;
+
+enum EWorkshopFileAction {
+  played(0),
+  completed(1),
+  ;
+
+  final int value;
+
+  const EWorkshopFileAction(this.value);
+
+  factory EWorkshopFileAction.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EWorkshopFileAction.played;
+      case 1:
+        return EWorkshopFileAction.completed;
+      default:
+        throw "Unknown value for 'EWorkshopFileAction'. The value was: '$value'";
+    }
+  }
 }

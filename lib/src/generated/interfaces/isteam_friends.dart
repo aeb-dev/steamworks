@@ -5,6 +5,7 @@ import "package:ffi/ffi.dart";
 
 import "../dl.dart";
 import "../enums/eactivate_game_overlay_to_web_page_mode.dart";
+import "../enums/echat_entry_type.dart";
 import "../enums/efriend_relationship.dart";
 import "../enums/eoverlay_to_store_flag.dart";
 import "../enums/epersona_state.dart";
@@ -37,10 +38,10 @@ final _setPersonaName = dl.lookupFunction<
 )>("SteamAPI_ISteamFriends_SetPersonaName");
 
 final _getPersonaState = dl.lookupFunction<
-    Int32 Function(
+    EPersonaStateAliasC Function(
   Pointer<ISteamFriends>,
 ),
-    EPersonaState Function(
+    EPersonaStateAliasDart Function(
   Pointer<ISteamFriends>,
 )>("SteamAPI_ISteamFriends_GetPersonaState");
 
@@ -67,21 +68,21 @@ final _getFriendByIndex = dl.lookupFunction<
 )>("SteamAPI_ISteamFriends_GetFriendByIndex");
 
 final _getFriendRelationship = dl.lookupFunction<
-    Int32 Function(
+    EFriendRelationshipAliasC Function(
   Pointer<ISteamFriends>,
   UnsignedLongLong,
 ),
-    EFriendRelationship Function(
+    EFriendRelationshipAliasDart Function(
   Pointer<ISteamFriends>,
   CSteamId,
 )>("SteamAPI_ISteamFriends_GetFriendRelationship");
 
 final _getFriendPersonaState = dl.lookupFunction<
-    Int32 Function(
+    EPersonaStateAliasC Function(
   Pointer<ISteamFriends>,
   UnsignedLongLong,
 ),
-    EPersonaState Function(
+    EPersonaStateAliasDart Function(
   Pointer<ISteamFriends>,
   CSteamId,
 )>("SteamAPI_ISteamFriends_GetFriendPersonaState");
@@ -342,24 +343,24 @@ final _activateGameOverlayToWebPage = dl.lookupFunction<
     Void Function(
   Pointer<ISteamFriends>,
   Pointer<Utf8>,
-  Int32,
+  EActivateGameOverlayToWebPageModeAliasC,
 ),
     void Function(
   Pointer<ISteamFriends>,
   Pointer<Utf8>,
-  EActivateGameOverlayToWebPageMode,
+  EActivateGameOverlayToWebPageModeAliasDart,
 )>("SteamAPI_ISteamFriends_ActivateGameOverlayToWebPage");
 
 final _activateGameOverlayToStore = dl.lookupFunction<
     Void Function(
   Pointer<ISteamFriends>,
   UnsignedInt,
-  Int32,
+  EOverlayToStoreFlagAliasC,
 ),
     void Function(
   Pointer<ISteamFriends>,
   AppId,
-  EOverlayToStoreFlag,
+  EOverlayToStoreFlagAliasDart,
 )>("SteamAPI_ISteamFriends_ActivateGameOverlayToStore");
 
 final _setPlayedWith = dl.lookupFunction<
@@ -649,7 +650,7 @@ final _getClanChatMessage = dl.lookupFunction<
   Int,
   Pointer<Void>,
   Int,
-  Pointer<Int32>,
+  Pointer<EChatEntryTypeAliasC>,
   Pointer<UnsignedLongLong>,
 ),
     int Function(
@@ -658,7 +659,7 @@ final _getClanChatMessage = dl.lookupFunction<
   int,
   Pointer<Void>,
   int,
-  Pointer<Int32>,
+  Pointer<EChatEntryTypeAliasC>,
   Pointer<UnsignedLongLong>,
 )>("SteamAPI_ISteamFriends_GetClanChatMessage");
 
@@ -733,7 +734,7 @@ final _getFriendMessage = dl.lookupFunction<
   Int,
   Pointer<Void>,
   Int,
-  Pointer<Int32>,
+  Pointer<EChatEntryTypeAliasC>,
 ),
     int Function(
   Pointer<ISteamFriends>,
@@ -741,7 +742,7 @@ final _getFriendMessage = dl.lookupFunction<
   int,
   Pointer<Void>,
   int,
-  Pointer<Int32>,
+  Pointer<EChatEntryTypeAliasC>,
 )>("SteamAPI_ISteamFriends_GetFriendMessage");
 
 final _getFollowerCount = dl.lookupFunction<
@@ -845,8 +846,10 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
         personaName,
       );
 
-  EPersonaState getPersonaState() => _getPersonaState.call(
-        this,
+  EPersonaState getPersonaState() => EPersonaState.fromValue(
+        _getPersonaState.call(
+          this,
+        ),
       );
 
   int getFriendCount(
@@ -870,17 +873,21 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
   EFriendRelationship getFriendRelationship(
     CSteamId steamIdFriend,
   ) =>
-      _getFriendRelationship.call(
-        this,
-        steamIdFriend,
+      EFriendRelationship.fromValue(
+        _getFriendRelationship.call(
+          this,
+          steamIdFriend,
+        ),
       );
 
   EPersonaState getFriendPersonaState(
     CSteamId steamIdFriend,
   ) =>
-      _getFriendPersonaState.call(
-        this,
-        steamIdFriend,
+      EPersonaState.fromValue(
+        _getFriendPersonaState.call(
+          this,
+          steamIdFriend,
+        ),
       );
 
   Pointer<Utf8> getFriendPersonaName(
@@ -1092,7 +1099,7 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
       _activateGameOverlayToWebPage.call(
         this,
         url,
-        mode,
+        mode.value,
       );
 
   void activateGameOverlayToStore(
@@ -1102,7 +1109,7 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
       _activateGameOverlayToStore.call(
         this,
         nAppId,
-        flag,
+        flag.value,
       );
 
   void setPlayedWith(
@@ -1330,7 +1337,7 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
     int iMessage,
     Pointer<Void> prgchText,
     int cchTextMax,
-    Pointer<Int32> peChatEntryType,
+    Pointer<EChatEntryTypeAliasC> peChatEntryType,
     Pointer<UnsignedLongLong> psteamidChatter,
   ) =>
       _getClanChatMessage.call(
@@ -1400,7 +1407,7 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
     int iMessageId,
     Pointer<Void> pvData,
     int cubData,
-    Pointer<Int32> peChatEntryType,
+    Pointer<EChatEntryTypeAliasC> peChatEntryType,
   ) =>
       _getFriendMessage.call(
         this,

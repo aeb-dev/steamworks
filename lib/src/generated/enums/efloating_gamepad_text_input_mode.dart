@@ -1,9 +1,32 @@
 // ignore_for_file: public_member_api_docs
-typedef EFloatingGamepadTextInputMode = int;
+import "dart:ffi";
 
-class EFloatingGamepadTextInputModeEnum {
-  static const int singleLine = 0;
-  static const int multipleLines = 1;
-  static const int email = 2;
-  static const int numeric = 3;
+typedef EFloatingGamepadTextInputModeAliasDart = int;
+typedef EFloatingGamepadTextInputModeAliasC = Int32;
+
+enum EFloatingGamepadTextInputMode {
+  singleLine(0),
+  multipleLines(1),
+  email(2),
+  numeric(3),
+  ;
+
+  final int value;
+
+  const EFloatingGamepadTextInputMode(this.value);
+
+  factory EFloatingGamepadTextInputMode.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EFloatingGamepadTextInputMode.singleLine;
+      case 1:
+        return EFloatingGamepadTextInputMode.multipleLines;
+      case 2:
+        return EFloatingGamepadTextInputMode.email;
+      case 3:
+        return EFloatingGamepadTextInputMode.numeric;
+      default:
+        throw "Unknown value for 'EFloatingGamepadTextInputMode'. The value was: '$value'";
+    }
+  }
 }

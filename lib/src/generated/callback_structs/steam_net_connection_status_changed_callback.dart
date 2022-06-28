@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/esteam_networking_connection_state.dart";
 import "../structs/steam_net_connection_info.dart";
@@ -17,7 +15,7 @@ class SteamNetConnectionStatusChangedCallback extends Struct {
   external SteamNetConnectionInfo info;
 
   @Int32()
-  external ESteamNetworkingConnectionState oldState;
+  external ESteamNetworkingConnectionStateAliasDart oldState;
 }
 
 extension SteamNetConnectionStatusChangedCallbackExtensions
@@ -26,5 +24,6 @@ extension SteamNetConnectionStatusChangedCallbackExtensions
 
   SteamNetConnectionInfo get info => ref.info;
 
-  ESteamNetworkingConnectionState get oldState => ref.oldState;
+  ESteamNetworkingConnectionState get oldState =>
+      ESteamNetworkingConnectionState.fromValue(ref.oldState);
 }

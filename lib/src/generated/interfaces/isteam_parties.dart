@@ -149,14 +149,14 @@ final _getBeaconLocationData = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamParties>,
   SteamPartyBeaconLocation,
-  Int32,
+  ESteamPartyBeaconLocationDataAliasC,
   Pointer<Utf8>,
   Int,
 ),
     bool Function(
   Pointer<ISteamParties>,
   SteamPartyBeaconLocation,
-  ESteamPartyBeaconLocationData,
+  ESteamPartyBeaconLocationDataAliasDart,
   Pointer<Utf8>,
   int,
 )>("SteamAPI_ISteamParties_GetBeaconLocationData");
@@ -277,7 +277,7 @@ extension ISteamPartiesExtensions on Pointer<ISteamParties> {
       _getBeaconLocationData.call(
         this,
         beaconLocation,
-        data,
+        data.value,
         dataStringOut,
         cchDataStringOut,
       );

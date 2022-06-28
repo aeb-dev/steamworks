@@ -1,9 +1,32 @@
 // ignore_for_file: public_member_api_docs
-typedef EWorkshopVote = int;
+import "dart:ffi";
 
-class EWorkshopVoteEnum {
-  static const int unvoted = 0;
-  static const int for_ = 1;
-  static const int against = 2;
-  static const int later = 3;
+typedef EWorkshopVoteAliasDart = int;
+typedef EWorkshopVoteAliasC = Int32;
+
+enum EWorkshopVote {
+  unvoted(0),
+  for_(1),
+  against(2),
+  later(3),
+  ;
+
+  final int value;
+
+  const EWorkshopVote(this.value);
+
+  factory EWorkshopVote.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EWorkshopVote.unvoted;
+      case 1:
+        return EWorkshopVote.for_;
+      case 2:
+        return EWorkshopVote.against;
+      case 3:
+        return EWorkshopVote.later;
+      default:
+        throw "Unknown value for 'EWorkshopVote'. The value was: '$value'";
+    }
+  }
 }

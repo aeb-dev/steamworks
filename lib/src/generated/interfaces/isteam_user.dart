@@ -84,13 +84,13 @@ final _stopVoiceRecording = dl.lookupFunction<
 )>("SteamAPI_ISteamUser_StopVoiceRecording");
 
 final _getAvailableVoice = dl.lookupFunction<
-    Int32 Function(
+    EVoiceResultAliasC Function(
   Pointer<ISteamUser>,
   Pointer<UnsignedInt>,
   Pointer<UnsignedInt>,
   UnsignedInt,
 ),
-    EVoiceResult Function(
+    EVoiceResultAliasDart Function(
   Pointer<ISteamUser>,
   Pointer<UnsignedInt>,
   Pointer<UnsignedInt>,
@@ -98,7 +98,7 @@ final _getAvailableVoice = dl.lookupFunction<
 )>("SteamAPI_ISteamUser_GetAvailableVoice");
 
 final _getVoice = dl.lookupFunction<
-    Int32 Function(
+    EVoiceResultAliasC Function(
   Pointer<ISteamUser>,
   Bool,
   Pointer<Void>,
@@ -110,7 +110,7 @@ final _getVoice = dl.lookupFunction<
   Pointer<UnsignedInt>,
   UnsignedInt,
 ),
-    EVoiceResult Function(
+    EVoiceResultAliasDart Function(
   Pointer<ISteamUser>,
   bool,
   Pointer<Void>,
@@ -124,7 +124,7 @@ final _getVoice = dl.lookupFunction<
 )>("SteamAPI_ISteamUser_GetVoice");
 
 final _decompressVoice = dl.lookupFunction<
-    Int32 Function(
+    EVoiceResultAliasC Function(
   Pointer<ISteamUser>,
   Pointer<Void>,
   UnsignedInt,
@@ -133,7 +133,7 @@ final _decompressVoice = dl.lookupFunction<
   Pointer<UnsignedInt>,
   UnsignedInt,
 ),
-    EVoiceResult Function(
+    EVoiceResultAliasDart Function(
   Pointer<ISteamUser>,
   Pointer<Void>,
   int,
@@ -166,13 +166,13 @@ final _getAuthSessionTicket = dl.lookupFunction<
 )>("SteamAPI_ISteamUser_GetAuthSessionTicket");
 
 final _beginAuthSession = dl.lookupFunction<
-    Int32 Function(
+    EBeginAuthSessionResultAliasC Function(
   Pointer<ISteamUser>,
   Pointer<Void>,
   Int,
   UnsignedLongLong,
 ),
-    EBeginAuthSessionResult Function(
+    EBeginAuthSessionResultAliasDart Function(
   Pointer<ISteamUser>,
   Pointer<Void>,
   int,
@@ -200,12 +200,12 @@ final _cancelAuthTicket = dl.lookupFunction<
 )>("SteamAPI_ISteamUser_CancelAuthTicket");
 
 final _userHasLicenseForApp = dl.lookupFunction<
-    Int32 Function(
+    EUserHasLicenseForAppResultAliasC Function(
   Pointer<ISteamUser>,
   UnsignedLongLong,
   UnsignedInt,
 ),
-    EUserHasLicenseForAppResult Function(
+    EUserHasLicenseForAppResultAliasDart Function(
   Pointer<ISteamUser>,
   CSteamId,
   AppId,
@@ -340,11 +340,11 @@ final _getDurationControl = dl.lookupFunction<
 final _bSetDurationControlOnlineState = dl.lookupFunction<
     Bool Function(
   Pointer<ISteamUser>,
-  Int32,
+  EDurationControlOnlineStateAliasC,
 ),
     bool Function(
   Pointer<ISteamUser>,
-  EDurationControlOnlineState,
+  EDurationControlOnlineStateAliasDart,
 )>("SteamAPI_ISteamUser_BSetDurationControlOnlineState");
 
 extension ISteamUserExtensions on Pointer<ISteamUser> {
@@ -395,11 +395,13 @@ extension ISteamUserExtensions on Pointer<ISteamUser> {
     Pointer<UnsignedInt> pcbUncompressedDeprecated,
     int nUncompressedVoiceDesiredSampleRateDeprecated,
   ) =>
-      _getAvailableVoice.call(
-        this,
-        pcbCompressed,
-        pcbUncompressedDeprecated,
-        nUncompressedVoiceDesiredSampleRateDeprecated,
+      EVoiceResult.fromValue(
+        _getAvailableVoice.call(
+          this,
+          pcbCompressed,
+          pcbUncompressedDeprecated,
+          nUncompressedVoiceDesiredSampleRateDeprecated,
+        ),
       );
 
   EVoiceResult getVoice(
@@ -413,17 +415,19 @@ extension ISteamUserExtensions on Pointer<ISteamUser> {
     Pointer<UnsignedInt> nUncompressBytesWrittenDeprecated,
     int nUncompressedVoiceDesiredSampleRateDeprecated,
   ) =>
-      _getVoice.call(
-        this,
-        wantCompressed,
-        pDestBuffer,
-        cbDestBufferSize,
-        nBytesWritten,
-        wantUncompressedDeprecated,
-        pUncompressedDestBufferDeprecated,
-        cbUncompressedDestBufferSizeDeprecated,
-        nUncompressBytesWrittenDeprecated,
-        nUncompressedVoiceDesiredSampleRateDeprecated,
+      EVoiceResult.fromValue(
+        _getVoice.call(
+          this,
+          wantCompressed,
+          pDestBuffer,
+          cbDestBufferSize,
+          nBytesWritten,
+          wantUncompressedDeprecated,
+          pUncompressedDestBufferDeprecated,
+          cbUncompressedDestBufferSizeDeprecated,
+          nUncompressBytesWrittenDeprecated,
+          nUncompressedVoiceDesiredSampleRateDeprecated,
+        ),
       );
 
   EVoiceResult decompressVoice(
@@ -434,14 +438,16 @@ extension ISteamUserExtensions on Pointer<ISteamUser> {
     Pointer<UnsignedInt> nBytesWritten,
     int nDesiredSampleRate,
   ) =>
-      _decompressVoice.call(
-        this,
-        pCompressed,
-        cbCompressed,
-        pDestBuffer,
-        cbDestBufferSize,
-        nBytesWritten,
-        nDesiredSampleRate,
+      EVoiceResult.fromValue(
+        _decompressVoice.call(
+          this,
+          pCompressed,
+          cbCompressed,
+          pDestBuffer,
+          cbDestBufferSize,
+          nBytesWritten,
+          nDesiredSampleRate,
+        ),
       );
 
   int getVoiceOptimalSampleRate() => _getVoiceOptimalSampleRate.call(
@@ -465,11 +471,13 @@ extension ISteamUserExtensions on Pointer<ISteamUser> {
     int cbAuthTicket,
     CSteamId steamId,
   ) =>
-      _beginAuthSession.call(
-        this,
-        pAuthTicket,
-        cbAuthTicket,
-        steamId,
+      EBeginAuthSessionResult.fromValue(
+        _beginAuthSession.call(
+          this,
+          pAuthTicket,
+          cbAuthTicket,
+          steamId,
+        ),
       );
 
   void endAuthSession(
@@ -492,10 +500,12 @@ extension ISteamUserExtensions on Pointer<ISteamUser> {
     CSteamId steamId,
     AppId appId,
   ) =>
-      _userHasLicenseForApp.call(
-        this,
-        steamId,
-        appId,
+      EUserHasLicenseForAppResult.fromValue(
+        _userHasLicenseForApp.call(
+          this,
+          steamId,
+          appId,
+        ),
       );
 
   bool isBehindNat() => _isBehindNat.call(
@@ -587,6 +597,6 @@ extension ISteamUserExtensions on Pointer<ISteamUser> {
   ) =>
       _bSetDurationControlOnlineState.call(
         this,
-        newState,
+        newState.value,
       );
 }

@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/edeny_reason.dart";
 import "../typedefs.dart";
@@ -14,11 +12,11 @@ class GsClientKick extends Struct {
   external CSteamId steamId;
 
   @Int32()
-  external EDenyReason denyReason;
+  external EDenyReasonAliasDart denyReason;
 }
 
 extension GsClientKickExtensions on Pointer<GsClientKick> {
   CSteamId get steamId => ref.steamId;
 
-  EDenyReason get denyReason => ref.denyReason;
+  EDenyReason get denyReason => EDenyReason.fromValue(ref.denyReason);
 }

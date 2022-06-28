@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -10,7 +10,7 @@ class AppProofOfPurchaseKeyResponse extends Struct {
   static int get callbackId => 1021;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedInt()
   external int appId;
@@ -23,7 +23,7 @@ class AppProofOfPurchaseKeyResponse extends Struct {
 
 extension AppProofOfPurchaseKeyResponseExtensions
     on Pointer<AppProofOfPurchaseKeyResponse> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   int get appId => ref.appId;
 

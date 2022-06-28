@@ -1,34 +1,107 @@
 // ignore_for_file: public_member_api_docs
-typedef EXboxOrigin = int;
+import "dart:ffi";
 
-class EXboxOriginEnum {
-  static const int a = 0;
-  static const int b = 1;
-  static const int x = 2;
-  static const int y = 3;
-  static const int leftBumper = 4;
-  static const int rightBumper = 5;
-  static const int menu = 6;
-  static const int view = 7;
-  static const int leftTriggerPull = 8;
-  static const int leftTriggerClick = 9;
-  static const int rightTriggerPull = 10;
-  static const int rightTriggerClick = 11;
-  static const int leftStickMove = 12;
-  static const int leftStickClick = 13;
-  static const int leftStickDPadNorth = 14;
-  static const int leftStickDPadSouth = 15;
-  static const int leftStickDPadWest = 16;
-  static const int leftStickDPadEast = 17;
-  static const int rightStickMove = 18;
-  static const int rightStickClick = 19;
-  static const int rightStickDPadNorth = 20;
-  static const int rightStickDPadSouth = 21;
-  static const int rightStickDPadWest = 22;
-  static const int rightStickDPadEast = 23;
-  static const int dPadNorth = 24;
-  static const int dPadSouth = 25;
-  static const int dPadWest = 26;
-  static const int dPadEast = 27;
-  static const int count = 28;
+typedef EXboxOriginAliasDart = int;
+typedef EXboxOriginAliasC = Int32;
+
+enum EXboxOrigin {
+  a(0),
+  b(1),
+  x(2),
+  y(3),
+  leftBumper(4),
+  rightBumper(5),
+  menu(6),
+  view(7),
+  leftTriggerPull(8),
+  leftTriggerClick(9),
+  rightTriggerPull(10),
+  rightTriggerClick(11),
+  leftStickMove(12),
+  leftStickClick(13),
+  leftStickDPadNorth(14),
+  leftStickDPadSouth(15),
+  leftStickDPadWest(16),
+  leftStickDPadEast(17),
+  rightStickMove(18),
+  rightStickClick(19),
+  rightStickDPadNorth(20),
+  rightStickDPadSouth(21),
+  rightStickDPadWest(22),
+  rightStickDPadEast(23),
+  dPadNorth(24),
+  dPadSouth(25),
+  dPadWest(26),
+  dPadEast(27),
+  count(28),
+  ;
+
+  final int value;
+
+  const EXboxOrigin(this.value);
+
+  factory EXboxOrigin.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EXboxOrigin.a;
+      case 1:
+        return EXboxOrigin.b;
+      case 2:
+        return EXboxOrigin.x;
+      case 3:
+        return EXboxOrigin.y;
+      case 4:
+        return EXboxOrigin.leftBumper;
+      case 5:
+        return EXboxOrigin.rightBumper;
+      case 6:
+        return EXboxOrigin.menu;
+      case 7:
+        return EXboxOrigin.view;
+      case 8:
+        return EXboxOrigin.leftTriggerPull;
+      case 9:
+        return EXboxOrigin.leftTriggerClick;
+      case 10:
+        return EXboxOrigin.rightTriggerPull;
+      case 11:
+        return EXboxOrigin.rightTriggerClick;
+      case 12:
+        return EXboxOrigin.leftStickMove;
+      case 13:
+        return EXboxOrigin.leftStickClick;
+      case 14:
+        return EXboxOrigin.leftStickDPadNorth;
+      case 15:
+        return EXboxOrigin.leftStickDPadSouth;
+      case 16:
+        return EXboxOrigin.leftStickDPadWest;
+      case 17:
+        return EXboxOrigin.leftStickDPadEast;
+      case 18:
+        return EXboxOrigin.rightStickMove;
+      case 19:
+        return EXboxOrigin.rightStickClick;
+      case 20:
+        return EXboxOrigin.rightStickDPadNorth;
+      case 21:
+        return EXboxOrigin.rightStickDPadSouth;
+      case 22:
+        return EXboxOrigin.rightStickDPadWest;
+      case 23:
+        return EXboxOrigin.rightStickDPadEast;
+      case 24:
+        return EXboxOrigin.dPadNorth;
+      case 25:
+        return EXboxOrigin.dPadSouth;
+      case 26:
+        return EXboxOrigin.dPadWest;
+      case 27:
+        return EXboxOrigin.dPadEast;
+      case 28:
+        return EXboxOrigin.count;
+      default:
+        throw "Unknown value for 'EXboxOrigin'. The value was: '$value'";
+    }
+  }
 }

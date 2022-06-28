@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 
@@ -10,14 +8,14 @@ class LobbyCreated extends Struct {
   static int get callbackId => 513;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external int steamIdLobby;
 }
 
 extension LobbyCreatedExtensions on Pointer<LobbyCreated> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   int get steamIdLobby => ref.steamIdLobby;
 }

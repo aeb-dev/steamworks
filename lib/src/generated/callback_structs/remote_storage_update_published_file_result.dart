@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eresult.dart";
 import "../typedefs.dart";
@@ -11,7 +9,7 @@ class RemoteStorageUpdatePublishedFileResult extends Struct {
   static int get callbackId => 1316;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
@@ -22,7 +20,7 @@ class RemoteStorageUpdatePublishedFileResult extends Struct {
 
 extension RemoteStorageUpdatePublishedFileResultExtensions
     on Pointer<RemoteStorageUpdatePublishedFileResult> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   PublishedFileId get publishedFileId => ref.publishedFileId;
 

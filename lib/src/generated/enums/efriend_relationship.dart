@@ -1,14 +1,47 @@
 // ignore_for_file: public_member_api_docs
-typedef EFriendRelationship = int;
+import "dart:ffi";
 
-class EFriendRelationshipEnum {
-  static const int none = 0;
-  static const int blocked = 1;
-  static const int requestRecipient = 2;
-  static const int friend = 3;
-  static const int requestInitiator = 4;
-  static const int ignored = 5;
-  static const int ignoredFriend = 6;
-  static const int suggestedDEPRECATED = 7;
-  static const int max = 8;
+typedef EFriendRelationshipAliasDart = int;
+typedef EFriendRelationshipAliasC = Int32;
+
+enum EFriendRelationship {
+  none(0),
+  blocked(1),
+  requestRecipient(2),
+  friend(3),
+  requestInitiator(4),
+  ignored(5),
+  ignoredFriend(6),
+  suggestedDEPRECATED(7),
+  max(8),
+  ;
+
+  final int value;
+
+  const EFriendRelationship(this.value);
+
+  factory EFriendRelationship.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return EFriendRelationship.none;
+      case 1:
+        return EFriendRelationship.blocked;
+      case 2:
+        return EFriendRelationship.requestRecipient;
+      case 3:
+        return EFriendRelationship.friend;
+      case 4:
+        return EFriendRelationship.requestInitiator;
+      case 5:
+        return EFriendRelationship.ignored;
+      case 6:
+        return EFriendRelationship.ignoredFriend;
+      case 7:
+        return EFriendRelationship.suggestedDEPRECATED;
+      case 8:
+        return EFriendRelationship.max;
+      default:
+        throw "Unknown value for 'EFriendRelationship'. The value was: '$value'";
+    }
+  }
 }

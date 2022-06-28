@@ -1,9 +1,32 @@
 // ignore_for_file: public_member_api_docs
-typedef ESteamInputGlyphSize = int;
+import "dart:ffi";
 
-class ESteamInputGlyphSizeEnum {
-  static const int small = 0;
-  static const int medium = 1;
-  static const int large = 2;
-  static const int count = 3;
+typedef ESteamInputGlyphSizeAliasDart = int;
+typedef ESteamInputGlyphSizeAliasC = Int32;
+
+enum ESteamInputGlyphSize {
+  small(0),
+  medium(1),
+  large(2),
+  count(3),
+  ;
+
+  final int value;
+
+  const ESteamInputGlyphSize(this.value);
+
+  factory ESteamInputGlyphSize.fromValue(int value) {
+    switch (value) {
+      case 0:
+        return ESteamInputGlyphSize.small;
+      case 1:
+        return ESteamInputGlyphSize.medium;
+      case 2:
+        return ESteamInputGlyphSize.large;
+      case 3:
+        return ESteamInputGlyphSize.count;
+      default:
+        throw "Unknown value for 'ESteamInputGlyphSize'. The value was: '$value'";
+    }
+  }
 }

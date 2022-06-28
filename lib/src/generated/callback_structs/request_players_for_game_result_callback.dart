@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
-
-import "package:ffi/ffi.dart";
 
 import "../enums/eplayer_accept_state.dart";
 import "../enums/eresult.dart";
@@ -12,7 +10,7 @@ class RequestPlayersForGameResultCallback extends Struct {
   static int get callbackId => 5212;
 
   @Int32()
-  external EResult result;
+  external EResultAliasDart result;
 
   @UnsignedLongLong()
   external int searchId;
@@ -24,7 +22,7 @@ class RequestPlayersForGameResultCallback extends Struct {
   external CSteamId steamIdLobby;
 
   @Int32()
-  external PlayerAcceptState playerAcceptState;
+  external PlayerAcceptStateAliasDart playerAcceptState;
 
   @Int()
   external int playerIndex;
@@ -44,7 +42,7 @@ class RequestPlayersForGameResultCallback extends Struct {
 
 extension RequestPlayersForGameResultCallbackExtensions
     on Pointer<RequestPlayersForGameResultCallback> {
-  EResult get result => ref.result;
+  EResult get result => EResult.fromValue(ref.result);
 
   int get searchId => ref.searchId;
 
@@ -52,7 +50,8 @@ extension RequestPlayersForGameResultCallbackExtensions
 
   CSteamId get steamIdLobby => ref.steamIdLobby;
 
-  PlayerAcceptState get playerAcceptState => ref.playerAcceptState;
+  PlayerAcceptState get playerAcceptState =>
+      PlayerAcceptState.fromValue(ref.playerAcceptState);
 
   int get playerIndex => ref.playerIndex;
 

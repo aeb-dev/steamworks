@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -30,7 +30,7 @@ class SteamNetConnectionInfo extends Struct {
   external SteamNetworkingPopId idPopRelay;
 
   @Int32()
-  external ESteamNetworkingConnectionState state;
+  external ESteamNetworkingConnectionStateAliasDart state;
 
   @Int()
   external int endReason;
@@ -61,7 +61,8 @@ extension SteamNetConnectionInfoExtensions on Pointer<SteamNetConnectionInfo> {
 
   SteamNetworkingPopId get idPopRelay => ref.idPopRelay;
 
-  ESteamNetworkingConnectionState get state => ref.state;
+  ESteamNetworkingConnectionState get state =>
+      ESteamNetworkingConnectionState.fromValue(ref.state);
 
   int get endReason => ref.endReason;
 
