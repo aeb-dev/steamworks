@@ -1,3 +1,7 @@
+## 0.3.1
+
+- Update steamworks_gen which reverts struct packing
+
 ## 0.3.0
 
 - Update steamworks_gen which supports enhanced enums
