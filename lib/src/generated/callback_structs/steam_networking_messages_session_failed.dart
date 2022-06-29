@@ -3,7 +3,7 @@ import "dart:ffi";
 
 import "../structs/steam_net_connection_info.dart";
 
-@Packed(1)
+@Packed(8)
 class SteamNetworkingMessagesSessionFailed extends Struct {
   static int get callbackId => 1252;
 
