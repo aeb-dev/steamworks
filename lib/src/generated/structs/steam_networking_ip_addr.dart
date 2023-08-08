@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -7,7 +7,7 @@ import "../dl.dart";
 import "../enums/esteam_networking_fake_ip_type.dart";
 
 @Packed(1)
-class SteamNetworkingIpAddr extends Struct {
+final class SteamNetworkingIpAddr extends Struct {
   static int get maxString => 48;
   @Array<UnsignedChar>(16)
   external Array<UnsignedChar> ipv6;
@@ -18,127 +18,127 @@ class SteamNetworkingIpAddr extends Struct {
 
 final _clear = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     void Function(
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_Clear");
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_Clear");
 
 final _isIpv6AllZeros = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_IsIPv6AllZeros");
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_IsIPv6AllZeros");
 
 final _setIpv6 = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<UnsignedChar>,
-  UnsignedShort,
-),
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<UnsignedChar>,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<UnsignedChar>,
-  int,
-)>("SteamAPI_SteamNetworkingIPAddr_SetIPv6");
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<UnsignedChar>,
+      int,
+    )>("SteamAPI_SteamNetworkingIPAddr_SetIPv6");
 
 final _setIpv4 = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  UnsignedInt,
-  UnsignedShort,
-),
+      Pointer<SteamNetworkingIpAddr>,
+      UnsignedInt,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  int,
-  int,
-)>("SteamAPI_SteamNetworkingIPAddr_SetIPv4");
+      Pointer<SteamNetworkingIpAddr>,
+      int,
+      int,
+    )>("SteamAPI_SteamNetworkingIPAddr_SetIPv4");
 
 final _isIpv4 = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_IsIPv4");
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_IsIPv4");
 
 final _getIpv4 = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     int Function(
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_GetIPv4");
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_GetIPv4");
 
 final _setIpv6LocalHost = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  UnsignedShort,
-),
+      Pointer<SteamNetworkingIpAddr>,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  int,
-)>("SteamAPI_SteamNetworkingIPAddr_SetIPv6LocalHost");
+      Pointer<SteamNetworkingIpAddr>,
+      int,
+    )>("SteamAPI_SteamNetworkingIPAddr_SetIPv6LocalHost");
 
 final _isLocalHost = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_IsLocalHost");
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_IsLocalHost");
 
 final _toString_ = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Bool,
-),
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Bool,
+    ),
     void Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<Utf8>,
-  int,
-  bool,
-)>("SteamAPI_SteamNetworkingIPAddr_ToString");
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<Utf8>,
+      int,
+      bool,
+    )>("SteamAPI_SteamNetworkingIPAddr_ToString");
 
 final _parseString = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<Utf8>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<Utf8>,
-)>("SteamAPI_SteamNetworkingIPAddr_ParseString");
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<Utf8>,
+    )>("SteamAPI_SteamNetworkingIPAddr_ParseString");
 
 final _isEqualTo = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_IsEqualTo");
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_IsEqualTo");
 
 final _getFakeIpType = dl.lookupFunction<
     ESteamNetworkingFakeIpTypeAliasC Function(
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     ESteamNetworkingFakeIpTypeAliasDart Function(
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_GetFakeIPType");
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_GetFakeIPType");
 
 final _isFakeIp = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIPAddr_IsFakeIP");
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIPAddr_IsFakeIP");
 
 extension SteamNetworkingIpAddrExtensions on Pointer<SteamNetworkingIpAddr> {
   void clear() => _clear.call(

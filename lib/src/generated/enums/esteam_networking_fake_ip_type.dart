@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef ESteamNetworkingFakeIpTypeAliasDart = int;
 typedef ESteamNetworkingFakeIpTypeAliasC = Int32;
@@ -26,7 +27,9 @@ enum ESteamNetworkingFakeIpType {
       case 3:
         return ESteamNetworkingFakeIpType.localIpv4;
       default:
-        throw "Unknown value for 'ESteamNetworkingFakeIpType'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'ESteamNetworkingFakeIpType'. The value was: '$value'",
+        );
     }
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -8,6 +8,7 @@ import "../enums/eitem_preview_type.dart";
 import "../enums/eitem_statistic.dart";
 import "../enums/eitem_update_status.dart";
 import "../enums/eremote_storage_published_file_visibility.dart";
+import "../enums/eugc_content_descriptor_id.dart";
 import "../enums/eugc_matching_ugc_type.dart";
 import "../enums/eugc_query.dart";
 import "../enums/euser_ugc_list.dart";
@@ -18,12 +19,12 @@ import "../structs/steam_ugc_details.dart";
 import "../typedefs.dart";
 
 final _steamUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v016");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v017");
 
 final _steamGameServerUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v016");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v017");
 
-class ISteamUgc extends Opaque {
+final class ISteamUgc extends Opaque {
   static Pointer<ISteamUgc> get userInstance => _steamUgc();
 
   static Pointer<ISteamUgc> get serverInstance => _steamGameServerUgc();
@@ -31,1103 +32,1143 @@ class ISteamUgc extends Opaque {
 
 final _createQueryUserUgcRequest = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedInt,
-  EUserUgcListAliasC,
-  EUgcMatchingUgcTypeAliasC,
-  EUserUgcListSortOrderAliasC,
-  UnsignedInt,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedInt,
+      EUserUgcListAliasC,
+      EUgcMatchingUgcTypeAliasC,
+      EUserUgcListSortOrderAliasC,
+      UnsignedInt,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     UgcQueryHandle Function(
-  Pointer<ISteamUgc>,
-  AccountId,
-  EUserUgcListAliasDart,
-  EUgcMatchingUgcTypeAliasDart,
-  EUserUgcListSortOrderAliasDart,
-  AppId,
-  AppId,
-  int,
-)>("SteamAPI_ISteamUGC_CreateQueryUserUGCRequest");
+      Pointer<ISteamUgc>,
+      AccountId,
+      EUserUgcListAliasDart,
+      EUgcMatchingUgcTypeAliasDart,
+      EUserUgcListSortOrderAliasDart,
+      AppId,
+      AppId,
+      int,
+    )>("SteamAPI_ISteamUGC_CreateQueryUserUGCRequest");
 
 final _createQueryAllUgcRequestPage = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  EUgcQueryAliasC,
-  EUgcMatchingUgcTypeAliasC,
-  UnsignedInt,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      EUgcQueryAliasC,
+      EUgcMatchingUgcTypeAliasC,
+      UnsignedInt,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     UgcQueryHandle Function(
-  Pointer<ISteamUgc>,
-  EUgcQueryAliasDart,
-  EUgcMatchingUgcTypeAliasDart,
-  AppId,
-  AppId,
-  int,
-)>("SteamAPI_ISteamUGC_CreateQueryAllUGCRequestPage");
+      Pointer<ISteamUgc>,
+      EUgcQueryAliasDart,
+      EUgcMatchingUgcTypeAliasDart,
+      AppId,
+      AppId,
+      int,
+    )>("SteamAPI_ISteamUGC_CreateQueryAllUGCRequestPage");
 
 final _createQueryAllUgcRequestCursor = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  EUgcQueryAliasC,
-  EUgcMatchingUgcTypeAliasC,
-  UnsignedInt,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      EUgcQueryAliasC,
+      EUgcMatchingUgcTypeAliasC,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     UgcQueryHandle Function(
-  Pointer<ISteamUgc>,
-  EUgcQueryAliasDart,
-  EUgcMatchingUgcTypeAliasDart,
-  AppId,
-  AppId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_CreateQueryAllUGCRequestCursor");
+      Pointer<ISteamUgc>,
+      EUgcQueryAliasDart,
+      EUgcMatchingUgcTypeAliasDart,
+      AppId,
+      AppId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_CreateQueryAllUGCRequestCursor");
 
 final _createQueryUgcDetailsRequest = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
     UgcQueryHandle Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamUGC_CreateQueryUGCDetailsRequest");
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUGC_CreateQueryUGCDetailsRequest");
 
 final _sendQueryUgcRequest = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-)>("SteamAPI_ISteamUGC_SendQueryUGCRequest");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+    )>("SteamAPI_ISteamUGC_SendQueryUGCRequest");
 
 final _getQueryUgcResult = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<SteamUgcDetails>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<SteamUgcDetails>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  Pointer<SteamUgcDetails>,
-)>("SteamAPI_ISteamUGC_GetQueryUGCResult");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      Pointer<SteamUgcDetails>,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCResult");
 
 final _getQueryUgcNumTags = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCNumTags");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCNumTags");
 
 final _getQueryUgcTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  int,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCTag");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      int,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCTag");
 
 final _getQueryUgcTagDisplayName = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  int,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCTagDisplayName");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      int,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCTagDisplayName");
 
 final _getQueryUgcPreviewUrl = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCPreviewURL");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCPreviewURL");
 
 final _getQueryUgcMetadata = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCMetadata");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCMetadata");
 
 final _getQueryUgcChildren = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<UnsignedLongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCChildren");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCChildren");
 
 final _getQueryUgcStatistic = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  EItemStatisticAliasC,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      EItemStatisticAliasC,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  EItemStatisticAliasDart,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamUGC_GetQueryUGCStatistic");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      EItemStatisticAliasDart,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCStatistic");
 
 final _getQueryUgcNumAdditionalPreviews = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCNumAdditionalPreviews");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCNumAdditionalPreviews");
 
 final _getQueryUgcAdditionalPreview = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<EItemPreviewTypeAliasC>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<EItemPreviewTypeAliasC>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  int,
-  Pointer<Utf8>,
-  int,
-  Pointer<Utf8>,
-  int,
-  Pointer<EItemPreviewTypeAliasC>,
-)>("SteamAPI_ISteamUGC_GetQueryUGCAdditionalPreview");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      int,
+      Pointer<Utf8>,
+      int,
+      Pointer<Utf8>,
+      int,
+      Pointer<EItemPreviewTypeAliasC>,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCAdditionalPreview");
 
 final _getQueryUgcNumKeyValueTags = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCNumKeyValueTags");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCNumKeyValueTags");
 
 final _getQueryUgcKeyValueTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  int,
-  Pointer<Utf8>,
-  int,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryUGCKeyValueTag");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      int,
+      Pointer<Utf8>,
+      int,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCKeyValueTag");
 
 final _getQueryFirstUgcKeyValueTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUGC_GetQueryFirstUGCKeyValueTag");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryFirstUGCKeyValueTag");
+
+final _getQueryUgcContentDescriptors = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<EUgcContentDescriptorIdAliasC>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      Pointer<EUgcContentDescriptorIdAliasC>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetQueryUGCContentDescriptors");
 
 final _releaseQueryUgcRequest = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-)>("SteamAPI_ISteamUGC_ReleaseQueryUGCRequest");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+    )>("SteamAPI_ISteamUGC_ReleaseQueryUGCRequest");
 
 final _addRequiredTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_AddRequiredTag");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_AddRequiredTag");
 
 final _addRequiredTagGroup = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<SteamParamStringArray>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<SteamParamStringArray>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  Pointer<SteamParamStringArray>,
-)>("SteamAPI_ISteamUGC_AddRequiredTagGroup");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      Pointer<SteamParamStringArray>,
+    )>("SteamAPI_ISteamUGC_AddRequiredTagGroup");
 
 final _addExcludedTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_AddExcludedTag");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_AddExcludedTag");
 
 final _setReturnOnlyIds = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetReturnOnlyIDs");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetReturnOnlyIDs");
 
 final _setReturnKeyValueTags = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetReturnKeyValueTags");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetReturnKeyValueTags");
 
 final _setReturnLongDescription = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetReturnLongDescription");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetReturnLongDescription");
 
 final _setReturnMetadata = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetReturnMetadata");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetReturnMetadata");
 
 final _setReturnChildren = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetReturnChildren");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetReturnChildren");
 
 final _setReturnAdditionalPreviews = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetReturnAdditionalPreviews");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetReturnAdditionalPreviews");
 
 final _setReturnTotalOnly = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetReturnTotalOnly");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetReturnTotalOnly");
 
 final _setReturnPlaytimeStats = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-)>("SteamAPI_ISteamUGC_SetReturnPlaytimeStats");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_SetReturnPlaytimeStats");
 
 final _setLanguage = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetLanguage");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetLanguage");
 
 final _setAllowCachedResponse = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-)>("SteamAPI_ISteamUGC_SetAllowCachedResponse");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_SetAllowCachedResponse");
 
 final _setCloudFileNameFilter = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetCloudFileNameFilter");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetCloudFileNameFilter");
 
 final _setMatchAnyTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetMatchAnyTag");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetMatchAnyTag");
 
 final _setSearchText = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetSearchText");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetSearchText");
 
 final _setRankedByTrendDays = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  int,
-)>("SteamAPI_ISteamUGC_SetRankedByTrendDays");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_SetRankedByTrendDays");
 
 final _setTimeCreatedDateRange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  RTime32,
-  RTime32,
-)>("SteamAPI_ISteamUGC_SetTimeCreatedDateRange");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      RTime32,
+      RTime32,
+    )>("SteamAPI_ISteamUGC_SetTimeCreatedDateRange");
 
 final _setTimeUpdatedDateRange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  RTime32,
-  RTime32,
-)>("SteamAPI_ISteamUGC_SetTimeUpdatedDateRange");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      RTime32,
+      RTime32,
+    )>("SteamAPI_ISteamUGC_SetTimeUpdatedDateRange");
 
 final _addRequiredKeyValueTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcQueryHandle,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_AddRequiredKeyValueTag");
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_AddRequiredKeyValueTag");
 
 final _requestUgcDetails = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  int,
-)>("SteamAPI_ISteamUGC_RequestUGCDetails");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      int,
+    )>("SteamAPI_ISteamUGC_RequestUGCDetails");
 
 final _createItem = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedInt,
-  EWorkshopFileTypeAliasC,
-),
+      Pointer<ISteamUgc>,
+      UnsignedInt,
+      EWorkshopFileTypeAliasC,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  AppId,
-  EWorkshopFileTypeAliasDart,
-)>("SteamAPI_ISteamUGC_CreateItem");
+      Pointer<ISteamUgc>,
+      AppId,
+      EWorkshopFileTypeAliasDart,
+    )>("SteamAPI_ISteamUGC_CreateItem");
 
 final _startItemUpdate = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedInt,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedInt,
+      UnsignedLongLong,
+    ),
     UgcUpdateHandle Function(
-  Pointer<ISteamUgc>,
-  AppId,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_StartItemUpdate");
+      Pointer<ISteamUgc>,
+      AppId,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_StartItemUpdate");
 
 final _setItemTitle = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetItemTitle");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetItemTitle");
 
 final _setItemDescription = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetItemDescription");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetItemDescription");
 
 final _setItemUpdateLanguage = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetItemUpdateLanguage");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetItemUpdateLanguage");
 
 final _setItemMetadata = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetItemMetadata");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetItemMetadata");
 
 final _setItemVisibility = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  ERemoteStoragePublishedFileVisibilityAliasC,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      ERemoteStoragePublishedFileVisibilityAliasC,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  ERemoteStoragePublishedFileVisibilityAliasDart,
-)>("SteamAPI_ISteamUGC_SetItemVisibility");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      ERemoteStoragePublishedFileVisibilityAliasDart,
+    )>("SteamAPI_ISteamUGC_SetItemVisibility");
 
 final _setItemTags = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<SteamParamStringArray>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<SteamParamStringArray>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<SteamParamStringArray>,
-)>("SteamAPI_ISteamUGC_SetItemTags");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<SteamParamStringArray>,
+    )>("SteamAPI_ISteamUGC_SetItemTags");
 
 final _setItemContent = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetItemContent");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetItemContent");
 
 final _setItemPreview = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SetItemPreview");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetItemPreview");
 
 final _setAllowLegacyUpload = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  bool,
-)>("SteamAPI_ISteamUGC_SetAllowLegacyUpload");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetAllowLegacyUpload");
 
 final _removeAllItemKeyValueTags = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-)>("SteamAPI_ISteamUGC_RemoveAllItemKeyValueTags");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+    )>("SteamAPI_ISteamUGC_RemoveAllItemKeyValueTags");
 
 final _removeItemKeyValueTags = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_RemoveItemKeyValueTags");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_RemoveItemKeyValueTags");
 
 final _addItemKeyValueTag = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_AddItemKeyValueTag");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_AddItemKeyValueTag");
 
 final _addItemPreviewFile = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  EItemPreviewTypeAliasC,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      EItemPreviewTypeAliasC,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-  EItemPreviewTypeAliasDart,
-)>("SteamAPI_ISteamUGC_AddItemPreviewFile");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+      EItemPreviewTypeAliasDart,
+    )>("SteamAPI_ISteamUGC_AddItemPreviewFile");
 
 final _addItemPreviewVideo = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_AddItemPreviewVideo");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_AddItemPreviewVideo");
 
 final _updateItemPreviewFile = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  int,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_UpdateItemPreviewFile");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      int,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_UpdateItemPreviewFile");
 
 final _updateItemPreviewVideo = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  int,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_UpdateItemPreviewVideo");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      int,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_UpdateItemPreviewVideo");
 
 final _removeItemPreview = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  int,
-)>("SteamAPI_ISteamUGC_RemoveItemPreview");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_RemoveItemPreview");
+
+final _addContentDescriptor = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      EUgcContentDescriptorIdAliasC,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      EUgcContentDescriptorIdAliasDart,
+    )>("SteamAPI_ISteamUGC_AddContentDescriptor");
+
+final _removeContentDescriptor = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      EUgcContentDescriptorIdAliasC,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      EUgcContentDescriptorIdAliasDart,
+    )>("SteamAPI_ISteamUGC_RemoveContentDescriptor");
 
 final _submitItemUpdate = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_SubmitItemUpdate");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SubmitItemUpdate");
 
 final _getItemUpdateProgress = dl.lookupFunction<
     EItemUpdateStatusAliasC Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    ),
     EItemUpdateStatusAliasDart Function(
-  Pointer<ISteamUgc>,
-  UgcUpdateHandle,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamUGC_GetItemUpdateProgress");
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamUGC_GetItemUpdateProgress");
 
 final _setUserItemVote = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  bool,
-)>("SteamAPI_ISteamUGC_SetUserItemVote");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetUserItemVote");
 
 final _getUserItemVote = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_GetUserItemVote");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_GetUserItemVote");
 
 final _addItemToFavorites = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedInt,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedInt,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  AppId,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_AddItemToFavorites");
+      Pointer<ISteamUgc>,
+      AppId,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_AddItemToFavorites");
 
 final _removeItemFromFavorites = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedInt,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedInt,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  AppId,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_RemoveItemFromFavorites");
+      Pointer<ISteamUgc>,
+      AppId,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_RemoveItemFromFavorites");
 
 final _subscribeItem = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_SubscribeItem");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_SubscribeItem");
 
 final _unsubscribeItem = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_UnsubscribeItem");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_UnsubscribeItem");
 
 final _getNumSubscribedItems = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUgc>,
-),
+      Pointer<ISteamUgc>,
+    ),
     int Function(
-  Pointer<ISteamUgc>,
-)>("SteamAPI_ISteamUGC_GetNumSubscribedItems");
+      Pointer<ISteamUgc>,
+    )>("SteamAPI_ISteamUGC_GetNumSubscribedItems");
 
 final _getSubscribedItems = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamUGC_GetSubscribedItems");
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetSubscribedItems");
 
 final _getItemState = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_GetItemState");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_GetItemState");
 
 final _getItemInstallInfo = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<UnsignedLongLong>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<UnsignedLongLong>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  Pointer<UnsignedLongLong>,
-  Pointer<Utf8>,
-  int,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamUGC_GetItemInstallInfo");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      Pointer<UnsignedLongLong>,
+      Pointer<Utf8>,
+      int,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamUGC_GetItemInstallInfo");
 
 final _getItemDownloadInfo = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamUGC_GetItemDownloadInfo");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamUGC_GetItemDownloadInfo");
 
 final _downloadItem = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  bool,
-)>("SteamAPI_ISteamUGC_DownloadItem");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      bool,
+    )>("SteamAPI_ISteamUGC_DownloadItem");
 
 final _bInitWorkshopForGameServer = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUgc>,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-  DepotId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUGC_BInitWorkshopForGameServer");
+      Pointer<ISteamUgc>,
+      DepotId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_BInitWorkshopForGameServer");
 
 final _suspendDownloads = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUgc>,
-  Bool,
-),
+      Pointer<ISteamUgc>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamUgc>,
-  bool,
-)>("SteamAPI_ISteamUGC_SuspendDownloads");
+      Pointer<ISteamUgc>,
+      bool,
+    )>("SteamAPI_ISteamUGC_SuspendDownloads");
 
 final _startPlaytimeTracking = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamUGC_StartPlaytimeTracking");
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUGC_StartPlaytimeTracking");
 
 final _stopPlaytimeTracking = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamUGC_StopPlaytimeTracking");
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUGC_StopPlaytimeTracking");
 
 final _stopPlaytimeTrackingForAllItems = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-),
+      Pointer<ISteamUgc>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-)>("SteamAPI_ISteamUGC_StopPlaytimeTrackingForAllItems");
+      Pointer<ISteamUgc>,
+    )>("SteamAPI_ISteamUGC_StopPlaytimeTrackingForAllItems");
 
 final _addDependency = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_AddDependency");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_AddDependency");
 
 final _removeDependency = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_RemoveDependency");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_RemoveDependency");
 
 final _addAppDependency = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  AppId,
-)>("SteamAPI_ISteamUGC_AddAppDependency");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      AppId,
+    )>("SteamAPI_ISteamUGC_AddAppDependency");
 
 final _removeAppDependency = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-  AppId,
-)>("SteamAPI_ISteamUGC_RemoveAppDependency");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+      AppId,
+    )>("SteamAPI_ISteamUGC_RemoveAppDependency");
 
 final _getAppDependencies = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_GetAppDependencies");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_GetAppDependencies");
 
 final _deleteItem = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-  PublishedFileId,
-)>("SteamAPI_ISteamUGC_DeleteItem");
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_DeleteItem");
 
 final _showWorkshopEula = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUgc>,
-),
+      Pointer<ISteamUgc>,
+    ),
     bool Function(
-  Pointer<ISteamUgc>,
-)>("SteamAPI_ISteamUGC_ShowWorkshopEULA");
+      Pointer<ISteamUgc>,
+    )>("SteamAPI_ISteamUGC_ShowWorkshopEULA");
 
 final _getWorkshopEulaStatus = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUgc>,
-),
+      Pointer<ISteamUgc>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUgc>,
-)>("SteamAPI_ISteamUGC_GetWorkshopEULAStatus");
+      Pointer<ISteamUgc>,
+    )>("SteamAPI_ISteamUGC_GetWorkshopEULAStatus");
 
 extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   UgcQueryHandle createQueryUserUgcRequest(
@@ -1386,6 +1427,20 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         key,
         value,
         cchValueSize,
+      );
+
+  int getQueryUgcContentDescriptors(
+    UgcQueryHandle handle,
+    int index,
+    Pointer<EUgcContentDescriptorIdAliasC> descriptors,
+    int cMaxEntries,
+  ) =>
+      _getQueryUgcContentDescriptors.call(
+        this,
+        handle,
+        index,
+        descriptors,
+        cMaxEntries,
       );
 
   bool releaseQueryUgcRequest(
@@ -1806,6 +1861,26 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         this,
         handle,
         index,
+      );
+
+  bool addContentDescriptor(
+    UgcUpdateHandle handle,
+    EUgcContentDescriptorId descid,
+  ) =>
+      _addContentDescriptor.call(
+        this,
+        handle,
+        descid.value,
+      );
+
+  bool removeContentDescriptor(
+    UgcUpdateHandle handle,
+    EUgcContentDescriptorId descid,
+  ) =>
+      _removeContentDescriptor.call(
+        this,
+        handle,
+        descid.value,
       );
 
   SteamApiCall submitItemUpdate(

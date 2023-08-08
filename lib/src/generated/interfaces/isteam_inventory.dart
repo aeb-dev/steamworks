@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -16,7 +16,7 @@ final _steamGameServerInventory = dl.lookupFunction<
     Pointer<ISteamInventory>
         Function()>("SteamAPI_SteamGameServerInventory_v003");
 
-class ISteamInventory extends Opaque {
+final class ISteamInventory extends Opaque {
   static Pointer<ISteamInventory> get userInstance => _steamInventory();
 
   static Pointer<ISteamInventory> get serverInstance =>
@@ -25,509 +25,509 @@ class ISteamInventory extends Opaque {
 
 final _getResultStatus = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamInventory>,
-  Int,
-),
+      Pointer<ISteamInventory>,
+      Int,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryResult,
-)>("SteamAPI_ISteamInventory_GetResultStatus");
+      Pointer<ISteamInventory>,
+      SteamInventoryResult,
+    )>("SteamAPI_ISteamInventory_GetResultStatus");
 
 final _getResultItems = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Int,
-  Pointer<SteamItemDetails>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamInventory>,
+      Int,
+      Pointer<SteamItemDetails>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryResult,
-  Pointer<SteamItemDetails>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamInventory_GetResultItems");
+      Pointer<ISteamInventory>,
+      SteamInventoryResult,
+      Pointer<SteamItemDetails>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamInventory_GetResultItems");
 
 final _getResultItemProperty = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Int,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamInventory>,
+      Int,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryResult,
-  int,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamInventory_GetResultItemProperty");
+      Pointer<ISteamInventory>,
+      SteamInventoryResult,
+      int,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamInventory_GetResultItemProperty");
 
 final _getResultTimestamp = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamInventory>,
-  Int,
-),
+      Pointer<ISteamInventory>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryResult,
-)>("SteamAPI_ISteamInventory_GetResultTimestamp");
+      Pointer<ISteamInventory>,
+      SteamInventoryResult,
+    )>("SteamAPI_ISteamInventory_GetResultTimestamp");
 
 final _checkResultSteamId = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Int,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInventory>,
+      Int,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryResult,
-  CSteamId,
-)>("SteamAPI_ISteamInventory_CheckResultSteamID");
+      Pointer<ISteamInventory>,
+      SteamInventoryResult,
+      CSteamId,
+    )>("SteamAPI_ISteamInventory_CheckResultSteamID");
 
 final _destroyResult = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInventory>,
-  Int,
-),
+      Pointer<ISteamInventory>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryResult,
-)>("SteamAPI_ISteamInventory_DestroyResult");
+      Pointer<ISteamInventory>,
+      SteamInventoryResult,
+    )>("SteamAPI_ISteamInventory_DestroyResult");
 
 final _getAllItems = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamInventory_GetAllItems");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamInventory_GetAllItems");
 
 final _getItemsById = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedLongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamInventory_GetItemsByID");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamInventory_GetItemsByID");
 
 final _serializeResult = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Int,
-  Pointer<Void>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamInventory>,
+      Int,
+      Pointer<Void>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryResult,
-  Pointer<Void>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamInventory_SerializeResult");
+      Pointer<ISteamInventory>,
+      SteamInventoryResult,
+      Pointer<Void>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamInventory_SerializeResult");
 
 final _deserializeResult = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Void>,
-  UnsignedInt,
-  Bool,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Void>,
+      UnsignedInt,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Void>,
-  int,
-  bool,
-)>("SteamAPI_ISteamInventory_DeserializeResult");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Void>,
+      int,
+      bool,
+    )>("SteamAPI_ISteamInventory_DeserializeResult");
 
 final _generateItems = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamInventory_GenerateItems");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamInventory_GenerateItems");
 
 final _grantPromoItems = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamInventory_GrantPromoItems");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamInventory_GrantPromoItems");
 
 final _addPromoItem = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Int,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  SteamItemDef,
-)>("SteamAPI_ISteamInventory_AddPromoItem");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      SteamItemDef,
+    )>("SteamAPI_ISteamInventory_AddPromoItem");
 
 final _addPromoItems = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Int>,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Int>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Int>,
-  int,
-)>("SteamAPI_ISteamInventory_AddPromoItems");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Int>,
+      int,
+    )>("SteamAPI_ISteamInventory_AddPromoItems");
 
 final _consumeItem = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  SteamItemInstanceId,
-  int,
-)>("SteamAPI_ISteamInventory_ConsumeItem");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      SteamItemInstanceId,
+      int,
+    )>("SteamAPI_ISteamInventory_ConsumeItem");
 
 final _exchangeItems = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-  int,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamInventory_ExchangeItems");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+      int,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamInventory_ExchangeItems");
 
 final _transferItemQuantity = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  SteamItemInstanceId,
-  int,
-  SteamItemInstanceId,
-)>("SteamAPI_ISteamInventory_TransferItemQuantity");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      SteamItemInstanceId,
+      int,
+      SteamItemInstanceId,
+    )>("SteamAPI_ISteamInventory_TransferItemQuantity");
 
 final _sendItemDropHeartbeat = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInventory>,
-),
+      Pointer<ISteamInventory>,
+    ),
     void Function(
-  Pointer<ISteamInventory>,
-)>("SteamAPI_ISteamInventory_SendItemDropHeartbeat");
+      Pointer<ISteamInventory>,
+    )>("SteamAPI_ISteamInventory_SendItemDropHeartbeat");
 
 final _triggerItemDrop = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Int,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  SteamItemDef,
-)>("SteamAPI_ISteamInventory_TriggerItemDrop");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      SteamItemDef,
+    )>("SteamAPI_ISteamInventory_TriggerItemDrop");
 
 final _tradeItems = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  UnsignedLongLong,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      UnsignedLongLong,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  CSteamId,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedInt>,
-  int,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamInventory_TradeItems");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      CSteamId,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedInt>,
+      int,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamInventory_TradeItems");
 
 final _loadItemDefinitions = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-),
+      Pointer<ISteamInventory>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-)>("SteamAPI_ISteamInventory_LoadItemDefinitions");
+      Pointer<ISteamInventory>,
+    )>("SteamAPI_ISteamInventory_LoadItemDefinitions");
 
 final _getItemDefinitionIds = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamInventory_GetItemDefinitionIDs");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamInventory_GetItemDefinitionIDs");
 
 final _getItemDefinitionProperty = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Int,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamInventory>,
+      Int,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamItemDef,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamInventory_GetItemDefinitionProperty");
+      Pointer<ISteamInventory>,
+      SteamItemDef,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamInventory_GetItemDefinitionProperty");
 
 final _requestEligiblePromoItemDefinitionsIds = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamInventory>,
-  CSteamId,
-)>("SteamAPI_ISteamInventory_RequestEligiblePromoItemDefinitionsIDs");
+      Pointer<ISteamInventory>,
+      CSteamId,
+    )>("SteamAPI_ISteamInventory_RequestEligiblePromoItemDefinitionsIDs");
 
 final _getEligiblePromoItemDefinitionIds = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  CSteamId,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamInventory_GetEligiblePromoItemDefinitionIDs");
+      Pointer<ISteamInventory>,
+      CSteamId,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamInventory_GetEligiblePromoItemDefinitionIDs");
 
 final _startPurchase = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamInventory_StartPurchase");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamInventory_StartPurchase");
 
 final _requestPrices = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInventory>,
-),
+      Pointer<ISteamInventory>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamInventory>,
-)>("SteamAPI_ISteamInventory_RequestPrices");
+      Pointer<ISteamInventory>,
+    )>("SteamAPI_ISteamInventory_RequestPrices");
 
 final _getNumItemsWithPrices = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamInventory>,
-),
+      Pointer<ISteamInventory>,
+    ),
     int Function(
-  Pointer<ISteamInventory>,
-)>("SteamAPI_ISteamInventory_GetNumItemsWithPrices");
+      Pointer<ISteamInventory>,
+    )>("SteamAPI_ISteamInventory_GetNumItemsWithPrices");
 
 final _getItemsWithPrices = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamInventory_GetItemsWithPrices");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamInventory_GetItemsWithPrices");
 
 final _getItemPrice = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Int,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamInventory>,
+      Int,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamItemDef,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamInventory_GetItemPrice");
+      Pointer<ISteamInventory>,
+      SteamItemDef,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamInventory_GetItemPrice");
 
 final _startUpdateProperties = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInventory>,
-),
+      Pointer<ISteamInventory>,
+    ),
     SteamInventoryUpdateHandle Function(
-  Pointer<ISteamInventory>,
-)>("SteamAPI_ISteamInventory_StartUpdateProperties");
+      Pointer<ISteamInventory>,
+    )>("SteamAPI_ISteamInventory_StartUpdateProperties");
 
 final _removeProperty = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryUpdateHandle,
-  SteamItemInstanceId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamInventory_RemoveProperty");
+      Pointer<ISteamInventory>,
+      SteamInventoryUpdateHandle,
+      SteamItemInstanceId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamInventory_RemoveProperty");
 
 final _setPropertyString = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryUpdateHandle,
-  SteamItemInstanceId,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamInventory_SetPropertyString");
+      Pointer<ISteamInventory>,
+      SteamInventoryUpdateHandle,
+      SteamItemInstanceId,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamInventory_SetPropertyString");
 
 final _setPropertyBool = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Bool,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryUpdateHandle,
-  SteamItemInstanceId,
-  Pointer<Utf8>,
-  bool,
-)>("SteamAPI_ISteamInventory_SetPropertyBool");
+      Pointer<ISteamInventory>,
+      SteamInventoryUpdateHandle,
+      SteamItemInstanceId,
+      Pointer<Utf8>,
+      bool,
+    )>("SteamAPI_ISteamInventory_SetPropertyBool");
 
 final _setPropertyInt64 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  LongLong,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      LongLong,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryUpdateHandle,
-  SteamItemInstanceId,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamInventory_SetPropertyInt64");
+      Pointer<ISteamInventory>,
+      SteamInventoryUpdateHandle,
+      SteamItemInstanceId,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamInventory_SetPropertyInt64");
 
 final _setPropertyFloat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Float,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Float,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryUpdateHandle,
-  SteamItemInstanceId,
-  Pointer<Utf8>,
-  double,
-)>("SteamAPI_ISteamInventory_SetPropertyFloat");
+      Pointer<ISteamInventory>,
+      SteamInventoryUpdateHandle,
+      SteamItemInstanceId,
+      Pointer<Utf8>,
+      double,
+    )>("SteamAPI_ISteamInventory_SetPropertyFloat");
 
 final _submitUpdateProperties = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  UnsignedLongLong,
-  Pointer<Int>,
-),
+      Pointer<ISteamInventory>,
+      UnsignedLongLong,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  SteamInventoryUpdateHandle,
-  Pointer<Int>,
-)>("SteamAPI_ISteamInventory_SubmitUpdateProperties");
+      Pointer<ISteamInventory>,
+      SteamInventoryUpdateHandle,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamInventory_SubmitUpdateProperties");
 
 final _inspectItem = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamInventory>,
-  Pointer<Int>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamInventory_InspectItem");
+      Pointer<ISteamInventory>,
+      Pointer<Int>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamInventory_InspectItem");
 
 extension ISteamInventoryExtensions on Pointer<ISteamInventory> {
   EResult getResultStatus(

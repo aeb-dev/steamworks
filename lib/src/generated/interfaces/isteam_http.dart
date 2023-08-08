@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -13,7 +13,7 @@ final _steamHttp = dl.lookupFunction<Pointer<ISteamHttp> Function(),
 final _steamGameServerHttp = dl.lookupFunction<Pointer<ISteamHttp> Function(),
     Pointer<ISteamHttp> Function()>("SteamAPI_SteamGameServerHTTP_v003");
 
-class ISteamHttp extends Opaque {
+final class ISteamHttp extends Opaque {
   static Pointer<ISteamHttp> get userInstance => _steamHttp();
 
   static Pointer<ISteamHttp> get serverInstance => _steamGameServerHttp();
@@ -21,317 +21,317 @@ class ISteamHttp extends Opaque {
 
 final _createHttpRequest = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamHttp>,
-  EHttpMethodAliasC,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHttp>,
+      EHttpMethodAliasC,
+      Pointer<Utf8>,
+    ),
     HttpRequestHandle Function(
-  Pointer<ISteamHttp>,
-  EHttpMethodAliasDart,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTTP_CreateHTTPRequest");
+      Pointer<ISteamHttp>,
+      EHttpMethodAliasDart,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTTP_CreateHTTPRequest");
 
 final _setHttpRequestContextValue = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  UnsignedLongLong,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  int,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestContextValue");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      int,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestContextValue");
 
 final _setHttpRequestNetworkActivityTimeout = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  int,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestNetworkActivityTimeout");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      int,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestNetworkActivityTimeout");
 
 final _setHttpRequestHeaderValue = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestHeaderValue");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestHeaderValue");
 
 final _setHttpRequestGetOrPostParameter = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestGetOrPostParameter");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestGetOrPostParameter");
 
 final _sendHttpRequest = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamHTTP_SendHTTPRequest");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamHTTP_SendHTTPRequest");
 
 final _sendHttpRequestAndStreamResponse = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamHTTP_SendHTTPRequestAndStreamResponse");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamHTTP_SendHTTPRequestAndStreamResponse");
 
 final _deferHttpRequest = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-)>("SteamAPI_ISteamHTTP_DeferHTTPRequest");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+    )>("SteamAPI_ISteamHTTP_DeferHTTPRequest");
 
 final _prioritizeHttpRequest = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-)>("SteamAPI_ISteamHTTP_PrioritizeHTTPRequest");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+    )>("SteamAPI_ISteamHTTP_PrioritizeHTTPRequest");
 
 final _getHttpResponseHeaderSize = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Utf8>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamHTTP_GetHTTPResponseHeaderSize");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Utf8>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamHTTP_GetHTTPResponseHeaderSize");
 
 final _getHttpResponseHeaderValue = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<UnsignedChar>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<UnsignedChar>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Utf8>,
-  Pointer<UnsignedChar>,
-  int,
-)>("SteamAPI_ISteamHTTP_GetHTTPResponseHeaderValue");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Utf8>,
+      Pointer<UnsignedChar>,
+      int,
+    )>("SteamAPI_ISteamHTTP_GetHTTPResponseHeaderValue");
 
 final _getHttpResponseBodySize = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamHTTP_GetHTTPResponseBodySize");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamHTTP_GetHTTPResponseBodySize");
 
 final _getHttpResponseBodyData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<UnsignedChar>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<UnsignedChar>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<UnsignedChar>,
-  int,
-)>("SteamAPI_ISteamHTTP_GetHTTPResponseBodyData");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<UnsignedChar>,
+      int,
+    )>("SteamAPI_ISteamHTTP_GetHTTPResponseBodyData");
 
 final _getHttpStreamingResponseBodyData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  UnsignedInt,
-  Pointer<UnsignedChar>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<UnsignedChar>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  int,
-  Pointer<UnsignedChar>,
-  int,
-)>("SteamAPI_ISteamHTTP_GetHTTPStreamingResponseBodyData");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      int,
+      Pointer<UnsignedChar>,
+      int,
+    )>("SteamAPI_ISteamHTTP_GetHTTPStreamingResponseBodyData");
 
 final _releaseHttpRequest = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-)>("SteamAPI_ISteamHTTP_ReleaseHTTPRequest");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+    )>("SteamAPI_ISteamHTTP_ReleaseHTTPRequest");
 
 final _getHttpDownloadProgressPct = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Float>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Float>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Float>,
-)>("SteamAPI_ISteamHTTP_GetHTTPDownloadProgressPct");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Float>,
+    )>("SteamAPI_ISteamHTTP_GetHTTPDownloadProgressPct");
 
 final _setHttpRequestRawPostBody = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<UnsignedChar>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<UnsignedChar>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Utf8>,
-  Pointer<UnsignedChar>,
-  int,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestRawPostBody");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Utf8>,
+      Pointer<UnsignedChar>,
+      int,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestRawPostBody");
 
 final _createCookieContainer = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamHttp>,
-  Bool,
-),
+      Pointer<ISteamHttp>,
+      Bool,
+    ),
     HttpCookieContainerHandle Function(
-  Pointer<ISteamHttp>,
-  bool,
-)>("SteamAPI_ISteamHTTP_CreateCookieContainer");
+      Pointer<ISteamHttp>,
+      bool,
+    )>("SteamAPI_ISteamHTTP_CreateCookieContainer");
 
 final _releaseCookieContainer = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpCookieContainerHandle,
-)>("SteamAPI_ISteamHTTP_ReleaseCookieContainer");
+      Pointer<ISteamHttp>,
+      HttpCookieContainerHandle,
+    )>("SteamAPI_ISteamHTTP_ReleaseCookieContainer");
 
 final _setCookie = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpCookieContainerHandle,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTTP_SetCookie");
+      Pointer<ISteamHttp>,
+      HttpCookieContainerHandle,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTTP_SetCookie");
 
 final _setHttpRequestCookieContainer = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  HttpCookieContainerHandle,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestCookieContainer");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      HttpCookieContainerHandle,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestCookieContainer");
 
 final _setHttpRequestUserAgentInfo = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestUserAgentInfo");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestUserAgentInfo");
 
 final _setHttpRequestRequiresVerifiedCertificate = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Bool,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  bool,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestRequiresVerifiedCertificate");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      bool,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestRequiresVerifiedCertificate");
 
 final _setHttpRequestAbsoluteTimeoutMS = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  int,
-)>("SteamAPI_ISteamHTTP_SetHTTPRequestAbsoluteTimeoutMS");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      int,
+    )>("SteamAPI_ISteamHTTP_SetHTTPRequestAbsoluteTimeoutMS");
 
 final _getHttpRequestWasTimedOut = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHttp>,
-  UnsignedInt,
-  Pointer<Bool>,
-),
+      Pointer<ISteamHttp>,
+      UnsignedInt,
+      Pointer<Bool>,
+    ),
     bool Function(
-  Pointer<ISteamHttp>,
-  HttpRequestHandle,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamHTTP_GetHTTPRequestWasTimedOut");
+      Pointer<ISteamHttp>,
+      HttpRequestHandle,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamHTTP_GetHTTPRequestWasTimedOut");
 
 extension ISteamHttpExtensions on Pointer<ISteamHttp> {
   HttpRequestHandle createHttpRequest(

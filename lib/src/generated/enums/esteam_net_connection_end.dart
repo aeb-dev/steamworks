@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef ESteamNetConnectionEndAliasDart = int;
 typedef ESteamNetConnectionEndAliasC = Int32;
@@ -49,10 +50,14 @@ enum ESteamNetConnectionEnd {
         return ESteamNetConnectionEnd.invalid;
       case 1000:
         return ESteamNetConnectionEnd.appMin;
+      case 1000:
+        return ESteamNetConnectionEnd.appGeneric;
       case 1999:
         return ESteamNetConnectionEnd.appMax;
       case 2000:
         return ESteamNetConnectionEnd.appExceptionMin;
+      case 2000:
+        return ESteamNetConnectionEnd.appExceptionGeneric;
       case 2999:
         return ESteamNetConnectionEnd.appExceptionMax;
       case 3000:
@@ -106,7 +111,9 @@ enum ESteamNetConnectionEnd {
       case 5999:
         return ESteamNetConnectionEnd.miscMax;
       default:
-        throw "Unknown value for 'ESteamNetConnectionEnd'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'ESteamNetConnectionEnd'. The value was: '$value'",
+        );
     }
   }
 }

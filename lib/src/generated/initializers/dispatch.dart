@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "../dl.dart";
@@ -11,47 +11,47 @@ final _init = dl.lookupFunction<Void Function(), void Function()>(
 
 final _runFrame = dl.lookupFunction<
     Void Function(
-  Int,
-),
+      Int,
+    ),
     void Function(
-  HSteamPipe,
-)>("SteamAPI_ManualDispatch_RunFrame");
+      HSteamPipe,
+    )>("SteamAPI_ManualDispatch_RunFrame");
 
 final _getNextCallback = dl.lookupFunction<
     Bool Function(
-  Int,
-  Pointer<CallbackMsg>,
-),
+      Int,
+      Pointer<CallbackMsg>,
+    ),
     bool Function(
-  HSteamPipe,
-  Pointer<CallbackMsg>,
-)>("SteamAPI_ManualDispatch_GetNextCallback");
+      HSteamPipe,
+      Pointer<CallbackMsg>,
+    )>("SteamAPI_ManualDispatch_GetNextCallback");
 
 final _freeLastCallback = dl.lookupFunction<
     Void Function(
-  Int,
-),
+      Int,
+    ),
     void Function(
-  HSteamPipe,
-)>("SteamAPI_ManualDispatch_FreeLastCallback");
+      HSteamPipe,
+    )>("SteamAPI_ManualDispatch_FreeLastCallback");
 
 final _getApiCallResult = dl.lookupFunction<
     Bool Function(
-  Int,
-  UnsignedLongLong,
-  Pointer<Void>,
-  Int,
-  Int,
-  Pointer<Bool>,
-),
+      Int,
+      UnsignedLongLong,
+      Pointer<Void>,
+      Int,
+      Int,
+      Pointer<Bool>,
+    ),
     bool Function(
-  HSteamPipe,
-  SteamApiCall,
-  Pointer<Void>,
-  int,
-  int,
-  Pointer<Bool>,
-)>("SteamAPI_ManualDispatch_GetAPICallResult");
+      HSteamPipe,
+      SteamApiCall,
+      Pointer<Void>,
+      int,
+      int,
+      Pointer<Bool>,
+    )>("SteamAPI_ManualDispatch_GetAPICallResult");
 
 class Dispatch {
   static void init() => _init.call();

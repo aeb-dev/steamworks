@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef ELobbyComparisonAliasDart = int;
 typedef ELobbyComparisonAliasC = Int32;
@@ -32,7 +33,9 @@ enum ELobbyComparison {
       case 3:
         return ELobbyComparison.notEqual;
       default:
-        throw "Unknown value for 'ELobbyComparison'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'ELobbyComparison'. The value was: '$value'",
+        );
     }
   }
 }

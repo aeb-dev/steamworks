@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -8,7 +8,7 @@ import "../structs/server_net_adr.dart";
 import "../typedefs.dart";
 
 @Packed(4)
-class GameServerItem extends Struct {
+final class GameServerItem extends Struct {
   external ServerNetAdr netAdr;
 
   @Int()
@@ -61,29 +61,29 @@ class GameServerItem extends Struct {
 
 final _construct = dl.lookupFunction<
     Void Function(
-  Pointer<GameServerItem>,
-),
+      Pointer<GameServerItem>,
+    ),
     void Function(
-  Pointer<GameServerItem>,
-)>("SteamAPI_gameserveritem_t_Construct");
+      Pointer<GameServerItem>,
+    )>("SteamAPI_gameserveritem_t_Construct");
 
 final _getName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<GameServerItem>,
-),
+      Pointer<GameServerItem>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<GameServerItem>,
-)>("SteamAPI_gameserveritem_t_GetName");
+      Pointer<GameServerItem>,
+    )>("SteamAPI_gameserveritem_t_GetName");
 
 final _setName = dl.lookupFunction<
     Void Function(
-  Pointer<GameServerItem>,
-  Pointer<Utf8>,
-),
+      Pointer<GameServerItem>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<GameServerItem>,
-  Pointer<Utf8>,
-)>("SteamAPI_gameserveritem_t_SetName");
+      Pointer<GameServerItem>,
+      Pointer<Utf8>,
+    )>("SteamAPI_gameserveritem_t_SetName");
 
 extension GameServerItemExtensions on Pointer<GameServerItem> {
   void construct() => _construct.call(

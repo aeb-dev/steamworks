@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "../dl.dart";
@@ -6,53 +6,53 @@ import "../enums/eresult.dart";
 import "../structs/steam_networking_ip_addr.dart";
 import "../structs/steam_networking_message.dart";
 
-class ISteamNetworkingFakeUdpPort extends Opaque {}
+final class ISteamNetworkingFakeUdpPort extends Opaque {}
 
 final _destroyFakeUdpPort = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-),
+      Pointer<ISteamNetworkingFakeUdpPort>,
+    ),
     void Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-)>("SteamAPI_ISteamNetworkingFakeUDPPort_DestroyFakeUDPPort");
+      Pointer<ISteamNetworkingFakeUdpPort>,
+    )>("SteamAPI_ISteamNetworkingFakeUDPPort_DestroyFakeUDPPort");
 
 final _sendMessageToFakeIp = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<Void>,
-  UnsignedInt,
-  Int,
-),
+      Pointer<ISteamNetworkingFakeUdpPort>,
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<Void>,
+      UnsignedInt,
+      Int,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-  Pointer<SteamNetworkingIpAddr>,
-  Pointer<Void>,
-  int,
-  int,
-)>("SteamAPI_ISteamNetworkingFakeUDPPort_SendMessageToFakeIP");
+      Pointer<ISteamNetworkingFakeUdpPort>,
+      Pointer<SteamNetworkingIpAddr>,
+      Pointer<Void>,
+      int,
+      int,
+    )>("SteamAPI_ISteamNetworkingFakeUDPPort_SendMessageToFakeIP");
 
 final _receiveMessages = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  Int,
-),
+      Pointer<ISteamNetworkingFakeUdpPort>,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  int,
-)>("SteamAPI_ISteamNetworkingFakeUDPPort_ReceiveMessages");
+      Pointer<ISteamNetworkingFakeUdpPort>,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      int,
+    )>("SteamAPI_ISteamNetworkingFakeUDPPort_ReceiveMessages");
 
 final _scheduleCleanup = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<ISteamNetworkingFakeUdpPort>,
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     void Function(
-  Pointer<ISteamNetworkingFakeUdpPort>,
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_ISteamNetworkingFakeUDPPort_ScheduleCleanup");
+      Pointer<ISteamNetworkingFakeUdpPort>,
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_ISteamNetworkingFakeUDPPort_ScheduleCleanup");
 
 extension ISteamNetworkingFakeUdpPortExtensions
     on Pointer<ISteamNetworkingFakeUdpPort> {

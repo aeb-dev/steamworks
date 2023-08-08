@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EDurationControlProgressAliasDart = int;
 typedef EDurationControlProgressAliasC = Int32;
@@ -32,7 +33,9 @@ enum EDurationControlProgress {
       case 5:
         return EDurationControlProgress.exitSoonNight;
       default:
-        throw "Unknown value for 'EDurationControlProgress'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EDurationControlProgress'. The value was: '$value'",
+        );
     }
   }
 }

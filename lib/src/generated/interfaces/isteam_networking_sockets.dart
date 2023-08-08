@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -33,7 +33,7 @@ final _steamGameServerNetworkingSocketsSteamApi = dl.lookupFunction<
     Pointer<ISteamNetworkingSockets>
         Function()>("SteamAPI_SteamGameServerNetworkingSockets_SteamAPI_v012");
 
-class ISteamNetworkingSockets extends Opaque {
+final class ISteamNetworkingSockets extends Opaque {
   static Pointer<ISteamNetworkingSockets> get userInstance =>
       _steamNetworkingSocketsSteamApi();
 
@@ -43,595 +43,597 @@ class ISteamNetworkingSockets extends Opaque {
 
 final _createListenSocketIp = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIpAddr>,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIpAddr>,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamListenSocket Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIpAddr>,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketIP");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIpAddr>,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketIP");
 
 final _connectByIpAddress = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIpAddr>,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIpAddr>,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamNetConnection Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIpAddr>,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_ConnectByIPAddress");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIpAddr>,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>("SteamAPI_ISteamNetworkingSockets_ConnectByIPAddress");
 
 final _createListenSocketP2p = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Int,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Int,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamListenSocket Function(
-  Pointer<ISteamNetworkingSockets>,
-  int,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketP2P");
+      Pointer<ISteamNetworkingSockets>,
+      int,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketP2P");
 
 final _connectP2p = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-  Int,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+      Int,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamNetConnection Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-  int,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_ConnectP2P");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+      int,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>("SteamAPI_ISteamNetworkingSockets_ConnectP2P");
 
 final _acceptConnection = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-)>("SteamAPI_ISteamNetworkingSockets_AcceptConnection");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+    )>("SteamAPI_ISteamNetworkingSockets_AcceptConnection");
 
 final _closeConnection = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Int,
-  Pointer<Utf8>,
-  Bool,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Int,
+      Pointer<Utf8>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  int,
-  Pointer<Utf8>,
-  bool,
-)>("SteamAPI_ISteamNetworkingSockets_CloseConnection");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      int,
+      Pointer<Utf8>,
+      bool,
+    )>("SteamAPI_ISteamNetworkingSockets_CloseConnection");
 
 final _closeListenSocket = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamListenSocket,
-)>("SteamAPI_ISteamNetworkingSockets_CloseListenSocket");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamListenSocket,
+    )>("SteamAPI_ISteamNetworkingSockets_CloseListenSocket");
 
 final _setConnectionUserData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  LongLong,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      LongLong,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  int,
-)>("SteamAPI_ISteamNetworkingSockets_SetConnectionUserData");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      int,
+    )>("SteamAPI_ISteamNetworkingSockets_SetConnectionUserData");
 
 final _getConnectionUserData = dl.lookupFunction<
     LongLong Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-)>("SteamAPI_ISteamNetworkingSockets_GetConnectionUserData");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+    )>("SteamAPI_ISteamNetworkingSockets_GetConnectionUserData");
 
 final _setConnectionName = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamNetworkingSockets_SetConnectionName");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamNetworkingSockets_SetConnectionName");
 
 final _getConnectionName = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamNetworkingSockets_GetConnectionName");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamNetworkingSockets_GetConnectionName");
 
 final _sendMessageToConnection = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<Void>,
-  UnsignedInt,
-  Int,
-  Pointer<LongLong>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<Void>,
+      UnsignedInt,
+      Int,
+      Pointer<LongLong>,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<Void>,
-  int,
-  int,
-  Pointer<LongLong>,
-)>("SteamAPI_ISteamNetworkingSockets_SendMessageToConnection");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<Void>,
+      int,
+      int,
+      Pointer<LongLong>,
+    )>("SteamAPI_ISteamNetworkingSockets_SendMessageToConnection");
 
 final _sendMessages = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamNetworkingSockets>,
-  Int,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  Pointer<LongLong>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Int,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      Pointer<LongLong>,
+    ),
     void Function(
-  Pointer<ISteamNetworkingSockets>,
-  int,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  Pointer<LongLong>,
-)>("SteamAPI_ISteamNetworkingSockets_SendMessages");
+      Pointer<ISteamNetworkingSockets>,
+      int,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      Pointer<LongLong>,
+    )>("SteamAPI_ISteamNetworkingSockets_SendMessages");
 
 final _flushMessagesOnConnection = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-)>("SteamAPI_ISteamNetworkingSockets_FlushMessagesOnConnection");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+    )>("SteamAPI_ISteamNetworkingSockets_FlushMessagesOnConnection");
 
 final _receiveMessagesOnConnection = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  Int,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  int,
-)>("SteamAPI_ISteamNetworkingSockets_ReceiveMessagesOnConnection");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      int,
+    )>("SteamAPI_ISteamNetworkingSockets_ReceiveMessagesOnConnection");
 
 final _getConnectionInfo = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<SteamNetConnectionInfo>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<SteamNetConnectionInfo>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<SteamNetConnectionInfo>,
-)>("SteamAPI_ISteamNetworkingSockets_GetConnectionInfo");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<SteamNetConnectionInfo>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetConnectionInfo");
 
 final _getConnectionRealTimeStatus = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<SteamNetConnectionRealTimeStatus>,
-  Int,
-  Pointer<SteamNetConnectionRealTimeLaneStatus>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<SteamNetConnectionRealTimeStatus>,
+      Int,
+      Pointer<SteamNetConnectionRealTimeLaneStatus>,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<SteamNetConnectionRealTimeStatus>,
-  int,
-  Pointer<SteamNetConnectionRealTimeLaneStatus>,
-)>("SteamAPI_ISteamNetworkingSockets_GetConnectionRealTimeStatus");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<SteamNetConnectionRealTimeStatus>,
+      int,
+      Pointer<SteamNetConnectionRealTimeLaneStatus>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetConnectionRealTimeStatus");
 
 final _getDetailedConnectionStatus = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamNetworkingSockets_GetDetailedConnectionStatus");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamNetworkingSockets_GetDetailedConnectionStatus");
 
 final _getListenSocketAddress = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamListenSocket,
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_ISteamNetworkingSockets_GetListenSocketAddress");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamListenSocket,
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetListenSocketAddress");
 
 final _createSocketPair = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-  Bool,
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      Bool,
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-  bool,
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_ISteamNetworkingSockets_CreateSocketPair");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      bool,
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_ISteamNetworkingSockets_CreateSocketPair");
 
 final _configureConnectionLanes = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Int,
-  Pointer<Int>,
-  Pointer<UnsignedShort>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Int,
+      Pointer<Int>,
+      Pointer<UnsignedShort>,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  int,
-  Pointer<Int>,
-  Pointer<UnsignedShort>,
-)>("SteamAPI_ISteamNetworkingSockets_ConfigureConnectionLanes");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      int,
+      Pointer<Int>,
+      Pointer<UnsignedShort>,
+    )>("SteamAPI_ISteamNetworkingSockets_ConfigureConnectionLanes");
 
 final _getIdentity = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_ISteamNetworkingSockets_GetIdentity");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetIdentity");
 
 final _initAuthentication = dl.lookupFunction<
     ESteamNetworkingAvailabilityAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-),
+      Pointer<ISteamNetworkingSockets>,
+    ),
     ESteamNetworkingAvailabilityAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-)>("SteamAPI_ISteamNetworkingSockets_InitAuthentication");
+      Pointer<ISteamNetworkingSockets>,
+    )>("SteamAPI_ISteamNetworkingSockets_InitAuthentication");
 
 final _getAuthenticationStatus = dl.lookupFunction<
     ESteamNetworkingAvailabilityAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetAuthenticationStatus>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetAuthenticationStatus>,
+    ),
     ESteamNetworkingAvailabilityAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetAuthenticationStatus>,
-)>("SteamAPI_ISteamNetworkingSockets_GetAuthenticationStatus");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetAuthenticationStatus>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetAuthenticationStatus");
 
 final _createPollGroup = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-),
+      Pointer<ISteamNetworkingSockets>,
+    ),
     HSteamNetPollGroup Function(
-  Pointer<ISteamNetworkingSockets>,
-)>("SteamAPI_ISteamNetworkingSockets_CreatePollGroup");
+      Pointer<ISteamNetworkingSockets>,
+    )>("SteamAPI_ISteamNetworkingSockets_CreatePollGroup");
 
 final _destroyPollGroup = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetPollGroup,
-)>("SteamAPI_ISteamNetworkingSockets_DestroyPollGroup");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetPollGroup,
+    )>("SteamAPI_ISteamNetworkingSockets_DestroyPollGroup");
 
 final _setConnectionPollGroup = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  HSteamNetPollGroup,
-)>("SteamAPI_ISteamNetworkingSockets_SetConnectionPollGroup");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      HSteamNetPollGroup,
+    )>("SteamAPI_ISteamNetworkingSockets_SetConnectionPollGroup");
 
 final _receiveMessagesOnPollGroup = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  Int,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetPollGroup,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  int,
-)>("SteamAPI_ISteamNetworkingSockets_ReceiveMessagesOnPollGroup");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetPollGroup,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      int,
+    )>("SteamAPI_ISteamNetworkingSockets_ReceiveMessagesOnPollGroup");
 
 final _receivedRelayAuthTicket = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Void>,
-  Int,
-  Pointer<SteamDatagramRelayAuthTicket>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Void>,
+      Int,
+      Pointer<SteamDatagramRelayAuthTicket>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Void>,
-  int,
-  Pointer<SteamDatagramRelayAuthTicket>,
-)>("SteamAPI_ISteamNetworkingSockets_ReceivedRelayAuthTicket");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Void>,
+      int,
+      Pointer<SteamDatagramRelayAuthTicket>,
+    )>("SteamAPI_ISteamNetworkingSockets_ReceivedRelayAuthTicket");
 
 final _findRelayAuthTicketForServer = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-  Int,
-  Pointer<SteamDatagramRelayAuthTicket>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+      Int,
+      Pointer<SteamDatagramRelayAuthTicket>,
+    ),
     int Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-  int,
-  Pointer<SteamDatagramRelayAuthTicket>,
-)>("SteamAPI_ISteamNetworkingSockets_FindRelayAuthTicketForServer");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+      int,
+      Pointer<SteamDatagramRelayAuthTicket>,
+    )>("SteamAPI_ISteamNetworkingSockets_FindRelayAuthTicketForServer");
 
 final _connectToHostedDedicatedServer = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-  Int,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+      Int,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamNetConnection Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-  int,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_ConnectToHostedDedicatedServer");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+      int,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>("SteamAPI_ISteamNetworkingSockets_ConnectToHostedDedicatedServer");
 
 final _getHostedDedicatedServerPort = dl.lookupFunction<
     UnsignedShort Function(
-  Pointer<ISteamNetworkingSockets>,
-),
+      Pointer<ISteamNetworkingSockets>,
+    ),
     int Function(
-  Pointer<ISteamNetworkingSockets>,
-)>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerPort");
+      Pointer<ISteamNetworkingSockets>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerPort");
 
 final _getHostedDedicatedServerPopId = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-),
+      Pointer<ISteamNetworkingSockets>,
+    ),
     SteamNetworkingPopId Function(
-  Pointer<ISteamNetworkingSockets>,
-)>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerPOPID");
+      Pointer<ISteamNetworkingSockets>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerPOPID");
 
 final _getHostedDedicatedServerAddress = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamDatagramHostedAddress>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamDatagramHostedAddress>,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamDatagramHostedAddress>,
-)>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerAddress");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamDatagramHostedAddress>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetHostedDedicatedServerAddress");
 
 final _createHostedDedicatedServerListenSocket = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Int,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Int,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamListenSocket Function(
-  Pointer<ISteamNetworkingSockets>,
-  int,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_CreateHostedDedicatedServerListenSocket");
+      Pointer<ISteamNetworkingSockets>,
+      int,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>(
+  "SteamAPI_ISteamNetworkingSockets_CreateHostedDedicatedServerListenSocket",
+);
 
 final _getGameCoordinatorServerLogin = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamDatagramGameCoordinatorServerLogin>,
-  Pointer<Int>,
-  Pointer<Void>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamDatagramGameCoordinatorServerLogin>,
+      Pointer<Int>,
+      Pointer<Void>,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamDatagramGameCoordinatorServerLogin>,
-  Pointer<Int>,
-  Pointer<Void>,
-)>("SteamAPI_ISteamNetworkingSockets_GetGameCoordinatorServerLogin");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamDatagramGameCoordinatorServerLogin>,
+      Pointer<Int>,
+      Pointer<Void>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetGameCoordinatorServerLogin");
 
 final _connectP2pCustomSignaling = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<ISteamNetworkingConnectionSignaling>,
-  Pointer<SteamNetworkingIdentity>,
-  Int,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<ISteamNetworkingConnectionSignaling>,
+      Pointer<SteamNetworkingIdentity>,
+      Int,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamNetConnection Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<ISteamNetworkingConnectionSignaling>,
-  Pointer<SteamNetworkingIdentity>,
-  int,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_ConnectP2PCustomSignaling");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<ISteamNetworkingConnectionSignaling>,
+      Pointer<SteamNetworkingIdentity>,
+      int,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>("SteamAPI_ISteamNetworkingSockets_ConnectP2PCustomSignaling");
 
 final _receivedP2pCustomSignal = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Void>,
-  Int,
-  Pointer<ISteamNetworkingSignalingRecvContext>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Void>,
+      Int,
+      Pointer<ISteamNetworkingSignalingRecvContext>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Void>,
-  int,
-  Pointer<ISteamNetworkingSignalingRecvContext>,
-)>("SteamAPI_ISteamNetworkingSockets_ReceivedP2PCustomSignal");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Void>,
+      int,
+      Pointer<ISteamNetworkingSignalingRecvContext>,
+    )>("SteamAPI_ISteamNetworkingSockets_ReceivedP2PCustomSignal");
 
 final _getCertificateRequest = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Int>,
-  Pointer<Void>,
-  Pointer<Pointer<Utf8>>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Int>,
+      Pointer<Void>,
+      Pointer<Pointer<Utf8>>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Int>,
-  Pointer<Void>,
-  Pointer<Pointer<Utf8>>,
-)>("SteamAPI_ISteamNetworkingSockets_GetCertificateRequest");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Int>,
+      Pointer<Void>,
+      Pointer<Pointer<Utf8>>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetCertificateRequest");
 
 final _setCertificate = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Void>,
-  Int,
-  Pointer<Pointer<Utf8>>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Void>,
+      Int,
+      Pointer<Pointer<Utf8>>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<Void>,
-  int,
-  Pointer<Pointer<Utf8>>,
-)>("SteamAPI_ISteamNetworkingSockets_SetCertificate");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<Void>,
+      int,
+      Pointer<Pointer<Utf8>>,
+    )>("SteamAPI_ISteamNetworkingSockets_SetCertificate");
 
 final _resetIdentity = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     void Function(
-  Pointer<ISteamNetworkingSockets>,
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_ISteamNetworkingSockets_ResetIdentity");
+      Pointer<ISteamNetworkingSockets>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_ISteamNetworkingSockets_ResetIdentity");
 
 final _runCallbacks = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamNetworkingSockets>,
-),
+      Pointer<ISteamNetworkingSockets>,
+    ),
     void Function(
-  Pointer<ISteamNetworkingSockets>,
-)>("SteamAPI_ISteamNetworkingSockets_RunCallbacks");
+      Pointer<ISteamNetworkingSockets>,
+    )>("SteamAPI_ISteamNetworkingSockets_RunCallbacks");
 
 final _beginAsyncRequestFakeIp = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  Int,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingSockets>,
-  int,
-)>("SteamAPI_ISteamNetworkingSockets_BeginAsyncRequestFakeIP");
+      Pointer<ISteamNetworkingSockets>,
+      int,
+    )>("SteamAPI_ISteamNetworkingSockets_BeginAsyncRequestFakeIP");
 
 final _getFakeIp = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamNetworkingSockets>,
-  Int,
-  Pointer<SteamNetworkingFakeIpResult>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Int,
+      Pointer<SteamNetworkingFakeIpResult>,
+    ),
     void Function(
-  Pointer<ISteamNetworkingSockets>,
-  int,
-  Pointer<SteamNetworkingFakeIpResult>,
-)>("SteamAPI_ISteamNetworkingSockets_GetFakeIP");
+      Pointer<ISteamNetworkingSockets>,
+      int,
+      Pointer<SteamNetworkingFakeIpResult>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetFakeIP");
 
 final _createListenSocketP2pFakeIp = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamNetworkingSockets>,
-  Int,
-  Int,
-  Pointer<SteamNetworkingConfigValue>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Int,
+      Int,
+      Pointer<SteamNetworkingConfigValue>,
+    ),
     HSteamListenSocket Function(
-  Pointer<ISteamNetworkingSockets>,
-  int,
-  int,
-  Pointer<SteamNetworkingConfigValue>,
-)>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketP2PFakeIP");
+      Pointer<ISteamNetworkingSockets>,
+      int,
+      int,
+      Pointer<SteamNetworkingConfigValue>,
+    )>("SteamAPI_ISteamNetworkingSockets_CreateListenSocketP2PFakeIP");
 
 final _getRemoteFakeIpForConnection = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingSockets>,
-  UnsignedInt,
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<ISteamNetworkingSockets>,
+      UnsignedInt,
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingSockets>,
-  HSteamNetConnection,
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_ISteamNetworkingSockets_GetRemoteFakeIPForConnection");
+      Pointer<ISteamNetworkingSockets>,
+      HSteamNetConnection,
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_ISteamNetworkingSockets_GetRemoteFakeIPForConnection");
 
 final _createFakeUdpPort = dl.lookupFunction<
     Pointer<ISteamNetworkingFakeUdpPort> Function(
-  Pointer<ISteamNetworkingSockets>,
-  Int,
-),
+      Pointer<ISteamNetworkingSockets>,
+      Int,
+    ),
     Pointer<ISteamNetworkingFakeUdpPort> Function(
-  Pointer<ISteamNetworkingSockets>,
-  int,
-)>("SteamAPI_ISteamNetworkingSockets_CreateFakeUDPPort");
+      Pointer<ISteamNetworkingSockets>,
+      int,
+    )>("SteamAPI_ISteamNetworkingSockets_CreateFakeUDPPort");
 
 extension ISteamNetworkingSocketsExtensions
     on Pointer<ISteamNetworkingSockets> {

@@ -21,7 +21,7 @@ class SteamClient extends SteamBase {
 
     bool isInitialized = SteamApi.init();
     if (!isInitialized) {
-      throw "Steam failed to initialize";
+      throw Exception("Steam failed to initialize");
     }
 
     _instance = SteamClient._();

@@ -1,3 +1,9 @@
+## 0.4.0
+
+- Update steamworks_gen to 0.4.0
+- Steam SDK 1.57
+- Dart 3
+
 ## 0.3.1
 
 - Update steamworks_gen which reverts struct packing

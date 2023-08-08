@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -33,449 +33,449 @@ import "../interfaces/isteam_video.dart";
 import "../structs/steam_ip_address.dart";
 import "../typedefs.dart";
 
-class ISteamClient extends Opaque {}
+final class ISteamClient extends Opaque {}
 
 final _createSteamPipe = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamClient>,
-),
+      Pointer<ISteamClient>,
+    ),
     HSteamPipe Function(
-  Pointer<ISteamClient>,
-)>("SteamAPI_ISteamClient_CreateSteamPipe");
+      Pointer<ISteamClient>,
+    )>("SteamAPI_ISteamClient_CreateSteamPipe");
 
 final _bReleaseSteamPipe = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamClient>,
-  Int,
-),
+      Pointer<ISteamClient>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamClient>,
-  HSteamPipe,
-)>("SteamAPI_ISteamClient_BReleaseSteamPipe");
+      Pointer<ISteamClient>,
+      HSteamPipe,
+    )>("SteamAPI_ISteamClient_BReleaseSteamPipe");
 
 final _connectToGlobalUser = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamClient>,
-  Int,
-),
+      Pointer<ISteamClient>,
+      Int,
+    ),
     HSteamUser Function(
-  Pointer<ISteamClient>,
-  HSteamPipe,
-)>("SteamAPI_ISteamClient_ConnectToGlobalUser");
+      Pointer<ISteamClient>,
+      HSteamPipe,
+    )>("SteamAPI_ISteamClient_ConnectToGlobalUser");
 
 final _createLocalUser = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamClient>,
-  Pointer<Int>,
-  EAccountTypeAliasC,
-),
+      Pointer<ISteamClient>,
+      Pointer<Int>,
+      EAccountTypeAliasC,
+    ),
     HSteamUser Function(
-  Pointer<ISteamClient>,
-  Pointer<Int>,
-  EAccountTypeAliasDart,
-)>("SteamAPI_ISteamClient_CreateLocalUser");
+      Pointer<ISteamClient>,
+      Pointer<Int>,
+      EAccountTypeAliasDart,
+    )>("SteamAPI_ISteamClient_CreateLocalUser");
 
 final _releaseUser = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamClient>,
-  HSteamPipe,
-  HSteamUser,
-)>("SteamAPI_ISteamClient_ReleaseUser");
+      Pointer<ISteamClient>,
+      HSteamPipe,
+      HSteamUser,
+    )>("SteamAPI_ISteamClient_ReleaseUser");
 
 final _getISteamUser = dl.lookupFunction<
     Pointer<ISteamUser> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamUser> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamUser");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamUser");
 
 final _getISteamGameServer = dl.lookupFunction<
     Pointer<ISteamGameServer> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamGameServer> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamGameServer");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamGameServer");
 
 final _setLocalIpBinding = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamClient>,
-  Pointer<SteamIpAddress>,
-  UnsignedShort,
-),
+      Pointer<ISteamClient>,
+      Pointer<SteamIpAddress>,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ISteamClient>,
-  Pointer<SteamIpAddress>,
-  int,
-)>("SteamAPI_ISteamClient_SetLocalIPBinding");
+      Pointer<ISteamClient>,
+      Pointer<SteamIpAddress>,
+      int,
+    )>("SteamAPI_ISteamClient_SetLocalIPBinding");
 
 final _getISteamFriends = dl.lookupFunction<
     Pointer<ISteamFriends> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamFriends> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamFriends");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamFriends");
 
 final _getISteamUtils = dl.lookupFunction<
     Pointer<ISteamUtils> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamUtils> Function(
-  Pointer<ISteamClient>,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamUtils");
+      Pointer<ISteamClient>,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamUtils");
 
 final _getISteamMatchmaking = dl.lookupFunction<
     Pointer<ISteamMatchmaking> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamMatchmaking> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamMatchmaking");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamMatchmaking");
 
 final _getISteamMatchmakingServers = dl.lookupFunction<
     Pointer<ISteamMatchmakingServers> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamMatchmakingServers> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamMatchmakingServers");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamMatchmakingServers");
 
 final _getISteamGenericInterface = dl.lookupFunction<
     Pointer<Void> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<Void> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamGenericInterface");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamGenericInterface");
 
 final _getISteamUserStats = dl.lookupFunction<
     Pointer<ISteamUserStats> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamUserStats> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamUserStats");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamUserStats");
 
 final _getISteamGameServerStats = dl.lookupFunction<
     Pointer<ISteamGameServerStats> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamGameServerStats> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamGameServerStats");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamGameServerStats");
 
 final _getISteamApps = dl.lookupFunction<
     Pointer<ISteamApps> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamApps> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamApps");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamApps");
 
 final _getISteamNetworking = dl.lookupFunction<
     Pointer<ISteamNetworking> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamNetworking> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamNetworking");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamNetworking");
 
 final _getISteamRemoteStorage = dl.lookupFunction<
     Pointer<ISteamRemoteStorage> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamRemoteStorage> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamRemoteStorage");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamRemoteStorage");
 
 final _getISteamScreenshots = dl.lookupFunction<
     Pointer<ISteamScreenshots> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamScreenshots> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamScreenshots");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamScreenshots");
 
 final _getISteamGameSearch = dl.lookupFunction<
     Pointer<ISteamGameSearch> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamGameSearch> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamGameSearch");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamGameSearch");
 
 final _getIpcCallCount = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamClient>,
-),
+      Pointer<ISteamClient>,
+    ),
     int Function(
-  Pointer<ISteamClient>,
-)>("SteamAPI_ISteamClient_GetIPCCallCount");
+      Pointer<ISteamClient>,
+    )>("SteamAPI_ISteamClient_GetIPCCallCount");
 
 final _bShutdownIfAllPipesClosed = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamClient>,
-),
+      Pointer<ISteamClient>,
+    ),
     bool Function(
-  Pointer<ISteamClient>,
-)>("SteamAPI_ISteamClient_BShutdownIfAllPipesClosed");
+      Pointer<ISteamClient>,
+    )>("SteamAPI_ISteamClient_BShutdownIfAllPipesClosed");
 
 final _getISteamHttp = dl.lookupFunction<
     Pointer<ISteamHttp> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamHttp> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamHTTP");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamHTTP");
 
 final _getISteamUgc = dl.lookupFunction<
     Pointer<ISteamUgc> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamUgc> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamUGC");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamUGC");
 
 final _getISteamAppList = dl.lookupFunction<
     Pointer<ISteamAppList> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamAppList> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamAppList");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamAppList");
 
 final _getISteamMusic = dl.lookupFunction<
     Pointer<ISteamMusic> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamMusic> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamMusic");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamMusic");
 
 final _getISteamMusicRemote = dl.lookupFunction<
     Pointer<ISteamMusicRemote> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamMusicRemote> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamMusicRemote");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamMusicRemote");
 
 final _getISteamHtmlSurface = dl.lookupFunction<
     Pointer<ISteamHtmlSurface> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamHtmlSurface> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamHTMLSurface");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamHTMLSurface");
 
 final _getISteamInventory = dl.lookupFunction<
     Pointer<ISteamInventory> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamInventory> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamInventory");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamInventory");
 
 final _getISteamVideo = dl.lookupFunction<
     Pointer<ISteamVideo> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamVideo> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamVideo");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamVideo");
 
 final _getISteamParentalSettings = dl.lookupFunction<
     Pointer<ISteamParentalSettings> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamParentalSettings> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamParentalSettings");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamParentalSettings");
 
 final _getISteamInput = dl.lookupFunction<
     Pointer<ISteamInput> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamInput> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamInput");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamInput");
 
 final _getISteamParties = dl.lookupFunction<
     Pointer<ISteamParties> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamParties> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamParties");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamParties");
 
 final _getISteamRemotePlay = dl.lookupFunction<
     Pointer<ISteamRemotePlay> Function(
-  Pointer<ISteamClient>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     Pointer<ISteamRemotePlay> Function(
-  Pointer<ISteamClient>,
-  HSteamUser,
-  HSteamPipe,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamClient_GetISteamRemotePlay");
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamRemotePlay");
 
 extension ISteamClientExtensions on Pointer<ISteamClient> {
   HSteamPipe createSteamPipe() => _createSteamPipe.call(

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -18,547 +18,547 @@ import "../typedefs.dart";
 final _steamInput = dl.lookupFunction<Pointer<ISteamInput> Function(),
     Pointer<ISteamInput> Function()>("SteamAPI_SteamInput_v006");
 
-class ISteamInput extends Opaque {
+final class ISteamInput extends Opaque {
   static Pointer<ISteamInput> get userInstance => _steamInput();
 }
 
 final _init = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInput>,
-  Bool,
-),
+      Pointer<ISteamInput>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamInput>,
-  bool,
-)>("SteamAPI_ISteamInput_Init");
+      Pointer<ISteamInput>,
+      bool,
+    )>("SteamAPI_ISteamInput_Init");
 
 final _shutdown = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInput>,
-),
+      Pointer<ISteamInput>,
+    ),
     bool Function(
-  Pointer<ISteamInput>,
-)>("SteamAPI_ISteamInput_Shutdown");
+      Pointer<ISteamInput>,
+    )>("SteamAPI_ISteamInput_Shutdown");
 
 final _setInputActionManifestFilePath = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamInput_SetInputActionManifestFilePath");
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamInput_SetInputActionManifestFilePath");
 
 final _runFrame = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  Bool,
-),
+      Pointer<ISteamInput>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  bool,
-)>("SteamAPI_ISteamInput_RunFrame");
+      Pointer<ISteamInput>,
+      bool,
+    )>("SteamAPI_ISteamInput_RunFrame");
 
 final _bWaitForData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInput>,
-  Bool,
-  UnsignedInt,
-),
+      Pointer<ISteamInput>,
+      Bool,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamInput>,
-  bool,
-  int,
-)>("SteamAPI_ISteamInput_BWaitForData");
+      Pointer<ISteamInput>,
+      bool,
+      int,
+    )>("SteamAPI_ISteamInput_BWaitForData");
 
 final _bNewDataAvailable = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInput>,
-),
+      Pointer<ISteamInput>,
+    ),
     bool Function(
-  Pointer<ISteamInput>,
-)>("SteamAPI_ISteamInput_BNewDataAvailable");
+      Pointer<ISteamInput>,
+    )>("SteamAPI_ISteamInput_BNewDataAvailable");
 
 final _getConnectedControllers = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamInput>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamInput>,
+      Pointer<UnsignedLongLong>,
+    ),
     int Function(
-  Pointer<ISteamInput>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamInput_GetConnectedControllers");
+      Pointer<ISteamInput>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamInput_GetConnectedControllers");
 
 final _enableDeviceCallbacks = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-),
+      Pointer<ISteamInput>,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-)>("SteamAPI_ISteamInput_EnableDeviceCallbacks");
+      Pointer<ISteamInput>,
+    )>("SteamAPI_ISteamInput_EnableDeviceCallbacks");
 
 final _getActionSetHandle = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    ),
     InputActionSetHandle Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamInput_GetActionSetHandle");
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamInput_GetActionSetHandle");
 
 final _activateActionSet = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputActionSetHandle,
-)>("SteamAPI_ISteamInput_ActivateActionSet");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputActionSetHandle,
+    )>("SteamAPI_ISteamInput_ActivateActionSet");
 
 final _getCurrentActionSet = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     InputActionSetHandle Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-)>("SteamAPI_ISteamInput_GetCurrentActionSet");
+      Pointer<ISteamInput>,
+      InputHandle,
+    )>("SteamAPI_ISteamInput_GetCurrentActionSet");
 
 final _activateActionSetLayer = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputActionSetHandle,
-)>("SteamAPI_ISteamInput_ActivateActionSetLayer");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputActionSetHandle,
+    )>("SteamAPI_ISteamInput_ActivateActionSetLayer");
 
 final _deactivateActionSetLayer = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputActionSetHandle,
-)>("SteamAPI_ISteamInput_DeactivateActionSetLayer");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputActionSetHandle,
+    )>("SteamAPI_ISteamInput_DeactivateActionSetLayer");
 
 final _deactivateAllActionSetLayers = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-)>("SteamAPI_ISteamInput_DeactivateAllActionSetLayers");
+      Pointer<ISteamInput>,
+      InputHandle,
+    )>("SteamAPI_ISteamInput_DeactivateAllActionSetLayers");
 
 final _getActiveActionSetLayers = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      Pointer<UnsignedLongLong>,
+    ),
     int Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamInput_GetActiveActionSetLayers");
+      Pointer<ISteamInput>,
+      InputHandle,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamInput_GetActiveActionSetLayers");
 
 final _getDigitalActionHandle = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    ),
     InputDigitalActionHandle Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamInput_GetDigitalActionHandle");
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamInput_GetDigitalActionHandle");
 
 final _getDigitalActionData = dl.lookupFunction<
     InputDigitalActionData Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     InputDigitalActionData Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputDigitalActionHandle,
-)>("SteamAPI_ISteamInput_GetDigitalActionData");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputDigitalActionHandle,
+    )>("SteamAPI_ISteamInput_GetDigitalActionData");
 
 final _getDigitalActionOrigins = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<EInputActionOriginAliasC>,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<EInputActionOriginAliasC>,
+    ),
     int Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputActionSetHandle,
-  InputDigitalActionHandle,
-  Pointer<EInputActionOriginAliasC>,
-)>("SteamAPI_ISteamInput_GetDigitalActionOrigins");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputActionSetHandle,
+      InputDigitalActionHandle,
+      Pointer<EInputActionOriginAliasC>,
+    )>("SteamAPI_ISteamInput_GetDigitalActionOrigins");
 
 final _getStringForDigitalActionName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  InputDigitalActionHandle,
-)>("SteamAPI_ISteamInput_GetStringForDigitalActionName");
+      Pointer<ISteamInput>,
+      InputDigitalActionHandle,
+    )>("SteamAPI_ISteamInput_GetStringForDigitalActionName");
 
 final _getAnalogActionHandle = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    ),
     InputAnalogActionHandle Function(
-  Pointer<ISteamInput>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamInput_GetAnalogActionHandle");
+      Pointer<ISteamInput>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamInput_GetAnalogActionHandle");
 
 final _getAnalogActionData = dl.lookupFunction<
     InputAnalogActionData Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     InputAnalogActionData Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputAnalogActionHandle,
-)>("SteamAPI_ISteamInput_GetAnalogActionData");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputAnalogActionHandle,
+    )>("SteamAPI_ISteamInput_GetAnalogActionData");
 
 final _getAnalogActionOrigins = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<EInputActionOriginAliasC>,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<EInputActionOriginAliasC>,
+    ),
     int Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputActionSetHandle,
-  InputAnalogActionHandle,
-  Pointer<EInputActionOriginAliasC>,
-)>("SteamAPI_ISteamInput_GetAnalogActionOrigins");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputActionSetHandle,
+      InputAnalogActionHandle,
+      Pointer<EInputActionOriginAliasC>,
+    )>("SteamAPI_ISteamInput_GetAnalogActionOrigins");
 
 final _getGlyphPNGForActionOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasC,
-  ESteamInputGlyphSizeAliasC,
-  UnsignedInt,
-),
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasC,
+      ESteamInputGlyphSizeAliasC,
+      UnsignedInt,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasDart,
-  ESteamInputGlyphSizeAliasDart,
-  int,
-)>("SteamAPI_ISteamInput_GetGlyphPNGForActionOrigin");
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasDart,
+      ESteamInputGlyphSizeAliasDart,
+      int,
+    )>("SteamAPI_ISteamInput_GetGlyphPNGForActionOrigin");
 
 final _getGlyphSVGForActionOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasC,
-  UnsignedInt,
-),
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasC,
+      UnsignedInt,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasDart,
-  int,
-)>("SteamAPI_ISteamInput_GetGlyphSVGForActionOrigin");
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasDart,
+      int,
+    )>("SteamAPI_ISteamInput_GetGlyphSVGForActionOrigin");
 
 final _getGlyphForActionOriginLegacy = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasC,
-),
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasC,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasDart,
-)>("SteamAPI_ISteamInput_GetGlyphForActionOrigin_Legacy");
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasDart,
+    )>("SteamAPI_ISteamInput_GetGlyphForActionOrigin_Legacy");
 
 final _getStringForActionOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasC,
-),
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasC,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EInputActionOriginAliasDart,
-)>("SteamAPI_ISteamInput_GetStringForActionOrigin");
+      Pointer<ISteamInput>,
+      EInputActionOriginAliasDart,
+    )>("SteamAPI_ISteamInput_GetStringForActionOrigin");
 
 final _getStringForAnalogActionName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  InputAnalogActionHandle,
-)>("SteamAPI_ISteamInput_GetStringForAnalogActionName");
+      Pointer<ISteamInput>,
+      InputAnalogActionHandle,
+    )>("SteamAPI_ISteamInput_GetStringForAnalogActionName");
 
 final _stopAnalogActionMomentum = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  InputAnalogActionHandle,
-)>("SteamAPI_ISteamInput_StopAnalogActionMomentum");
+      Pointer<ISteamInput>,
+      InputHandle,
+      InputAnalogActionHandle,
+    )>("SteamAPI_ISteamInput_StopAnalogActionMomentum");
 
 final _getMotionData = dl.lookupFunction<
     InputMotionData Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     InputMotionData Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-)>("SteamAPI_ISteamInput_GetMotionData");
+      Pointer<ISteamInput>,
+      InputHandle,
+    )>("SteamAPI_ISteamInput_GetMotionData");
 
 final _triggerVibration = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedShort,
-  UnsignedShort,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedShort,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  int,
-  int,
-)>("SteamAPI_ISteamInput_TriggerVibration");
+      Pointer<ISteamInput>,
+      InputHandle,
+      int,
+      int,
+    )>("SteamAPI_ISteamInput_TriggerVibration");
 
 final _triggerVibrationExtended = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedShort,
-  UnsignedShort,
-  UnsignedShort,
-  UnsignedShort,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedShort,
+      UnsignedShort,
+      UnsignedShort,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  int,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamInput_TriggerVibrationExtended");
+      Pointer<ISteamInput>,
+      InputHandle,
+      int,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamInput_TriggerVibrationExtended");
 
 final _triggerSimpleHapticEvent = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  EControllerHapticLocationAliasC,
-  UnsignedChar,
-  Char,
-  UnsignedChar,
-  Char,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      EControllerHapticLocationAliasC,
+      UnsignedChar,
+      Char,
+      UnsignedChar,
+      Char,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  EControllerHapticLocationAliasDart,
-  int,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamInput_TriggerSimpleHapticEvent");
+      Pointer<ISteamInput>,
+      InputHandle,
+      EControllerHapticLocationAliasDart,
+      int,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamInput_TriggerSimpleHapticEvent");
 
 final _setLedColor = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  UnsignedChar,
-  UnsignedChar,
-  UnsignedChar,
-  UnsignedInt,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      UnsignedChar,
+      UnsignedChar,
+      UnsignedChar,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  int,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamInput_SetLEDColor");
+      Pointer<ISteamInput>,
+      InputHandle,
+      int,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamInput_SetLEDColor");
 
 final _legacyTriggerHapticPulse = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  ESteamControllerPadAliasC,
-  UnsignedShort,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      ESteamControllerPadAliasC,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  ESteamControllerPadAliasDart,
-  int,
-)>("SteamAPI_ISteamInput_Legacy_TriggerHapticPulse");
+      Pointer<ISteamInput>,
+      InputHandle,
+      ESteamControllerPadAliasDart,
+      int,
+    )>("SteamAPI_ISteamInput_Legacy_TriggerHapticPulse");
 
 final _legacyTriggerRepeatedHapticPulse = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  ESteamControllerPadAliasC,
-  UnsignedShort,
-  UnsignedShort,
-  UnsignedShort,
-  UnsignedInt,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      ESteamControllerPadAliasC,
+      UnsignedShort,
+      UnsignedShort,
+      UnsignedShort,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  ESteamControllerPadAliasDart,
-  int,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamInput_Legacy_TriggerRepeatedHapticPulse");
+      Pointer<ISteamInput>,
+      InputHandle,
+      ESteamControllerPadAliasDart,
+      int,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamInput_Legacy_TriggerRepeatedHapticPulse");
 
 final _showBindingPanel = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-)>("SteamAPI_ISteamInput_ShowBindingPanel");
+      Pointer<ISteamInput>,
+      InputHandle,
+    )>("SteamAPI_ISteamInput_ShowBindingPanel");
 
 final _getInputTypeForHandle = dl.lookupFunction<
     ESteamInputTypeAliasC Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     ESteamInputTypeAliasDart Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-)>("SteamAPI_ISteamInput_GetInputTypeForHandle");
+      Pointer<ISteamInput>,
+      InputHandle,
+    )>("SteamAPI_ISteamInput_GetInputTypeForHandle");
 
 final _getControllerForGamepadIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamInput>,
-  Int,
-),
+      Pointer<ISteamInput>,
+      Int,
+    ),
     InputHandle Function(
-  Pointer<ISteamInput>,
-  int,
-)>("SteamAPI_ISteamInput_GetControllerForGamepadIndex");
+      Pointer<ISteamInput>,
+      int,
+    )>("SteamAPI_ISteamInput_GetControllerForGamepadIndex");
 
 final _getGamepadIndexForController = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-)>("SteamAPI_ISteamInput_GetGamepadIndexForController");
+      Pointer<ISteamInput>,
+      InputHandle,
+    )>("SteamAPI_ISteamInput_GetGamepadIndexForController");
 
 final _getStringForXboxOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EXboxOriginAliasC,
-),
+      Pointer<ISteamInput>,
+      EXboxOriginAliasC,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EXboxOriginAliasDart,
-)>("SteamAPI_ISteamInput_GetStringForXboxOrigin");
+      Pointer<ISteamInput>,
+      EXboxOriginAliasDart,
+    )>("SteamAPI_ISteamInput_GetStringForXboxOrigin");
 
 final _getGlyphForXboxOrigin = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EXboxOriginAliasC,
-),
+      Pointer<ISteamInput>,
+      EXboxOriginAliasC,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamInput>,
-  EXboxOriginAliasDart,
-)>("SteamAPI_ISteamInput_GetGlyphForXboxOrigin");
+      Pointer<ISteamInput>,
+      EXboxOriginAliasDart,
+    )>("SteamAPI_ISteamInput_GetGlyphForXboxOrigin");
 
 final _getActionOriginFromXboxOrigin = dl.lookupFunction<
     EInputActionOriginAliasC Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  EXboxOriginAliasC,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      EXboxOriginAliasC,
+    ),
     EInputActionOriginAliasDart Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  EXboxOriginAliasDart,
-)>("SteamAPI_ISteamInput_GetActionOriginFromXboxOrigin");
+      Pointer<ISteamInput>,
+      InputHandle,
+      EXboxOriginAliasDart,
+    )>("SteamAPI_ISteamInput_GetActionOriginFromXboxOrigin");
 
 final _translateActionOrigin = dl.lookupFunction<
     EInputActionOriginAliasC Function(
-  Pointer<ISteamInput>,
-  ESteamInputTypeAliasC,
-  EInputActionOriginAliasC,
-),
+      Pointer<ISteamInput>,
+      ESteamInputTypeAliasC,
+      EInputActionOriginAliasC,
+    ),
     EInputActionOriginAliasDart Function(
-  Pointer<ISteamInput>,
-  ESteamInputTypeAliasDart,
-  EInputActionOriginAliasDart,
-)>("SteamAPI_ISteamInput_TranslateActionOrigin");
+      Pointer<ISteamInput>,
+      ESteamInputTypeAliasDart,
+      EInputActionOriginAliasDart,
+    )>("SteamAPI_ISteamInput_TranslateActionOrigin");
 
 final _getDeviceBindingRevision = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-  Pointer<Int>,
-  Pointer<Int>,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+      Pointer<Int>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-  Pointer<Int>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamInput_GetDeviceBindingRevision");
+      Pointer<ISteamInput>,
+      InputHandle,
+      Pointer<Int>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamInput_GetDeviceBindingRevision");
 
 final _getRemotePlaySessionId = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamInput>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamInput>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamInput>,
-  InputHandle,
-)>("SteamAPI_ISteamInput_GetRemotePlaySessionID");
+      Pointer<ISteamInput>,
+      InputHandle,
+    )>("SteamAPI_ISteamInput_GetRemotePlaySessionID");
 
 final _getSessionInputConfigurationSettings = dl.lookupFunction<
     UnsignedShort Function(
-  Pointer<ISteamInput>,
-),
+      Pointer<ISteamInput>,
+    ),
     int Function(
-  Pointer<ISteamInput>,
-)>("SteamAPI_ISteamInput_GetSessionInputConfigurationSettings");
+      Pointer<ISteamInput>,
+    )>("SteamAPI_ISteamInput_GetSessionInputConfigurationSettings");
 
 extension ISteamInputExtensions on Pointer<ISteamInput> {
   bool init(

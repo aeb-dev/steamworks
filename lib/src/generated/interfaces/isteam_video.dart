@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../dl.dart";
@@ -7,53 +7,53 @@ import "../typedefs.dart";
 final _steamVideo = dl.lookupFunction<Pointer<ISteamVideo> Function(),
     Pointer<ISteamVideo> Function()>("SteamAPI_SteamVideo_v002");
 
-class ISteamVideo extends Opaque {
+final class ISteamVideo extends Opaque {
   static Pointer<ISteamVideo> get userInstance => _steamVideo();
 }
 
 final _getVideoUrl = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamVideo>,
-  UnsignedInt,
-),
+      Pointer<ISteamVideo>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamVideo>,
-  AppId,
-)>("SteamAPI_ISteamVideo_GetVideoURL");
+      Pointer<ISteamVideo>,
+      AppId,
+    )>("SteamAPI_ISteamVideo_GetVideoURL");
 
 final _isBroadcasting = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamVideo>,
-  Pointer<Int>,
-),
+      Pointer<ISteamVideo>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamVideo>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamVideo_IsBroadcasting");
+      Pointer<ISteamVideo>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamVideo_IsBroadcasting");
 
 final _getOpfSettings = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamVideo>,
-  UnsignedInt,
-),
+      Pointer<ISteamVideo>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamVideo>,
-  AppId,
-)>("SteamAPI_ISteamVideo_GetOPFSettings");
+      Pointer<ISteamVideo>,
+      AppId,
+    )>("SteamAPI_ISteamVideo_GetOPFSettings");
 
 final _getOpfStringForApp = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamVideo>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Int>,
-),
+      Pointer<ISteamVideo>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamVideo>,
-  AppId,
-  Pointer<Utf8>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamVideo_GetOPFStringForApp");
+      Pointer<ISteamVideo>,
+      AppId,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamVideo_GetOPFStringForApp");
 
 extension ISteamVideoExtensions on Pointer<ISteamVideo> {
   void getVideoUrl(

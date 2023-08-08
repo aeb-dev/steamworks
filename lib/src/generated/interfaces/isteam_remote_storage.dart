@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -21,713 +21,713 @@ final _steamRemoteStorage = dl.lookupFunction<
     Pointer<ISteamRemoteStorage>
         Function()>("SteamAPI_SteamRemoteStorage_v016");
 
-class ISteamRemoteStorage extends Opaque {
+final class ISteamRemoteStorage extends Opaque {
   static Pointer<ISteamRemoteStorage> get userInstance => _steamRemoteStorage();
 }
 
 final _fileWrite = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Void>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_FileWrite");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_FileWrite");
 
 final _fileRead = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Void>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_FileRead");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_FileRead");
 
 final _fileWriteAsync = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Void>,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Void>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_FileWriteAsync");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_FileWriteAsync");
 
 final _fileReadAsync = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  int,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_FileReadAsync");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      int,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_FileReadAsync");
 
 final _fileReadAsyncComplete = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Void>,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Void>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  SteamApiCall,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_FileReadAsyncComplete");
+      Pointer<ISteamRemoteStorage>,
+      SteamApiCall,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_FileReadAsyncComplete");
 
 final _fileForget = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_FileForget");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_FileForget");
 
 final _fileDelete = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_FileDelete");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_FileDelete");
 
 final _fileShare = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_FileShare");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_FileShare");
 
 final _setSyncPlatforms = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  ERemoteStoragePlatformAliasC,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      ERemoteStoragePlatformAliasC,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  ERemoteStoragePlatformAliasDart,
-)>("SteamAPI_ISteamRemoteStorage_SetSyncPlatforms");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      ERemoteStoragePlatformAliasDart,
+    )>("SteamAPI_ISteamRemoteStorage_SetSyncPlatforms");
 
 final _fileWriteStreamOpen = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     UgcFileWriteStreamHandle Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_FileWriteStreamOpen");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_FileWriteStreamOpen");
 
 final _fileWriteStreamWriteChunk = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Void>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcFileWriteStreamHandle,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_FileWriteStreamWriteChunk");
+      Pointer<ISteamRemoteStorage>,
+      UgcFileWriteStreamHandle,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_FileWriteStreamWriteChunk");
 
 final _fileWriteStreamClose = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcFileWriteStreamHandle,
-)>("SteamAPI_ISteamRemoteStorage_FileWriteStreamClose");
+      Pointer<ISteamRemoteStorage>,
+      UgcFileWriteStreamHandle,
+    )>("SteamAPI_ISteamRemoteStorage_FileWriteStreamClose");
 
 final _fileWriteStreamCancel = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcFileWriteStreamHandle,
-)>("SteamAPI_ISteamRemoteStorage_FileWriteStreamCancel");
+      Pointer<ISteamRemoteStorage>,
+      UgcFileWriteStreamHandle,
+    )>("SteamAPI_ISteamRemoteStorage_FileWriteStreamCancel");
 
 final _fileExists = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_FileExists");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_FileExists");
 
 final _filePersisted = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_FilePersisted");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_FilePersisted");
 
 final _getFileSize = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     int Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_GetFileSize");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_GetFileSize");
 
 final _getFileTimestamp = dl.lookupFunction<
     LongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     int Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_GetFileTimestamp");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_GetFileTimestamp");
 
 final _getSyncPlatforms = dl.lookupFunction<
     ERemoteStoragePlatformAliasC Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    ),
     ERemoteStoragePlatformAliasDart Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_GetSyncPlatforms");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_GetSyncPlatforms");
 
 final _getFileCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamRemoteStorage>,
-),
+      Pointer<ISteamRemoteStorage>,
+    ),
     int Function(
-  Pointer<ISteamRemoteStorage>,
-)>("SteamAPI_ISteamRemoteStorage_GetFileCount");
+      Pointer<ISteamRemoteStorage>,
+    )>("SteamAPI_ISteamRemoteStorage_GetFileCount");
 
 final _getFileNameAndSize = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamRemoteStorage>,
-  Int,
-  Pointer<Int>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Int,
+      Pointer<Int>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamRemoteStorage>,
-  int,
-  Pointer<Int>,
-)>("SteamAPI_ISteamRemoteStorage_GetFileNameAndSize");
+      Pointer<ISteamRemoteStorage>,
+      int,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamRemoteStorage_GetFileNameAndSize");
 
 final _getQuota = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<UnsignedLongLong>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamRemoteStorage_GetQuota");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<UnsignedLongLong>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamRemoteStorage_GetQuota");
 
 final _isCloudEnabledForAccount = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-),
+      Pointer<ISteamRemoteStorage>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-)>("SteamAPI_ISteamRemoteStorage_IsCloudEnabledForAccount");
+      Pointer<ISteamRemoteStorage>,
+    )>("SteamAPI_ISteamRemoteStorage_IsCloudEnabledForAccount");
 
 final _isCloudEnabledForApp = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-),
+      Pointer<ISteamRemoteStorage>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-)>("SteamAPI_ISteamRemoteStorage_IsCloudEnabledForApp");
+      Pointer<ISteamRemoteStorage>,
+    )>("SteamAPI_ISteamRemoteStorage_IsCloudEnabledForApp");
 
 final _setCloudEnabledForApp = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamRemoteStorage>,
-  Bool,
-),
+      Pointer<ISteamRemoteStorage>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamRemoteStorage>,
-  bool,
-)>("SteamAPI_ISteamRemoteStorage_SetCloudEnabledForApp");
+      Pointer<ISteamRemoteStorage>,
+      bool,
+    )>("SteamAPI_ISteamRemoteStorage_SetCloudEnabledForApp");
 
 final _ugcDownload = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcHandle,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_UGCDownload");
+      Pointer<ISteamRemoteStorage>,
+      UgcHandle,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_UGCDownload");
 
 final _getUgcDownloadProgress = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Int>,
-  Pointer<Int>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Int>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcHandle,
-  Pointer<Int>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamRemoteStorage_GetUGCDownloadProgress");
+      Pointer<ISteamRemoteStorage>,
+      UgcHandle,
+      Pointer<Int>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamRemoteStorage_GetUGCDownloadProgress");
 
 final _getUgcDetails = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<UnsignedInt>,
-  Pointer<Pointer<Utf8>>,
-  Pointer<Int>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<UnsignedInt>,
+      Pointer<Pointer<Utf8>>,
+      Pointer<Int>,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcHandle,
-  Pointer<UnsignedInt>,
-  Pointer<Pointer<Utf8>>,
-  Pointer<Int>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamRemoteStorage_GetUGCDetails");
+      Pointer<ISteamRemoteStorage>,
+      UgcHandle,
+      Pointer<UnsignedInt>,
+      Pointer<Pointer<Utf8>>,
+      Pointer<Int>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamRemoteStorage_GetUGCDetails");
 
 final _ugcRead = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Void>,
-  Int,
-  UnsignedInt,
-  EUgcReadActionAliasC,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Void>,
+      Int,
+      UnsignedInt,
+      EUgcReadActionAliasC,
+    ),
     int Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcHandle,
-  Pointer<Void>,
-  int,
-  int,
-  EUgcReadActionAliasDart,
-)>("SteamAPI_ISteamRemoteStorage_UGCRead");
+      Pointer<ISteamRemoteStorage>,
+      UgcHandle,
+      Pointer<Void>,
+      int,
+      int,
+      EUgcReadActionAliasDart,
+    )>("SteamAPI_ISteamRemoteStorage_UGCRead");
 
 final _getCachedUgcCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamRemoteStorage>,
-),
+      Pointer<ISteamRemoteStorage>,
+    ),
     int Function(
-  Pointer<ISteamRemoteStorage>,
-)>("SteamAPI_ISteamRemoteStorage_GetCachedUGCCount");
+      Pointer<ISteamRemoteStorage>,
+    )>("SteamAPI_ISteamRemoteStorage_GetCachedUGCCount");
 
 final _getCachedUgcHandle = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  Int,
-),
+      Pointer<ISteamRemoteStorage>,
+      Int,
+    ),
     UgcHandle Function(
-  Pointer<ISteamRemoteStorage>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_GetCachedUGCHandle");
+      Pointer<ISteamRemoteStorage>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_GetCachedUGCHandle");
 
 final _publishWorkshopFile = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  ERemoteStoragePublishedFileVisibilityAliasC,
-  Pointer<SteamParamStringArray>,
-  EWorkshopFileTypeAliasC,
-),
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      ERemoteStoragePublishedFileVisibilityAliasC,
+      Pointer<SteamParamStringArray>,
+      EWorkshopFileTypeAliasC,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  AppId,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  ERemoteStoragePublishedFileVisibilityAliasDart,
-  Pointer<SteamParamStringArray>,
-  EWorkshopFileTypeAliasDart,
-)>("SteamAPI_ISteamRemoteStorage_PublishWorkshopFile");
+      Pointer<ISteamRemoteStorage>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      AppId,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      ERemoteStoragePublishedFileVisibilityAliasDart,
+      Pointer<SteamParamStringArray>,
+      EWorkshopFileTypeAliasDart,
+    )>("SteamAPI_ISteamRemoteStorage_PublishWorkshopFile");
 
 final _createPublishedFileUpdateRequest = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     PublishedFileUpdateHandle Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-)>("SteamAPI_ISteamRemoteStorage_CreatePublishedFileUpdateRequest");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamRemoteStorage_CreatePublishedFileUpdateRequest");
 
 final _updatePublishedFileFile = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileFile");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileFile");
 
 final _updatePublishedFilePreviewFile = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFilePreviewFile");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFilePreviewFile");
 
 final _updatePublishedFileTitle = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileTitle");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileTitle");
 
 final _updatePublishedFileDescription = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileDescription");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileDescription");
 
 final _updatePublishedFileVisibility = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  ERemoteStoragePublishedFileVisibilityAliasC,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      ERemoteStoragePublishedFileVisibilityAliasC,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-  ERemoteStoragePublishedFileVisibilityAliasDart,
-)>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileVisibility");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+      ERemoteStoragePublishedFileVisibilityAliasDart,
+    )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileVisibility");
 
 final _updatePublishedFileTags = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<SteamParamStringArray>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<SteamParamStringArray>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-  Pointer<SteamParamStringArray>,
-)>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileTags");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+      Pointer<SteamParamStringArray>,
+    )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileTags");
 
 final _commitPublishedFileUpdate = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-)>("SteamAPI_ISteamRemoteStorage_CommitPublishedFileUpdate");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+    )>("SteamAPI_ISteamRemoteStorage_CommitPublishedFileUpdate");
 
 final _getPublishedFileDetails = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_GetPublishedFileDetails");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_GetPublishedFileDetails");
 
 final _deletePublishedFile = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-)>("SteamAPI_ISteamRemoteStorage_DeletePublishedFile");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamRemoteStorage_DeletePublishedFile");
 
 final _enumerateUserPublishedFiles = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_EnumerateUserPublishedFiles");
+      Pointer<ISteamRemoteStorage>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_EnumerateUserPublishedFiles");
 
 final _subscribePublishedFile = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-)>("SteamAPI_ISteamRemoteStorage_SubscribePublishedFile");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamRemoteStorage_SubscribePublishedFile");
 
 final _enumerateUserSubscribedFiles = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_EnumerateUserSubscribedFiles");
+      Pointer<ISteamRemoteStorage>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_EnumerateUserSubscribedFiles");
 
 final _unsubscribePublishedFile = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-)>("SteamAPI_ISteamRemoteStorage_UnsubscribePublishedFile");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamRemoteStorage_UnsubscribePublishedFile");
 
 final _updatePublishedFileSetChangeDescription = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileUpdateHandle,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileSetChangeDescription");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileUpdateHandle,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamRemoteStorage_UpdatePublishedFileSetChangeDescription");
 
 final _getPublishedItemVoteDetails = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-)>("SteamAPI_ISteamRemoteStorage_GetPublishedItemVoteDetails");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamRemoteStorage_GetPublishedItemVoteDetails");
 
 final _updateUserPublishedItemVote = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Bool,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-  bool,
-)>("SteamAPI_ISteamRemoteStorage_UpdateUserPublishedItemVote");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+      bool,
+    )>("SteamAPI_ISteamRemoteStorage_UpdateUserPublishedItemVote");
 
 final _getUserPublishedItemVoteDetails = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-)>("SteamAPI_ISteamRemoteStorage_GetUserPublishedItemVoteDetails");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamRemoteStorage_GetUserPublishedItemVoteDetails");
 
 final _enumerateUserSharedWorkshopFiles = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  UnsignedInt,
-  Pointer<SteamParamStringArray>,
-  Pointer<SteamParamStringArray>,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      UnsignedInt,
+      Pointer<SteamParamStringArray>,
+      Pointer<SteamParamStringArray>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  CSteamId,
-  int,
-  Pointer<SteamParamStringArray>,
-  Pointer<SteamParamStringArray>,
-)>("SteamAPI_ISteamRemoteStorage_EnumerateUserSharedWorkshopFiles");
+      Pointer<ISteamRemoteStorage>,
+      CSteamId,
+      int,
+      Pointer<SteamParamStringArray>,
+      Pointer<SteamParamStringArray>,
+    )>("SteamAPI_ISteamRemoteStorage_EnumerateUserSharedWorkshopFiles");
 
 final _publishVideo = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  EWorkshopVideoProviderAliasC,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  ERemoteStoragePublishedFileVisibilityAliasC,
-  Pointer<SteamParamStringArray>,
-),
+      Pointer<ISteamRemoteStorage>,
+      EWorkshopVideoProviderAliasC,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      ERemoteStoragePublishedFileVisibilityAliasC,
+      Pointer<SteamParamStringArray>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  EWorkshopVideoProviderAliasDart,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  AppId,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  ERemoteStoragePublishedFileVisibilityAliasDart,
-  Pointer<SteamParamStringArray>,
-)>("SteamAPI_ISteamRemoteStorage_PublishVideo");
+      Pointer<ISteamRemoteStorage>,
+      EWorkshopVideoProviderAliasDart,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      AppId,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      ERemoteStoragePublishedFileVisibilityAliasDart,
+      Pointer<SteamParamStringArray>,
+    )>("SteamAPI_ISteamRemoteStorage_PublishVideo");
 
 final _setUserPublishedFileAction = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  EWorkshopFileActionAliasC,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      EWorkshopFileActionAliasC,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  PublishedFileId,
-  EWorkshopFileActionAliasDart,
-)>("SteamAPI_ISteamRemoteStorage_SetUserPublishedFileAction");
+      Pointer<ISteamRemoteStorage>,
+      PublishedFileId,
+      EWorkshopFileActionAliasDart,
+    )>("SteamAPI_ISteamRemoteStorage_SetUserPublishedFileAction");
 
 final _enumeratePublishedFilesByUserAction = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  EWorkshopFileActionAliasC,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      EWorkshopFileActionAliasC,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  EWorkshopFileActionAliasDart,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_EnumeratePublishedFilesByUserAction");
+      Pointer<ISteamRemoteStorage>,
+      EWorkshopFileActionAliasDart,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_EnumeratePublishedFilesByUserAction");
 
 final _enumeratePublishedWorkshopFiles = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  EWorkshopEnumerationTypeAliasC,
-  UnsignedInt,
-  UnsignedInt,
-  UnsignedInt,
-  Pointer<SteamParamStringArray>,
-  Pointer<SteamParamStringArray>,
-),
+      Pointer<ISteamRemoteStorage>,
+      EWorkshopEnumerationTypeAliasC,
+      UnsignedInt,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<SteamParamStringArray>,
+      Pointer<SteamParamStringArray>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  EWorkshopEnumerationTypeAliasDart,
-  int,
-  int,
-  int,
-  Pointer<SteamParamStringArray>,
-  Pointer<SteamParamStringArray>,
-)>("SteamAPI_ISteamRemoteStorage_EnumeratePublishedWorkshopFiles");
+      Pointer<ISteamRemoteStorage>,
+      EWorkshopEnumerationTypeAliasDart,
+      int,
+      int,
+      int,
+      Pointer<SteamParamStringArray>,
+      Pointer<SteamParamStringArray>,
+    )>("SteamAPI_ISteamRemoteStorage_EnumeratePublishedWorkshopFiles");
 
 final _ugcDownloadToLocation = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamRemoteStorage>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamRemoteStorage>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamRemoteStorage>,
-  UgcHandle,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamRemoteStorage_UGCDownloadToLocation");
+      Pointer<ISteamRemoteStorage>,
+      UgcHandle,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamRemoteStorage_UGCDownloadToLocation");
 
 final _getLocalFileChangeCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamRemoteStorage>,
-),
+      Pointer<ISteamRemoteStorage>,
+    ),
     int Function(
-  Pointer<ISteamRemoteStorage>,
-)>("SteamAPI_ISteamRemoteStorage_GetLocalFileChangeCount");
+      Pointer<ISteamRemoteStorage>,
+    )>("SteamAPI_ISteamRemoteStorage_GetLocalFileChangeCount");
 
 final _getLocalFileChange = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamRemoteStorage>,
-  Int,
-  Pointer<ERemoteStorageLocalFileChangeAliasC>,
-  Pointer<ERemoteStorageFilePathTypeAliasC>,
-),
+      Pointer<ISteamRemoteStorage>,
+      Int,
+      Pointer<ERemoteStorageLocalFileChangeAliasC>,
+      Pointer<ERemoteStorageFilePathTypeAliasC>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamRemoteStorage>,
-  int,
-  Pointer<ERemoteStorageLocalFileChangeAliasC>,
-  Pointer<ERemoteStorageFilePathTypeAliasC>,
-)>("SteamAPI_ISteamRemoteStorage_GetLocalFileChange");
+      Pointer<ISteamRemoteStorage>,
+      int,
+      Pointer<ERemoteStorageLocalFileChangeAliasC>,
+      Pointer<ERemoteStorageFilePathTypeAliasC>,
+    )>("SteamAPI_ISteamRemoteStorage_GetLocalFileChange");
 
 final _beginFileWriteBatch = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-),
+      Pointer<ISteamRemoteStorage>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-)>("SteamAPI_ISteamRemoteStorage_BeginFileWriteBatch");
+      Pointer<ISteamRemoteStorage>,
+    )>("SteamAPI_ISteamRemoteStorage_BeginFileWriteBatch");
 
 final _endFileWriteBatch = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamRemoteStorage>,
-),
+      Pointer<ISteamRemoteStorage>,
+    ),
     bool Function(
-  Pointer<ISteamRemoteStorage>,
-)>("SteamAPI_ISteamRemoteStorage_EndFileWriteBatch");
+      Pointer<ISteamRemoteStorage>,
+    )>("SteamAPI_ISteamRemoteStorage_EndFileWriteBatch");
 
 extension ISteamRemoteStorageExtensions on Pointer<ISteamRemoteStorage> {
   bool fileWrite(

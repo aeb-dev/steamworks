@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "../enums/eresult.dart";
@@ -6,7 +6,7 @@ import "../enums/eworkshop_file_action.dart";
 import "../typedefs.dart";
 
 @Packed(8)
-class RemoteStorageSetUserPublishedFileActionResult extends Struct {
+final class RemoteStorageSetUserPublishedFileActionResult extends Struct {
   static int get callbackId => 1327;
 
   @Int32()

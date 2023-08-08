@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -10,7 +10,7 @@ import "../structs/steam_networking_ip_addr.dart";
 import "../typedefs.dart";
 
 @Packed(1)
-class SteamNetworkingIdentity extends Struct {
+final class SteamNetworkingIdentity extends Struct {
   static int get maxString => 128;
   static int get maxGenericString => 32;
   static int get maxXboxPairwiseId => 33;
@@ -26,251 +26,251 @@ class SteamNetworkingIdentity extends Struct {
 
 final _clear = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_Clear");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_Clear");
 
 final _isInvalid = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_IsInvalid");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_IsInvalid");
 
 final _setSteamId = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-  UnsignedLongLong,
-),
+      Pointer<SteamNetworkingIdentity>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-  CSteamId,
-)>("SteamAPI_SteamNetworkingIdentity_SetSteamID");
+      Pointer<SteamNetworkingIdentity>,
+      CSteamId,
+    )>("SteamAPI_SteamNetworkingIdentity_SetSteamID");
 
 final _getSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     CSteamId Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetSteamID");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetSteamID");
 
 final _setSteamId64 = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-  UnsignedLongLong,
-),
+      Pointer<SteamNetworkingIdentity>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-  int,
-)>("SteamAPI_SteamNetworkingIdentity_SetSteamID64");
+      Pointer<SteamNetworkingIdentity>,
+      int,
+    )>("SteamAPI_SteamNetworkingIdentity_SetSteamID64");
 
 final _getSteamId64 = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     int Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetSteamID64");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetSteamID64");
 
 final _setXboxPairwiseId = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-)>("SteamAPI_SteamNetworkingIdentity_SetXboxPairwiseID");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+    )>("SteamAPI_SteamNetworkingIdentity_SetXboxPairwiseID");
 
 final _getXboxPairwiseId = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetXboxPairwiseID");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetXboxPairwiseID");
 
 final _setPsnId = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-  UnsignedLongLong,
-),
+      Pointer<SteamNetworkingIdentity>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-  int,
-)>("SteamAPI_SteamNetworkingIdentity_SetPSNID");
+      Pointer<SteamNetworkingIdentity>,
+      int,
+    )>("SteamAPI_SteamNetworkingIdentity_SetPSNID");
 
 final _getPsnId = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     int Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetPSNID");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetPSNID");
 
 final _setStadiaId = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-  UnsignedLongLong,
-),
+      Pointer<SteamNetworkingIdentity>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-  int,
-)>("SteamAPI_SteamNetworkingIdentity_SetStadiaID");
+      Pointer<SteamNetworkingIdentity>,
+      int,
+    )>("SteamAPI_SteamNetworkingIdentity_SetStadiaID");
 
 final _getStadiaId = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     int Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetStadiaID");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetStadiaID");
 
 final _setIpAddr = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetworkingIpAddr>,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetworkingIpAddr>,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetworkingIpAddr>,
-)>("SteamAPI_SteamNetworkingIdentity_SetIPAddr");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetworkingIpAddr>,
+    )>("SteamAPI_SteamNetworkingIdentity_SetIPAddr");
 
 final _getIpAddr = dl.lookupFunction<
     Pointer<SteamNetworkingIpAddr> Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     Pointer<SteamNetworkingIpAddr> Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetIPAddr");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetIPAddr");
 
 final _setIpv4Addr = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-  UnsignedInt,
-  UnsignedShort,
-),
+      Pointer<SteamNetworkingIdentity>,
+      UnsignedInt,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-  int,
-  int,
-)>("SteamAPI_SteamNetworkingIdentity_SetIPv4Addr");
+      Pointer<SteamNetworkingIdentity>,
+      int,
+      int,
+    )>("SteamAPI_SteamNetworkingIdentity_SetIPv4Addr");
 
 final _getIpv4 = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     int Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetIPv4");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetIPv4");
 
 final _getFakeIpType = dl.lookupFunction<
     ESteamNetworkingFakeIpTypeAliasC Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     ESteamNetworkingFakeIpTypeAliasDart Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetFakeIPType");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetFakeIPType");
 
 final _isFakeIp = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_IsFakeIP");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_IsFakeIP");
 
 final _setLocalHost = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_SetLocalHost");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_SetLocalHost");
 
 final _isLocalHost = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_IsLocalHost");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_IsLocalHost");
 
 final _setGenericString = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-)>("SteamAPI_SteamNetworkingIdentity_SetGenericString");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+    )>("SteamAPI_SteamNetworkingIdentity_SetGenericString");
 
 final _getGenericString = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_GetGenericString");
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetGenericString");
 
 final _setGenericBytes = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Void>,
-  UnsignedInt,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Void>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_SteamNetworkingIdentity_SetGenericBytes");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_SteamNetworkingIdentity_SetGenericBytes");
 
 final _getGenericBytes = dl.lookupFunction<
     Pointer<UnsignedChar> Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Int>,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Int>,
+    ),
     Pointer<UnsignedChar> Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Int>,
-)>("SteamAPI_SteamNetworkingIdentity_GetGenericBytes");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Int>,
+    )>("SteamAPI_SteamNetworkingIdentity_GetGenericBytes");
 
 final _isEqualTo = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_SteamNetworkingIdentity_IsEqualTo");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_SteamNetworkingIdentity_IsEqualTo");
 
 final _toString_ = dl.lookupFunction<
     Void Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_SteamNetworkingIdentity_ToString");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_SteamNetworkingIdentity_ToString");
 
 final _parseString = dl.lookupFunction<
     Bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-),
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Utf8>,
-)>("SteamAPI_SteamNetworkingIdentity_ParseString");
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Utf8>,
+    )>("SteamAPI_SteamNetworkingIdentity_ParseString");
 
 extension SteamNetworkingIdentityExtensions
     on Pointer<SteamNetworkingIdentity> {

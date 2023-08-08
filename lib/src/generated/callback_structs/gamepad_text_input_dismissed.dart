@@ -1,8 +1,9 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
+import "../typedefs.dart";
 
 @Packed(8)
-class GamepadTextInputDismissed extends Struct {
+final class GamepadTextInputDismissed extends Struct {
   static int get callbackId => 714;
 
   @Bool()
@@ -10,6 +11,9 @@ class GamepadTextInputDismissed extends Struct {
 
   @UnsignedInt()
   external int submittedText;
+
+  @UnsignedInt()
+  external AppId appId;
 }
 
 extension GamepadTextInputDismissedExtensions
@@ -17,4 +21,6 @@ extension GamepadTextInputDismissedExtensions
   bool get submitted => ref.submitted;
 
   int get submittedText => ref.submittedText;
+
+  AppId get appId => ref.appId;
 }

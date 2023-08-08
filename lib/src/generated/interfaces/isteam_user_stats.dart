@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -14,559 +14,559 @@ import "../typedefs.dart";
 final _steamUserStats = dl.lookupFunction<Pointer<ISteamUserStats> Function(),
     Pointer<ISteamUserStats> Function()>("SteamAPI_SteamUserStats_v012");
 
-class ISteamUserStats extends Opaque {
+final class ISteamUserStats extends Opaque {
   static Pointer<ISteamUserStats> get userInstance => _steamUserStats();
 }
 
 final _requestCurrentStats = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-),
+      Pointer<ISteamUserStats>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-)>("SteamAPI_ISteamUserStats_RequestCurrentStats");
+      Pointer<ISteamUserStats>,
+    )>("SteamAPI_ISteamUserStats_RequestCurrentStats");
 
 final _getStatInt32 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Int>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamUserStats_GetStatInt32");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamUserStats_GetStatInt32");
 
 final _getStatFloat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Float>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Float>,
-)>("SteamAPI_ISteamUserStats_GetStatFloat");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    )>("SteamAPI_ISteamUserStats_GetStatFloat");
 
 final _setStatInt32 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUserStats_SetStatInt32");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUserStats_SetStatInt32");
 
 final _setStatFloat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Float,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Float,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  double,
-)>("SteamAPI_ISteamUserStats_SetStatFloat");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      double,
+    )>("SteamAPI_ISteamUserStats_SetStatFloat");
 
 final _updateAvgRateStat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Float,
-  Double,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Float,
+      Double,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  double,
-  double,
-)>("SteamAPI_ISteamUserStats_UpdateAvgRateStat");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      double,
+      double,
+    )>("SteamAPI_ISteamUserStats_UpdateAvgRateStat");
 
 final _getAchievement = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamUserStats_GetAchievement");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamUserStats_GetAchievement");
 
 final _setAchievement = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUserStats_SetAchievement");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUserStats_SetAchievement");
 
 final _clearAchievement = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUserStats_ClearAchievement");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUserStats_ClearAchievement");
 
 final _getAchievementAndUnlockTime = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamUserStats_GetAchievementAndUnlockTime");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamUserStats_GetAchievementAndUnlockTime");
 
 final _storeStats = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-),
+      Pointer<ISteamUserStats>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-)>("SteamAPI_ISteamUserStats_StoreStats");
+      Pointer<ISteamUserStats>,
+    )>("SteamAPI_ISteamUserStats_StoreStats");
 
 final _getAchievementIcon = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    ),
     int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUserStats_GetAchievementIcon");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUserStats_GetAchievementIcon");
 
 final _getAchievementDisplayAttribute = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUserStats_GetAchievementDisplayAttribute");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUserStats_GetAchievementDisplayAttribute");
 
 final _indicateAchievementProgress = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  int,
-  int,
-)>("SteamAPI_ISteamUserStats_IndicateAchievementProgress");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      int,
+      int,
+    )>("SteamAPI_ISteamUserStats_IndicateAchievementProgress");
 
 final _getNumAchievements = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUserStats>,
-),
+      Pointer<ISteamUserStats>,
+    ),
     int Function(
-  Pointer<ISteamUserStats>,
-)>("SteamAPI_ISteamUserStats_GetNumAchievements");
+      Pointer<ISteamUserStats>,
+    )>("SteamAPI_ISteamUserStats_GetNumAchievements");
 
 final _getAchievementName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamUserStats>,
-  UnsignedInt,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedInt,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamUserStats>,
-  int,
-)>("SteamAPI_ISteamUserStats_GetAchievementName");
+      Pointer<ISteamUserStats>,
+      int,
+    )>("SteamAPI_ISteamUserStats_GetAchievementName");
 
 final _requestUserStats = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  CSteamId,
-)>("SteamAPI_ISteamUserStats_RequestUserStats");
+      Pointer<ISteamUserStats>,
+      CSteamId,
+    )>("SteamAPI_ISteamUserStats_RequestUserStats");
 
 final _getUserStatInt32 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Int>,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamUserStats_GetUserStatInt32");
+      Pointer<ISteamUserStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamUserStats_GetUserStatInt32");
 
 final _getUserStatFloat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Float>,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Float>,
-)>("SteamAPI_ISteamUserStats_GetUserStatFloat");
+      Pointer<ISteamUserStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    )>("SteamAPI_ISteamUserStats_GetUserStatFloat");
 
 final _getUserAchievement = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamUserStats_GetUserAchievement");
+      Pointer<ISteamUserStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamUserStats_GetUserAchievement");
 
 final _getUserAchievementAndUnlockTime = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamUserStats_GetUserAchievementAndUnlockTime");
+      Pointer<ISteamUserStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamUserStats_GetUserAchievementAndUnlockTime");
 
 final _resetAllStats = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Bool,
-),
+      Pointer<ISteamUserStats>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  bool,
-)>("SteamAPI_ISteamUserStats_ResetAllStats");
+      Pointer<ISteamUserStats>,
+      bool,
+    )>("SteamAPI_ISteamUserStats_ResetAllStats");
 
 final _findOrCreateLeaderboard = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  ELeaderboardSortMethodAliasC,
-  ELeaderboardDisplayTypeAliasC,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      ELeaderboardSortMethodAliasC,
+      ELeaderboardDisplayTypeAliasC,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  ELeaderboardSortMethodAliasDart,
-  ELeaderboardDisplayTypeAliasDart,
-)>("SteamAPI_ISteamUserStats_FindOrCreateLeaderboard");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      ELeaderboardSortMethodAliasDart,
+      ELeaderboardDisplayTypeAliasDart,
+    )>("SteamAPI_ISteamUserStats_FindOrCreateLeaderboard");
 
 final _findLeaderboard = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUserStats_FindLeaderboard");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUserStats_FindLeaderboard");
 
 final _getLeaderboardName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-)>("SteamAPI_ISteamUserStats_GetLeaderboardName");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+    )>("SteamAPI_ISteamUserStats_GetLeaderboardName");
 
 final _getLeaderboardEntryCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-)>("SteamAPI_ISteamUserStats_GetLeaderboardEntryCount");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+    )>("SteamAPI_ISteamUserStats_GetLeaderboardEntryCount");
 
 final _getLeaderboardSortMethod = dl.lookupFunction<
     ELeaderboardSortMethodAliasC Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+    ),
     ELeaderboardSortMethodAliasDart Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-)>("SteamAPI_ISteamUserStats_GetLeaderboardSortMethod");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+    )>("SteamAPI_ISteamUserStats_GetLeaderboardSortMethod");
 
 final _getLeaderboardDisplayType = dl.lookupFunction<
     ELeaderboardDisplayTypeAliasC Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+    ),
     ELeaderboardDisplayTypeAliasDart Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-)>("SteamAPI_ISteamUserStats_GetLeaderboardDisplayType");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+    )>("SteamAPI_ISteamUserStats_GetLeaderboardDisplayType");
 
 final _downloadLeaderboardEntries = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  ELeaderboardDataRequestAliasC,
-  Int,
-  Int,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      ELeaderboardDataRequestAliasC,
+      Int,
+      Int,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-  ELeaderboardDataRequestAliasDart,
-  int,
-  int,
-)>("SteamAPI_ISteamUserStats_DownloadLeaderboardEntries");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+      ELeaderboardDataRequestAliasDart,
+      int,
+      int,
+    )>("SteamAPI_ISteamUserStats_DownloadLeaderboardEntries");
 
 final _downloadLeaderboardEntriesForUsers = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  Pointer<UnsignedLongLong>,
-  Int,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      Pointer<UnsignedLongLong>,
+      Int,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamUserStats_DownloadLeaderboardEntriesForUsers");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUserStats_DownloadLeaderboardEntriesForUsers");
 
 final _getDownloadedLeaderboardEntry = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  Int,
-  Pointer<LeaderboardEntry>,
-  Pointer<Int>,
-  Int,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      Int,
+      Pointer<LeaderboardEntry>,
+      Pointer<Int>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboardEntries,
-  int,
-  Pointer<LeaderboardEntry>,
-  Pointer<Int>,
-  int,
-)>("SteamAPI_ISteamUserStats_GetDownloadedLeaderboardEntry");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboardEntries,
+      int,
+      Pointer<LeaderboardEntry>,
+      Pointer<Int>,
+      int,
+    )>("SteamAPI_ISteamUserStats_GetDownloadedLeaderboardEntry");
 
 final _uploadLeaderboardScore = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  ELeaderboardUploadScoreMethodAliasC,
-  Int,
-  Pointer<Int>,
-  Int,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      ELeaderboardUploadScoreMethodAliasC,
+      Int,
+      Pointer<Int>,
+      Int,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-  ELeaderboardUploadScoreMethodAliasDart,
-  int,
-  Pointer<Int>,
-  int,
-)>("SteamAPI_ISteamUserStats_UploadLeaderboardScore");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+      ELeaderboardUploadScoreMethodAliasDart,
+      int,
+      Pointer<Int>,
+      int,
+    )>("SteamAPI_ISteamUserStats_UploadLeaderboardScore");
 
 final _attachLeaderboardUgc = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUserStats>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  SteamLeaderboard,
-  UgcHandle,
-)>("SteamAPI_ISteamUserStats_AttachLeaderboardUGC");
+      Pointer<ISteamUserStats>,
+      SteamLeaderboard,
+      UgcHandle,
+    )>("SteamAPI_ISteamUserStats_AttachLeaderboardUGC");
 
 final _getNumberOfCurrentPlayers = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-),
+      Pointer<ISteamUserStats>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-)>("SteamAPI_ISteamUserStats_GetNumberOfCurrentPlayers");
+      Pointer<ISteamUserStats>,
+    )>("SteamAPI_ISteamUserStats_GetNumberOfCurrentPlayers");
 
 final _requestGlobalAchievementPercentages = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-),
+      Pointer<ISteamUserStats>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-)>("SteamAPI_ISteamUserStats_RequestGlobalAchievementPercentages");
+      Pointer<ISteamUserStats>,
+    )>("SteamAPI_ISteamUserStats_RequestGlobalAchievementPercentages");
 
 final _getMostAchievedAchievementInfo = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<Float>,
-  Pointer<Bool>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<Float>,
+      Pointer<Bool>,
+    ),
     int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  int,
-  Pointer<Float>,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamUserStats_GetMostAchievedAchievementInfo");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      int,
+      Pointer<Float>,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamUserStats_GetMostAchievedAchievementInfo");
 
 final _getNextMostAchievedAchievementInfo = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUserStats>,
-  Int,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<Float>,
-  Pointer<Bool>,
-),
+      Pointer<ISteamUserStats>,
+      Int,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<Float>,
+      Pointer<Bool>,
+    ),
     int Function(
-  Pointer<ISteamUserStats>,
-  int,
-  Pointer<Utf8>,
-  int,
-  Pointer<Float>,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamUserStats_GetNextMostAchievedAchievementInfo");
+      Pointer<ISteamUserStats>,
+      int,
+      Pointer<Utf8>,
+      int,
+      Pointer<Float>,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamUserStats_GetNextMostAchievedAchievementInfo");
 
 final _getAchievementAchievedPercent = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Float>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Float>,
-)>("SteamAPI_ISteamUserStats_GetAchievementAchievedPercent");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    )>("SteamAPI_ISteamUserStats_GetAchievementAchievedPercent");
 
 final _requestGlobalStats = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUserStats>,
-  Int,
-),
+      Pointer<ISteamUserStats>,
+      Int,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUserStats>,
-  int,
-)>("SteamAPI_ISteamUserStats_RequestGlobalStats");
+      Pointer<ISteamUserStats>,
+      int,
+    )>("SteamAPI_ISteamUserStats_RequestGlobalStats");
 
 final _getGlobalStatInt64 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<LongLong>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<LongLong>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<LongLong>,
-)>("SteamAPI_ISteamUserStats_GetGlobalStatInt64");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<LongLong>,
+    )>("SteamAPI_ISteamUserStats_GetGlobalStatInt64");
 
 final _getGlobalStatDouble = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Double>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Double>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Double>,
-)>("SteamAPI_ISteamUserStats_GetGlobalStatDouble");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Double>,
+    )>("SteamAPI_ISteamUserStats_GetGlobalStatDouble");
 
 final _getGlobalStatHistoryInt64 = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<LongLong>,
-  UnsignedInt,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<LongLong>,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<LongLong>,
-  int,
-)>("SteamAPI_ISteamUserStats_GetGlobalStatHistoryInt64");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<LongLong>,
+      int,
+    )>("SteamAPI_ISteamUserStats_GetGlobalStatHistoryInt64");
 
 final _getGlobalStatHistoryDouble = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Double>,
-  UnsignedInt,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Double>,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Double>,
-  int,
-)>("SteamAPI_ISteamUserStats_GetGlobalStatHistoryDouble");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Double>,
+      int,
+    )>("SteamAPI_ISteamUserStats_GetGlobalStatHistoryDouble");
 
 final _getAchievementProgressLimitsInt32 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Int>,
-  Pointer<Int>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Int>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Int>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamUserStats_GetAchievementProgressLimitsInt32");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Int>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamUserStats_GetAchievementProgressLimitsInt32");
 
 final _getAchievementProgressLimitsFloat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Float>,
-  Pointer<Float>,
-),
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Float>,
+      Pointer<Float>,
+    ),
     bool Function(
-  Pointer<ISteamUserStats>,
-  Pointer<Utf8>,
-  Pointer<Float>,
-  Pointer<Float>,
-)>("SteamAPI_ISteamUserStats_GetAchievementProgressLimitsFloat");
+      Pointer<ISteamUserStats>,
+      Pointer<Utf8>,
+      Pointer<Float>,
+      Pointer<Float>,
+    )>("SteamAPI_ISteamUserStats_GetAchievementProgressLimitsFloat");
 
 extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
   bool requestCurrentStats() => _requestCurrentStats.call(

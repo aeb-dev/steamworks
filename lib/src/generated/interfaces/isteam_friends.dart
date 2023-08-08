@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -6,6 +6,8 @@ import "package:ffi/ffi.dart";
 import "../dl.dart";
 import "../enums/eactivate_game_overlay_to_web_page_mode.dart";
 import "../enums/echat_entry_type.dart";
+import "../enums/ecommunity_profile_item_property.dart";
+import "../enums/ecommunity_profile_item_type.dart";
 import "../enums/efriend_relationship.dart";
 import "../enums/eoverlay_to_store_flag.dart";
 import "../enums/epersona_state.dart";
@@ -15,823 +17,875 @@ import "../typedefs.dart";
 final _steamFriends = dl.lookupFunction<Pointer<ISteamFriends> Function(),
     Pointer<ISteamFriends> Function()>("SteamAPI_SteamFriends_v017");
 
-class ISteamFriends extends Opaque {
+final class ISteamFriends extends Opaque {
   static Pointer<ISteamFriends> get userInstance => _steamFriends();
 }
 
 final _getPersonaName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_GetPersonaName");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_GetPersonaName");
 
 final _setPersonaName = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_SetPersonaName");
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_SetPersonaName");
 
 final _getPersonaState = dl.lookupFunction<
     EPersonaStateAliasC Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     EPersonaStateAliasDart Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_GetPersonaState");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_GetPersonaState");
 
 final _getFriendCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  int,
-)>("SteamAPI_ISteamFriends_GetFriendCount");
+      Pointer<ISteamFriends>,
+      int,
+    )>("SteamAPI_ISteamFriends_GetFriendCount");
 
 final _getFriendByIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  Int,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      Int,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamFriends>,
-  int,
-  int,
-)>("SteamAPI_ISteamFriends_GetFriendByIndex");
+      Pointer<ISteamFriends>,
+      int,
+      int,
+    )>("SteamAPI_ISteamFriends_GetFriendByIndex");
 
 final _getFriendRelationship = dl.lookupFunction<
     EFriendRelationshipAliasC Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     EFriendRelationshipAliasDart Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendRelationship");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendRelationship");
 
 final _getFriendPersonaState = dl.lookupFunction<
     EPersonaStateAliasC Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     EPersonaStateAliasDart Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendPersonaState");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendPersonaState");
 
 final _getFriendPersonaName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendPersonaName");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendPersonaName");
 
 final _getFriendGamePlayed = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Pointer<FriendGameInfo>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Pointer<FriendGameInfo>,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  Pointer<FriendGameInfo>,
-)>("SteamAPI_ISteamFriends_GetFriendGamePlayed");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      Pointer<FriendGameInfo>,
+    )>("SteamAPI_ISteamFriends_GetFriendGamePlayed");
 
 final _getFriendPersonaNameHistory = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamFriends_GetFriendPersonaNameHistory");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamFriends_GetFriendPersonaNameHistory");
 
 final _getFriendSteamLevel = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendSteamLevel");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendSteamLevel");
 
 final _getPlayerNickname = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetPlayerNickname");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetPlayerNickname");
 
 final _getFriendsGroupCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_GetFriendsGroupCount");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_GetFriendsGroupCount");
 
 final _getFriendsGroupIdByIndex = dl.lookupFunction<
     Short Function(
-  Pointer<ISteamFriends>,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      Int,
+    ),
     FriendsGroupId Function(
-  Pointer<ISteamFriends>,
-  int,
-)>("SteamAPI_ISteamFriends_GetFriendsGroupIDByIndex");
+      Pointer<ISteamFriends>,
+      int,
+    )>("SteamAPI_ISteamFriends_GetFriendsGroupIDByIndex");
 
 final _getFriendsGroupName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  Short,
-),
+      Pointer<ISteamFriends>,
+      Short,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  FriendsGroupId,
-)>("SteamAPI_ISteamFriends_GetFriendsGroupName");
+      Pointer<ISteamFriends>,
+      FriendsGroupId,
+    )>("SteamAPI_ISteamFriends_GetFriendsGroupName");
 
 final _getFriendsGroupMembersCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  Short,
-),
+      Pointer<ISteamFriends>,
+      Short,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  FriendsGroupId,
-)>("SteamAPI_ISteamFriends_GetFriendsGroupMembersCount");
+      Pointer<ISteamFriends>,
+      FriendsGroupId,
+    )>("SteamAPI_ISteamFriends_GetFriendsGroupMembersCount");
 
 final _getFriendsGroupMembersList = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  Short,
-  Pointer<UnsignedLongLong>,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      Short,
+      Pointer<UnsignedLongLong>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  FriendsGroupId,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamFriends_GetFriendsGroupMembersList");
+      Pointer<ISteamFriends>,
+      FriendsGroupId,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamFriends_GetFriendsGroupMembersList");
 
 final _hasFriend = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamFriends_HasFriend");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamFriends_HasFriend");
 
 final _getClanCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_GetClanCount");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_GetClanCount");
 
 final _getClanByIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamFriends>,
-  int,
-)>("SteamAPI_ISteamFriends_GetClanByIndex");
+      Pointer<ISteamFriends>,
+      int,
+    )>("SteamAPI_ISteamFriends_GetClanByIndex");
 
 final _getClanName = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetClanName");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetClanName");
 
 final _getClanTag = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetClanTag");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetClanTag");
 
 final _getClanActivityCounts = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Pointer<Int>,
-  Pointer<Int>,
-  Pointer<Int>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Pointer<Int>,
+      Pointer<Int>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  Pointer<Int>,
-  Pointer<Int>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamFriends_GetClanActivityCounts");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      Pointer<Int>,
+      Pointer<Int>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamFriends_GetClanActivityCounts");
 
 final _downloadClanActivityCounts = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  Pointer<UnsignedLongLong>,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      Pointer<UnsignedLongLong>,
+      Int,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamFriends>,
-  Pointer<UnsignedLongLong>,
-  int,
-)>("SteamAPI_ISteamFriends_DownloadClanActivityCounts");
+      Pointer<ISteamFriends>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamFriends_DownloadClanActivityCounts");
 
 final _getFriendCountFromSource = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendCountFromSource");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendCountFromSource");
 
 final _getFriendFromSourceByIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamFriends_GetFriendFromSourceByIndex");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamFriends_GetFriendFromSourceByIndex");
 
 final _isUserInSource = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_IsUserInSource");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_IsUserInSource");
 
 final _setInGameVoiceSpeaking = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  bool,
-)>("SteamAPI_ISteamFriends_SetInGameVoiceSpeaking");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      bool,
+    )>("SteamAPI_ISteamFriends_SetInGameVoiceSpeaking");
 
 final _activateGameOverlay = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_ActivateGameOverlay");
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_ActivateGameOverlay");
 
 final _activateGameOverlayToUser = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_ActivateGameOverlayToUser");
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_ActivateGameOverlayToUser");
 
 final _activateGameOverlayToWebPage = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-  EActivateGameOverlayToWebPageModeAliasC,
-),
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+      EActivateGameOverlayToWebPageModeAliasC,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-  EActivateGameOverlayToWebPageModeAliasDart,
-)>("SteamAPI_ISteamFriends_ActivateGameOverlayToWebPage");
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+      EActivateGameOverlayToWebPageModeAliasDart,
+    )>("SteamAPI_ISteamFriends_ActivateGameOverlayToWebPage");
 
 final _activateGameOverlayToStore = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  UnsignedInt,
-  EOverlayToStoreFlagAliasC,
-),
+      Pointer<ISteamFriends>,
+      UnsignedInt,
+      EOverlayToStoreFlagAliasC,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  AppId,
-  EOverlayToStoreFlagAliasDart,
-)>("SteamAPI_ISteamFriends_ActivateGameOverlayToStore");
+      Pointer<ISteamFriends>,
+      AppId,
+      EOverlayToStoreFlagAliasDart,
+    )>("SteamAPI_ISteamFriends_ActivateGameOverlayToStore");
 
 final _setPlayedWith = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_SetPlayedWith");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_SetPlayedWith");
 
 final _activateGameOverlayInviteDialog = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_ActivateGameOverlayInviteDialog");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_ActivateGameOverlayInviteDialog");
 
 final _getSmallFriendAvatar = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetSmallFriendAvatar");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetSmallFriendAvatar");
 
 final _getMediumFriendAvatar = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetMediumFriendAvatar");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetMediumFriendAvatar");
 
 final _getLargeFriendAvatar = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetLargeFriendAvatar");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetLargeFriendAvatar");
 
 final _requestUserInformation = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  bool,
-)>("SteamAPI_ISteamFriends_RequestUserInformation");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      bool,
+    )>("SteamAPI_ISteamFriends_RequestUserInformation");
 
 final _requestClanOfficerList = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_RequestClanOfficerList");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_RequestClanOfficerList");
 
 final _getClanOwner = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     CSteamId Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetClanOwner");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetClanOwner");
 
 final _getClanOfficerCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetClanOfficerCount");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetClanOfficerCount");
 
 final _getClanOfficerByIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamFriends_GetClanOfficerByIndex");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamFriends_GetClanOfficerByIndex");
 
 final _getUserRestrictions = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_GetUserRestrictions");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_GetUserRestrictions");
 
 final _setRichPresence = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_SetRichPresence");
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_SetRichPresence");
 
 final _clearRichPresence = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_ClearRichPresence");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_ClearRichPresence");
 
 final _getFriendRichPresence = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_GetFriendRichPresence");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_GetFriendRichPresence");
 
 final _getFriendRichPresenceKeyCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendRichPresenceKeyCount");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendRichPresenceKeyCount");
 
 final _getFriendRichPresenceKeyByIndex = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamFriends_GetFriendRichPresenceKeyByIndex");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamFriends_GetFriendRichPresenceKeyByIndex");
 
 final _requestFriendRichPresence = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_RequestFriendRichPresence");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_RequestFriendRichPresence");
 
 final _inviteUserToGame = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_InviteUserToGame");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_InviteUserToGame");
 
 final _getCoplayFriendCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_GetCoplayFriendCount");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_GetCoplayFriendCount");
 
 final _getCoplayFriend = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamFriends>,
-  int,
-)>("SteamAPI_ISteamFriends_GetCoplayFriend");
+      Pointer<ISteamFriends>,
+      int,
+    )>("SteamAPI_ISteamFriends_GetCoplayFriend");
 
 final _getFriendCoplayTime = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendCoplayTime");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendCoplayTime");
 
 final _getFriendCoplayGame = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     AppId Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFriendCoplayGame");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFriendCoplayGame");
 
 final _joinClanChatRoom = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_JoinClanChatRoom");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_JoinClanChatRoom");
 
 final _leaveClanChatRoom = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_LeaveClanChatRoom");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_LeaveClanChatRoom");
 
 final _getClanChatMemberCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetClanChatMemberCount");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetClanChatMemberCount");
 
 final _getChatMemberByIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamFriends_GetChatMemberByIndex");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamFriends_GetChatMemberByIndex");
 
 final _sendClanChatMessage = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_SendClanChatMessage");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_SendClanChatMessage");
 
 final _getClanChatMessage = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-  Pointer<Void>,
-  Int,
-  Pointer<EChatEntryTypeAliasC>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+      Pointer<Void>,
+      Int,
+      Pointer<EChatEntryTypeAliasC>,
+      Pointer<UnsignedLongLong>,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-  Pointer<Void>,
-  int,
-  Pointer<EChatEntryTypeAliasC>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamFriends_GetClanChatMessage");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+      Pointer<Void>,
+      int,
+      Pointer<EChatEntryTypeAliasC>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamFriends_GetClanChatMessage");
 
 final _isClanChatAdmin = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_IsClanChatAdmin");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_IsClanChatAdmin");
 
 final _isClanChatWindowOpenInSteam = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_IsClanChatWindowOpenInSteam");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_IsClanChatWindowOpenInSteam");
 
 final _openClanChatWindowInSteam = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_OpenClanChatWindowInSteam");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_OpenClanChatWindowInSteam");
 
 final _closeClanChatWindowInSteam = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_CloseClanChatWindowInSteam");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_CloseClanChatWindowInSteam");
 
 final _setListenForFriendsMessages = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  Bool,
-),
+      Pointer<ISteamFriends>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  bool,
-)>("SteamAPI_ISteamFriends_SetListenForFriendsMessages");
+      Pointer<ISteamFriends>,
+      bool,
+    )>("SteamAPI_ISteamFriends_SetListenForFriendsMessages");
 
 final _replyToFriendMessage = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_ReplyToFriendMessage");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_ReplyToFriendMessage");
 
 final _getFriendMessage = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-  Int,
-  Pointer<Void>,
-  Int,
-  Pointer<EChatEntryTypeAliasC>,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      Int,
+      Pointer<Void>,
+      Int,
+      Pointer<EChatEntryTypeAliasC>,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-  int,
-  Pointer<Void>,
-  int,
-  Pointer<EChatEntryTypeAliasC>,
-)>("SteamAPI_ISteamFriends_GetFriendMessage");
+      Pointer<ISteamFriends>,
+      CSteamId,
+      int,
+      Pointer<Void>,
+      int,
+      Pointer<EChatEntryTypeAliasC>,
+    )>("SteamAPI_ISteamFriends_GetFriendMessage");
 
 final _getFollowerCount = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_GetFollowerCount");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_GetFollowerCount");
 
 final _isFollowing = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_IsFollowing");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_IsFollowing");
 
 final _enumerateFollowingList = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamFriends>,
-  UnsignedInt,
-),
+      Pointer<ISteamFriends>,
+      UnsignedInt,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamFriends>,
-  int,
-)>("SteamAPI_ISteamFriends_EnumerateFollowingList");
+      Pointer<ISteamFriends>,
+      int,
+    )>("SteamAPI_ISteamFriends_EnumerateFollowingList");
 
 final _isClanPublic = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_IsClanPublic");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_IsClanPublic");
 
 final _isClanOfficialGameGroup = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_IsClanOfficialGameGroup");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_IsClanOfficialGameGroup");
 
 final _getNumChatsWithUnreadPriorityMessages = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamFriends>,
-),
+      Pointer<ISteamFriends>,
+    ),
     int Function(
-  Pointer<ISteamFriends>,
-)>("SteamAPI_ISteamFriends_GetNumChatsWithUnreadPriorityMessages");
+      Pointer<ISteamFriends>,
+    )>("SteamAPI_ISteamFriends_GetNumChatsWithUnreadPriorityMessages");
 
 final _activateGameOverlayRemotePlayTogetherInviteDialog = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  CSteamId,
-)>("SteamAPI_ISteamFriends_ActivateGameOverlayRemotePlayTogetherInviteDialog");
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>(
+  "SteamAPI_ISteamFriends_ActivateGameOverlayRemotePlayTogetherInviteDialog",
+);
 
 final _registerProtocolInOverlayBrowser = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_RegisterProtocolInOverlayBrowser");
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_RegisterProtocolInOverlayBrowser");
 
 final _activateGameOverlayInviteDialogConnectString = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamFriends>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamFriends_ActivateGameOverlayInviteDialogConnectString");
+      Pointer<ISteamFriends>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamFriends_ActivateGameOverlayInviteDialogConnectString");
+
+final _requestEquippedProfileItems = dl.lookupFunction<
+    UnsignedLongLong Function(
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+    ),
+    SteamApiCall Function(
+      Pointer<ISteamFriends>,
+      CSteamId,
+    )>("SteamAPI_ISteamFriends_RequestEquippedProfileItems");
+
+final _bHasEquippedProfileItem = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      ECommunityProfileItemTypeAliasC,
+    ),
+    bool Function(
+      Pointer<ISteamFriends>,
+      CSteamId,
+      ECommunityProfileItemTypeAliasDart,
+    )>("SteamAPI_ISteamFriends_BHasEquippedProfileItem");
+
+final _getProfileItemPropertyString = dl.lookupFunction<
+    Pointer<Utf8> Function(
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      ECommunityProfileItemTypeAliasC,
+      ECommunityProfileItemPropertyAliasC,
+    ),
+    Pointer<Utf8> Function(
+      Pointer<ISteamFriends>,
+      CSteamId,
+      ECommunityProfileItemTypeAliasDart,
+      ECommunityProfileItemPropertyAliasDart,
+    )>("SteamAPI_ISteamFriends_GetProfileItemPropertyString");
+
+final _getProfileItemPropertyUint = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamFriends>,
+      UnsignedLongLong,
+      ECommunityProfileItemTypeAliasC,
+      ECommunityProfileItemPropertyAliasC,
+    ),
+    int Function(
+      Pointer<ISteamFriends>,
+      CSteamId,
+      ECommunityProfileItemTypeAliasDart,
+      ECommunityProfileItemPropertyAliasDart,
+    )>("SteamAPI_ISteamFriends_GetProfileItemPropertyUint");
 
 extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
   Pointer<Utf8> getPersonaName() => _getPersonaName.call(
@@ -1485,5 +1539,47 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
       _activateGameOverlayInviteDialogConnectString.call(
         this,
         connectString,
+      );
+
+  SteamApiCall requestEquippedProfileItems(
+    CSteamId steamId,
+  ) =>
+      _requestEquippedProfileItems.call(
+        this,
+        steamId,
+      );
+
+  bool bHasEquippedProfileItem(
+    CSteamId steamId,
+    ECommunityProfileItemType itemType,
+  ) =>
+      _bHasEquippedProfileItem.call(
+        this,
+        steamId,
+        itemType.value,
+      );
+
+  Pointer<Utf8> getProfileItemPropertyString(
+    CSteamId steamId,
+    ECommunityProfileItemType itemType,
+    ECommunityProfileItemProperty prop,
+  ) =>
+      _getProfileItemPropertyString.call(
+        this,
+        steamId,
+        itemType.value,
+        prop.value,
+      );
+
+  int getProfileItemPropertyUint(
+    CSteamId steamId,
+    ECommunityProfileItemType itemType,
+    ECommunityProfileItemProperty prop,
+  ) =>
+      _getProfileItemPropertyUint.call(
+        this,
+        steamId,
+        itemType.value,
+        prop.value,
       );
 }

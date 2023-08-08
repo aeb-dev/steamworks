@@ -55,8 +55,13 @@ class Dispatcher {
       cb: cb,
     );
 
-    Set<Callback> callResultList = _registeredCallbacks[callback.id] ??= {};
-    callResultList.add(callback);
+    Set<Callback>? callbackList = _registeredCallbacks[callback.id];
+    if (callbackList == null) {
+      callbackList = {};
+      _registeredCallbacks[callback.id] = callbackList;
+    }
+
+    callbackList.add(callback);
 
     return callback;
   }
@@ -71,8 +76,13 @@ class Dispatcher {
       cb: cb,
     );
 
-    Set<CallResult> callResultList =
-        _registeredCallResults[callResult.asyncCallId] ??= {};
+    Set<CallResult>? callResultList =
+        _registeredCallResults[callResult.asyncCallId];
+    if (callResultList == null) {
+      callResultList = {};
+      _registeredCallResults[callResult.asyncCallId] = callResultList;
+    }
+
     callResultList.add(callResult);
 
     return callResult;
@@ -158,8 +168,9 @@ class Dispatcher {
 
           crSet.clear();
 
-          malloc.free(tmpCallResult);
-          malloc.free(hasFailed);
+          malloc
+            ..free(tmpCallResult)
+            ..free(hasFailed);
         } else {
           Set<Callback>? cbSet = _registeredCallbacks[_cbm.callback];
           if (cbSet == null || cbSet.isEmpty) {
@@ -180,7 +191,7 @@ class Dispatcher {
         }
       } on Exception catch (e, stackTrace) {
         log(
-          "An error occured while running callback/callresult(s). Message: ${e.toString()}",
+          "An error occured while running callback/callresult(s). Message: $e",
           time: DateTime.now(),
           level: 1000, // severe
           name: "Dispatcher",

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -6,7 +6,7 @@ import "package:ffi/ffi.dart";
 import "../dl.dart";
 
 @Packed(4)
-class ServerNetAdr extends Struct {
+final class ServerNetAdr extends Struct {
   @UnsignedShort()
   // ignore: unused_field
   external int _connectionPort;
@@ -22,115 +22,115 @@ class ServerNetAdr extends Struct {
 
 final _construct = dl.lookupFunction<
     Void Function(
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+    ),
     void Function(
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_Construct");
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_Construct");
 
 final _init = dl.lookupFunction<
     Void Function(
-  Pointer<ServerNetAdr>,
-  UnsignedInt,
-  UnsignedShort,
-  UnsignedShort,
-),
+      Pointer<ServerNetAdr>,
+      UnsignedInt,
+      UnsignedShort,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ServerNetAdr>,
-  int,
-  int,
-  int,
-)>("SteamAPI_servernetadr_t_Init");
+      Pointer<ServerNetAdr>,
+      int,
+      int,
+      int,
+    )>("SteamAPI_servernetadr_t_Init");
 
 final _getQueryPort = dl.lookupFunction<
     UnsignedShort Function(
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+    ),
     int Function(
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_GetQueryPort");
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_GetQueryPort");
 
 final _setQueryPort = dl.lookupFunction<
     Void Function(
-  Pointer<ServerNetAdr>,
-  UnsignedShort,
-),
+      Pointer<ServerNetAdr>,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ServerNetAdr>,
-  int,
-)>("SteamAPI_servernetadr_t_SetQueryPort");
+      Pointer<ServerNetAdr>,
+      int,
+    )>("SteamAPI_servernetadr_t_SetQueryPort");
 
 final _getConnectionPort = dl.lookupFunction<
     UnsignedShort Function(
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+    ),
     int Function(
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_GetConnectionPort");
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_GetConnectionPort");
 
 final _setConnectionPort = dl.lookupFunction<
     Void Function(
-  Pointer<ServerNetAdr>,
-  UnsignedShort,
-),
+      Pointer<ServerNetAdr>,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ServerNetAdr>,
-  int,
-)>("SteamAPI_servernetadr_t_SetConnectionPort");
+      Pointer<ServerNetAdr>,
+      int,
+    )>("SteamAPI_servernetadr_t_SetConnectionPort");
 
 final _getIp = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+    ),
     int Function(
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_GetIP");
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_GetIP");
 
 final _setIp = dl.lookupFunction<
     Void Function(
-  Pointer<ServerNetAdr>,
-  UnsignedInt,
-),
+      Pointer<ServerNetAdr>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ServerNetAdr>,
-  int,
-)>("SteamAPI_servernetadr_t_SetIP");
+      Pointer<ServerNetAdr>,
+      int,
+    )>("SteamAPI_servernetadr_t_SetIP");
 
 final _getConnectionAddressString = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_GetConnectionAddressString");
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_GetConnectionAddressString");
 
 final _getQueryAddressString = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_GetQueryAddressString");
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_GetQueryAddressString");
 
 final _isLessThan = dl.lookupFunction<
     Bool Function(
-  Pointer<ServerNetAdr>,
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+      Pointer<ServerNetAdr>,
+    ),
     bool Function(
-  Pointer<ServerNetAdr>,
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_IsLessThan");
+      Pointer<ServerNetAdr>,
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_IsLessThan");
 
 final _assign = dl.lookupFunction<
     Void Function(
-  Pointer<ServerNetAdr>,
-  Pointer<ServerNetAdr>,
-),
+      Pointer<ServerNetAdr>,
+      Pointer<ServerNetAdr>,
+    ),
     void Function(
-  Pointer<ServerNetAdr>,
-  Pointer<ServerNetAdr>,
-)>("SteamAPI_servernetadr_t_Assign");
+      Pointer<ServerNetAdr>,
+      Pointer<ServerNetAdr>,
+    )>("SteamAPI_servernetadr_t_Assign");
 
 extension ServerNetAdrExtensions on Pointer<ServerNetAdr> {
   void construct() => _construct.call(

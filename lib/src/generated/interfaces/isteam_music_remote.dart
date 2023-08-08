@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -10,321 +10,321 @@ final _steamMusicRemote = dl.lookupFunction<
     Pointer<ISteamMusicRemote> Function(),
     Pointer<ISteamMusicRemote> Function()>("SteamAPI_SteamMusicRemote_v001");
 
-class ISteamMusicRemote extends Opaque {
+final class ISteamMusicRemote extends Opaque {
   static Pointer<ISteamMusicRemote> get userInstance => _steamMusicRemote();
 }
 
 final _registerSteamMusicRemote = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMusicRemote>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMusicRemote_RegisterSteamMusicRemote");
+      Pointer<ISteamMusicRemote>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMusicRemote_RegisterSteamMusicRemote");
 
 final _deregisterSteamMusicRemote = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_DeregisterSteamMusicRemote");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_DeregisterSteamMusicRemote");
 
 final _isCurrentMusicRemote = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_BIsCurrentMusicRemote");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_BIsCurrentMusicRemote");
 
 final _bActivationSuccess = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_BActivationSuccess");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_BActivationSuccess");
 
 final _setDisplayName = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMusicRemote>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMusicRemote_SetDisplayName");
+      Pointer<ISteamMusicRemote>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMusicRemote_SetDisplayName");
 
 final _setPNGIcon64x64 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Void>,
-  UnsignedInt,
-),
+      Pointer<ISteamMusicRemote>,
+      Pointer<Void>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamMusicRemote_SetPNGIcon_64x64");
+      Pointer<ISteamMusicRemote>,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamMusicRemote_SetPNGIcon_64x64");
 
 final _enablePlayPrevious = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_EnablePlayPrevious");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_EnablePlayPrevious");
 
 final _enablePlayNext = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_EnablePlayNext");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_EnablePlayNext");
 
 final _enableShuffled = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_EnableShuffled");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_EnableShuffled");
 
 final _enableLooped = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_EnableLooped");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_EnableLooped");
 
 final _enableQueue = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_EnableQueue");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_EnableQueue");
 
 final _enablePlaylists = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_EnablePlaylists");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_EnablePlaylists");
 
 final _updatePlaybackStatus = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  AudioPlaybackStatusAliasC,
-),
+      Pointer<ISteamMusicRemote>,
+      AudioPlaybackStatusAliasC,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  AudioPlaybackStatusAliasDart,
-)>("SteamAPI_ISteamMusicRemote_UpdatePlaybackStatus");
+      Pointer<ISteamMusicRemote>,
+      AudioPlaybackStatusAliasDart,
+    )>("SteamAPI_ISteamMusicRemote_UpdatePlaybackStatus");
 
 final _updateShuffled = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_UpdateShuffled");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_UpdateShuffled");
 
 final _updateLooped = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_UpdateLooped");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_UpdateLooped");
 
 final _updateVolume = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Float,
-),
+      Pointer<ISteamMusicRemote>,
+      Float,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  double,
-)>("SteamAPI_ISteamMusicRemote_UpdateVolume");
+      Pointer<ISteamMusicRemote>,
+      double,
+    )>("SteamAPI_ISteamMusicRemote_UpdateVolume");
 
 final _currentEntryWillChange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_CurrentEntryWillChange");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_CurrentEntryWillChange");
 
 final _currentEntryIsAvailable = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Bool,
-),
+      Pointer<ISteamMusicRemote>,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  bool,
-)>("SteamAPI_ISteamMusicRemote_CurrentEntryIsAvailable");
+      Pointer<ISteamMusicRemote>,
+      bool,
+    )>("SteamAPI_ISteamMusicRemote_CurrentEntryIsAvailable");
 
 final _updateCurrentEntryText = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMusicRemote>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMusicRemote_UpdateCurrentEntryText");
+      Pointer<ISteamMusicRemote>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMusicRemote_UpdateCurrentEntryText");
 
 final _updateCurrentEntryElapsedSeconds = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Int,
-),
+      Pointer<ISteamMusicRemote>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  int,
-)>("SteamAPI_ISteamMusicRemote_UpdateCurrentEntryElapsedSeconds");
+      Pointer<ISteamMusicRemote>,
+      int,
+    )>("SteamAPI_ISteamMusicRemote_UpdateCurrentEntryElapsedSeconds");
 
 final _updateCurrentEntryCoverArt = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Void>,
-  UnsignedInt,
-),
+      Pointer<ISteamMusicRemote>,
+      Pointer<Void>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamMusicRemote_UpdateCurrentEntryCoverArt");
+      Pointer<ISteamMusicRemote>,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamMusicRemote_UpdateCurrentEntryCoverArt");
 
 final _currentEntryDidChange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_CurrentEntryDidChange");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_CurrentEntryDidChange");
 
 final _queueWillChange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_QueueWillChange");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_QueueWillChange");
 
 final _resetQueueEntries = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_ResetQueueEntries");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_ResetQueueEntries");
 
 final _setQueueEntry = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMusicRemote>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  int,
-  int,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMusicRemote_SetQueueEntry");
+      Pointer<ISteamMusicRemote>,
+      int,
+      int,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMusicRemote_SetQueueEntry");
 
 final _setCurrentQueueEntry = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Int,
-),
+      Pointer<ISteamMusicRemote>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  int,
-)>("SteamAPI_ISteamMusicRemote_SetCurrentQueueEntry");
+      Pointer<ISteamMusicRemote>,
+      int,
+    )>("SteamAPI_ISteamMusicRemote_SetCurrentQueueEntry");
 
 final _queueDidChange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_QueueDidChange");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_QueueDidChange");
 
 final _playlistWillChange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_PlaylistWillChange");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_PlaylistWillChange");
 
 final _resetPlaylistEntries = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_ResetPlaylistEntries");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_ResetPlaylistEntries");
 
 final _setPlaylistEntry = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Int,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMusicRemote>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  int,
-  int,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMusicRemote_SetPlaylistEntry");
+      Pointer<ISteamMusicRemote>,
+      int,
+      int,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMusicRemote_SetPlaylistEntry");
 
 final _setCurrentPlaylistEntry = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-  Int,
-),
+      Pointer<ISteamMusicRemote>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-  int,
-)>("SteamAPI_ISteamMusicRemote_SetCurrentPlaylistEntry");
+      Pointer<ISteamMusicRemote>,
+      int,
+    )>("SteamAPI_ISteamMusicRemote_SetCurrentPlaylistEntry");
 
 final _playlistDidChange = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMusicRemote>,
-),
+      Pointer<ISteamMusicRemote>,
+    ),
     bool Function(
-  Pointer<ISteamMusicRemote>,
-)>("SteamAPI_ISteamMusicRemote_PlaylistDidChange");
+      Pointer<ISteamMusicRemote>,
+    )>("SteamAPI_ISteamMusicRemote_PlaylistDidChange");
 
 extension ISteamMusicRemoteExtensions on Pointer<ISteamMusicRemote> {
   bool registerSteamMusicRemote(

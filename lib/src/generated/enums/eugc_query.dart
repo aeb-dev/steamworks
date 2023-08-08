@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EUgcQueryAliasDart = int;
 typedef EUgcQueryAliasC = Int32;
@@ -74,7 +75,9 @@ enum EUgcQuery {
       case 19:
         return EUgcQuery.rankedByLastUpdatedDate;
       default:
-        throw "Unknown value for 'EUgcQuery'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EUgcQuery'. The value was: '$value'",
+        );
     }
   }
 }

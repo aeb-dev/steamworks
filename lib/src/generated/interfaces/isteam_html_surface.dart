@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -12,461 +12,461 @@ final _steamHtmlSurface = dl.lookupFunction<
     Pointer<ISteamHtmlSurface> Function(),
     Pointer<ISteamHtmlSurface> Function()>("SteamAPI_SteamHTMLSurface_v005");
 
-class ISteamHtmlSurface extends Opaque {
+final class ISteamHtmlSurface extends Opaque {
   static Pointer<ISteamHtmlSurface> get userInstance => _steamHtmlSurface();
 }
 
 final _init = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHtmlSurface>,
-),
+      Pointer<ISteamHtmlSurface>,
+    ),
     bool Function(
-  Pointer<ISteamHtmlSurface>,
-)>("SteamAPI_ISteamHTMLSurface_Init");
+      Pointer<ISteamHtmlSurface>,
+    )>("SteamAPI_ISteamHTMLSurface_Init");
 
 final _shutdown = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamHtmlSurface>,
-),
+      Pointer<ISteamHtmlSurface>,
+    ),
     bool Function(
-  Pointer<ISteamHtmlSurface>,
-)>("SteamAPI_ISteamHTMLSurface_Shutdown");
+      Pointer<ISteamHtmlSurface>,
+    )>("SteamAPI_ISteamHTMLSurface_Shutdown");
 
 final _createBrowser = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamHtmlSurface>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHtmlSurface>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamHtmlSurface>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTMLSurface_CreateBrowser");
+      Pointer<ISteamHtmlSurface>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTMLSurface_CreateBrowser");
 
 final _removeBrowser = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_RemoveBrowser");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_RemoveBrowser");
 
 final _loadUrl = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTMLSurface_LoadURL");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTMLSurface_LoadURL");
 
 final _setSize = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-  int,
-)>("SteamAPI_ISteamHTMLSurface_SetSize");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+      int,
+    )>("SteamAPI_ISteamHTMLSurface_SetSize");
 
 final _stopLoad = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_StopLoad");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_StopLoad");
 
 final _reload = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_Reload");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_Reload");
 
 final _goBack = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_GoBack");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_GoBack");
 
 final _goForward = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_GoForward");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_GoForward");
 
 final _addHeader = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTMLSurface_AddHeader");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTMLSurface_AddHeader");
 
 final _executeJavascript = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamHTMLSurface_ExecuteJavascript");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamHTMLSurface_ExecuteJavascript");
 
 final _mouseUp = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  EHtmlMouseButtonAliasC,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      EHtmlMouseButtonAliasC,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  EHtmlMouseButtonAliasDart,
-)>("SteamAPI_ISteamHTMLSurface_MouseUp");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      EHtmlMouseButtonAliasDart,
+    )>("SteamAPI_ISteamHTMLSurface_MouseUp");
 
 final _mouseDown = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  EHtmlMouseButtonAliasC,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      EHtmlMouseButtonAliasC,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  EHtmlMouseButtonAliasDart,
-)>("SteamAPI_ISteamHTMLSurface_MouseDown");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      EHtmlMouseButtonAliasDart,
+    )>("SteamAPI_ISteamHTMLSurface_MouseDown");
 
 final _mouseDoubleClick = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  EHtmlMouseButtonAliasC,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      EHtmlMouseButtonAliasC,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  EHtmlMouseButtonAliasDart,
-)>("SteamAPI_ISteamHTMLSurface_MouseDoubleClick");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      EHtmlMouseButtonAliasDart,
+    )>("SteamAPI_ISteamHTMLSurface_MouseDoubleClick");
 
 final _mouseMove = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Int,
-  Int,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Int,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-  int,
-)>("SteamAPI_ISteamHTMLSurface_MouseMove");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+      int,
+    )>("SteamAPI_ISteamHTMLSurface_MouseMove");
 
 final _mouseWheel = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Int,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-)>("SteamAPI_ISteamHTMLSurface_MouseWheel");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+    )>("SteamAPI_ISteamHTMLSurface_MouseWheel");
 
 final _keyDown = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  UnsignedInt,
-  EHtmlKeyModifiersAliasC,
-  Bool,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      UnsignedInt,
+      EHtmlKeyModifiersAliasC,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-  EHtmlKeyModifiersAliasDart,
-  bool,
-)>("SteamAPI_ISteamHTMLSurface_KeyDown");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+      EHtmlKeyModifiersAliasDart,
+      bool,
+    )>("SteamAPI_ISteamHTMLSurface_KeyDown");
 
 final _keyUp = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  UnsignedInt,
-  EHtmlKeyModifiersAliasC,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      UnsignedInt,
+      EHtmlKeyModifiersAliasC,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-  EHtmlKeyModifiersAliasDart,
-)>("SteamAPI_ISteamHTMLSurface_KeyUp");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+      EHtmlKeyModifiersAliasDart,
+    )>("SteamAPI_ISteamHTMLSurface_KeyUp");
 
 final _keyChar = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  UnsignedInt,
-  EHtmlKeyModifiersAliasC,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      UnsignedInt,
+      EHtmlKeyModifiersAliasC,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-  EHtmlKeyModifiersAliasDart,
-)>("SteamAPI_ISteamHTMLSurface_KeyChar");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+      EHtmlKeyModifiersAliasDart,
+    )>("SteamAPI_ISteamHTMLSurface_KeyChar");
 
 final _setHorizontalScroll = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-)>("SteamAPI_ISteamHTMLSurface_SetHorizontalScroll");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+    )>("SteamAPI_ISteamHTMLSurface_SetHorizontalScroll");
 
 final _setVerticalScroll = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-)>("SteamAPI_ISteamHTMLSurface_SetVerticalScroll");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+    )>("SteamAPI_ISteamHTMLSurface_SetVerticalScroll");
 
 final _setKeyFocus = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Bool,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  bool,
-)>("SteamAPI_ISteamHTMLSurface_SetKeyFocus");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      bool,
+    )>("SteamAPI_ISteamHTMLSurface_SetKeyFocus");
 
 final _viewSource = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_ViewSource");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_ViewSource");
 
 final _copyToClipboard = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_CopyToClipboard");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_CopyToClipboard");
 
 final _pasteFromClipboard = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_PasteFromClipboard");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_PasteFromClipboard");
 
 final _find = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Bool,
-  Bool,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Bool,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  Pointer<Utf8>,
-  bool,
-  bool,
-)>("SteamAPI_ISteamHTMLSurface_Find");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      Pointer<Utf8>,
+      bool,
+      bool,
+    )>("SteamAPI_ISteamHTMLSurface_Find");
 
 final _stopFind = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_StopFind");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_StopFind");
 
 final _getLinkAtPosition = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Int,
-  Int,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Int,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  int,
-  int,
-)>("SteamAPI_ISteamHTMLSurface_GetLinkAtPosition");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      int,
+      int,
+    )>("SteamAPI_ISteamHTMLSurface_GetLinkAtPosition");
 
 final _setCookie = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Bool,
-  Bool,
-),
+      Pointer<ISteamHtmlSurface>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Bool,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  RTime32,
-  bool,
-  bool,
-)>("SteamAPI_ISteamHTMLSurface_SetCookie");
+      Pointer<ISteamHtmlSurface>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      RTime32,
+      bool,
+      bool,
+    )>("SteamAPI_ISteamHTMLSurface_SetCookie");
 
 final _setPageScaleFactor = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Float,
-  Int,
-  Int,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Float,
+      Int,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  double,
-  int,
-  int,
-)>("SteamAPI_ISteamHTMLSurface_SetPageScaleFactor");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      double,
+      int,
+      int,
+    )>("SteamAPI_ISteamHTMLSurface_SetPageScaleFactor");
 
 final _setBackgroundMode = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Bool,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  bool,
-)>("SteamAPI_ISteamHTMLSurface_SetBackgroundMode");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      bool,
+    )>("SteamAPI_ISteamHTMLSurface_SetBackgroundMode");
 
 final _setDPIScalingFactor = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Float,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Float,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  double,
-)>("SteamAPI_ISteamHTMLSurface_SetDPIScalingFactor");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      double,
+    )>("SteamAPI_ISteamHTMLSurface_SetDPIScalingFactor");
 
 final _openDeveloperTools = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-)>("SteamAPI_ISteamHTMLSurface_OpenDeveloperTools");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+    )>("SteamAPI_ISteamHTMLSurface_OpenDeveloperTools");
 
 final _allowStartRequest = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Bool,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  bool,
-)>("SteamAPI_ISteamHTMLSurface_AllowStartRequest");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      bool,
+    )>("SteamAPI_ISteamHTMLSurface_AllowStartRequest");
 
 final _jsDialogResponse = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Bool,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  bool,
-)>("SteamAPI_ISteamHTMLSurface_JSDialogResponse");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      bool,
+    )>("SteamAPI_ISteamHTMLSurface_JSDialogResponse");
 
 final _fileLoadDialogResponse = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamHtmlSurface>,
-  UnsignedInt,
-  Pointer<Pointer<Utf8>>,
-),
+      Pointer<ISteamHtmlSurface>,
+      UnsignedInt,
+      Pointer<Pointer<Utf8>>,
+    ),
     void Function(
-  Pointer<ISteamHtmlSurface>,
-  HHtmlBrowser,
-  Pointer<Pointer<Utf8>>,
-)>("SteamAPI_ISteamHTMLSurface_FileLoadDialogResponse");
+      Pointer<ISteamHtmlSurface>,
+      HHtmlBrowser,
+      Pointer<Pointer<Utf8>>,
+    )>("SteamAPI_ISteamHTMLSurface_FileLoadDialogResponse");
 
 extension ISteamHtmlSurfaceExtensions on Pointer<ISteamHtmlSurface> {
   bool init() => _init.call(

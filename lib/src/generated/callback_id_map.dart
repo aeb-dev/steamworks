@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "callback_structs/active_beacons_updated.dart";
 import "callback_structs/add_app_dependency_result.dart";
 import "callback_structs/add_ugc_dependency_result.dart";
@@ -21,9 +21,12 @@ import "callback_structs/download_item_result.dart";
 import "callback_structs/duration_control.dart";
 import "callback_structs/encrypted_app_ticket_response.dart";
 import "callback_structs/end_game_result_callback.dart";
+import "callback_structs/equipped_profile_items.dart";
+import "callback_structs/equipped_profile_items_changed.dart";
 import "callback_structs/favorites_list_accounts_updated.dart";
 import "callback_structs/favorites_list_changed.dart";
 import "callback_structs/file_details_result.dart";
+import "callback_structs/filter_text_dictionary_changed.dart";
 import "callback_structs/floating_gamepad_text_input_dismissed.dart";
 import "callback_structs/friend_rich_presence_update.dart";
 import "callback_structs/friends_enumerate_following_list.dart";
@@ -42,6 +45,7 @@ import "callback_structs/gamepad_text_input_dismissed.dart";
 import "callback_structs/get_app_dependencies_result.dart";
 import "callback_structs/get_auth_session_ticket_response.dart";
 import "callback_structs/get_opf_settings_result.dart";
+import "callback_structs/get_ticket_for_web_api_response.dart";
 import "callback_structs/get_user_item_vote_result.dart";
 import "callback_structs/get_video_url_result.dart";
 import "callback_structs/global_achievement_percentages_ready.dart";
@@ -128,7 +132,6 @@ import "callback_structs/persona_state_change.dart";
 import "callback_structs/playback_status_has_changed.dart";
 import "callback_structs/ps3_trophies_installed.dart";
 import "callback_structs/psn_game_boot_invite_result.dart";
-import "callback_structs/register_activation_code_response.dart";
 import "callback_structs/remote_storage_delete_published_file_result.dart";
 import "callback_structs/remote_storage_download_ugc_result.dart";
 import "callback_structs/remote_storage_enumerate_published_files_by_user_action_result.dart";
@@ -174,6 +177,7 @@ import "callback_structs/steam_app_uninstalled.dart";
 import "callback_structs/steam_input_configuration_loaded.dart";
 import "callback_structs/steam_input_device_connected.dart";
 import "callback_structs/steam_input_device_disconnected.dart";
+import "callback_structs/steam_input_gamepad_slot_change.dart";
 import "callback_structs/steam_inventory_definition_update.dart";
 import "callback_structs/steam_inventory_eligible_promo_item_def_ids.dart";
 import "callback_structs/steam_inventory_full_update.dart";
@@ -189,6 +193,7 @@ import "callback_structs/steam_parental_settings_changed.dart";
 import "callback_structs/steam_relay_network_status.dart";
 import "callback_structs/steam_remote_play_session_connected.dart";
 import "callback_structs/steam_remote_play_session_disconnected.dart";
+import "callback_structs/steam_remote_play_together_guest_invite.dart";
 import "callback_structs/steam_server_connect_failure.dart";
 import "callback_structs/steam_servers_connected.dart";
 import "callback_structs/steam_servers_disconnected.dart";
@@ -227,6 +232,7 @@ Map<Type, int> callbackIdMapByType = {
   StoreAuthUrlResponse: StoreAuthUrlResponse.callbackId,
   MarketEligibilityResponse: MarketEligibilityResponse.callbackId,
   DurationControl: DurationControl.callbackId,
+  GetTicketForWebApiResponse: GetTicketForWebApiResponse.callbackId,
   PersonaStateChange: PersonaStateChange.callbackId,
   GameOverlayActivated: GameOverlayActivated.callbackId,
   GameServerChangeRequested: GameServerChangeRequested.callbackId,
@@ -247,6 +253,8 @@ Map<Type, int> callbackIdMapByType = {
   SetPersonaNameResponse: SetPersonaNameResponse.callbackId,
   UnreadChatMessagesChanged: UnreadChatMessagesChanged.callbackId,
   OverlayBrowserProtocolNavigation: OverlayBrowserProtocolNavigation.callbackId,
+  EquippedProfileItemsChanged: EquippedProfileItemsChanged.callbackId,
+  EquippedProfileItems: EquippedProfileItems.callbackId,
   Ipcountry: Ipcountry.callbackId,
   LowBatteryPower: LowBatteryPower.callbackId,
   SteamApiCallCompleted: SteamApiCallCompleted.callbackId,
@@ -256,6 +264,7 @@ Map<Type, int> callbackIdMapByType = {
   AppResumingFromSuspend: AppResumingFromSuspend.callbackId,
   FloatingGamepadTextInputDismissed:
       FloatingGamepadTextInputDismissed.callbackId,
+  FilterTextDictionaryChanged: FilterTextDictionaryChanged.callbackId,
   FavoritesListChanged: FavoritesListChanged.callbackId,
   LobbyInvite: LobbyInvite.callbackId,
   LobbyEnter: LobbyEnter.callbackId,
@@ -343,7 +352,6 @@ Map<Type, int> callbackIdMapByType = {
   Ps3TrophiesInstalled: Ps3TrophiesInstalled.callbackId,
   GlobalStatsReceived: GlobalStatsReceived.callbackId,
   DlcInstalled: DlcInstalled.callbackId,
-  RegisterActivationCodeResponse: RegisterActivationCodeResponse.callbackId,
   NewUrlLaunchParameters: NewUrlLaunchParameters.callbackId,
   AppProofOfPurchaseKeyResponse: AppProofOfPurchaseKeyResponse.callbackId,
   FileDetailsResult: FileDetailsResult.callbackId,
@@ -376,6 +384,7 @@ Map<Type, int> callbackIdMapByType = {
   SteamInputDeviceConnected: SteamInputDeviceConnected.callbackId,
   SteamInputDeviceDisconnected: SteamInputDeviceDisconnected.callbackId,
   SteamInputConfigurationLoaded: SteamInputConfigurationLoaded.callbackId,
+  SteamInputGamepadSlotChange: SteamInputGamepadSlotChange.callbackId,
   SteamUgcQueryCompleted: SteamUgcQueryCompleted.callbackId,
   SteamUgcRequestUgcDetailsResult: SteamUgcRequestUgcDetailsResult.callbackId,
   CreateItemResult: CreateItemResult.callbackId,
@@ -435,6 +444,8 @@ Map<Type, int> callbackIdMapByType = {
   SteamRemotePlaySessionConnected: SteamRemotePlaySessionConnected.callbackId,
   SteamRemotePlaySessionDisconnected:
       SteamRemotePlaySessionDisconnected.callbackId,
+  SteamRemotePlayTogetherGuestInvite:
+      SteamRemotePlayTogetherGuestInvite.callbackId,
   SteamNetworkingMessagesSessionRequest:
       SteamNetworkingMessagesSessionRequest.callbackId,
   SteamNetworkingMessagesSessionFailed:

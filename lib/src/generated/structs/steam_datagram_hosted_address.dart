@@ -1,13 +1,11 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
-
 import "package:ffi/ffi.dart";
-
 import "../dl.dart";
 import "../typedefs.dart";
 
 @Packed(8)
-class SteamDatagramHostedAddress extends Struct {
+final class SteamDatagramHostedAddress extends Struct {
   @Int()
   external int size;
 
@@ -16,33 +14,33 @@ class SteamDatagramHostedAddress extends Struct {
 
 final _clear = dl.lookupFunction<
     Void Function(
-  Pointer<SteamDatagramHostedAddress>,
-),
+      Pointer<SteamDatagramHostedAddress>,
+    ),
     void Function(
-  Pointer<SteamDatagramHostedAddress>,
-)>("SteamAPI_SteamDatagramHostedAddress_Clear");
+      Pointer<SteamDatagramHostedAddress>,
+    )>("SteamAPI_SteamDatagramHostedAddress_Clear");
 
 final _getPopId = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<SteamDatagramHostedAddress>,
-),
+      Pointer<SteamDatagramHostedAddress>,
+    ),
     SteamNetworkingPopId Function(
-  Pointer<SteamDatagramHostedAddress>,
-)>("SteamAPI_SteamDatagramHostedAddress_GetPopID");
+      Pointer<SteamDatagramHostedAddress>,
+    )>("SteamAPI_SteamDatagramHostedAddress_GetPopID");
 
 final _setDevAddress = dl.lookupFunction<
     Void Function(
-  Pointer<SteamDatagramHostedAddress>,
-  UnsignedInt,
-  UnsignedShort,
-  UnsignedInt,
-),
+      Pointer<SteamDatagramHostedAddress>,
+      UnsignedInt,
+      UnsignedShort,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<SteamDatagramHostedAddress>,
-  int,
-  int,
-  SteamNetworkingPopId,
-)>("SteamAPI_SteamDatagramHostedAddress_SetDevAddress");
+      Pointer<SteamDatagramHostedAddress>,
+      int,
+      int,
+      SteamNetworkingPopId,
+    )>("SteamAPI_SteamDatagramHostedAddress_SetDevAddress");
 
 extension SteamDatagramHostedAddressExtensions
     on Pointer<SteamDatagramHostedAddress> {

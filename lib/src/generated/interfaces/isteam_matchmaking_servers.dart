@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "../dl.dart";
@@ -15,228 +15,228 @@ final _steamMatchmakingServers = dl.lookupFunction<
     Pointer<ISteamMatchmakingServers>
         Function()>("SteamAPI_SteamMatchmakingServers_v002");
 
-class ISteamMatchmakingServers extends Opaque {
+final class ISteamMatchmakingServers extends Opaque {
   static Pointer<ISteamMatchmakingServers> get userInstance =>
       _steamMatchmakingServers();
 }
 
 final _requestInternetServerList = dl.lookupFunction<
     Pointer<Void> Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  UnsignedInt,
-  Pointer<ISteamMatchmakingServerListResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      UnsignedInt,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    ),
     HServerListRequest Function(
-  Pointer<ISteamMatchmakingServers>,
-  AppId,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  int,
-  Pointer<ISteamMatchmakingServerListResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_RequestInternetServerList");
+      Pointer<ISteamMatchmakingServers>,
+      AppId,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      int,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_RequestInternetServerList");
 
 final _requestLANServerList = dl.lookupFunction<
     Pointer<Void> Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  Pointer<ISteamMatchmakingServerListResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    ),
     HServerListRequest Function(
-  Pointer<ISteamMatchmakingServers>,
-  AppId,
-  Pointer<ISteamMatchmakingServerListResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_RequestLANServerList");
+      Pointer<ISteamMatchmakingServers>,
+      AppId,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_RequestLANServerList");
 
 final _requestFriendsServerList = dl.lookupFunction<
     Pointer<Void> Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  UnsignedInt,
-  Pointer<ISteamMatchmakingServerListResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      UnsignedInt,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    ),
     HServerListRequest Function(
-  Pointer<ISteamMatchmakingServers>,
-  AppId,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  int,
-  Pointer<ISteamMatchmakingServerListResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_RequestFriendsServerList");
+      Pointer<ISteamMatchmakingServers>,
+      AppId,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      int,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_RequestFriendsServerList");
 
 final _requestFavoritesServerList = dl.lookupFunction<
     Pointer<Void> Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  UnsignedInt,
-  Pointer<ISteamMatchmakingServerListResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      UnsignedInt,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    ),
     HServerListRequest Function(
-  Pointer<ISteamMatchmakingServers>,
-  AppId,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  int,
-  Pointer<ISteamMatchmakingServerListResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_RequestFavoritesServerList");
+      Pointer<ISteamMatchmakingServers>,
+      AppId,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      int,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_RequestFavoritesServerList");
 
 final _requestHistoryServerList = dl.lookupFunction<
     Pointer<Void> Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  UnsignedInt,
-  Pointer<ISteamMatchmakingServerListResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      UnsignedInt,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    ),
     HServerListRequest Function(
-  Pointer<ISteamMatchmakingServers>,
-  AppId,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  int,
-  Pointer<ISteamMatchmakingServerListResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_RequestHistoryServerList");
+      Pointer<ISteamMatchmakingServers>,
+      AppId,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      int,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_RequestHistoryServerList");
 
 final _requestSpectatorServerList = dl.lookupFunction<
     Pointer<Void> Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  UnsignedInt,
-  Pointer<ISteamMatchmakingServerListResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      UnsignedInt,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    ),
     HServerListRequest Function(
-  Pointer<ISteamMatchmakingServers>,
-  AppId,
-  Pointer<Pointer<MatchMakingKeyValuePair>>,
-  int,
-  Pointer<ISteamMatchmakingServerListResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_RequestSpectatorServerList");
+      Pointer<ISteamMatchmakingServers>,
+      AppId,
+      Pointer<Pointer<MatchMakingKeyValuePair>>,
+      int,
+      Pointer<ISteamMatchmakingServerListResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_RequestSpectatorServerList");
 
 final _releaseRequest = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServers>,
-  Pointer<Void>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Pointer<Void>,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerListRequest,
-)>("SteamAPI_ISteamMatchmakingServers_ReleaseRequest");
+      Pointer<ISteamMatchmakingServers>,
+      HServerListRequest,
+    )>("SteamAPI_ISteamMatchmakingServers_ReleaseRequest");
 
 final _getServerDetails = dl.lookupFunction<
     Pointer<GameServerItem> Function(
-  Pointer<ISteamMatchmakingServers>,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Pointer<Void>,
+      Int,
+    ),
     Pointer<GameServerItem> Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerListRequest,
-  int,
-)>("SteamAPI_ISteamMatchmakingServers_GetServerDetails");
+      Pointer<ISteamMatchmakingServers>,
+      HServerListRequest,
+      int,
+    )>("SteamAPI_ISteamMatchmakingServers_GetServerDetails");
 
 final _cancelQuery = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServers>,
-  Pointer<Void>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Pointer<Void>,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerListRequest,
-)>("SteamAPI_ISteamMatchmakingServers_CancelQuery");
+      Pointer<ISteamMatchmakingServers>,
+      HServerListRequest,
+    )>("SteamAPI_ISteamMatchmakingServers_CancelQuery");
 
 final _refreshQuery = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServers>,
-  Pointer<Void>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Pointer<Void>,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerListRequest,
-)>("SteamAPI_ISteamMatchmakingServers_RefreshQuery");
+      Pointer<ISteamMatchmakingServers>,
+      HServerListRequest,
+    )>("SteamAPI_ISteamMatchmakingServers_RefreshQuery");
 
 final _isRefreshing = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmakingServers>,
-  Pointer<Void>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Pointer<Void>,
+    ),
     bool Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerListRequest,
-)>("SteamAPI_ISteamMatchmakingServers_IsRefreshing");
+      Pointer<ISteamMatchmakingServers>,
+      HServerListRequest,
+    )>("SteamAPI_ISteamMatchmakingServers_IsRefreshing");
 
 final _getServerCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmakingServers>,
-  Pointer<Void>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Pointer<Void>,
+    ),
     int Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerListRequest,
-)>("SteamAPI_ISteamMatchmakingServers_GetServerCount");
+      Pointer<ISteamMatchmakingServers>,
+      HServerListRequest,
+    )>("SteamAPI_ISteamMatchmakingServers_GetServerCount");
 
 final _refreshServer = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServers>,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Pointer<Void>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerListRequest,
-  int,
-)>("SteamAPI_ISteamMatchmakingServers_RefreshServer");
+      Pointer<ISteamMatchmakingServers>,
+      HServerListRequest,
+      int,
+    )>("SteamAPI_ISteamMatchmakingServers_RefreshServer");
 
 final _pingServer = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  UnsignedShort,
-  Pointer<ISteamMatchmakingPingResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      UnsignedShort,
+      Pointer<ISteamMatchmakingPingResponse>,
+    ),
     HServerQuery Function(
-  Pointer<ISteamMatchmakingServers>,
-  int,
-  int,
-  Pointer<ISteamMatchmakingPingResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_PingServer");
+      Pointer<ISteamMatchmakingServers>,
+      int,
+      int,
+      Pointer<ISteamMatchmakingPingResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_PingServer");
 
 final _playerDetails = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  UnsignedShort,
-  Pointer<ISteamMatchmakingPlayersResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      UnsignedShort,
+      Pointer<ISteamMatchmakingPlayersResponse>,
+    ),
     HServerQuery Function(
-  Pointer<ISteamMatchmakingServers>,
-  int,
-  int,
-  Pointer<ISteamMatchmakingPlayersResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_PlayerDetails");
+      Pointer<ISteamMatchmakingServers>,
+      int,
+      int,
+      Pointer<ISteamMatchmakingPlayersResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_PlayerDetails");
 
 final _serverRules = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmakingServers>,
-  UnsignedInt,
-  UnsignedShort,
-  Pointer<ISteamMatchmakingRulesResponse>,
-),
+      Pointer<ISteamMatchmakingServers>,
+      UnsignedInt,
+      UnsignedShort,
+      Pointer<ISteamMatchmakingRulesResponse>,
+    ),
     HServerQuery Function(
-  Pointer<ISteamMatchmakingServers>,
-  int,
-  int,
-  Pointer<ISteamMatchmakingRulesResponse>,
-)>("SteamAPI_ISteamMatchmakingServers_ServerRules");
+      Pointer<ISteamMatchmakingServers>,
+      int,
+      int,
+      Pointer<ISteamMatchmakingRulesResponse>,
+    )>("SteamAPI_ISteamMatchmakingServers_ServerRules");
 
 final _cancelServerQuery = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServers>,
-  Int,
-),
+      Pointer<ISteamMatchmakingServers>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServers>,
-  HServerQuery,
-)>("SteamAPI_ISteamMatchmakingServers_CancelServerQuery");
+      Pointer<ISteamMatchmakingServers>,
+      HServerQuery,
+    )>("SteamAPI_ISteamMatchmakingServers_CancelServerQuery");
 
 extension ISteamMatchmakingServersExtensions
     on Pointer<ISteamMatchmakingServers> {

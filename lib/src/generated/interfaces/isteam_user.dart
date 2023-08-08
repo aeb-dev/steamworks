@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -8,344 +8,357 @@ import "../enums/ebegin_auth_session_result.dart";
 import "../enums/eduration_control_online_state.dart";
 import "../enums/euser_has_license_for_app_result.dart";
 import "../enums/evoice_result.dart";
+import "../structs/steam_networking_identity.dart";
 import "../typedefs.dart";
 
 final _steamUser = dl.lookupFunction<Pointer<ISteamUser> Function(),
-    Pointer<ISteamUser> Function()>("SteamAPI_SteamUser_v021");
+    Pointer<ISteamUser> Function()>("SteamAPI_SteamUser_v023");
 
-class ISteamUser extends Opaque {
+final class ISteamUser extends Opaque {
   static Pointer<ISteamUser> get userInstance => _steamUser();
 }
 
 final _getHSteamUser = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     HSteamUser Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_GetHSteamUser");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_GetHSteamUser");
 
 final _bLoggedOn = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_BLoggedOn");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_BLoggedOn");
 
 final _getSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     CSteamId Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_GetSteamID");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_GetSteamID");
 
 final _trackAppUsageEvent = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUser>,
-  UnsignedLongLong,
-  Int,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUser>,
+      UnsignedLongLong,
+      Int,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamUser>,
-  CGameId,
-  int,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUser_TrackAppUsageEvent");
+      Pointer<ISteamUser>,
+      CGameId,
+      int,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUser_TrackAppUsageEvent");
 
 final _getUserDataFolder = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamUser>,
+      Pointer<Utf8>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUser_GetUserDataFolder");
+      Pointer<ISteamUser>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUser_GetUserDataFolder");
 
 final _startVoiceRecording = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     void Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_StartVoiceRecording");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_StartVoiceRecording");
 
 final _stopVoiceRecording = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     void Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_StopVoiceRecording");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_StopVoiceRecording");
 
 final _getAvailableVoice = dl.lookupFunction<
     EVoiceResultAliasC Function(
-  Pointer<ISteamUser>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamUser>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     EVoiceResultAliasDart Function(
-  Pointer<ISteamUser>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamUser_GetAvailableVoice");
+      Pointer<ISteamUser>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamUser_GetAvailableVoice");
 
 final _getVoice = dl.lookupFunction<
     EVoiceResultAliasC Function(
-  Pointer<ISteamUser>,
-  Bool,
-  Pointer<Void>,
-  UnsignedInt,
-  Pointer<UnsignedInt>,
-  Bool,
-  Pointer<Void>,
-  UnsignedInt,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamUser>,
+      Bool,
+      Pointer<Void>,
+      UnsignedInt,
+      Pointer<UnsignedInt>,
+      Bool,
+      Pointer<Void>,
+      UnsignedInt,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     EVoiceResultAliasDart Function(
-  Pointer<ISteamUser>,
-  bool,
-  Pointer<Void>,
-  int,
-  Pointer<UnsignedInt>,
-  bool,
-  Pointer<Void>,
-  int,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamUser_GetVoice");
+      Pointer<ISteamUser>,
+      bool,
+      Pointer<Void>,
+      int,
+      Pointer<UnsignedInt>,
+      bool,
+      Pointer<Void>,
+      int,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamUser_GetVoice");
 
 final _decompressVoice = dl.lookupFunction<
     EVoiceResultAliasC Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  UnsignedInt,
-  Pointer<Void>,
-  UnsignedInt,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      UnsignedInt,
+      Pointer<Void>,
+      UnsignedInt,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     EVoiceResultAliasDart Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  int,
-  Pointer<Void>,
-  int,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamUser_DecompressVoice");
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      int,
+      Pointer<Void>,
+      int,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamUser_DecompressVoice");
 
 final _getVoiceOptimalSampleRate = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     int Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_GetVoiceOptimalSampleRate");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_GetVoiceOptimalSampleRate");
 
 final _getAuthSessionTicket = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  Int,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      Int,
+      Pointer<UnsignedInt>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     HAuthTicket Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  int,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamUser_GetAuthSessionTicket");
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      int,
+      Pointer<UnsignedInt>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_ISteamUser_GetAuthSessionTicket");
+
+final _getAuthTicketForWebApi = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamUser>,
+      Pointer<Utf8>,
+    ),
+    HAuthTicket Function(
+      Pointer<ISteamUser>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUser_GetAuthTicketForWebApi");
 
 final _beginAuthSession = dl.lookupFunction<
     EBeginAuthSessionResultAliasC Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  Int,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      Int,
+      UnsignedLongLong,
+    ),
     EBeginAuthSessionResultAliasDart Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  int,
-  CSteamId,
-)>("SteamAPI_ISteamUser_BeginAuthSession");
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      int,
+      CSteamId,
+    )>("SteamAPI_ISteamUser_BeginAuthSession");
 
 final _endAuthSession = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUser>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUser>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamUser>,
-  CSteamId,
-)>("SteamAPI_ISteamUser_EndAuthSession");
+      Pointer<ISteamUser>,
+      CSteamId,
+    )>("SteamAPI_ISteamUser_EndAuthSession");
 
 final _cancelAuthTicket = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUser>,
-  UnsignedInt,
-),
+      Pointer<ISteamUser>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamUser>,
-  HAuthTicket,
-)>("SteamAPI_ISteamUser_CancelAuthTicket");
+      Pointer<ISteamUser>,
+      HAuthTicket,
+    )>("SteamAPI_ISteamUser_CancelAuthTicket");
 
 final _userHasLicenseForApp = dl.lookupFunction<
     EUserHasLicenseForAppResultAliasC Function(
-  Pointer<ISteamUser>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamUser>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     EUserHasLicenseForAppResultAliasDart Function(
-  Pointer<ISteamUser>,
-  CSteamId,
-  AppId,
-)>("SteamAPI_ISteamUser_UserHasLicenseForApp");
+      Pointer<ISteamUser>,
+      CSteamId,
+      AppId,
+    )>("SteamAPI_ISteamUser_UserHasLicenseForApp");
 
 final _isBehindNat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_BIsBehindNAT");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_BIsBehindNAT");
 
 final _advertiseGame = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUser>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedShort,
-),
+      Pointer<ISteamUser>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ISteamUser>,
-  CSteamId,
-  int,
-  int,
-)>("SteamAPI_ISteamUser_AdvertiseGame");
+      Pointer<ISteamUser>,
+      CSteamId,
+      int,
+      int,
+    )>("SteamAPI_ISteamUser_AdvertiseGame");
 
 final _requestEncryptedAppTicket = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      Int,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamUser_RequestEncryptedAppTicket");
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamUser_RequestEncryptedAppTicket");
 
 final _getEncryptedAppTicket = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  Int,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      Int,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-  Pointer<Void>,
-  int,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamUser_GetEncryptedAppTicket");
+      Pointer<ISteamUser>,
+      Pointer<Void>,
+      int,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamUser_GetEncryptedAppTicket");
 
 final _getGameBadgeLevel = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUser>,
-  Int,
-  Bool,
-),
+      Pointer<ISteamUser>,
+      Int,
+      Bool,
+    ),
     int Function(
-  Pointer<ISteamUser>,
-  int,
-  bool,
-)>("SteamAPI_ISteamUser_GetGameBadgeLevel");
+      Pointer<ISteamUser>,
+      int,
+      bool,
+    )>("SteamAPI_ISteamUser_GetGameBadgeLevel");
 
 final _getPlayerSteamLevel = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     int Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_GetPlayerSteamLevel");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_GetPlayerSteamLevel");
 
 final _requestStoreAuthUrl = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUser>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUser>,
+      Pointer<Utf8>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUser>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUser_RequestStoreAuthURL");
+      Pointer<ISteamUser>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUser_RequestStoreAuthURL");
 
 final _isPhoneVerified = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_BIsPhoneVerified");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_BIsPhoneVerified");
 
 final _isTwoFactorEnabled = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_BIsTwoFactorEnabled");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_BIsTwoFactorEnabled");
 
 final _isPhoneIdentifying = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_BIsPhoneIdentifying");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_BIsPhoneIdentifying");
 
 final _isPhoneRequiringVerification = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_BIsPhoneRequiringVerification");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_BIsPhoneRequiringVerification");
 
 final _getMarketEligibility = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_GetMarketEligibility");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_GetMarketEligibility");
 
 final _getDurationControl = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUser>,
-),
+      Pointer<ISteamUser>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUser>,
-)>("SteamAPI_ISteamUser_GetDurationControl");
+      Pointer<ISteamUser>,
+    )>("SteamAPI_ISteamUser_GetDurationControl");
 
 final _bSetDurationControlOnlineState = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUser>,
-  EDurationControlOnlineStateAliasC,
-),
+      Pointer<ISteamUser>,
+      EDurationControlOnlineStateAliasC,
+    ),
     bool Function(
-  Pointer<ISteamUser>,
-  EDurationControlOnlineStateAliasDart,
-)>("SteamAPI_ISteamUser_BSetDurationControlOnlineState");
+      Pointer<ISteamUser>,
+      EDurationControlOnlineStateAliasDart,
+    )>("SteamAPI_ISteamUser_BSetDurationControlOnlineState");
 
 extension ISteamUserExtensions on Pointer<ISteamUser> {
   HSteamUser getHSteamUser() => _getHSteamUser.call(
@@ -458,12 +471,22 @@ extension ISteamUserExtensions on Pointer<ISteamUser> {
     Pointer<Void> pTicket,
     int cbMaxTicket,
     Pointer<UnsignedInt> pcbTicket,
+    Pointer<SteamNetworkingIdentity> pSteamNetworkingIdentity,
   ) =>
       _getAuthSessionTicket.call(
         this,
         pTicket,
         cbMaxTicket,
         pcbTicket,
+        pSteamNetworkingIdentity,
+      );
+
+  HAuthTicket getAuthTicketForWebApi(
+    Pointer<Utf8> identity,
+  ) =>
+      _getAuthTicketForWebApi.call(
+        this,
+        identity,
       );
 
   EBeginAuthSessionResult beginAuthSession(

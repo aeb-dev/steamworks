@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../dl.dart";
@@ -9,140 +9,140 @@ final _steamGameServerStats = dl.lookupFunction<
     Pointer<ISteamGameServerStats>
         Function()>("SteamAPI_SteamGameServerStats_v001");
 
-class ISteamGameServerStats extends Opaque {
+final class ISteamGameServerStats extends Opaque {
   static Pointer<ISteamGameServerStats> get serverInstance =>
       _steamGameServerStats();
 }
 
 final _requestUserStats = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-)>("SteamAPI_ISteamGameServerStats_RequestUserStats");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+    )>("SteamAPI_ISteamGameServerStats_RequestUserStats");
 
 final _getUserStatInt32 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Int>,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Int>,
-)>("SteamAPI_ISteamGameServerStats_GetUserStatInt32");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamGameServerStats_GetUserStatInt32");
 
 final _getUserStatFloat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Float>,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Float>,
-)>("SteamAPI_ISteamGameServerStats_GetUserStatFloat");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Float>,
+    )>("SteamAPI_ISteamGameServerStats_GetUserStatFloat");
 
 final _getUserAchievement = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamGameServerStats_GetUserAchievement");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamGameServerStats_GetUserAchievement");
 
 final _setUserStatInt32 = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamGameServerStats_SetUserStatInt32");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamGameServerStats_SetUserStatInt32");
 
 final _setUserStatFloat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Float,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Float,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  double,
-)>("SteamAPI_ISteamGameServerStats_SetUserStatFloat");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      double,
+    )>("SteamAPI_ISteamGameServerStats_SetUserStatFloat");
 
 final _updateUserAvgRateStat = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Float,
-  Double,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Float,
+      Double,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-  double,
-  double,
-)>("SteamAPI_ISteamGameServerStats_UpdateUserAvgRateStat");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+      double,
+      double,
+    )>("SteamAPI_ISteamGameServerStats_UpdateUserAvgRateStat");
 
 final _setUserAchievement = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServerStats_SetUserAchievement");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServerStats_SetUserAchievement");
 
 final _clearUserAchievement = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServerStats_ClearUserAchievement");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServerStats_ClearUserAchievement");
 
 final _storeUserStats = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamGameServerStats>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameServerStats>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamGameServerStats>,
-  CSteamId,
-)>("SteamAPI_ISteamGameServerStats_StoreUserStats");
+      Pointer<ISteamGameServerStats>,
+      CSteamId,
+    )>("SteamAPI_ISteamGameServerStats_StoreUserStats");
 
 extension ISteamGameServerStatsExtensions on Pointer<ISteamGameServerStats> {
   SteamApiCall requestUserStats(

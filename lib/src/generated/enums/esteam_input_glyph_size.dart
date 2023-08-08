@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef ESteamInputGlyphSizeAliasDart = int;
 typedef ESteamInputGlyphSizeAliasC = Int32;
@@ -26,7 +27,9 @@ enum ESteamInputGlyphSize {
       case 3:
         return ESteamInputGlyphSize.count;
       default:
-        throw "Unknown value for 'ESteamInputGlyphSize'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'ESteamInputGlyphSize'. The value was: '$value'",
+        );
     }
   }
 }

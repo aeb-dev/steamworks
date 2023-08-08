@@ -1,47 +1,47 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "../dl.dart";
 import "../enums/ematch_making_server_response.dart";
 import "../typedefs.dart";
 
-class ISteamMatchmakingServerListResponse extends Opaque {}
+final class ISteamMatchmakingServerListResponse extends Opaque {}
 
 final _serverResponded = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServerListResponse>,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamMatchmakingServerListResponse>,
+      Pointer<Void>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServerListResponse>,
-  HServerListRequest,
-  int,
-)>("SteamAPI_ISteamMatchmakingServerListResponse_ServerResponded");
+      Pointer<ISteamMatchmakingServerListResponse>,
+      HServerListRequest,
+      int,
+    )>("SteamAPI_ISteamMatchmakingServerListResponse_ServerResponded");
 
 final _serverFailedToRespond = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServerListResponse>,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamMatchmakingServerListResponse>,
+      Pointer<Void>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServerListResponse>,
-  HServerListRequest,
-  int,
-)>("SteamAPI_ISteamMatchmakingServerListResponse_ServerFailedToRespond");
+      Pointer<ISteamMatchmakingServerListResponse>,
+      HServerListRequest,
+      int,
+    )>("SteamAPI_ISteamMatchmakingServerListResponse_ServerFailedToRespond");
 
 final _refreshComplete = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingServerListResponse>,
-  Pointer<Void>,
-  EMatchMakingServerResponseAliasC,
-),
+      Pointer<ISteamMatchmakingServerListResponse>,
+      Pointer<Void>,
+      EMatchMakingServerResponseAliasC,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingServerListResponse>,
-  HServerListRequest,
-  EMatchMakingServerResponseAliasDart,
-)>("SteamAPI_ISteamMatchmakingServerListResponse_RefreshComplete");
+      Pointer<ISteamMatchmakingServerListResponse>,
+      HServerListRequest,
+      EMatchMakingServerResponseAliasDart,
+    )>("SteamAPI_ISteamMatchmakingServerListResponse_RefreshComplete");
 
 extension ISteamMatchmakingServerListResponseExtensions
     on Pointer<ISteamMatchmakingServerListResponse> {

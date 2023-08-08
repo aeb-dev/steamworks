@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EVrScreenshotTypeAliasDart = int;
 typedef EVrScreenshotTypeAliasC = Int32;
@@ -32,7 +33,9 @@ enum EVrScreenshotType {
       case 5:
         return EVrScreenshotType.stereoPanorama;
       default:
-        throw "Unknown value for 'EVrScreenshotType'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EVrScreenshotType'. The value was: '$value'",
+        );
     }
   }
 }

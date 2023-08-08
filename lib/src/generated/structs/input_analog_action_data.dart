@@ -1,10 +1,10 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "../enums/einput_source_mode.dart";
 
 @Packed(1)
-class InputAnalogActionData extends Struct {
+final class InputAnalogActionData extends Struct {
   @Int32()
   external EInputSourceModeAliasDart mode;
 

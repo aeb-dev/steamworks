@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EUgcMatchingUgcTypeAliasDart = int;
 typedef EUgcMatchingUgcTypeAliasC = Int32;
@@ -56,7 +57,9 @@ enum EUgcMatchingUgcType {
       case 12:
         return EUgcMatchingUgcType.gameManagedItems;
       default:
-        throw "Unknown value for 'EUgcMatchingUgcType'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EUgcMatchingUgcType'. The value was: '$value'",
+        );
     }
   }
 }

@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EInputActionOriginAliasDart = int;
 typedef EInputActionOriginAliasC = Int32;
@@ -253,10 +254,10 @@ enum EInputActionOrigin {
   switchLeftGripUpper(245),
   switchRightGripLower(246),
   switchRightGripUpper(247),
-  switchReserved11(248),
-  switchReserved12(249),
-  switchReserved13(250),
-  switchReserved14(251),
+  switchJoyConButtonN(248),
+  switchJoyConButtonE(249),
+  switchJoyConButtonS(250),
+  switchJoyConButtonW(251),
   switchReserved15(252),
   switchReserved16(253),
   switchReserved17(254),
@@ -318,10 +319,10 @@ enum EInputActionOrigin {
   ps5GyroYaw(310),
   ps5GyroRoll(311),
   ps5DPadMove(312),
-  ps5Reserved1(313),
-  ps5Reserved2(314),
-  ps5Reserved3(315),
-  ps5Reserved4(316),
+  ps5LeftGrip(313),
+  ps5RightGrip(314),
+  ps5LeftFn(315),
+  ps5RightFn(316),
   ps5Reserved5(317),
   ps5Reserved6(318),
   ps5Reserved7(319),
@@ -918,13 +919,13 @@ enum EInputActionOrigin {
       case 247:
         return EInputActionOrigin.switchRightGripUpper;
       case 248:
-        return EInputActionOrigin.switchReserved11;
+        return EInputActionOrigin.switchJoyConButtonN;
       case 249:
-        return EInputActionOrigin.switchReserved12;
+        return EInputActionOrigin.switchJoyConButtonE;
       case 250:
-        return EInputActionOrigin.switchReserved13;
+        return EInputActionOrigin.switchJoyConButtonS;
       case 251:
-        return EInputActionOrigin.switchReserved14;
+        return EInputActionOrigin.switchJoyConButtonW;
       case 252:
         return EInputActionOrigin.switchReserved15;
       case 253:
@@ -1048,13 +1049,13 @@ enum EInputActionOrigin {
       case 312:
         return EInputActionOrigin.ps5DPadMove;
       case 313:
-        return EInputActionOrigin.ps5Reserved1;
+        return EInputActionOrigin.ps5LeftGrip;
       case 314:
-        return EInputActionOrigin.ps5Reserved2;
+        return EInputActionOrigin.ps5RightGrip;
       case 315:
-        return EInputActionOrigin.ps5Reserved3;
+        return EInputActionOrigin.ps5LeftFn;
       case 316:
-        return EInputActionOrigin.ps5Reserved4;
+        return EInputActionOrigin.ps5RightFn;
       case 317:
         return EInputActionOrigin.ps5Reserved5;
       case 318:
@@ -1238,7 +1239,9 @@ enum EInputActionOrigin {
       case 32767:
         return EInputActionOrigin.maximumPossibleValue;
       default:
-        throw "Unknown value for 'EInputActionOrigin'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EInputActionOrigin'. The value was: '$value'",
+        );
     }
   }
 }

@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef ESteamNetworkingConfigValueAliasDart = int;
 typedef ESteamNetworkingConfigValueAliasC = Int32;
@@ -55,6 +56,10 @@ enum ESteamNetworkingConfigValue {
   p2pTransportIceEnable(104),
   p2pTransportIcePenalty(105),
   p2pTransportSdrPenalty(106),
+  p2pTURNServerList(107),
+  p2pTURNUserList(108),
+  p2pTURNPassList(109),
+  p2pTransportIceImplementation(110),
   callbackConnectionStatusChanged(201),
   callbackAuthStatusChanged(202),
   callbackRelayNetworkStatusChanged(203),
@@ -172,6 +177,14 @@ enum ESteamNetworkingConfigValue {
         return ESteamNetworkingConfigValue.p2pTransportIcePenalty;
       case 106:
         return ESteamNetworkingConfigValue.p2pTransportSdrPenalty;
+      case 107:
+        return ESteamNetworkingConfigValue.p2pTURNServerList;
+      case 108:
+        return ESteamNetworkingConfigValue.p2pTURNUserList;
+      case 109:
+        return ESteamNetworkingConfigValue.p2pTURNPassList;
+      case 110:
+        return ESteamNetworkingConfigValue.p2pTransportIceImplementation;
       case 201:
         return ESteamNetworkingConfigValue.callbackConnectionStatusChanged;
       case 202:
@@ -187,7 +200,9 @@ enum ESteamNetworkingConfigValue {
       case 207:
         return ESteamNetworkingConfigValue.callbackFakeIpResult;
       default:
-        throw "Unknown value for 'ESteamNetworkingConfigValue'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'ESteamNetworkingConfigValue'. The value was: '$value'",
+        );
     }
   }
 }

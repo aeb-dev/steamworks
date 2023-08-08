@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../dl.dart";
@@ -7,67 +7,67 @@ import "../typedefs.dart";
 final _steamAppList = dl.lookupFunction<Pointer<ISteamAppList> Function(),
     Pointer<ISteamAppList> Function()>("SteamAPI_SteamAppList_v001");
 
-class ISteamAppList extends Opaque {
+final class ISteamAppList extends Opaque {
   static Pointer<ISteamAppList> get userInstance => _steamAppList();
 }
 
 final _getNumInstalledApps = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamAppList>,
-),
+      Pointer<ISteamAppList>,
+    ),
     int Function(
-  Pointer<ISteamAppList>,
-)>("SteamAPI_ISteamAppList_GetNumInstalledApps");
+      Pointer<ISteamAppList>,
+    )>("SteamAPI_ISteamAppList_GetNumInstalledApps");
 
 final _getInstalledApps = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamAppList>,
-  Pointer<UnsignedInt>,
-  UnsignedInt,
-),
+      Pointer<ISteamAppList>,
+      Pointer<UnsignedInt>,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamAppList>,
-  Pointer<UnsignedInt>,
-  int,
-)>("SteamAPI_ISteamAppList_GetInstalledApps");
+      Pointer<ISteamAppList>,
+      Pointer<UnsignedInt>,
+      int,
+    )>("SteamAPI_ISteamAppList_GetInstalledApps");
 
 final _getAppName = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamAppList>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamAppList>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamAppList>,
-  AppId,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamAppList_GetAppName");
+      Pointer<ISteamAppList>,
+      AppId,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamAppList_GetAppName");
 
 final _getAppInstallDir = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamAppList>,
-  UnsignedInt,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamAppList>,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamAppList>,
-  AppId,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamAppList_GetAppInstallDir");
+      Pointer<ISteamAppList>,
+      AppId,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamAppList_GetAppInstallDir");
 
 final _getAppBuildId = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamAppList>,
-  UnsignedInt,
-),
+      Pointer<ISteamAppList>,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamAppList>,
-  AppId,
-)>("SteamAPI_ISteamAppList_GetAppBuildId");
+      Pointer<ISteamAppList>,
+      AppId,
+    )>("SteamAPI_ISteamAppList_GetAppBuildId");
 
 extension ISteamAppListExtensions on Pointer<ISteamAppList> {
   int getNumInstalledApps() => _getNumInstalledApps.call(

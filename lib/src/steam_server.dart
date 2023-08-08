@@ -46,7 +46,7 @@ class SteamServer extends SteamBase {
     );
 
     if (!isInitialized) {
-      throw "Steam server failed to initialize";
+      throw Exception("Steam server failed to initialize");
     }
 
     _instance = SteamServer._(

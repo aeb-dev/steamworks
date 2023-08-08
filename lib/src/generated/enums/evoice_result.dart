@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EVoiceResultAliasDart = int;
 typedef EVoiceResultAliasC = Int32;
@@ -44,7 +45,9 @@ enum EVoiceResult {
       case 9:
         return EVoiceResult.receiverDidNotAnswer;
       default:
-        throw "Unknown value for 'EVoiceResult'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EVoiceResult'. The value was: '$value'",
+        );
     }
   }
 }

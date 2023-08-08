@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, packed_nesting_non_packed
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -8,7 +8,7 @@ import "../structs/steam_networking_identity.dart";
 import "../typedefs.dart";
 
 @Packed(8)
-class SteamDatagramGameCoordinatorServerLogin extends Struct {
+final class SteamDatagramGameCoordinatorServerLogin extends Struct {
   external SteamNetworkingIdentity identity;
 
   external SteamDatagramHostedAddress routing;

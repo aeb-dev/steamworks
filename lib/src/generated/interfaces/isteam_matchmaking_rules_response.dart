@@ -1,37 +1,37 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 import "package:ffi/ffi.dart";
 import "../dl.dart";
 
-class ISteamMatchmakingRulesResponse extends Opaque {}
+final class ISteamMatchmakingRulesResponse extends Opaque {}
 
 final _rulesResponded = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingRulesResponse>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMatchmakingRulesResponse>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingRulesResponse>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMatchmakingRulesResponse_RulesResponded");
+      Pointer<ISteamMatchmakingRulesResponse>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMatchmakingRulesResponse_RulesResponded");
 
 final _rulesFailedToRespond = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingRulesResponse>,
-),
+      Pointer<ISteamMatchmakingRulesResponse>,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingRulesResponse>,
-)>("SteamAPI_ISteamMatchmakingRulesResponse_RulesFailedToRespond");
+      Pointer<ISteamMatchmakingRulesResponse>,
+    )>("SteamAPI_ISteamMatchmakingRulesResponse_RulesFailedToRespond");
 
 final _rulesRefreshComplete = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmakingRulesResponse>,
-),
+      Pointer<ISteamMatchmakingRulesResponse>,
+    ),
     void Function(
-  Pointer<ISteamMatchmakingRulesResponse>,
-)>("SteamAPI_ISteamMatchmakingRulesResponse_RulesRefreshComplete");
+      Pointer<ISteamMatchmakingRulesResponse>,
+    )>("SteamAPI_ISteamMatchmakingRulesResponse_RulesRefreshComplete");
 
 extension ISteamMatchmakingRulesResponseExtensions
     on Pointer<ISteamMatchmakingRulesResponse> {

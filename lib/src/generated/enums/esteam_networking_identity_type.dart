@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef ESteamNetworkingIdentityTypeAliasDart = int;
 typedef ESteamNetworkingIdentityTypeAliasC = Int32;
@@ -44,7 +45,9 @@ enum ESteamNetworkingIdentityType {
       case 2147483647:
         return ESteamNetworkingIdentityType.force32bit;
       default:
-        throw "Unknown value for 'ESteamNetworkingIdentityType'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'ESteamNetworkingIdentityType'. The value was: '$value'",
+        );
     }
   }
 }

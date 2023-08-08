@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EControllerActionOriginAliasDart = int;
 typedef EControllerActionOriginAliasC = Int32;
@@ -383,7 +384,15 @@ enum EControllerActionOrigin {
   steamDeckReserved18(375),
   steamDeckReserved19(376),
   steamDeckReserved20(377),
-  count(378),
+  switchJoyConButtonN(378),
+  switchJoyConButtonE(379),
+  switchJoyConButtonS(380),
+  switchJoyConButtonW(381),
+  ps5LeftGrip(382),
+  ps5RightGrip(383),
+  ps5LeftFn(384),
+  ps5RightFn(385),
+  count(386),
   maximumPossibleValue(32767),
   ;
 
@@ -1150,11 +1159,29 @@ enum EControllerActionOrigin {
       case 377:
         return EControllerActionOrigin.steamDeckReserved20;
       case 378:
+        return EControllerActionOrigin.switchJoyConButtonN;
+      case 379:
+        return EControllerActionOrigin.switchJoyConButtonE;
+      case 380:
+        return EControllerActionOrigin.switchJoyConButtonS;
+      case 381:
+        return EControllerActionOrigin.switchJoyConButtonW;
+      case 382:
+        return EControllerActionOrigin.ps5LeftGrip;
+      case 383:
+        return EControllerActionOrigin.ps5RightGrip;
+      case 384:
+        return EControllerActionOrigin.ps5LeftFn;
+      case 385:
+        return EControllerActionOrigin.ps5RightFn;
+      case 386:
         return EControllerActionOrigin.count;
       case 32767:
         return EControllerActionOrigin.maximumPossibleValue;
       default:
-        throw "Unknown value for 'EControllerActionOrigin'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EControllerActionOrigin'. The value was: '$value'",
+        );
     }
   }
 }

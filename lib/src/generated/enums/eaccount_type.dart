@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EAccountTypeAliasDart = int;
 typedef EAccountTypeAliasC = Int32;
@@ -50,7 +51,9 @@ enum EAccountType {
       case 11:
         return EAccountType.max;
       default:
-        throw "Unknown value for 'EAccountType'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EAccountType'. The value was: '$value'",
+        );
     }
   }
 }

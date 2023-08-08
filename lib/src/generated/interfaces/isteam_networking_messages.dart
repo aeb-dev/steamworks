@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "../dl.dart";
@@ -19,7 +19,7 @@ final _steamGameServerNetworkingMessagesSteamApi = dl.lookupFunction<
     Pointer<ISteamNetworkingMessages>
         Function()>("SteamAPI_SteamGameServerNetworkingMessages_SteamAPI_v002");
 
-class ISteamNetworkingMessages extends Opaque {
+final class ISteamNetworkingMessages extends Opaque {
   static Pointer<ISteamNetworkingMessages> get userInstance =>
       _steamNetworkingMessagesSteamApi();
 
@@ -29,81 +29,81 @@ class ISteamNetworkingMessages extends Opaque {
 
 final _sendMessageToUser = dl.lookupFunction<
     EResultAliasC Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Void>,
-  UnsignedInt,
-  Int,
-  Int,
-),
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Void>,
+      UnsignedInt,
+      Int,
+      Int,
+    ),
     EResultAliasDart Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<Void>,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamNetworkingMessages_SendMessageToUser");
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<Void>,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamNetworkingMessages_SendMessageToUser");
 
 final _receiveMessagesOnChannel = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamNetworkingMessages>,
-  Int,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  Int,
-),
+      Pointer<ISteamNetworkingMessages>,
+      Int,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      Int,
+    ),
     int Function(
-  Pointer<ISteamNetworkingMessages>,
-  int,
-  Pointer<Pointer<SteamNetworkingMessage>>,
-  int,
-)>("SteamAPI_ISteamNetworkingMessages_ReceiveMessagesOnChannel");
+      Pointer<ISteamNetworkingMessages>,
+      int,
+      Pointer<Pointer<SteamNetworkingMessage>>,
+      int,
+    )>("SteamAPI_ISteamNetworkingMessages_ReceiveMessagesOnChannel");
 
 final _acceptSessionWithUser = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_ISteamNetworkingMessages_AcceptSessionWithUser");
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_ISteamNetworkingMessages_AcceptSessionWithUser");
 
 final _closeSessionWithUser = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-),
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-)>("SteamAPI_ISteamNetworkingMessages_CloseSessionWithUser");
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_ISteamNetworkingMessages_CloseSessionWithUser");
 
 final _closeChannelWithUser = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-  Int,
-),
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-  int,
-)>("SteamAPI_ISteamNetworkingMessages_CloseChannelWithUser");
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+      int,
+    )>("SteamAPI_ISteamNetworkingMessages_CloseChannelWithUser");
 
 final _getSessionConnectionInfo = dl.lookupFunction<
     ESteamNetworkingConnectionStateAliasC Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetConnectionInfo>,
-  Pointer<SteamNetConnectionRealTimeStatus>,
-),
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetConnectionInfo>,
+      Pointer<SteamNetConnectionRealTimeStatus>,
+    ),
     ESteamNetworkingConnectionStateAliasDart Function(
-  Pointer<ISteamNetworkingMessages>,
-  Pointer<SteamNetworkingIdentity>,
-  Pointer<SteamNetConnectionInfo>,
-  Pointer<SteamNetConnectionRealTimeStatus>,
-)>("SteamAPI_ISteamNetworkingMessages_GetSessionConnectionInfo");
+      Pointer<ISteamNetworkingMessages>,
+      Pointer<SteamNetworkingIdentity>,
+      Pointer<SteamNetConnectionInfo>,
+      Pointer<SteamNetConnectionRealTimeStatus>,
+    )>("SteamAPI_ISteamNetworkingMessages_GetSessionConnectionInfo");
 
 extension ISteamNetworkingMessagesExtensions
     on Pointer<ISteamNetworkingMessages> {

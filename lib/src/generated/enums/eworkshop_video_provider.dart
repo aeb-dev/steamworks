@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EWorkshopVideoProviderAliasDart = int;
 typedef EWorkshopVideoProviderAliasC = Int32;
@@ -20,7 +21,9 @@ enum EWorkshopVideoProvider {
       case 1:
         return EWorkshopVideoProvider.youtube;
       default:
-        throw "Unknown value for 'EWorkshopVideoProvider'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EWorkshopVideoProvider'. The value was: '$value'",
+        );
     }
   }
 }

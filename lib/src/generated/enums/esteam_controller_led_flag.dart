@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef ESteamControllerLedFlagAliasDart = int;
 typedef ESteamControllerLedFlagAliasC = Int32;
@@ -20,7 +21,9 @@ enum ESteamControllerLedFlag {
       case 1:
         return ESteamControllerLedFlag.restoreUserDefault;
       default:
-        throw "Unknown value for 'ESteamControllerLedFlag'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'ESteamControllerLedFlag'. The value was: '$value'",
+        );
     }
   }
 }

@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EP2pSessionErrorAliasDart = int;
 typedef EP2pSessionErrorAliasC = Int32;
@@ -32,7 +33,9 @@ enum EP2pSessionError {
       case 5:
         return EP2pSessionError.max;
       default:
-        throw "Unknown value for 'EP2pSessionError'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EP2pSessionError'. The value was: '$value'",
+        );
     }
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -21,7 +21,7 @@ final _steamUtils = dl.lookupFunction<Pointer<ISteamUtils> Function(),
 final _steamGameServerUtils = dl.lookupFunction<Pointer<ISteamUtils> Function(),
     Pointer<ISteamUtils> Function()>("SteamAPI_SteamGameServerUtils_v010");
 
-class ISteamUtils extends Opaque {
+final class ISteamUtils extends Opaque {
   static Pointer<ISteamUtils> get userInstance => _steamUtils();
 
   static Pointer<ISteamUtils> get serverInstance => _steamGameServerUtils();
@@ -29,361 +29,361 @@ class ISteamUtils extends Opaque {
 
 final _getSecondsSinceAppActive = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetSecondsSinceAppActive");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetSecondsSinceAppActive");
 
 final _getSecondsSinceComputerActive = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetSecondsSinceComputerActive");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetSecondsSinceComputerActive");
 
 final _getConnectedUniverse = dl.lookupFunction<
     EUniverseAliasC Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     EUniverseAliasDart Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetConnectedUniverse");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetConnectedUniverse");
 
 final _getServerRealTime = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetServerRealTime");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetServerRealTime");
 
 final _getIpcountry = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetIPCountry");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetIPCountry");
 
 final _getImageSize = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  Int,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamUtils>,
+      Int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  int,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamUtils_GetImageSize");
+      Pointer<ISteamUtils>,
+      int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamUtils_GetImageSize");
 
 final _getImageRGBA = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  Int,
-  Pointer<UnsignedChar>,
-  Int,
-),
+      Pointer<ISteamUtils>,
+      Int,
+      Pointer<UnsignedChar>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  int,
-  Pointer<UnsignedChar>,
-  int,
-)>("SteamAPI_ISteamUtils_GetImageRGBA");
+      Pointer<ISteamUtils>,
+      int,
+      Pointer<UnsignedChar>,
+      int,
+    )>("SteamAPI_ISteamUtils_GetImageRGBA");
 
 final _getCurrentBatteryPower = dl.lookupFunction<
     UnsignedChar Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetCurrentBatteryPower");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetCurrentBatteryPower");
 
 final _getAppId = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetAppID");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetAppID");
 
 final _setOverlayNotificationPosition = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUtils>,
-  ENotificationPositionAliasC,
-),
+      Pointer<ISteamUtils>,
+      ENotificationPositionAliasC,
+    ),
     void Function(
-  Pointer<ISteamUtils>,
-  ENotificationPositionAliasDart,
-)>("SteamAPI_ISteamUtils_SetOverlayNotificationPosition");
+      Pointer<ISteamUtils>,
+      ENotificationPositionAliasDart,
+    )>("SteamAPI_ISteamUtils_SetOverlayNotificationPosition");
 
 final _isApiCallCompleted = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  UnsignedLongLong,
-  Pointer<Bool>,
-),
+      Pointer<ISteamUtils>,
+      UnsignedLongLong,
+      Pointer<Bool>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  SteamApiCall,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamUtils_IsAPICallCompleted");
+      Pointer<ISteamUtils>,
+      SteamApiCall,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamUtils_IsAPICallCompleted");
 
 final _getApiCallFailureReason = dl.lookupFunction<
     ESteamApiCallFailureAliasC Function(
-  Pointer<ISteamUtils>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamUtils>,
+      UnsignedLongLong,
+    ),
     ESteamApiCallFailureAliasDart Function(
-  Pointer<ISteamUtils>,
-  SteamApiCall,
-)>("SteamAPI_ISteamUtils_GetAPICallFailureReason");
+      Pointer<ISteamUtils>,
+      SteamApiCall,
+    )>("SteamAPI_ISteamUtils_GetAPICallFailureReason");
 
 final _getApiCallResult = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  UnsignedLongLong,
-  Pointer<Void>,
-  Int,
-  Int,
-  Pointer<Bool>,
-),
+      Pointer<ISteamUtils>,
+      UnsignedLongLong,
+      Pointer<Void>,
+      Int,
+      Int,
+      Pointer<Bool>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  SteamApiCall,
-  Pointer<Void>,
-  int,
-  int,
-  Pointer<Bool>,
-)>("SteamAPI_ISteamUtils_GetAPICallResult");
+      Pointer<ISteamUtils>,
+      SteamApiCall,
+      Pointer<Void>,
+      int,
+      int,
+      Pointer<Bool>,
+    )>("SteamAPI_ISteamUtils_GetAPICallResult");
 
 final _getIpcCallCount = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetIPCCallCount");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetIPCCallCount");
 
 final _isOverlayEnabled = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_IsOverlayEnabled");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_IsOverlayEnabled");
 
 final _bOverlayNeedsPresent = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_BOverlayNeedsPresent");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_BOverlayNeedsPresent");
 
 final _checkFileSignature = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamUtils>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUtils>,
+      Pointer<Utf8>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamUtils>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUtils_CheckFileSignature");
+      Pointer<ISteamUtils>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUtils_CheckFileSignature");
 
 final _showGamepadTextInput = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  EGamepadTextInputModeAliasC,
-  EGamepadTextInputLineModeAliasC,
-  Pointer<Utf8>,
-  UnsignedInt,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamUtils>,
+      EGamepadTextInputModeAliasC,
+      EGamepadTextInputLineModeAliasC,
+      Pointer<Utf8>,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  EGamepadTextInputModeAliasDart,
-  EGamepadTextInputLineModeAliasDart,
-  Pointer<Utf8>,
-  int,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamUtils_ShowGamepadTextInput");
+      Pointer<ISteamUtils>,
+      EGamepadTextInputModeAliasDart,
+      EGamepadTextInputLineModeAliasDart,
+      Pointer<Utf8>,
+      int,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUtils_ShowGamepadTextInput");
 
 final _getEnteredGamepadTextLength = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetEnteredGamepadTextLength");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetEnteredGamepadTextLength");
 
 final _getEnteredGamepadTextInput = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUtils>,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUtils_GetEnteredGamepadTextInput");
+      Pointer<ISteamUtils>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUtils_GetEnteredGamepadTextInput");
 
 final _getSteamUILanguage = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_GetSteamUILanguage");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_GetSteamUILanguage");
 
 final _isSteamRunningInVr = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_IsSteamRunningInVR");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_IsSteamRunningInVR");
 
 final _setOverlayNotificationInset = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUtils>,
-  Int,
-  Int,
-),
+      Pointer<ISteamUtils>,
+      Int,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamUtils>,
-  int,
-  int,
-)>("SteamAPI_ISteamUtils_SetOverlayNotificationInset");
+      Pointer<ISteamUtils>,
+      int,
+      int,
+    )>("SteamAPI_ISteamUtils_SetOverlayNotificationInset");
 
 final _isSteamInBigPictureMode = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_IsSteamInBigPictureMode");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_IsSteamInBigPictureMode");
 
 final _startVrDashboard = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     void Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_StartVRDashboard");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_StartVRDashboard");
 
 final _isVrHeadsetStreamingEnabled = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_IsVRHeadsetStreamingEnabled");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_IsVRHeadsetStreamingEnabled");
 
 final _setVrHeadsetStreamingEnabled = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUtils>,
-  Bool,
-),
+      Pointer<ISteamUtils>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamUtils>,
-  bool,
-)>("SteamAPI_ISteamUtils_SetVRHeadsetStreamingEnabled");
+      Pointer<ISteamUtils>,
+      bool,
+    )>("SteamAPI_ISteamUtils_SetVRHeadsetStreamingEnabled");
 
 final _isSteamChinaLauncher = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_IsSteamChinaLauncher");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_IsSteamChinaLauncher");
 
 final _initFilterText = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  UnsignedInt,
-),
+      Pointer<ISteamUtils>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  int,
-)>("SteamAPI_ISteamUtils_InitFilterText");
+      Pointer<ISteamUtils>,
+      int,
+    )>("SteamAPI_ISteamUtils_InitFilterText");
 
 final _filterText = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamUtils>,
-  ETextFilteringContextAliasC,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamUtils>,
+      ETextFilteringContextAliasC,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamUtils>,
-  ETextFilteringContextAliasDart,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamUtils_FilterText");
+      Pointer<ISteamUtils>,
+      ETextFilteringContextAliasDart,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUtils_FilterText");
 
 final _getIpv6ConnectivityState = dl.lookupFunction<
     ESteamIpv6ConnectivityStateAliasC Function(
-  Pointer<ISteamUtils>,
-  ESteamIpv6ConnectivityProtocolAliasC,
-),
+      Pointer<ISteamUtils>,
+      ESteamIpv6ConnectivityProtocolAliasC,
+    ),
     ESteamIpv6ConnectivityStateAliasDart Function(
-  Pointer<ISteamUtils>,
-  ESteamIpv6ConnectivityProtocolAliasDart,
-)>("SteamAPI_ISteamUtils_GetIPv6ConnectivityState");
+      Pointer<ISteamUtils>,
+      ESteamIpv6ConnectivityProtocolAliasDart,
+    )>("SteamAPI_ISteamUtils_GetIPv6ConnectivityState");
 
 final _isSteamRunningOnSteamDeck = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_IsSteamRunningOnSteamDeck");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_IsSteamRunningOnSteamDeck");
 
 final _showFloatingGamepadTextInput = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-  EFloatingGamepadTextInputModeAliasC,
-  Int,
-  Int,
-  Int,
-  Int,
-),
+      Pointer<ISteamUtils>,
+      EFloatingGamepadTextInputModeAliasC,
+      Int,
+      Int,
+      Int,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-  EFloatingGamepadTextInputModeAliasDart,
-  int,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamUtils_ShowFloatingGamepadTextInput");
+      Pointer<ISteamUtils>,
+      EFloatingGamepadTextInputModeAliasDart,
+      int,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamUtils_ShowFloatingGamepadTextInput");
 
 final _setGameLauncherMode = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamUtils>,
-  Bool,
-),
+      Pointer<ISteamUtils>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamUtils>,
-  bool,
-)>("SteamAPI_ISteamUtils_SetGameLauncherMode");
+      Pointer<ISteamUtils>,
+      bool,
+    )>("SteamAPI_ISteamUtils_SetGameLauncherMode");
 
 final _dismissFloatingGamepadTextInput = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamUtils>,
-),
+      Pointer<ISteamUtils>,
+    ),
     bool Function(
-  Pointer<ISteamUtils>,
-)>("SteamAPI_ISteamUtils_DismissFloatingGamepadTextInput");
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_DismissFloatingGamepadTextInput");
 
 extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   int getSecondsSinceAppActive() => _getSecondsSinceAppActive.call(

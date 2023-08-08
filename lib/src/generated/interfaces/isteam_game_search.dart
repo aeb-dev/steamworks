@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -11,165 +11,165 @@ import "../typedefs.dart";
 final _steamGameSearch = dl.lookupFunction<Pointer<ISteamGameSearch> Function(),
     Pointer<ISteamGameSearch> Function()>("SteamAPI_SteamGameSearch_v001");
 
-class ISteamGameSearch extends Opaque {
+final class ISteamGameSearch extends Opaque {
   static Pointer<ISteamGameSearch> get userInstance => _steamGameSearch();
 }
 
 final _addGameSearchParams = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameSearch>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameSearch_AddGameSearchParams");
+      Pointer<ISteamGameSearch>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameSearch_AddGameSearchParams");
 
 final _searchForGameWithLobby = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  UnsignedLongLong,
-  Int,
-  Int,
-),
+      Pointer<ISteamGameSearch>,
+      UnsignedLongLong,
+      Int,
+      Int,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  CSteamId,
-  int,
-  int,
-)>("SteamAPI_ISteamGameSearch_SearchForGameWithLobby");
+      Pointer<ISteamGameSearch>,
+      CSteamId,
+      int,
+      int,
+    )>("SteamAPI_ISteamGameSearch_SearchForGameWithLobby");
 
 final _searchForGameSolo = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  Int,
-  Int,
-),
+      Pointer<ISteamGameSearch>,
+      Int,
+      Int,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  int,
-  int,
-)>("SteamAPI_ISteamGameSearch_SearchForGameSolo");
+      Pointer<ISteamGameSearch>,
+      int,
+      int,
+    )>("SteamAPI_ISteamGameSearch_SearchForGameSolo");
 
 final _acceptGame = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-),
+      Pointer<ISteamGameSearch>,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-)>("SteamAPI_ISteamGameSearch_AcceptGame");
+      Pointer<ISteamGameSearch>,
+    )>("SteamAPI_ISteamGameSearch_AcceptGame");
 
 final _declineGame = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-),
+      Pointer<ISteamGameSearch>,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-)>("SteamAPI_ISteamGameSearch_DeclineGame");
+      Pointer<ISteamGameSearch>,
+    )>("SteamAPI_ISteamGameSearch_DeclineGame");
 
 final _retrieveConnectionDetails = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamGameSearch>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Int,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  CSteamId,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamGameSearch_RetrieveConnectionDetails");
+      Pointer<ISteamGameSearch>,
+      CSteamId,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamGameSearch_RetrieveConnectionDetails");
 
 final _endGameSearch = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-),
+      Pointer<ISteamGameSearch>,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-)>("SteamAPI_ISteamGameSearch_EndGameSearch");
+      Pointer<ISteamGameSearch>,
+    )>("SteamAPI_ISteamGameSearch_EndGameSearch");
 
 final _setGameHostParams = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameSearch>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameSearch_SetGameHostParams");
+      Pointer<ISteamGameSearch>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameSearch_SetGameHostParams");
 
 final _setConnectionDetails = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamGameSearch>,
+      Pointer<Utf8>,
+      Int,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamGameSearch_SetConnectionDetails");
+      Pointer<ISteamGameSearch>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamGameSearch_SetConnectionDetails");
 
 final _requestPlayersForGame = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  Int,
-  Int,
-  Int,
-),
+      Pointer<ISteamGameSearch>,
+      Int,
+      Int,
+      Int,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamGameSearch_RequestPlayersForGame");
+      Pointer<ISteamGameSearch>,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamGameSearch_RequestPlayersForGame");
 
 final _hostConfirmGameStart = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameSearch>,
+      UnsignedLongLong,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  int,
-)>("SteamAPI_ISteamGameSearch_HostConfirmGameStart");
+      Pointer<ISteamGameSearch>,
+      int,
+    )>("SteamAPI_ISteamGameSearch_HostConfirmGameStart");
 
 final _cancelRequestPlayersForGame = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-),
+      Pointer<ISteamGameSearch>,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-)>("SteamAPI_ISteamGameSearch_CancelRequestPlayersForGame");
+      Pointer<ISteamGameSearch>,
+    )>("SteamAPI_ISteamGameSearch_CancelRequestPlayersForGame");
 
 final _submitPlayerResult = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  EPlayerResultAliasC,
-),
+      Pointer<ISteamGameSearch>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      EPlayerResultAliasC,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  int,
-  CSteamId,
-  EPlayerResultAliasDart,
-)>("SteamAPI_ISteamGameSearch_SubmitPlayerResult");
+      Pointer<ISteamGameSearch>,
+      int,
+      CSteamId,
+      EPlayerResultAliasDart,
+    )>("SteamAPI_ISteamGameSearch_SubmitPlayerResult");
 
 final _endGame = dl.lookupFunction<
     EGameSearchErrorCodeAliasC Function(
-  Pointer<ISteamGameSearch>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameSearch>,
+      UnsignedLongLong,
+    ),
     EGameSearchErrorCodeAliasDart Function(
-  Pointer<ISteamGameSearch>,
-  int,
-)>("SteamAPI_ISteamGameSearch_EndGame");
+      Pointer<ISteamGameSearch>,
+      int,
+    )>("SteamAPI_ISteamGameSearch_EndGame");
 
 extension ISteamGameSearchExtensions on Pointer<ISteamGameSearch> {
   EGameSearchErrorCode addGameSearchParams(

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 import "../dl.dart";
 import "../typedefs.dart";
@@ -13,11 +13,11 @@ final _releaseCurrentThreadMemory =
 
 final _restartAppIfNecessary = dl.lookupFunction<
     Bool Function(
-  UnsignedInt,
-),
+      UnsignedInt,
+    ),
     bool Function(
-  int,
-)>("SteamAPI_RestartAppIfNecessary");
+      int,
+    )>("SteamAPI_RestartAppIfNecessary");
 
 final _shutdown =
     dl.lookupFunction<Void Function(), void Function()>("SteamAPI_Shutdown");

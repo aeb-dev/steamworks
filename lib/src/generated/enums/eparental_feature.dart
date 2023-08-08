@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EParentalFeatureAliasDart = int;
 typedef EParentalFeatureAliasC = Int32;
@@ -19,7 +20,8 @@ enum EParentalFeature {
   library_(11),
   test(12),
   siteLicense(13),
-  max(14),
+  kioskMode(14),
+  max(15),
   ;
 
   final int value;
@@ -57,9 +59,13 @@ enum EParentalFeature {
       case 13:
         return EParentalFeature.siteLicense;
       case 14:
+        return EParentalFeature.kioskMode;
+      case 15:
         return EParentalFeature.max;
       default:
-        throw "Unknown value for 'EParentalFeature'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EParentalFeature'. The value was: '$value'",
+        );
     }
   }
 }

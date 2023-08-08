@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -7,412 +7,415 @@ import "../dl.dart";
 import "../enums/ebegin_auth_session_result.dart";
 import "../enums/euser_has_license_for_app_result.dart";
 import "../structs/steam_ip_address.dart";
+import "../structs/steam_networking_identity.dart";
 import "../typedefs.dart";
 
 final _steamGameServer = dl.lookupFunction<Pointer<ISteamGameServer> Function(),
-    Pointer<ISteamGameServer> Function()>("SteamAPI_SteamGameServer_v014");
+    Pointer<ISteamGameServer> Function()>("SteamAPI_SteamGameServer_v015");
 
-class ISteamGameServer extends Opaque {
+final class ISteamGameServer extends Opaque {
   static Pointer<ISteamGameServer> get serverInstance => _steamGameServer();
 }
 
 final _setProduct = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetProduct");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetProduct");
 
 final _setGameDescription = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetGameDescription");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetGameDescription");
 
 final _setModDir = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetModDir");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetModDir");
 
 final _setDedicatedServer = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Bool,
-),
+      Pointer<ISteamGameServer>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  bool,
-)>("SteamAPI_ISteamGameServer_SetDedicatedServer");
+      Pointer<ISteamGameServer>,
+      bool,
+    )>("SteamAPI_ISteamGameServer_SetDedicatedServer");
 
 final _logOn = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_LogOn");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_LogOn");
 
 final _logOnAnonymous = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_LogOnAnonymous");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_LogOnAnonymous");
 
 final _logOff = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_LogOff");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_LogOff");
 
 final _bLoggedOn = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     bool Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_BLoggedOn");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_BLoggedOn");
 
 final _bSecure = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     bool Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_BSecure");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_BSecure");
 
 final _getSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     CSteamId Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_GetSteamID");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_GetSteamID");
 
 final _wasRestartRequested = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     bool Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_WasRestartRequested");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_WasRestartRequested");
 
 final _setMaxPlayerCount = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Int,
-),
+      Pointer<ISteamGameServer>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  int,
-)>("SteamAPI_ISteamGameServer_SetMaxPlayerCount");
+      Pointer<ISteamGameServer>,
+      int,
+    )>("SteamAPI_ISteamGameServer_SetMaxPlayerCount");
 
 final _setBotPlayerCount = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Int,
-),
+      Pointer<ISteamGameServer>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  int,
-)>("SteamAPI_ISteamGameServer_SetBotPlayerCount");
+      Pointer<ISteamGameServer>,
+      int,
+    )>("SteamAPI_ISteamGameServer_SetBotPlayerCount");
 
 final _setServerName = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetServerName");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetServerName");
 
 final _setMapName = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetMapName");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetMapName");
 
 final _setPasswordProtected = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Bool,
-),
+      Pointer<ISteamGameServer>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  bool,
-)>("SteamAPI_ISteamGameServer_SetPasswordProtected");
+      Pointer<ISteamGameServer>,
+      bool,
+    )>("SteamAPI_ISteamGameServer_SetPasswordProtected");
 
 final _setSpectatorPort = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  UnsignedShort,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedShort,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  int,
-)>("SteamAPI_ISteamGameServer_SetSpectatorPort");
+      Pointer<ISteamGameServer>,
+      int,
+    )>("SteamAPI_ISteamGameServer_SetSpectatorPort");
 
 final _setSpectatorServerName = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetSpectatorServerName");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetSpectatorServerName");
 
 final _clearAllKeyValues = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_ClearAllKeyValues");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_ClearAllKeyValues");
 
 final _setKeyValue = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetKeyValue");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetKeyValue");
 
 final _setGameTags = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetGameTags");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetGameTags");
 
 final _setGameData = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetGameData");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetGameData");
 
 final _setRegion = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamGameServer_SetRegion");
+      Pointer<ISteamGameServer>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamGameServer_SetRegion");
 
 final _setAdvertiseServerActive = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  Bool,
-),
+      Pointer<ISteamGameServer>,
+      Bool,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  bool,
-)>("SteamAPI_ISteamGameServer_SetAdvertiseServerActive");
+      Pointer<ISteamGameServer>,
+      bool,
+    )>("SteamAPI_ISteamGameServer_SetAdvertiseServerActive");
 
 final _getAuthSessionTicket = dl.lookupFunction<
     UnsignedInt Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  Int,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      Int,
+      Pointer<UnsignedInt>,
+      Pointer<SteamNetworkingIdentity>,
+    ),
     HAuthTicket Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  int,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamGameServer_GetAuthSessionTicket");
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      int,
+      Pointer<UnsignedInt>,
+      Pointer<SteamNetworkingIdentity>,
+    )>("SteamAPI_ISteamGameServer_GetAuthSessionTicket");
 
 final _beginAuthSession = dl.lookupFunction<
     EBeginAuthSessionResultAliasC Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  Int,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      Int,
+      UnsignedLongLong,
+    ),
     EBeginAuthSessionResultAliasDart Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  int,
-  CSteamId,
-)>("SteamAPI_ISteamGameServer_BeginAuthSession");
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      int,
+      CSteamId,
+    )>("SteamAPI_ISteamGameServer_BeginAuthSession");
 
 final _endAuthSession = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  CSteamId,
-)>("SteamAPI_ISteamGameServer_EndAuthSession");
+      Pointer<ISteamGameServer>,
+      CSteamId,
+    )>("SteamAPI_ISteamGameServer_EndAuthSession");
 
 final _cancelAuthTicket = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-  UnsignedInt,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedInt,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-  HAuthTicket,
-)>("SteamAPI_ISteamGameServer_CancelAuthTicket");
+      Pointer<ISteamGameServer>,
+      HAuthTicket,
+    )>("SteamAPI_ISteamGameServer_CancelAuthTicket");
 
 final _userHasLicenseForApp = dl.lookupFunction<
     EUserHasLicenseForAppResultAliasC Function(
-  Pointer<ISteamGameServer>,
-  UnsignedLongLong,
-  UnsignedInt,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
     EUserHasLicenseForAppResultAliasDart Function(
-  Pointer<ISteamGameServer>,
-  CSteamId,
-  AppId,
-)>("SteamAPI_ISteamGameServer_UserHasLicenseForApp");
+      Pointer<ISteamGameServer>,
+      CSteamId,
+      AppId,
+    )>("SteamAPI_ISteamGameServer_UserHasLicenseForApp");
 
 final _requestUserGroupStatus = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServer>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamGameServer>,
-  CSteamId,
-  CSteamId,
-)>("SteamAPI_ISteamGameServer_RequestUserGroupStatus");
+      Pointer<ISteamGameServer>,
+      CSteamId,
+      CSteamId,
+    )>("SteamAPI_ISteamGameServer_RequestUserGroupStatus");
 
 final _getGameplayStats = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     void Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_GetGameplayStats");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_GetGameplayStats");
 
 final _getServerReputation = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_GetServerReputation");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_GetServerReputation");
 
 final _getPublicIp = dl.lookupFunction<
     SteamIpAddress Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     SteamIpAddress Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_GetPublicIP");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_GetPublicIP");
 
 final _handleIncomingPacket = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  Int,
-  UnsignedInt,
-  UnsignedShort,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      Int,
+      UnsignedInt,
+      UnsignedShort,
+    ),
     bool Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamGameServer_HandleIncomingPacket");
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamGameServer_HandleIncomingPacket");
 
 final _getNextOutgoingPacket = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  Int,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedShort>,
-),
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      Int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedShort>,
+    ),
     int Function(
-  Pointer<ISteamGameServer>,
-  Pointer<Void>,
-  int,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedShort>,
-)>("SteamAPI_ISteamGameServer_GetNextOutgoingPacket");
+      Pointer<ISteamGameServer>,
+      Pointer<Void>,
+      int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedShort>,
+    )>("SteamAPI_ISteamGameServer_GetNextOutgoingPacket");
 
 final _associateWithClan = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamGameServer>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamGameServer>,
-  CSteamId,
-)>("SteamAPI_ISteamGameServer_AssociateWithClan");
+      Pointer<ISteamGameServer>,
+      CSteamId,
+    )>("SteamAPI_ISteamGameServer_AssociateWithClan");
 
 final _computeNewPlayerCompatibility = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamGameServer>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamGameServer>,
-  CSteamId,
-)>("SteamAPI_ISteamGameServer_ComputeNewPlayerCompatibility");
+      Pointer<ISteamGameServer>,
+      CSteamId,
+    )>("SteamAPI_ISteamGameServer_ComputeNewPlayerCompatibility");
 
 final _createUnauthenticatedUserConnection = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamGameServer>,
-),
+      Pointer<ISteamGameServer>,
+    ),
     CSteamId Function(
-  Pointer<ISteamGameServer>,
-)>("SteamAPI_ISteamGameServer_CreateUnauthenticatedUserConnection");
+      Pointer<ISteamGameServer>,
+    )>("SteamAPI_ISteamGameServer_CreateUnauthenticatedUserConnection");
 
 final _bUpdateUserData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamGameServer>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  UnsignedInt,
-),
+      Pointer<ISteamGameServer>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamGameServer>,
-  CSteamId,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamGameServer_BUpdateUserData");
+      Pointer<ISteamGameServer>,
+      CSteamId,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamGameServer_BUpdateUserData");
 
 extension ISteamGameServerExtensions on Pointer<ISteamGameServer> {
   void setProduct(
@@ -585,12 +588,14 @@ extension ISteamGameServerExtensions on Pointer<ISteamGameServer> {
     Pointer<Void> pTicket,
     int cbMaxTicket,
     Pointer<UnsignedInt> pcbTicket,
+    Pointer<SteamNetworkingIdentity> pSnid,
   ) =>
       _getAuthSessionTicket.call(
         this,
         pTicket,
         cbMaxTicket,
         pcbTicket,
+        pSnid,
       );
 
   EBeginAuthSessionResult beginAuthSession(

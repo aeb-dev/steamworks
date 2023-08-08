@@ -1,5 +1,6 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members, unreachable_switch_case
 import "dart:ffi";
+import "../unknown_enum_value_exception.dart";
 
 typedef EHttpStatusCodeAliasDart = int;
 typedef EHttpStatusCodeAliasC = Int32;
@@ -22,6 +23,7 @@ enum EHttpStatusCode {
   statusCode304NotModified(304),
   statusCode305UseProxy(305),
   statusCode307TemporaryRedirect(307),
+  statusCode308PermanentRedirect(308),
   statusCode400BadRequest(400),
   statusCode401Unauthorized(401),
   statusCode402PaymentRequired(402),
@@ -92,6 +94,8 @@ enum EHttpStatusCode {
         return EHttpStatusCode.statusCode305UseProxy;
       case 307:
         return EHttpStatusCode.statusCode307TemporaryRedirect;
+      case 308:
+        return EHttpStatusCode.statusCode308PermanentRedirect;
       case 400:
         return EHttpStatusCode.statusCode400BadRequest;
       case 401:
@@ -149,7 +153,9 @@ enum EHttpStatusCode {
       case 599:
         return EHttpStatusCode.statusCode5xxUnknown;
       default:
-        throw "Unknown value for 'EHttpStatusCode'. The value was: '$value'";
+        throw UnknownEnumValueException(
+          "Unknown value for 'EHttpStatusCode'. The value was: '$value'",
+        );
     }
   }
 }

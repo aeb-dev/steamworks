@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs
+// ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
@@ -14,493 +14,493 @@ final _steamMatchmaking = dl.lookupFunction<
     Pointer<ISteamMatchmaking> Function(),
     Pointer<ISteamMatchmaking> Function()>("SteamAPI_SteamMatchmaking_v009");
 
-class ISteamMatchmaking extends Opaque {
+final class ISteamMatchmaking extends Opaque {
   static Pointer<ISteamMatchmaking> get userInstance => _steamMatchmaking();
 }
 
 final _getFavoriteGameCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmaking>,
-),
+      Pointer<ISteamMatchmaking>,
+    ),
     int Function(
-  Pointer<ISteamMatchmaking>,
-)>("SteamAPI_ISteamMatchmaking_GetFavoriteGameCount");
+      Pointer<ISteamMatchmaking>,
+    )>("SteamAPI_ISteamMatchmaking_GetFavoriteGameCount");
 
 final _getFavoriteGame = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  Int,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedShort>,
-  Pointer<UnsignedShort>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-),
+      Pointer<ISteamMatchmaking>,
+      Int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedShort>,
+      Pointer<UnsignedShort>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  int,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedShort>,
-  Pointer<UnsignedShort>,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedInt>,
-)>("SteamAPI_ISteamMatchmaking_GetFavoriteGame");
+      Pointer<ISteamMatchmaking>,
+      int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedShort>,
+      Pointer<UnsignedShort>,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+    )>("SteamAPI_ISteamMatchmaking_GetFavoriteGame");
 
 final _addFavoriteGame = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedInt,
-  UnsignedInt,
-  UnsignedShort,
-  UnsignedShort,
-  UnsignedInt,
-  UnsignedInt,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedInt,
+      UnsignedInt,
+      UnsignedShort,
+      UnsignedShort,
+      UnsignedInt,
+      UnsignedInt,
+    ),
     int Function(
-  Pointer<ISteamMatchmaking>,
-  AppId,
-  int,
-  int,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamMatchmaking_AddFavoriteGame");
+      Pointer<ISteamMatchmaking>,
+      AppId,
+      int,
+      int,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_AddFavoriteGame");
 
 final _removeFavoriteGame = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedInt,
-  UnsignedInt,
-  UnsignedShort,
-  UnsignedShort,
-  UnsignedInt,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedInt,
+      UnsignedInt,
+      UnsignedShort,
+      UnsignedShort,
+      UnsignedInt,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  AppId,
-  int,
-  int,
-  int,
-  int,
-)>("SteamAPI_ISteamMatchmaking_RemoveFavoriteGame");
+      Pointer<ISteamMatchmaking>,
+      AppId,
+      int,
+      int,
+      int,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_RemoveFavoriteGame");
 
 final _requestLobbyList = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamMatchmaking>,
-),
+      Pointer<ISteamMatchmaking>,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamMatchmaking>,
-)>("SteamAPI_ISteamMatchmaking_RequestLobbyList");
+      Pointer<ISteamMatchmaking>,
+    )>("SteamAPI_ISteamMatchmaking_RequestLobbyList");
 
 final _addRequestLobbyListStringFilter = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  ELobbyComparisonAliasC,
-),
+      Pointer<ISteamMatchmaking>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      ELobbyComparisonAliasC,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-  ELobbyComparisonAliasDart,
-)>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListStringFilter");
+      Pointer<ISteamMatchmaking>,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      ELobbyComparisonAliasDart,
+    )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListStringFilter");
 
 final _addRequestLobbyListNumericalFilter = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  Pointer<Utf8>,
-  Int,
-  ELobbyComparisonAliasC,
-),
+      Pointer<ISteamMatchmaking>,
+      Pointer<Utf8>,
+      Int,
+      ELobbyComparisonAliasC,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  Pointer<Utf8>,
-  int,
-  ELobbyComparisonAliasDart,
-)>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListNumericalFilter");
+      Pointer<ISteamMatchmaking>,
+      Pointer<Utf8>,
+      int,
+      ELobbyComparisonAliasDart,
+    )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListNumericalFilter");
 
 final _addRequestLobbyListNearValueFilter = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      Pointer<Utf8>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListNearValueFilter");
+      Pointer<ISteamMatchmaking>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListNearValueFilter");
 
 final _addRequestLobbyListFilterSlotsAvailable = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  int,
-)>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable");
+      Pointer<ISteamMatchmaking>,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable");
 
 final _addRequestLobbyListDistanceFilter = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  ELobbyDistanceFilterAliasC,
-),
+      Pointer<ISteamMatchmaking>,
+      ELobbyDistanceFilterAliasC,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  ELobbyDistanceFilterAliasDart,
-)>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListDistanceFilter");
+      Pointer<ISteamMatchmaking>,
+      ELobbyDistanceFilterAliasDart,
+    )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListDistanceFilter");
 
 final _addRequestLobbyListResultCountFilter = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      Int,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  int,
-)>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListResultCountFilter");
+      Pointer<ISteamMatchmaking>,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListResultCountFilter");
 
 final _addRequestLobbyListCompatibleMembersFilter = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter");
 
 final _getLobbyByIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamMatchmaking>,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamMatchmaking>,
-  int,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyByIndex");
+      Pointer<ISteamMatchmaking>,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyByIndex");
 
 final _createLobby = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamMatchmaking>,
-  ELobbyTypeAliasC,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      ELobbyTypeAliasC,
+      Int,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamMatchmaking>,
-  ELobbyTypeAliasDart,
-  int,
-)>("SteamAPI_ISteamMatchmaking_CreateLobby");
+      Pointer<ISteamMatchmaking>,
+      ELobbyTypeAliasDart,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_CreateLobby");
 
 final _joinLobby = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     SteamApiCall Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_JoinLobby");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_JoinLobby");
 
 final _leaveLobby = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_LeaveLobby");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_LeaveLobby");
 
 final _inviteUserToLobby = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_InviteUserToLobby");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_InviteUserToLobby");
 
 final _getNumLobbyMembers = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_GetNumLobbyMembers");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_GetNumLobbyMembers");
 
 final _getLobbyMemberByIndex = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Int,
+    ),
     CSteamId Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyMemberByIndex");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyMemberByIndex");
 
 final _getLobbyData = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyData");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyData");
 
 final _setLobbyData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMatchmaking_SetLobbyData");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMatchmaking_SetLobbyData");
 
 final _getLobbyDataCount = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyDataCount");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyDataCount");
 
 final _getLobbyDataByIndex = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Int,
-  Pointer<Utf8>,
-  Int,
-  Pointer<Utf8>,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Int,
+      Pointer<Utf8>,
+      Int,
+      Pointer<Utf8>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  int,
-  Pointer<Utf8>,
-  int,
-  Pointer<Utf8>,
-  int,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyDataByIndex");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      int,
+      Pointer<Utf8>,
+      int,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyDataByIndex");
 
 final _deleteLobbyData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMatchmaking_DeleteLobbyData");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMatchmaking_DeleteLobbyData");
 
 final _getLobbyMemberData = dl.lookupFunction<
     Pointer<Utf8> Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+    ),
     Pointer<Utf8> Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  CSteamId,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyMemberData");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      CSteamId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyMemberData");
 
 final _setLobbyMemberData = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  Pointer<Utf8>,
-  Pointer<Utf8>,
-)>("SteamAPI_ISteamMatchmaking_SetLobbyMemberData");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamMatchmaking_SetLobbyMemberData");
 
 final _sendLobbyChatMsg = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Pointer<Void>,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Pointer<Void>,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  Pointer<Void>,
-  int,
-)>("SteamAPI_ISteamMatchmaking_SendLobbyChatMsg");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_SendLobbyChatMsg");
 
 final _getLobbyChatEntry = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Int,
-  Pointer<UnsignedLongLong>,
-  Pointer<Void>,
-  Int,
-  Pointer<EChatEntryTypeAliasC>,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Int,
+      Pointer<UnsignedLongLong>,
+      Pointer<Void>,
+      Int,
+      Pointer<EChatEntryTypeAliasC>,
+    ),
     int Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  int,
-  Pointer<UnsignedLongLong>,
-  Pointer<Void>,
-  int,
-  Pointer<EChatEntryTypeAliasC>,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyChatEntry");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      int,
+      Pointer<UnsignedLongLong>,
+      Pointer<Void>,
+      int,
+      Pointer<EChatEntryTypeAliasC>,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyChatEntry");
 
 final _requestLobbyData = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_RequestLobbyData");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_RequestLobbyData");
 
 final _setLobbyGameServer = dl.lookupFunction<
     Void Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  UnsignedInt,
-  UnsignedShort,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedShort,
+      UnsignedLongLong,
+    ),
     void Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  int,
-  int,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_SetLobbyGameServer");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      int,
+      int,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_SetLobbyGameServer");
 
 final _getLobbyGameServer = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedShort>,
-  Pointer<UnsignedLongLong>,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedShort>,
+      Pointer<UnsignedLongLong>,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  Pointer<UnsignedInt>,
-  Pointer<UnsignedShort>,
-  Pointer<UnsignedLongLong>,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyGameServer");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedShort>,
+      Pointer<UnsignedLongLong>,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyGameServer");
 
 final _setLobbyMemberLimit = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Int,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Int,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  int,
-)>("SteamAPI_ISteamMatchmaking_SetLobbyMemberLimit");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      int,
+    )>("SteamAPI_ISteamMatchmaking_SetLobbyMemberLimit");
 
 final _getLobbyMemberLimit = dl.lookupFunction<
     Int Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     int Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyMemberLimit");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyMemberLimit");
 
 final _setLobbyType = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  ELobbyTypeAliasC,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      ELobbyTypeAliasC,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  ELobbyTypeAliasDart,
-)>("SteamAPI_ISteamMatchmaking_SetLobbyType");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      ELobbyTypeAliasDart,
+    )>("SteamAPI_ISteamMatchmaking_SetLobbyType");
 
 final _setLobbyJoinable = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  Bool,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      Bool,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  bool,
-)>("SteamAPI_ISteamMatchmaking_SetLobbyJoinable");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      bool,
+    )>("SteamAPI_ISteamMatchmaking_SetLobbyJoinable");
 
 final _getLobbyOwner = dl.lookupFunction<
     UnsignedLongLong Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+    ),
     CSteamId Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_GetLobbyOwner");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_GetLobbyOwner");
 
 final _setLobbyOwner = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_SetLobbyOwner");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_SetLobbyOwner");
 
 final _setLinkedLobby = dl.lookupFunction<
     Bool Function(
-  Pointer<ISteamMatchmaking>,
-  UnsignedLongLong,
-  UnsignedLongLong,
-),
+      Pointer<ISteamMatchmaking>,
+      UnsignedLongLong,
+      UnsignedLongLong,
+    ),
     bool Function(
-  Pointer<ISteamMatchmaking>,
-  CSteamId,
-  CSteamId,
-)>("SteamAPI_ISteamMatchmaking_SetLinkedLobby");
+      Pointer<ISteamMatchmaking>,
+      CSteamId,
+      CSteamId,
+    )>("SteamAPI_ISteamMatchmaking_SetLinkedLobby");
 
 extension ISteamMatchmakingExtensions on Pointer<ISteamMatchmaking> {
   int getFavoriteGameCount() => _getFavoriteGameCount.call(
