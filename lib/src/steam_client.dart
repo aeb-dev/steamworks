@@ -1,4 +1,5 @@
 import "dart:ffi";
+import "dart:io";
 
 import "generated/generated.dart";
 import "steam_base.dart";
@@ -14,9 +15,19 @@ class SteamClient extends SteamBase {
 
   /// Initalizes the [SteamClient]. Calling [init]
   /// multiple time is noop
-  static void init() {
+  static void init({
+    AppId? appId,
+  }) {
     if (_instance != null) {
       return;
+    }
+
+    if (appId != null) {
+      // https://partner.steamgames.com/doc/api/steam_api#SteamAPI_RestartAppIfNecessary
+      bool isRestartNeeded = SteamApi.restartAppIfNecessary(appId);
+      if (isRestartNeeded) {
+        exit(1);
+      }
     }
 
     bool isInitialized = SteamApi.init();
