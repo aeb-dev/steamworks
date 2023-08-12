@@ -1,13 +1,14 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
-import "package:ffi/ffi.dart";
 import "../dl.dart";
 
 @Packed(4)
 final class MatchMakingKeyValuePair extends Struct {
-  external Pointer<Utf8> key;
+  @Array<Char>(256)
+  external Array<Char> key;
 
-  external Pointer<Utf8> value;
+  @Array<Char>(256)
+  external Array<Char> value;
 }
 
 final _construct = dl.lookupFunction<
@@ -24,7 +25,7 @@ extension MatchMakingKeyValuePairExtensions
         this,
       );
 
-  Pointer<Utf8> get key => ref.key;
+  Array<Char> get key => ref.key;
 
-  Pointer<Utf8> get value => ref.value;
+  Array<Char> get value => ref.value;
 }

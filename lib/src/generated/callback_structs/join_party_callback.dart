@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../enums/eresult.dart";
 import "../typedefs.dart";
 
@@ -19,7 +17,8 @@ final class JoinPartyCallback extends Struct {
   @UnsignedLongLong()
   external CSteamId steamIdBeaconOwner;
 
-  external Pointer<Utf8> connectString;
+  @Array<Char>(256)
+  external Array<Char> connectString;
 }
 
 extension JoinPartyCallbackExtensions on Pointer<JoinPartyCallback> {
@@ -29,5 +28,5 @@ extension JoinPartyCallbackExtensions on Pointer<JoinPartyCallback> {
 
   CSteamId get steamIdBeaconOwner => ref.steamIdBeaconOwner;
 
-  Pointer<Utf8> get connectString => ref.connectString;
+  Array<Char> get connectString => ref.connectString;
 }

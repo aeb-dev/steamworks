@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../enums/esteam_networking_connection_state.dart";
 import "../structs/steam_networking_identity.dart";
 import "../structs/steam_networking_ip_addr.dart";
@@ -35,9 +33,11 @@ final class SteamNetConnectionInfo extends Struct {
   @Int()
   external int endReason;
 
-  external Pointer<Utf8> endDebug;
+  @Array<Char>(128)
+  external Array<Char> endDebug;
 
-  external Pointer<Utf8> connectionDescription;
+  @Array<Char>(128)
+  external Array<Char> connectionDescription;
 
   @Int()
   external int flags;
@@ -66,9 +66,9 @@ extension SteamNetConnectionInfoExtensions on Pointer<SteamNetConnectionInfo> {
 
   int get endReason => ref.endReason;
 
-  Pointer<Utf8> get endDebug => ref.endDebug;
+  Array<Char> get endDebug => ref.endDebug;
 
-  Pointer<Utf8> get connectionDescription => ref.connectionDescription;
+  Array<Char> get connectionDescription => ref.connectionDescription;
 
   int get flags => ref.flags;
 

@@ -21,7 +21,8 @@ final class SteamNetworkingIdentity extends Struct {
   @Int()
   external int size;
 
-  external Pointer<Utf8> unknownRawString;
+  @Array<Char>(128)
+  external Array<Char> unknownRawString;
 }
 
 final _clear = dl.lookupFunction<
@@ -448,5 +449,5 @@ extension SteamNetworkingIdentityExtensions
 
   int get size => ref.size;
 
-  Pointer<Utf8> get unknownRawString => ref.unknownRawString;
+  Array<Char> get unknownRawString => ref.unknownRawString;
 }

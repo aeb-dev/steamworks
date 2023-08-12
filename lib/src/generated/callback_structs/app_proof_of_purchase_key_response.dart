@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../enums/eresult.dart";
 
 @Packed(8)
@@ -18,7 +16,8 @@ final class AppProofOfPurchaseKeyResponse extends Struct {
   @UnsignedInt()
   external int keyLength;
 
-  external Pointer<Utf8> key;
+  @Array<Char>(240)
+  external Array<Char> key;
 }
 
 extension AppProofOfPurchaseKeyResponseExtensions
@@ -29,5 +28,5 @@ extension AppProofOfPurchaseKeyResponseExtensions
 
   int get keyLength => ref.keyLength;
 
-  Pointer<Utf8> get key => ref.key;
+  Array<Char> get key => ref.key;
 }

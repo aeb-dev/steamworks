@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
-import "package:ffi/ffi.dart";
 import "../dl.dart";
 import "../typedefs.dart";
 
@@ -9,7 +8,8 @@ final class SteamDatagramHostedAddress extends Struct {
   @Int()
   external int size;
 
-  external Pointer<Utf8> data;
+  @Array<Char>(128)
+  external Array<Char> data;
 }
 
 final _clear = dl.lookupFunction<
@@ -66,5 +66,5 @@ extension SteamDatagramHostedAddressExtensions
 
   int get size => ref.size;
 
-  Pointer<Utf8> get data => ref.data;
+  Array<Char> get data => ref.data;
 }

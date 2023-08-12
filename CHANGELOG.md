@@ -1,3 +1,7 @@
+## 0.4.1
+
+- Update steamworks_gen to 0.4.1
+
 ## 0.4.0
 
 - Update steamworks_gen to 0.4.0

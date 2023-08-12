@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../enums/eremote_storage_published_file_visibility.dart";
 import "../enums/eresult.dart";
 import "../enums/eworkshop_file_type.dart";
@@ -25,9 +23,11 @@ final class SteamUgcDetails extends Struct {
   @UnsignedInt()
   external AppId consumerAppId;
 
-  external Pointer<Utf8> title;
+  @Array<Char>(129)
+  external Array<Char> title;
 
-  external Pointer<Utf8> description;
+  @Array<Char>(8000)
+  external Array<Char> description;
 
   @UnsignedLongLong()
   external int steamIdOwner;
@@ -53,7 +53,8 @@ final class SteamUgcDetails extends Struct {
   @Bool()
   external bool tagsTruncated;
 
-  external Pointer<Utf8> tags;
+  @Array<Char>(1025)
+  external Array<Char> tags;
 
   @UnsignedLongLong()
   external UgcHandle file;
@@ -61,7 +62,8 @@ final class SteamUgcDetails extends Struct {
   @UnsignedLongLong()
   external UgcHandle previewFile;
 
-  external Pointer<Utf8> fileName;
+  @Array<Char>(260)
+  external Array<Char> fileName;
 
   @Int()
   external int fileSize;
@@ -69,7 +71,8 @@ final class SteamUgcDetails extends Struct {
   @Int()
   external int previewFileSize;
 
-  external Pointer<Utf8> url;
+  @Array<Char>(256)
+  external Array<Char> url;
 
   @UnsignedInt()
   external int votesUp;
@@ -95,9 +98,9 @@ extension SteamUgcDetailsExtensions on Pointer<SteamUgcDetails> {
 
   AppId get consumerAppId => ref.consumerAppId;
 
-  Pointer<Utf8> get title => ref.title;
+  Array<Char> get title => ref.title;
 
-  Pointer<Utf8> get description => ref.description;
+  Array<Char> get description => ref.description;
 
   int get steamIdOwner => ref.steamIdOwner;
 
@@ -116,19 +119,19 @@ extension SteamUgcDetailsExtensions on Pointer<SteamUgcDetails> {
 
   bool get tagsTruncated => ref.tagsTruncated;
 
-  Pointer<Utf8> get tags => ref.tags;
+  Array<Char> get tags => ref.tags;
 
   UgcHandle get file => ref.file;
 
   UgcHandle get previewFile => ref.previewFile;
 
-  Pointer<Utf8> get fileName => ref.fileName;
+  Array<Char> get fileName => ref.fileName;
 
   int get fileSize => ref.fileSize;
 
   int get previewFileSize => ref.previewFileSize;
 
-  Pointer<Utf8> get url => ref.url;
+  Array<Char> get url => ref.url;
 
   int get votesUp => ref.votesUp;
 

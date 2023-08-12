@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../enums/eresult.dart";
 import "../typedefs.dart";
 
@@ -25,7 +23,8 @@ final class SteamUgcQueryCompleted extends Struct {
   @Bool()
   external bool cachedData;
 
-  external Pointer<Utf8> nextCursor;
+  @Array<Char>(256)
+  external Array<Char> nextCursor;
 }
 
 extension SteamUgcQueryCompletedExtensions on Pointer<SteamUgcQueryCompleted> {
@@ -39,5 +38,5 @@ extension SteamUgcQueryCompletedExtensions on Pointer<SteamUgcQueryCompleted> {
 
   bool get cachedData => ref.cachedData;
 
-  Pointer<Utf8> get nextCursor => ref.nextCursor;
+  Array<Char> get nextCursor => ref.nextCursor;
 }

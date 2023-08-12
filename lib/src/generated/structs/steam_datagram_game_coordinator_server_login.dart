@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../structs/steam_datagram_hosted_address.dart";
 import "../structs/steam_networking_identity.dart";
 import "../typedefs.dart";
@@ -22,7 +20,8 @@ final class SteamDatagramGameCoordinatorServerLogin extends Struct {
   @Int()
   external int appDataSize;
 
-  external Pointer<Utf8> appData;
+  @Array<Char>(2048)
+  external Array<Char> appData;
 }
 
 extension SteamDatagramGameCoordinatorServerLoginExtensions
@@ -37,5 +36,5 @@ extension SteamDatagramGameCoordinatorServerLoginExtensions
 
   int get appDataSize => ref.appDataSize;
 
-  Pointer<Utf8> get appData => ref.appData;
+  Array<Char> get appData => ref.appData;
 }

@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../enums/eresult.dart";
 import "../typedefs.dart";
 
@@ -22,7 +20,8 @@ final class RemoteStorageDownloadUgcResult extends Struct {
   @Int()
   external int sizeInBytes;
 
-  external Pointer<Utf8> fileName;
+  @Array<Char>(260)
+  external Array<Char> fileName;
 
   @UnsignedLongLong()
   external int steamIdOwner;
@@ -38,7 +37,7 @@ extension RemoteStorageDownloadUgcResultExtensions
 
   int get sizeInBytes => ref.sizeInBytes;
 
-  Pointer<Utf8> get fileName => ref.fileName;
+  Array<Char> get fileName => ref.fileName;
 
   int get steamIdOwner => ref.steamIdOwner;
 }

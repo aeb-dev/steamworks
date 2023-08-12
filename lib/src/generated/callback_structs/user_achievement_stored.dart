@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
-import "package:ffi/ffi.dart";
 
 @Packed(8)
 final class UserAchievementStored extends Struct {
@@ -12,7 +11,8 @@ final class UserAchievementStored extends Struct {
   @Bool()
   external bool groupAchievement;
 
-  external Pointer<Utf8> achievementName;
+  @Array<Char>(128)
+  external Array<Char> achievementName;
 
   @UnsignedInt()
   external int curProgress;
@@ -26,7 +26,7 @@ extension UserAchievementStoredExtensions on Pointer<UserAchievementStored> {
 
   bool get groupAchievement => ref.groupAchievement;
 
-  Pointer<Utf8> get achievementName => ref.achievementName;
+  Array<Char> get achievementName => ref.achievementName;
 
   int get curProgress => ref.curProgress;
 

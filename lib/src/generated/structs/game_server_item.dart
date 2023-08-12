@@ -20,11 +20,14 @@ final class GameServerItem extends Struct {
   @Bool()
   external bool doNotRefresh;
 
-  external Pointer<Utf8> gameDir;
+  @Array<Char>(32)
+  external Array<Char> gameDir;
 
-  external Pointer<Utf8> map;
+  @Array<Char>(32)
+  external Array<Char> map;
 
-  external Pointer<Utf8> gameDescription;
+  @Array<Char>(64)
+  external Array<Char> gameDescription;
 
   @UnsignedInt()
   external int appId;
@@ -50,10 +53,12 @@ final class GameServerItem extends Struct {
   @Int()
   external int serverVersion;
 
+  @Array<Char>(64)
   // ignore: unused_field
-  external Pointer<Utf8> _serverName;
+  external Array<Char> _serverName;
 
-  external Pointer<Utf8> gameTags;
+  @Array<Char>(128)
+  external Array<Char> gameTags;
 
   @UnsignedLongLong()
   external CSteamId steamId;
@@ -110,11 +115,11 @@ extension GameServerItemExtensions on Pointer<GameServerItem> {
 
   bool get doNotRefresh => ref.doNotRefresh;
 
-  Pointer<Utf8> get gameDir => ref.gameDir;
+  Array<Char> get gameDir => ref.gameDir;
 
-  Pointer<Utf8> get map => ref.map;
+  Array<Char> get map => ref.map;
 
-  Pointer<Utf8> get gameDescription => ref.gameDescription;
+  Array<Char> get gameDescription => ref.gameDescription;
 
   int get appId => ref.appId;
 
@@ -132,7 +137,7 @@ extension GameServerItemExtensions on Pointer<GameServerItem> {
 
   int get serverVersion => ref.serverVersion;
 
-  Pointer<Utf8> get gameTags => ref.gameTags;
+  Array<Char> get gameTags => ref.gameTags;
 
   CSteamId get steamId => ref.steamId;
 }

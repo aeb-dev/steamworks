@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
 
-import "package:ffi/ffi.dart";
-
 import "../enums/eresult.dart";
 import "../typedefs.dart";
 
@@ -16,7 +14,8 @@ final class RemoteStorageFileShareResult extends Struct {
   @UnsignedLongLong()
   external UgcHandle file;
 
-  external Pointer<Utf8> filename;
+  @Array<Char>(260)
+  external Array<Char> filename;
 }
 
 extension RemoteStorageFileShareResultExtensions
@@ -25,5 +24,5 @@ extension RemoteStorageFileShareResultExtensions
 
   UgcHandle get file => ref.file;
 
-  Pointer<Utf8> get filename => ref.filename;
+  Array<Char> get filename => ref.filename;
 }
