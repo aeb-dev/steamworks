@@ -1,8 +1,9 @@
 import "dart:ffi";
-import "dart:io";
 
 import "generated/generated.dart";
 import "steam_base.dart";
+import "steam_initialization_error.dart";
+import "steam_restart_app_if_necessary_error.dart";
 
 /// A wrapper for the [SteamApi] to easily manage
 /// game instance
@@ -26,13 +27,15 @@ class SteamClient extends SteamBase {
       // https://partner.steamgames.com/doc/api/steam_api#SteamAPI_RestartAppIfNecessary
       bool isRestartNeeded = SteamApi.restartAppIfNecessary(appId);
       if (isRestartNeeded) {
-        exit(1);
+        // instead of exiting here, we are letting application to
+        // have time to execute other things before exiting
+        throw SteamRestartAppIfNecessaryError();
       }
     }
 
     bool isInitialized = SteamApi.init();
     if (!isInitialized) {
-      throw Exception("Steam failed to initialize");
+      throw SteamInitializationError();
     }
 
     _instance = SteamClient._();

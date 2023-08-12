@@ -5,6 +5,7 @@ import "package:ffi/ffi.dart";
 
 import "generated/generated.dart";
 import "steam_base.dart";
+import "steam_initialization_error.dart";
 
 /// A wrapper for the [SteamGameServer] to easily manage
 /// game server instance
@@ -46,7 +47,7 @@ class SteamServer extends SteamBase {
     );
 
     if (!isInitialized) {
-      throw Exception("Steam server failed to initialize");
+      throw SteamInitializationError();
     }
 
     _instance = SteamServer._(
