@@ -1,3 +1,7 @@
+## 0.4.2
+
+- Throw specific exception when initilization fails
+
 ## 0.4.1
 
 - Update steamworks_gen to 0.4.1
