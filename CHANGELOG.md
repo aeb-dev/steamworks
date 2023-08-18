@@ -1,3 +1,7 @@
+## 0.4.3
+
+- Handle logging with [logging](https://pub.dev/packages/logging) package
+
 ## 0.4.2
 
 - Throw specific exception when initilization fails
