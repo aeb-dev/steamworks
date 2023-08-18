@@ -1,7 +1,7 @@
-import "dart:developer";
 import "dart:ffi";
 
 import "package:ffi/ffi.dart";
+import "package:logging/logging.dart";
 
 import "call_result.dart";
 import "callback.dart";
@@ -9,6 +9,7 @@ import "generated/generated.dart";
 
 /// A dispatcher for asynchrouns events
 class Dispatcher {
+  final Logger _logger = Logger("Dispatcher");
   static Dispatcher? _instance;
 
   /// Initalized instance of the [Dispatcher]
@@ -129,21 +130,15 @@ class Dispatcher {
           Set<CallResult>? crSet = _registeredCallResults[sacc.asyncCall];
 
           if (crSet == null || crSet.isEmpty) {
-            log(
+            _logger.warning(
               "CallResult request has been made but there was no callback registered for it. CallbackId: ${sacc.callback} CallId: ${sacc.asyncCall}",
-              time: DateTime.now(),
-              level: 900, // warning
-              name: "Dispatcher",
             );
             continue;
           }
 
           if (!hasResult || hasFailed.value) {
-            log(
+            _logger.warning(
               "CallResult failed. CallbackId: ${sacc.callback} CallId: ${sacc.asyncCall}",
-              time: DateTime.now(),
-              level: 900, // warning
-              name: "Dispatcher",
             );
             crSet.clear();
             continue;
@@ -151,11 +146,8 @@ class Dispatcher {
 
           for (CallResult cr in crSet) {
             if (cr.callbackId != sacc.callback) {
-              log(
+              _logger.warning(
                 "CallbackId of the Registered CallResult does not match the response from steam",
-                time: DateTime.now(),
-                level: 900, // warning
-                name: "Dispatcher",
               );
               continue;
             }
@@ -174,11 +166,8 @@ class Dispatcher {
         } else {
           Set<Callback>? cbSet = _registeredCallbacks[_cbm.callback];
           if (cbSet == null || cbSet.isEmpty) {
-            log(
+            _logger.warning(
               "Callback request has been made but there were no callback registered for it. CallbackId: ${_cbm.callback}",
-              time: DateTime.now(),
-              level: 900, // warning
-              name: "Dispatcher",
             );
             continue;
           }
@@ -189,13 +178,11 @@ class Dispatcher {
             );
           }
         }
-      } on Exception catch (e, stackTrace) {
-        log(
-          "An error occured while running callback/callresult(s). Message: $e",
-          time: DateTime.now(),
-          level: 1000, // severe
-          name: "Dispatcher",
-          stackTrace: stackTrace,
+      } on Exception catch (e, st) {
+        _logger.severe(
+          "An error occured while running callback/callresult(s)",
+          e,
+          st,
         );
       } finally {
         Dispatch.freeLastCallback(pipe);
