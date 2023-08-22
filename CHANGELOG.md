@@ -1,3 +1,7 @@
+## 0.4.4
+
+- Lower log levels of certain logs
+
 ## 0.4.3
 
 - Handle logging with [logging](https://pub.dev/packages/logging) package
