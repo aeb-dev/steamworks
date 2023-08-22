@@ -130,7 +130,7 @@ class Dispatcher {
           Set<CallResult>? crSet = _registeredCallResults[sacc.asyncCall];
 
           if (crSet == null || crSet.isEmpty) {
-            _logger.warning(
+            _logger.finer(
               "CallResult request has been made but there was no callback registered for it. CallbackId: ${sacc.callback} CallId: ${sacc.asyncCall}",
             );
             continue;
@@ -166,7 +166,7 @@ class Dispatcher {
         } else {
           Set<Callback>? cbSet = _registeredCallbacks[_cbm.callback];
           if (cbSet == null || cbSet.isEmpty) {
-            _logger.warning(
+            _logger.finer(
               "Callback request has been made but there were no callback registered for it. CallbackId: ${_cbm.callback}",
             );
             continue;
