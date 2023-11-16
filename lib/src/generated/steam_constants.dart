@@ -11,6 +11,7 @@ class SteamConstants {
   static int get steamAccountInstanceMask => 0x000FFFFF;
   static int get steamUserDefaultInstance => 1;
   static int get gameExtraInfoMax => 64;
+  static int get maxSteamErrMsg => 1024;
   static int get maxFriendsGroupName => 64;
   static int get friendsGroupLimit => 100;
   static FriendsGroupId get friendsGroupIdInvalid => 1;
@@ -55,6 +56,7 @@ class SteamConstants {
   static SteamInventoryResult get steamInventoryResultInvalid => 1;
   static SteamInventoryUpdateHandle get steamInventoryUpdateHandleInvalid =>
       0xffffffffffffffff;
+  static int get maxTimelineRangeIdLength => 64;
   static HSteamNetConnection get hSteamNetConnectionInvalid => 0;
   static HSteamListenSocket get hSteamListenSocketInvalid => 0;
   static HSteamNetPollGroup get hSteamNetPollGroupInvalid => 0;

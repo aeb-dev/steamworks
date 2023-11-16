@@ -12,6 +12,7 @@ typedef PartyBeaconId = int;
 typedef HAuthTicket = int;
 typedef HSteamPipe = int;
 typedef HSteamUser = int;
+typedef SteamErrMsg = Array<Char>;
 typedef FriendsGroupId = int;
 typedef HServerListRequest = Pointer<Void>;
 typedef HServerQuery = int;

@@ -14,6 +14,9 @@ final class GameOverlayActivated extends Struct {
 
   @UnsignedInt()
   external AppId appId;
+
+  @UnsignedInt()
+  external int dwOverlayPId;
 }
 
 extension GameOverlayActivatedExtensions on Pointer<GameOverlayActivated> {
@@ -22,4 +25,6 @@ extension GameOverlayActivatedExtensions on Pointer<GameOverlayActivated> {
   bool get userInitiated => ref.userInitiated;
 
   AppId get appId => ref.appId;
+
+  int get dwOverlayPId => ref.dwOverlayPId;
 }

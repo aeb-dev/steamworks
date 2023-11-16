@@ -8,7 +8,7 @@ import "../enums/esteam_device_form_factor.dart";
 import "../typedefs.dart";
 
 final _steamRemotePlay = dl.lookupFunction<Pointer<ISteamRemotePlay> Function(),
-    Pointer<ISteamRemotePlay> Function()>("SteamAPI_SteamRemotePlay_v001");
+    Pointer<ISteamRemotePlay> Function()>("SteamAPI_SteamRemotePlay_v002");
 
 final class ISteamRemotePlay extends Opaque {
   static Pointer<ISteamRemotePlay> get userInstance => _steamRemotePlay();
@@ -76,6 +76,16 @@ final _bGetSessionClientResolution = dl.lookupFunction<
       Pointer<Int>,
     )>("SteamAPI_ISteamRemotePlay_BGetSessionClientResolution");
 
+final _bStartRemotePlayTogether = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamRemotePlay>,
+      Bool,
+    ),
+    bool Function(
+      Pointer<ISteamRemotePlay>,
+      bool,
+    )>("SteamAPI_ISteamRemotePlay_BStartRemotePlayTogether");
+
 final _bSendRemotePlayTogetherInvite = dl.lookupFunction<
     Bool Function(
       Pointer<ISteamRemotePlay>,
@@ -135,6 +145,14 @@ extension ISteamRemotePlayExtensions on Pointer<ISteamRemotePlay> {
         sessionId,
         pnResolutionX,
         pnResolutionY,
+      );
+
+  bool bStartRemotePlayTogether(
+    bool showOverlay,
+  ) =>
+      _bStartRemotePlayTogether.call(
+        this,
+        showOverlay,
       );
 
   bool bSendRemotePlayTogetherInvite(

@@ -1,3 +1,8 @@
+## 0.4.5
+
+- Update steamworks_gen to 0.4.2
+- Steamworks SDK 1.58a
+
 ## 0.4.4
 
 - Lower log levels of certain logs

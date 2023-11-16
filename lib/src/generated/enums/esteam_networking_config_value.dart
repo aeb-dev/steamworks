@@ -52,6 +52,10 @@ enum ESteamNetworkingConfigValue {
   fakeRateLimitRecvRate(44),
   fakeRateLimitRecvBurst(45),
   enableDiagnosticsUI(46),
+  recvBufferSize(47),
+  recvBufferMessages(48),
+  recvMaxMessageSize(49),
+  recvMaxSegmentsPerPacket(50),
   p2pSTUNServerList(103),
   p2pTransportIceEnable(104),
   p2pTransportIcePenalty(105),
@@ -169,6 +173,14 @@ enum ESteamNetworkingConfigValue {
         return ESteamNetworkingConfigValue.fakeRateLimitRecvBurst;
       case 46:
         return ESteamNetworkingConfigValue.enableDiagnosticsUI;
+      case 47:
+        return ESteamNetworkingConfigValue.recvBufferSize;
+      case 48:
+        return ESteamNetworkingConfigValue.recvBufferMessages;
+      case 49:
+        return ESteamNetworkingConfigValue.recvMaxMessageSize;
+      case 50:
+        return ESteamNetworkingConfigValue.recvMaxSegmentsPerPacket;
       case 103:
         return ESteamNetworkingConfigValue.p2pSTUNServerList;
       case 104:

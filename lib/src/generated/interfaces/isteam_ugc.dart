@@ -19,10 +19,10 @@ import "../structs/steam_ugc_details.dart";
 import "../typedefs.dart";
 
 final _steamUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v017");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v018");
 
 final _steamGameServerUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v017");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v018");
 
 final class ISteamUgc extends Opaque {
   static Pointer<ISteamUgc> get userInstance => _steamUgc();
@@ -697,11 +697,13 @@ final _setItemTags = dl.lookupFunction<
       Pointer<ISteamUgc>,
       UnsignedLongLong,
       Pointer<SteamParamStringArray>,
+      Bool,
     ),
     bool Function(
       Pointer<ISteamUgc>,
       UgcUpdateHandle,
       Pointer<SteamParamStringArray>,
+      bool,
     )>("SteamAPI_ISteamUGC_SetItemTags");
 
 final _setItemContent = dl.lookupFunction<
@@ -1169,6 +1171,18 @@ final _getWorkshopEulaStatus = dl.lookupFunction<
     SteamApiCall Function(
       Pointer<ISteamUgc>,
     )>("SteamAPI_ISteamUGC_GetWorkshopEULAStatus");
+
+final _getUserContentDescriptorPreferences = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamUgc>,
+      Pointer<EUgcContentDescriptorIdAliasC>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamUgc>,
+      Pointer<EUgcContentDescriptorIdAliasC>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetUserContentDescriptorPreferences");
 
 extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   UgcQueryHandle createQueryUserUgcRequest(
@@ -1740,11 +1754,13 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   bool setItemTags(
     UgcUpdateHandle updateHandle,
     Pointer<SteamParamStringArray> pTags,
+    bool allowAdminTags,
   ) =>
       _setItemTags.call(
         this,
         updateHandle,
         pTags,
+        allowAdminTags,
       );
 
   bool setItemContent(
@@ -2126,5 +2142,15 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
 
   SteamApiCall getWorkshopEulaStatus() => _getWorkshopEulaStatus.call(
         this,
+      );
+
+  int getUserContentDescriptorPreferences(
+    Pointer<EUgcContentDescriptorIdAliasC> descriptors,
+    int cMaxEntries,
+  ) =>
+      _getUserContentDescriptorPreferences.call(
+        this,
+        descriptors,
+        cMaxEntries,
       );
 }
