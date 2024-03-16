@@ -536,13 +536,13 @@ final _getCertificateRequest = dl.lookupFunction<
       Pointer<ISteamNetworkingSockets>,
       Pointer<Int>,
       Pointer<Void>,
-      Pointer<Pointer<Utf8>>,
+      Pointer<Utf8>,
     ),
     bool Function(
       Pointer<ISteamNetworkingSockets>,
       Pointer<Int>,
       Pointer<Void>,
-      Pointer<Pointer<Utf8>>,
+      Pointer<Utf8>,
     )>("SteamAPI_ISteamNetworkingSockets_GetCertificateRequest");
 
 final _setCertificate = dl.lookupFunction<
@@ -550,13 +550,13 @@ final _setCertificate = dl.lookupFunction<
       Pointer<ISteamNetworkingSockets>,
       Pointer<Void>,
       Int,
-      Pointer<Pointer<Utf8>>,
+      Pointer<Utf8>,
     ),
     bool Function(
       Pointer<ISteamNetworkingSockets>,
       Pointer<Void>,
       int,
-      Pointer<Pointer<Utf8>>,
+      Pointer<Utf8>,
     )>("SteamAPI_ISteamNetworkingSockets_SetCertificate");
 
 final _resetIdentity = dl.lookupFunction<
@@ -1064,7 +1064,7 @@ extension ISteamNetworkingSocketsExtensions
   bool getCertificateRequest(
     Pointer<Int> pcbBlob,
     Pointer<Void> pBlob,
-    Pointer<Pointer<Utf8>> errMsg,
+    Pointer<Utf8> errMsg,
   ) =>
       _getCertificateRequest.call(
         this,
@@ -1076,7 +1076,7 @@ extension ISteamNetworkingSocketsExtensions
   bool setCertificate(
     Pointer<Void> pCertificate,
     int cbCertificate,
-    Pointer<Pointer<Utf8>> errMsg,
+    Pointer<Utf8> errMsg,
   ) =>
       _setCertificate.call(
         this,

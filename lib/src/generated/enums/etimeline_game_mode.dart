@@ -10,7 +10,8 @@ enum ETimelineGameMode {
   playing(1),
   staging(2),
   menus(3),
-  max(4),
+  loadingScreen(4),
+  max(5),
   ;
 
   final int value;
@@ -28,6 +29,8 @@ enum ETimelineGameMode {
       case 3:
         return ETimelineGameMode.menus;
       case 4:
+        return ETimelineGameMode.loadingScreen;
+      case 5:
         return ETimelineGameMode.max;
       default:
         throw UnknownEnumValueException(

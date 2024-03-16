@@ -35,7 +35,7 @@ enum ESteamNetworkingConfigValue {
   fakePacketDupRecv(27),
   fakePacketDupTimeMax(28),
   sdrClientForceRelayCluster(29),
-  sdrClientDebugTicketAddress(30),
+  sdrClientDevTicket(30),
   sdrClientForceProxyAddr(31),
   mTUPacketSize(32),
   mTUDataSize(33),
@@ -56,6 +56,8 @@ enum ESteamNetworkingConfigValue {
   recvBufferMessages(48),
   recvMaxMessageSize(49),
   recvMaxSegmentsPerPacket(50),
+  outOfOrderCorrectionWindowMicroseconds(51),
+  sdrClientLimitPingProbesToNearestN(60),
   p2pSTUNServerList(103),
   p2pTransportIceEnable(104),
   p2pTransportIcePenalty(105),
@@ -71,6 +73,7 @@ enum ESteamNetworkingConfigValue {
   callbackMessagesSessionFailed(205),
   callbackCreateConnectionSignaling(206),
   callbackFakeIpResult(207),
+  ecn(999),
   ;
 
   final int value;
@@ -140,7 +143,7 @@ enum ESteamNetworkingConfigValue {
       case 29:
         return ESteamNetworkingConfigValue.sdrClientForceRelayCluster;
       case 30:
-        return ESteamNetworkingConfigValue.sdrClientDebugTicketAddress;
+        return ESteamNetworkingConfigValue.sdrClientDevTicket;
       case 31:
         return ESteamNetworkingConfigValue.sdrClientForceProxyAddr;
       case 32:
@@ -181,6 +184,11 @@ enum ESteamNetworkingConfigValue {
         return ESteamNetworkingConfigValue.recvMaxMessageSize;
       case 50:
         return ESteamNetworkingConfigValue.recvMaxSegmentsPerPacket;
+      case 51:
+        return ESteamNetworkingConfigValue
+            .outOfOrderCorrectionWindowMicroseconds;
+      case 60:
+        return ESteamNetworkingConfigValue.sdrClientLimitPingProbesToNearestN;
       case 103:
         return ESteamNetworkingConfigValue.p2pSTUNServerList;
       case 104:
@@ -211,6 +219,8 @@ enum ESteamNetworkingConfigValue {
         return ESteamNetworkingConfigValue.callbackCreateConnectionSignaling;
       case 207:
         return ESteamNetworkingConfigValue.callbackFakeIpResult;
+      case 999:
+        return ESteamNetworkingConfigValue.ecn;
       default:
         throw UnknownEnumValueException(
           "Unknown value for 'ESteamNetworkingConfigValue'. The value was: '$value'",

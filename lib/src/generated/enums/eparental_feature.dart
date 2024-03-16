@@ -20,7 +20,7 @@ enum EParentalFeature {
   library_(11),
   test(12),
   siteLicense(13),
-  kioskMode(14),
+  kioskModeDeprecated(14),
   max(15),
   ;
 
@@ -59,7 +59,7 @@ enum EParentalFeature {
       case 13:
         return EParentalFeature.siteLicense;
       case 14:
-        return EParentalFeature.kioskMode;
+        return EParentalFeature.kioskModeDeprecated;
       case 15:
         return EParentalFeature.max;
       default:

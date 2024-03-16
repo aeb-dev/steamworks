@@ -1,5 +1,7 @@
 import "dart:ffi";
 
+import "package:ffi/ffi.dart";
+
 import "generated/generated.dart";
 import "steam_base.dart";
 import "steam_initialization_error.dart";
@@ -33,9 +35,16 @@ class SteamClient extends SteamBase {
       }
     }
 
-    bool isInitialized = SteamApi.init();
-    if (!isInitialized) {
-      throw SteamInitializationError();
+    Pointer<Utf8> errMsg =
+        calloc<Char>(SteamConstants.maxSteamErrMsg).cast<Utf8>();
+    try {
+      ESteamApiInitResult result = SteamApi.initFlat(errMsg);
+      if (result != ESteamApiInitResult.ok) {
+        String v = errMsg.toDartString();
+        throw SteamInitializationError(message: v);
+      }
+    } finally {
+      calloc.free(errMsg);
     }
 
     _instance = SteamClient._();
@@ -99,18 +108,12 @@ class SteamClient extends SteamBase {
   /// Accesses user instance of [ISteamUgc]
   Pointer<ISteamUgc> get steamUgc => ISteamUgc.userInstance;
 
-  /// Accesses user instance of [ISteamAppList]
-  Pointer<ISteamAppList> get steamAppList => ISteamAppList.userInstance;
-
   /// Accesses user instance of [ISteamHtmlSurface]
   Pointer<ISteamHtmlSurface> get steamHtmlSurface =>
       ISteamHtmlSurface.userInstance;
 
   /// Accesses user instance of [ISteamInventory]
   Pointer<ISteamInventory> get steamInventory => ISteamInventory.userInstance;
-
-  /// Accesses user instance of [ISteamVideo]
-  Pointer<ISteamVideo> get steamVideo => ISteamVideo.userInstance;
 
   /// Accesses user instance of [ISteamParentalSettings]
   Pointer<ISteamParentalSettings> get steamParentalSettings =>

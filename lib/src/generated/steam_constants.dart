@@ -5,6 +5,7 @@ class SteamConstants {
   static AppId get appIdInvalid => 0x0;
   static DepotId get depotIdInvalid => 0x0;
   static SteamApiCall get apiCallInvalid => 0x0;
+  static AccountId get accountIdInvalid => 0;
   static PartyBeaconId get partyBeaconIdInvalid => 0;
   static HAuthTicket get hAuthTicketInvalid => 0;
   static int get steamAccountIdMask => 0xFFFFFFFF;
@@ -16,6 +17,8 @@ class SteamConstants {
   static int get friendsGroupLimit => 100;
   static FriendsGroupId get friendsGroupIdInvalid => 1;
   static int get enumerateFollowersMax => 50;
+  static int get friendGameInfoQueryPortNotInitialized => 0xFFFF;
+  static int get friendGameInfoQueryPortError => 0xFFFE;
   static int get chatMetadataMax => 8192;
   static int get maxGameServerGameDir => 32;
   static int get maxGameServerMapName => 32;

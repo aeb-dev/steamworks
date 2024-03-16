@@ -5,7 +5,6 @@ import "package:ffi/ffi.dart";
 
 import "../dl.dart";
 import "../enums/eaccount_type.dart";
-import "../interfaces/isteam_app_list.dart";
 import "../interfaces/isteam_apps.dart";
 import "../interfaces/isteam_friends.dart";
 import "../interfaces/isteam_game_search.dart";
@@ -29,7 +28,6 @@ import "../interfaces/isteam_ugc.dart";
 import "../interfaces/isteam_user.dart";
 import "../interfaces/isteam_user_stats.dart";
 import "../interfaces/isteam_utils.dart";
-import "../interfaces/isteam_video.dart";
 import "../structs/steam_ip_address.dart";
 import "../typedefs.dart";
 
@@ -337,20 +335,6 @@ final _getISteamUgc = dl.lookupFunction<
       Pointer<Utf8>,
     )>("SteamAPI_ISteamClient_GetISteamUGC");
 
-final _getISteamAppList = dl.lookupFunction<
-    Pointer<ISteamAppList> Function(
-      Pointer<ISteamClient>,
-      Int,
-      Int,
-      Pointer<Utf8>,
-    ),
-    Pointer<ISteamAppList> Function(
-      Pointer<ISteamClient>,
-      HSteamUser,
-      HSteamPipe,
-      Pointer<Utf8>,
-    )>("SteamAPI_ISteamClient_GetISteamAppList");
-
 final _getISteamMusic = dl.lookupFunction<
     Pointer<ISteamMusic> Function(
       Pointer<ISteamClient>,
@@ -406,20 +390,6 @@ final _getISteamInventory = dl.lookupFunction<
       HSteamPipe,
       Pointer<Utf8>,
     )>("SteamAPI_ISteamClient_GetISteamInventory");
-
-final _getISteamVideo = dl.lookupFunction<
-    Pointer<ISteamVideo> Function(
-      Pointer<ISteamClient>,
-      Int,
-      Int,
-      Pointer<Utf8>,
-    ),
-    Pointer<ISteamVideo> Function(
-      Pointer<ISteamClient>,
-      HSteamUser,
-      HSteamPipe,
-      Pointer<Utf8>,
-    )>("SteamAPI_ISteamClient_GetISteamVideo");
 
 final _getISteamParentalSettings = dl.lookupFunction<
     Pointer<ISteamParentalSettings> Function(
@@ -726,18 +696,6 @@ extension ISteamClientExtensions on Pointer<ISteamClient> {
         version,
       );
 
-  Pointer<ISteamAppList> getISteamAppList(
-    HSteamUser hSteamUser,
-    HSteamPipe hSteamPipe,
-    Pointer<Utf8> version,
-  ) =>
-      _getISteamAppList.call(
-        this,
-        hSteamUser,
-        hSteamPipe,
-        version,
-      );
-
   Pointer<ISteamMusic> getISteamMusic(
     HSteamUser hSteamuser,
     HSteamPipe hSteamPipe,
@@ -780,18 +738,6 @@ extension ISteamClientExtensions on Pointer<ISteamClient> {
     Pointer<Utf8> version,
   ) =>
       _getISteamInventory.call(
-        this,
-        hSteamuser,
-        hSteamPipe,
-        version,
-      );
-
-  Pointer<ISteamVideo> getISteamVideo(
-    HSteamUser hSteamuser,
-    HSteamPipe hSteamPipe,
-    Pointer<Utf8> version,
-  ) =>
-      _getISteamVideo.call(
         this,
         hSteamuser,
         hSteamPipe,

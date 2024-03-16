@@ -11,6 +11,7 @@ enum ESteamDeviceFormFactor {
   tablet(2),
   computer(3),
   tv(4),
+  vrHeadset(5),
   ;
 
   final int value;
@@ -29,6 +30,8 @@ enum ESteamDeviceFormFactor {
         return ESteamDeviceFormFactor.computer;
       case 4:
         return ESteamDeviceFormFactor.tv;
+      case 5:
+        return ESteamDeviceFormFactor.vrHeadset;
       default:
         throw UnknownEnumValueException(
           "Unknown value for 'ESteamDeviceFormFactor'. The value was: '$value'",

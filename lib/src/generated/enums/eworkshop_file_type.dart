@@ -23,7 +23,8 @@ enum EWorkshopFileType {
   steamworksAccessInvite(13),
   steamVideo(14),
   gameManagedItem(15),
-  max(16),
+  clip(16),
+  max(17),
   ;
 
   final int value;
@@ -67,6 +68,8 @@ enum EWorkshopFileType {
       case 15:
         return EWorkshopFileType.gameManagedItem;
       case 16:
+        return EWorkshopFileType.clip;
+      case 17:
         return EWorkshopFileType.max;
       default:
         throw UnknownEnumValueException(

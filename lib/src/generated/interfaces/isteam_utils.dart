@@ -385,6 +385,14 @@ final _dismissFloatingGamepadTextInput = dl.lookupFunction<
       Pointer<ISteamUtils>,
     )>("SteamAPI_ISteamUtils_DismissFloatingGamepadTextInput");
 
+final _dismissGamepadTextInput = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUtils>,
+    ),
+    bool Function(
+      Pointer<ISteamUtils>,
+    )>("SteamAPI_ISteamUtils_DismissGamepadTextInput");
+
 extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
   int getSecondsSinceAppActive() => _getSecondsSinceAppActive.call(
         this,
@@ -640,6 +648,10 @@ extension ISteamUtilsExtensions on Pointer<ISteamUtils> {
 
   bool dismissFloatingGamepadTextInput() =>
       _dismissFloatingGamepadTextInput.call(
+        this,
+      );
+
+  bool dismissGamepadTextInput() => _dismissGamepadTextInput.call(
         this,
       );
 }

@@ -1,10 +1,19 @@
 // ignore_for_file: public_member_api_docs, always_specify_types, avoid_positional_boolean_parameters, avoid_classes_with_only_static_members
 import "dart:ffi";
+
+import "package:ffi/ffi.dart";
+
 import "../dl.dart";
+import "../enums/esteam_api_init_result.dart";
 import "../typedefs.dart";
 
-final _init =
-    dl.lookupFunction<Bool Function(), bool Function()>("SteamAPI_Init");
+final _initFlat = dl.lookupFunction<
+    ESteamApiInitResultAliasC Function(
+      Pointer<Utf8>,
+    ),
+    ESteamApiInitResultAliasDart Function(
+      Pointer<Utf8>,
+    )>("SteamAPI_InitFlat");
 
 final _releaseCurrentThreadMemory =
     dl.lookupFunction<Void Function(), void Function()>(
@@ -31,7 +40,14 @@ final _getHSteamUser = dl.lookupFunction<Int Function(), HSteamUser Function()>(
 );
 
 class SteamApi {
-  static bool init() => _init.call();
+  static ESteamApiInitResult initFlat(
+    Pointer<Utf8> outErrorMessage,
+  ) =>
+      ESteamApiInitResult.fromValue(
+        _initFlat.call(
+          outErrorMessage,
+        ),
+      );
 
   static void releaseCurrentThreadMemory() =>
       _releaseCurrentThreadMemory.call();

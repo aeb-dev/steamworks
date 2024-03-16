@@ -13,6 +13,7 @@ enum EItemState {
   needsUpdate(8),
   downloading(16),
   downloadPending(32),
+  disabledLocally(64),
   ;
 
   final int value;
@@ -35,6 +36,8 @@ enum EItemState {
         return EItemState.downloading;
       case 32:
         return EItemState.downloadPending;
+      case 64:
+        return EItemState.disabledLocally;
       default:
         throw UnknownEnumValueException(
           "Unknown value for 'EItemState'. The value was: '$value'",

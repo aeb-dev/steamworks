@@ -11,6 +11,7 @@ enum EItemPreviewType {
   sketchfab(2),
   environmentMapHorizontalCross(3),
   environmentMapLatLong(4),
+  clip(5),
   reservedMax(255),
   ;
 
@@ -30,6 +31,8 @@ enum EItemPreviewType {
         return EItemPreviewType.environmentMapHorizontalCross;
       case 4:
         return EItemPreviewType.environmentMapLatLong;
+      case 5:
+        return EItemPreviewType.clip;
       case 255:
         return EItemPreviewType.reservedMax;
       default:

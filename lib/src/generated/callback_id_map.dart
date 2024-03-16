@@ -172,8 +172,6 @@ import "callback_structs/set_user_item_vote_result.dart";
 import "callback_structs/socket_status_callback.dart";
 import "callback_structs/start_playtime_tracking_result.dart";
 import "callback_structs/steam_api_call_completed.dart";
-import "callback_structs/steam_app_installed.dart";
-import "callback_structs/steam_app_uninstalled.dart";
 import "callback_structs/steam_input_configuration_loaded.dart";
 import "callback_structs/steam_input_device_connected.dart";
 import "callback_structs/steam_input_device_disconnected.dart";
@@ -404,8 +402,6 @@ Map<Type, int> callbackIdMapByType = {
   DeleteItemResult: DeleteItemResult.callbackId,
   UserSubscribedItemsListChanged: UserSubscribedItemsListChanged.callbackId,
   WorkshopEulaStatus: WorkshopEulaStatus.callbackId,
-  SteamAppInstalled: SteamAppInstalled.callbackId,
-  SteamAppUninstalled: SteamAppUninstalled.callbackId,
   HtmlBrowserReady: HtmlBrowserReady.callbackId,
   HtmlNeedsPaint: HtmlNeedsPaint.callbackId,
   HtmlStartRequest: HtmlStartRequest.callbackId,
