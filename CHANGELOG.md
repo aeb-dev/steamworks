@@ -1,3 +1,8 @@
+## 0.4.6
+
+- Update steamworks_gen to 0.4.3
+- Steamworks SDK 1.59
+
 ## 0.4.5
 
 - Update steamworks_gen to 0.4.2
