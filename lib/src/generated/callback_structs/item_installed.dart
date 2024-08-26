@@ -11,10 +11,20 @@ final class ItemInstalled extends Struct {
 
   @UnsignedLongLong()
   external PublishedFileId publishedFileId;
+
+  @UnsignedLongLong()
+  external UgcHandle legacyContent;
+
+  @UnsignedLongLong()
+  external int manifestId;
 }
 
 extension ItemInstalledExtensions on Pointer<ItemInstalled> {
   AppId get appId => ref.appId;
 
   PublishedFileId get publishedFileId => ref.publishedFileId;
+
+  UgcHandle get legacyContent => ref.legacyContent;
+
+  int get manifestId => ref.manifestId;
 }

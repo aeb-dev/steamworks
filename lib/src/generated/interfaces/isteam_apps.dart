@@ -313,6 +313,56 @@ final _setDlcContext = dl.lookupFunction<
       AppId,
     )>("SteamAPI_ISteamApps_SetDlcContext");
 
+final _getNumBetas = dl.lookupFunction<
+    Int Function(
+      Pointer<ISteamApps>,
+      UnsignedInt,
+      Pointer<Int>,
+      Pointer<Int>,
+    ),
+    int Function(
+      Pointer<ISteamApps>,
+      AppId,
+      Pointer<Int>,
+      Pointer<Int>,
+    )>("SteamAPI_ISteamApps_GetNumBetas");
+
+final _getBetaInfo = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamApps>,
+      UnsignedInt,
+      Int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      Pointer<Utf8>,
+      Int,
+      Pointer<Utf8>,
+      Int,
+    ),
+    bool Function(
+      Pointer<ISteamApps>,
+      AppId,
+      int,
+      Pointer<UnsignedInt>,
+      Pointer<UnsignedInt>,
+      Pointer<Utf8>,
+      int,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamApps_GetBetaInfo");
+
+final _setActiveBeta = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamApps>,
+      UnsignedInt,
+      Pointer<Utf8>,
+    ),
+    bool Function(
+      Pointer<ISteamApps>,
+      AppId,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamApps_SetActiveBeta");
+
 extension ISteamAppsExtensions on Pointer<ISteamApps> {
   bool isSubscribed() => _isSubscribed.call(
         this,
@@ -530,5 +580,49 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
       _setDlcContext.call(
         this,
         nAppId,
+      );
+
+  int getNumBetas(
+    AppId appId,
+    Pointer<Int> pnAvailable,
+    Pointer<Int> pnPrivate,
+  ) =>
+      _getNumBetas.call(
+        this,
+        appId,
+        pnAvailable,
+        pnPrivate,
+      );
+
+  bool getBetaInfo(
+    AppId appId,
+    int iBetaIndex,
+    Pointer<UnsignedInt> flags,
+    Pointer<UnsignedInt> buildId,
+    Pointer<Utf8> betaName,
+    int cchBetaName,
+    Pointer<Utf8> description,
+    int cchDescription,
+  ) =>
+      _getBetaInfo.call(
+        this,
+        appId,
+        iBetaIndex,
+        flags,
+        buildId,
+        betaName,
+        cchBetaName,
+        description,
+        cchDescription,
+      );
+
+  bool setActiveBeta(
+    AppId appId,
+    Pointer<Utf8> betaName,
+  ) =>
+      _setActiveBeta.call(
+        this,
+        appId,
+        betaName,
       );
 }

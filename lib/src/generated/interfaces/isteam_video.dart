@@ -5,7 +5,7 @@ import "../dl.dart";
 import "../typedefs.dart";
 
 final _steamVideo = dl.lookupFunction<Pointer<ISteamVideo> Function(),
-    Pointer<ISteamVideo> Function()>("SteamAPI_SteamVideo_v002");
+    Pointer<ISteamVideo> Function()>("SteamAPI_SteamVideo_v007");
 
 final class ISteamVideo extends Opaque {
   static Pointer<ISteamVideo> get userInstance => _steamVideo();

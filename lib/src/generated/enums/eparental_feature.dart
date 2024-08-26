@@ -21,7 +21,8 @@ enum EParentalFeature {
   test(12),
   siteLicense(13),
   kioskModeDeprecated(14),
-  max(15),
+  blockAlways(15),
+  max(16),
   ;
 
   final int value;
@@ -61,6 +62,8 @@ enum EParentalFeature {
       case 14:
         return EParentalFeature.kioskModeDeprecated;
       case 15:
+        return EParentalFeature.blockAlways;
+      case 16:
         return EParentalFeature.max;
       default:
         throw UnknownEnumValueException(

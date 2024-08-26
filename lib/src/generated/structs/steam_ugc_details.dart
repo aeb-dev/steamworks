@@ -85,6 +85,9 @@ final class SteamUgcDetails extends Struct {
 
   @UnsignedInt()
   external int numChildren;
+
+  @UnsignedLongLong()
+  external int totalFilesSize;
 }
 
 extension SteamUgcDetailsExtensions on Pointer<SteamUgcDetails> {
@@ -140,4 +143,6 @@ extension SteamUgcDetailsExtensions on Pointer<SteamUgcDetails> {
   double get score => ref.score;
 
   int get numChildren => ref.numChildren;
+
+  int get totalFilesSize => ref.totalFilesSize;
 }

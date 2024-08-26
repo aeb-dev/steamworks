@@ -57,6 +57,7 @@ enum ESteamNetworkingConfigValue {
   recvMaxMessageSize(49),
   recvMaxSegmentsPerPacket(50),
   outOfOrderCorrectionWindowMicroseconds(51),
+  ipLocalHostAllowWithoutAuth(52),
   sdrClientLimitPingProbesToNearestN(60),
   p2pSTUNServerList(103),
   p2pTransportIceEnable(104),
@@ -187,6 +188,8 @@ enum ESteamNetworkingConfigValue {
       case 51:
         return ESteamNetworkingConfigValue
             .outOfOrderCorrectionWindowMicroseconds;
+      case 52:
+        return ESteamNetworkingConfigValue.ipLocalHostAllowWithoutAuth;
       case 60:
         return ESteamNetworkingConfigValue.sdrClientLimitPingProbesToNearestN;
       case 103:

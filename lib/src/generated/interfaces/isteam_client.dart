@@ -28,6 +28,7 @@ import "../interfaces/isteam_ugc.dart";
 import "../interfaces/isteam_user.dart";
 import "../interfaces/isteam_user_stats.dart";
 import "../interfaces/isteam_utils.dart";
+import "../interfaces/isteam_video.dart";
 import "../structs/steam_ip_address.dart";
 import "../typedefs.dart";
 
@@ -391,6 +392,20 @@ final _getISteamInventory = dl.lookupFunction<
       Pointer<Utf8>,
     )>("SteamAPI_ISteamClient_GetISteamInventory");
 
+final _getISteamVideo = dl.lookupFunction<
+    Pointer<ISteamVideo> Function(
+      Pointer<ISteamClient>,
+      Int,
+      Int,
+      Pointer<Utf8>,
+    ),
+    Pointer<ISteamVideo> Function(
+      Pointer<ISteamClient>,
+      HSteamUser,
+      HSteamPipe,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamClient_GetISteamVideo");
+
 final _getISteamParentalSettings = dl.lookupFunction<
     Pointer<ISteamParentalSettings> Function(
       Pointer<ISteamClient>,
@@ -738,6 +753,18 @@ extension ISteamClientExtensions on Pointer<ISteamClient> {
     Pointer<Utf8> version,
   ) =>
       _getISteamInventory.call(
+        this,
+        hSteamuser,
+        hSteamPipe,
+        version,
+      );
+
+  Pointer<ISteamVideo> getISteamVideo(
+    HSteamUser hSteamuser,
+    HSteamPipe hSteamPipe,
+    Pointer<Utf8> version,
+  ) =>
+      _getISteamVideo.call(
         this,
         hSteamuser,
         hSteamPipe,

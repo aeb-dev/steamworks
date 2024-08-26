@@ -19,10 +19,10 @@ import "../structs/steam_ugc_details.dart";
 import "../typedefs.dart";
 
 final _steamUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v018");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v020");
 
 final _steamGameServerUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v018");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v020");
 
 final class ISteamUgc extends Opaque {
   static Pointer<ISteamUgc> get userInstance => _steamUgc();
@@ -324,6 +324,38 @@ final _getQueryFirstUgcKeyValueTag = dl.lookupFunction<
       int,
     )>("SteamAPI_ISteamUGC_GetQueryFirstUGCKeyValueTag");
 
+final _getNumSupportedGameVersions = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+    )>("SteamAPI_ISteamUGC_GetNumSupportedGameVersions");
+
+final _getSupportedGameVersionData = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      UnsignedInt,
+      UnsignedInt,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      UnsignedInt,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      UgcQueryHandle,
+      int,
+      int,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetSupportedGameVersionData");
+
 final _getQueryUgcContentDescriptors = dl.lookupFunction<
     UnsignedInt Function(
       Pointer<ISteamUgc>,
@@ -505,6 +537,18 @@ final _setAllowCachedResponse = dl.lookupFunction<
       UgcQueryHandle,
       int,
     )>("SteamAPI_ISteamUGC_SetAllowCachedResponse");
+
+final _setAdminQuery = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Bool,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetAdminQuery");
 
 final _setCloudFileNameFilter = dl.lookupFunction<
     Bool Function(
@@ -867,6 +911,20 @@ final _removeContentDescriptor = dl.lookupFunction<
       UgcUpdateHandle,
       EUgcContentDescriptorIdAliasDart,
     )>("SteamAPI_ISteamUGC_RemoveContentDescriptor");
+
+final _setRequiredGameVersions = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      UgcUpdateHandle,
+      Pointer<Utf8>,
+      Pointer<Utf8>,
+    )>("SteamAPI_ISteamUGC_SetRequiredGameVersions");
 
 final _submitItemUpdate = dl.lookupFunction<
     UnsignedLongLong Function(
@@ -1443,6 +1501,34 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         cchValueSize,
       );
 
+  int getNumSupportedGameVersions(
+    UgcQueryHandle handle,
+    int index,
+  ) =>
+      _getNumSupportedGameVersions.call(
+        this,
+        handle,
+        index,
+      );
+
+  bool getSupportedGameVersionData(
+    UgcQueryHandle handle,
+    int index,
+    int versionIndex,
+    Pointer<Utf8> gameBranchMin,
+    Pointer<Utf8> gameBranchMax,
+    int cchGameBranchSize,
+  ) =>
+      _getSupportedGameVersionData.call(
+        this,
+        handle,
+        index,
+        versionIndex,
+        gameBranchMin,
+        gameBranchMax,
+        cchGameBranchSize,
+      );
+
   int getQueryUgcContentDescriptors(
     UgcQueryHandle handle,
     int index,
@@ -1593,6 +1679,16 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         this,
         handle,
         maxAgeSeconds,
+      );
+
+  bool setAdminQuery(
+    UgcUpdateHandle handle,
+    bool adminQuery,
+  ) =>
+      _setAdminQuery.call(
+        this,
+        handle,
+        adminQuery,
       );
 
   bool setCloudFileNameFilter(
@@ -1897,6 +1993,18 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         this,
         handle,
         descid.value,
+      );
+
+  bool setRequiredGameVersions(
+    UgcUpdateHandle handle,
+    Pointer<Utf8> pszGameBranchMin,
+    Pointer<Utf8> pszGameBranchMax,
+  ) =>
+      _setRequiredGameVersions.call(
+        this,
+        handle,
+        pszGameBranchMin,
+        pszGameBranchMax,
       );
 
   SteamApiCall submitItemUpdate(
