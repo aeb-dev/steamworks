@@ -1,3 +1,9 @@
+## 0.4.7
+
+- Update steamworks_gen to 0.4.4
+- Steamworks SDK 1.60
+- Load dynamic library without relative path
+
 ## 0.4.6
 
 - Update steamworks_gen to 0.4.3
