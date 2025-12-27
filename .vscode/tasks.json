@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Generate steam api",
+            "command": "dart",
+            "type": "process",
+            "args": [
+                "run",
+                "steamworks_gen",
+                "-o",
+                "lib/src/generated",
+                "steam_api.json"
+            ],
+            "problemMatcher": "$dart-build_runner"
+        }
+    ]
+}
