@@ -1,3 +1,9 @@
+## 0.4.8
+
+- Update steamworks_gen to 0.4.5
+- Steamworks SDK 1.63
+- Add launch.json and tasks.json for vscode
+
 ## 0.4.7
 
 - Update steamworks_gen to 0.4.4
