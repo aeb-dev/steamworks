@@ -19,10 +19,10 @@ import "../structs/steam_ugc_details.dart";
 import "../typedefs.dart";
 
 final _steamUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v020");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamUGC_v021");
 
 final _steamGameServerUgc = dl.lookupFunction<Pointer<ISteamUgc> Function(),
-    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v020");
+    Pointer<ISteamUgc> Function()>("SteamAPI_SteamGameServerUGC_v021");
 
 final class ISteamUgc extends Opaque {
   static Pointer<ISteamUgc> get userInstance => _steamUgc();
@@ -1021,9 +1021,11 @@ final _unsubscribeItem = dl.lookupFunction<
 final _getNumSubscribedItems = dl.lookupFunction<
     UnsignedInt Function(
       Pointer<ISteamUgc>,
+      Bool,
     ),
     int Function(
       Pointer<ISteamUgc>,
+      bool,
     )>("SteamAPI_ISteamUGC_GetNumSubscribedItems");
 
 final _getSubscribedItems = dl.lookupFunction<
@@ -1031,11 +1033,13 @@ final _getSubscribedItems = dl.lookupFunction<
       Pointer<ISteamUgc>,
       Pointer<UnsignedLongLong>,
       UnsignedInt,
+      Bool,
     ),
     int Function(
       Pointer<ISteamUgc>,
       Pointer<UnsignedLongLong>,
       int,
+      bool,
     )>("SteamAPI_ISteamUGC_GetSubscribedItems");
 
 final _getItemState = dl.lookupFunction<
@@ -1241,6 +1245,32 @@ final _getUserContentDescriptorPreferences = dl.lookupFunction<
       Pointer<EUgcContentDescriptorIdAliasC>,
       int,
     )>("SteamAPI_ISteamUGC_GetUserContentDescriptorPreferences");
+
+final _setItemsDisabledLocally = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+      Bool,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      int,
+      bool,
+    )>("SteamAPI_ISteamUGC_SetItemsDisabledLocally");
+
+final _setSubscriptionsLoadOrder = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUGC_SetSubscriptionsLoadOrder");
 
 extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   UgcQueryHandle createQueryUserUgcRequest(
@@ -2085,18 +2115,24 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         nPublishedFileId,
       );
 
-  int getNumSubscribedItems() => _getNumSubscribedItems.call(
+  int getNumSubscribedItems(
+    bool includeLocallyDisabled,
+  ) =>
+      _getNumSubscribedItems.call(
         this,
+        includeLocallyDisabled,
       );
 
   int getSubscribedItems(
     Pointer<UnsignedLongLong> publishedFileId,
     int cMaxEntries,
+    bool includeLocallyDisabled,
   ) =>
       _getSubscribedItems.call(
         this,
         publishedFileId,
         cMaxEntries,
+        includeLocallyDisabled,
       );
 
   int getItemState(
@@ -2260,5 +2296,27 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         this,
         descriptors,
         cMaxEntries,
+      );
+
+  bool setItemsDisabledLocally(
+    Pointer<UnsignedLongLong> publishedFileIds,
+    int numPublishedFileIds,
+    bool disabledLocally,
+  ) =>
+      _setItemsDisabledLocally.call(
+        this,
+        publishedFileIds,
+        numPublishedFileIds,
+        disabledLocally,
+      );
+
+  bool setSubscriptionsLoadOrder(
+    Pointer<UnsignedLongLong> publishedFileIds,
+    int numPublishedFileIds,
+  ) =>
+      _setSubscriptionsLoadOrder.call(
+        this,
+        publishedFileIds,
+        numPublishedFileIds,
       );
 }

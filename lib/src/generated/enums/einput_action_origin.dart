@@ -412,7 +412,96 @@ enum EInputActionOrigin {
   steamDeckReserved18(403),
   steamDeckReserved19(404),
   steamDeckReserved20(405),
-  count(406),
+  horipadM1(406),
+  horipadM2(407),
+  horipadL4(408),
+  horipadR4(409),
+  lenovoLegionGoA(410),
+  lenovoLegionGoB(411),
+  lenovoLegionGoX(412),
+  lenovoLegionGoY(413),
+  lenovoLegionGoLB(414),
+  lenovoLegionGoRB(415),
+  lenovoLegionGoMenu(416),
+  lenovoLegionGoView(417),
+  lenovoLegionGoLeftPadTouch(418),
+  lenovoLegionGoLeftPadSwipe(419),
+  lenovoLegionGoLeftPadClick(420),
+  lenovoLegionGoLeftPadDPadNorth(421),
+  lenovoLegionGoLeftPadDPadSouth(422),
+  lenovoLegionGoLeftPadDPadWest(423),
+  lenovoLegionGoLeftPadDPadEast(424),
+  lenovoLegionGoRightPadTouch(425),
+  lenovoLegionGoRightPadSwipe(426),
+  lenovoLegionGoRightPadClick(427),
+  lenovoLegionGoRightPadDPadNorth(428),
+  lenovoLegionGoRightPadDPadSouth(429),
+  lenovoLegionGoRightPadDPadWest(430),
+  lenovoLegionGoRightPadDPadEast(431),
+  lenovoLegionGoLTSoftPull(432),
+  lenovoLegionGoLT(433),
+  lenovoLegionGoRTSoftPull(434),
+  lenovoLegionGoRT(435),
+  lenovoLegionGoLeftStickMove(436),
+  lenovoLegionGoLS(437),
+  lenovoLegionGoLeftStickDPadNorth(438),
+  lenovoLegionGoLeftStickDPadSouth(439),
+  lenovoLegionGoLeftStickDPadWest(440),
+  lenovoLegionGoLeftStickDPadEast(441),
+  lenovoLegionGoRightStickMove(442),
+  lenovoLegionGoRS(443),
+  lenovoLegionGoRightStickDPadNorth(444),
+  lenovoLegionGoRightStickDPadSouth(445),
+  lenovoLegionGoRightStickDPadWest(446),
+  lenovoLegionGoRightStickDPadEast(447),
+  lenovoLegionGoY1(448),
+  lenovoLegionGoY2(449),
+  lenovoLegionGoDPadMove(450),
+  lenovoLegionGoDPadNorth(451),
+  lenovoLegionGoDPadSouth(452),
+  lenovoLegionGoDPadWest(453),
+  lenovoLegionGoDPadEast(454),
+  lenovoLegionGoGyroMove(455),
+  lenovoLegionGoGyroPitch(456),
+  lenovoLegionGoGyroYaw(457),
+  lenovoLegionGoGyroRoll(458),
+  lenovoLegionGoReserved1(459),
+  lenovoLegionGoReserved2(460),
+  lenovoLegionGoReserved3(461),
+  lenovoLegionGoReserved4(462),
+  lenovoLegionGoReserved5(463),
+  lenovoLegionGoReserved6(464),
+  lenovoLegionGoReserved7(465),
+  lenovoLegionGoReserved8(466),
+  lenovoLegionGoReserved9(467),
+  lenovoLegionGoReserved10(468),
+  lenovoLegionGoReserved11(469),
+  lenovoLegionGoReserved12(470),
+  lenovoLegionGoReserved13(471),
+  lenovoLegionGoReserved14(472),
+  lenovoLegionGoReserved15(473),
+  lenovoLegionGoReserved16(474),
+  lenovoLegionGoReserved17(475),
+  lenovoLegionGoReserved18(476),
+  lenovoLegionGoReserved19(477),
+  lenovoLegionGoReserved20(478),
+  genericL4(479),
+  genericR4(480),
+  genericL5(481),
+  genericR5(482),
+  genericPL(483),
+  genericPR(484),
+  genericC(485),
+  genericZ(486),
+  genericMISC1(487),
+  genericMISC2(488),
+  genericMISC3(489),
+  genericMISC4(490),
+  genericMISC5(491),
+  genericMISC6(492),
+  genericMISC7(493),
+  genericMISC8(494),
+  count(495),
   maximumPossibleValue(32767),
   ;
 
@@ -1235,6 +1324,184 @@ enum EInputActionOrigin {
       case 405:
         return EInputActionOrigin.steamDeckReserved20;
       case 406:
+        return EInputActionOrigin.horipadM1;
+      case 407:
+        return EInputActionOrigin.horipadM2;
+      case 408:
+        return EInputActionOrigin.horipadL4;
+      case 409:
+        return EInputActionOrigin.horipadR4;
+      case 410:
+        return EInputActionOrigin.lenovoLegionGoA;
+      case 411:
+        return EInputActionOrigin.lenovoLegionGoB;
+      case 412:
+        return EInputActionOrigin.lenovoLegionGoX;
+      case 413:
+        return EInputActionOrigin.lenovoLegionGoY;
+      case 414:
+        return EInputActionOrigin.lenovoLegionGoLB;
+      case 415:
+        return EInputActionOrigin.lenovoLegionGoRB;
+      case 416:
+        return EInputActionOrigin.lenovoLegionGoMenu;
+      case 417:
+        return EInputActionOrigin.lenovoLegionGoView;
+      case 418:
+        return EInputActionOrigin.lenovoLegionGoLeftPadTouch;
+      case 419:
+        return EInputActionOrigin.lenovoLegionGoLeftPadSwipe;
+      case 420:
+        return EInputActionOrigin.lenovoLegionGoLeftPadClick;
+      case 421:
+        return EInputActionOrigin.lenovoLegionGoLeftPadDPadNorth;
+      case 422:
+        return EInputActionOrigin.lenovoLegionGoLeftPadDPadSouth;
+      case 423:
+        return EInputActionOrigin.lenovoLegionGoLeftPadDPadWest;
+      case 424:
+        return EInputActionOrigin.lenovoLegionGoLeftPadDPadEast;
+      case 425:
+        return EInputActionOrigin.lenovoLegionGoRightPadTouch;
+      case 426:
+        return EInputActionOrigin.lenovoLegionGoRightPadSwipe;
+      case 427:
+        return EInputActionOrigin.lenovoLegionGoRightPadClick;
+      case 428:
+        return EInputActionOrigin.lenovoLegionGoRightPadDPadNorth;
+      case 429:
+        return EInputActionOrigin.lenovoLegionGoRightPadDPadSouth;
+      case 430:
+        return EInputActionOrigin.lenovoLegionGoRightPadDPadWest;
+      case 431:
+        return EInputActionOrigin.lenovoLegionGoRightPadDPadEast;
+      case 432:
+        return EInputActionOrigin.lenovoLegionGoLTSoftPull;
+      case 433:
+        return EInputActionOrigin.lenovoLegionGoLT;
+      case 434:
+        return EInputActionOrigin.lenovoLegionGoRTSoftPull;
+      case 435:
+        return EInputActionOrigin.lenovoLegionGoRT;
+      case 436:
+        return EInputActionOrigin.lenovoLegionGoLeftStickMove;
+      case 437:
+        return EInputActionOrigin.lenovoLegionGoLS;
+      case 438:
+        return EInputActionOrigin.lenovoLegionGoLeftStickDPadNorth;
+      case 439:
+        return EInputActionOrigin.lenovoLegionGoLeftStickDPadSouth;
+      case 440:
+        return EInputActionOrigin.lenovoLegionGoLeftStickDPadWest;
+      case 441:
+        return EInputActionOrigin.lenovoLegionGoLeftStickDPadEast;
+      case 442:
+        return EInputActionOrigin.lenovoLegionGoRightStickMove;
+      case 443:
+        return EInputActionOrigin.lenovoLegionGoRS;
+      case 444:
+        return EInputActionOrigin.lenovoLegionGoRightStickDPadNorth;
+      case 445:
+        return EInputActionOrigin.lenovoLegionGoRightStickDPadSouth;
+      case 446:
+        return EInputActionOrigin.lenovoLegionGoRightStickDPadWest;
+      case 447:
+        return EInputActionOrigin.lenovoLegionGoRightStickDPadEast;
+      case 448:
+        return EInputActionOrigin.lenovoLegionGoY1;
+      case 449:
+        return EInputActionOrigin.lenovoLegionGoY2;
+      case 450:
+        return EInputActionOrigin.lenovoLegionGoDPadMove;
+      case 451:
+        return EInputActionOrigin.lenovoLegionGoDPadNorth;
+      case 452:
+        return EInputActionOrigin.lenovoLegionGoDPadSouth;
+      case 453:
+        return EInputActionOrigin.lenovoLegionGoDPadWest;
+      case 454:
+        return EInputActionOrigin.lenovoLegionGoDPadEast;
+      case 455:
+        return EInputActionOrigin.lenovoLegionGoGyroMove;
+      case 456:
+        return EInputActionOrigin.lenovoLegionGoGyroPitch;
+      case 457:
+        return EInputActionOrigin.lenovoLegionGoGyroYaw;
+      case 458:
+        return EInputActionOrigin.lenovoLegionGoGyroRoll;
+      case 459:
+        return EInputActionOrigin.lenovoLegionGoReserved1;
+      case 460:
+        return EInputActionOrigin.lenovoLegionGoReserved2;
+      case 461:
+        return EInputActionOrigin.lenovoLegionGoReserved3;
+      case 462:
+        return EInputActionOrigin.lenovoLegionGoReserved4;
+      case 463:
+        return EInputActionOrigin.lenovoLegionGoReserved5;
+      case 464:
+        return EInputActionOrigin.lenovoLegionGoReserved6;
+      case 465:
+        return EInputActionOrigin.lenovoLegionGoReserved7;
+      case 466:
+        return EInputActionOrigin.lenovoLegionGoReserved8;
+      case 467:
+        return EInputActionOrigin.lenovoLegionGoReserved9;
+      case 468:
+        return EInputActionOrigin.lenovoLegionGoReserved10;
+      case 469:
+        return EInputActionOrigin.lenovoLegionGoReserved11;
+      case 470:
+        return EInputActionOrigin.lenovoLegionGoReserved12;
+      case 471:
+        return EInputActionOrigin.lenovoLegionGoReserved13;
+      case 472:
+        return EInputActionOrigin.lenovoLegionGoReserved14;
+      case 473:
+        return EInputActionOrigin.lenovoLegionGoReserved15;
+      case 474:
+        return EInputActionOrigin.lenovoLegionGoReserved16;
+      case 475:
+        return EInputActionOrigin.lenovoLegionGoReserved17;
+      case 476:
+        return EInputActionOrigin.lenovoLegionGoReserved18;
+      case 477:
+        return EInputActionOrigin.lenovoLegionGoReserved19;
+      case 478:
+        return EInputActionOrigin.lenovoLegionGoReserved20;
+      case 479:
+        return EInputActionOrigin.genericL4;
+      case 480:
+        return EInputActionOrigin.genericR4;
+      case 481:
+        return EInputActionOrigin.genericL5;
+      case 482:
+        return EInputActionOrigin.genericR5;
+      case 483:
+        return EInputActionOrigin.genericPL;
+      case 484:
+        return EInputActionOrigin.genericPR;
+      case 485:
+        return EInputActionOrigin.genericC;
+      case 486:
+        return EInputActionOrigin.genericZ;
+      case 487:
+        return EInputActionOrigin.genericMISC1;
+      case 488:
+        return EInputActionOrigin.genericMISC2;
+      case 489:
+        return EInputActionOrigin.genericMISC3;
+      case 490:
+        return EInputActionOrigin.genericMISC4;
+      case 491:
+        return EInputActionOrigin.genericMISC5;
+      case 492:
+        return EInputActionOrigin.genericMISC6;
+      case 493:
+        return EInputActionOrigin.genericMISC7;
+      case 494:
+        return EInputActionOrigin.genericMISC8;
+      case 495:
         return EInputActionOrigin.count;
       case 32767:
         return EInputActionOrigin.maximumPossibleValue;

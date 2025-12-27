@@ -7,7 +7,6 @@ import "../dl.dart";
 import "../enums/eaccount_type.dart";
 import "../interfaces/isteam_apps.dart";
 import "../interfaces/isteam_friends.dart";
-import "../interfaces/isteam_game_search.dart";
 import "../interfaces/isteam_game_server.dart";
 import "../interfaces/isteam_game_server_stats.dart";
 import "../interfaces/isteam_html_surface.dart";
@@ -17,7 +16,6 @@ import "../interfaces/isteam_inventory.dart";
 import "../interfaces/isteam_matchmaking.dart";
 import "../interfaces/isteam_matchmaking_servers.dart";
 import "../interfaces/isteam_music.dart";
-import "../interfaces/isteam_music_remote.dart";
 import "../interfaces/isteam_networking.dart";
 import "../interfaces/isteam_parental_settings.dart";
 import "../interfaces/isteam_parties.dart";
@@ -278,20 +276,6 @@ final _getISteamScreenshots = dl.lookupFunction<
       Pointer<Utf8>,
     )>("SteamAPI_ISteamClient_GetISteamScreenshots");
 
-final _getISteamGameSearch = dl.lookupFunction<
-    Pointer<ISteamGameSearch> Function(
-      Pointer<ISteamClient>,
-      Int,
-      Int,
-      Pointer<Utf8>,
-    ),
-    Pointer<ISteamGameSearch> Function(
-      Pointer<ISteamClient>,
-      HSteamUser,
-      HSteamPipe,
-      Pointer<Utf8>,
-    )>("SteamAPI_ISteamClient_GetISteamGameSearch");
-
 final _getIpcCallCount = dl.lookupFunction<
     UnsignedInt Function(
       Pointer<ISteamClient>,
@@ -349,20 +333,6 @@ final _getISteamMusic = dl.lookupFunction<
       HSteamPipe,
       Pointer<Utf8>,
     )>("SteamAPI_ISteamClient_GetISteamMusic");
-
-final _getISteamMusicRemote = dl.lookupFunction<
-    Pointer<ISteamMusicRemote> Function(
-      Pointer<ISteamClient>,
-      Int,
-      Int,
-      Pointer<Utf8>,
-    ),
-    Pointer<ISteamMusicRemote> Function(
-      Pointer<ISteamClient>,
-      HSteamUser,
-      HSteamPipe,
-      Pointer<Utf8>,
-    )>("SteamAPI_ISteamClient_GetISteamMusicRemote");
 
 final _getISteamHtmlSurface = dl.lookupFunction<
     Pointer<ISteamHtmlSurface> Function(
@@ -667,18 +637,6 @@ extension ISteamClientExtensions on Pointer<ISteamClient> {
         version,
       );
 
-  Pointer<ISteamGameSearch> getISteamGameSearch(
-    HSteamUser hSteamuser,
-    HSteamPipe hSteamPipe,
-    Pointer<Utf8> version,
-  ) =>
-      _getISteamGameSearch.call(
-        this,
-        hSteamuser,
-        hSteamPipe,
-        version,
-      );
-
   int getIpcCallCount() => _getIpcCallCount.call(
         this,
       );
@@ -717,18 +675,6 @@ extension ISteamClientExtensions on Pointer<ISteamClient> {
     Pointer<Utf8> version,
   ) =>
       _getISteamMusic.call(
-        this,
-        hSteamuser,
-        hSteamPipe,
-        version,
-      );
-
-  Pointer<ISteamMusicRemote> getISteamMusicRemote(
-    HSteamUser hSteamuser,
-    HSteamPipe hSteamPipe,
-    Pointer<Utf8> version,
-  ) =>
-      _getISteamMusicRemote.call(
         this,
         hSteamuser,
         hSteamPipe,

@@ -15,7 +15,7 @@ import "../structs/friend_game_info.dart";
 import "../typedefs.dart";
 
 final _steamFriends = dl.lookupFunction<Pointer<ISteamFriends> Function(),
-    Pointer<ISteamFriends> Function()>("SteamAPI_SteamFriends_v017");
+    Pointer<ISteamFriends> Function()>("SteamAPI_SteamFriends_v018");
 
 final class ISteamFriends extends Opaque {
   static Pointer<ISteamFriends> get userInstance => _steamFriends();
@@ -28,16 +28,6 @@ final _getPersonaName = dl.lookupFunction<
     Pointer<Utf8> Function(
       Pointer<ISteamFriends>,
     )>("SteamAPI_ISteamFriends_GetPersonaName");
-
-final _setPersonaName = dl.lookupFunction<
-    UnsignedLongLong Function(
-      Pointer<ISteamFriends>,
-      Pointer<Utf8>,
-    ),
-    SteamApiCall Function(
-      Pointer<ISteamFriends>,
-      Pointer<Utf8>,
-    )>("SteamAPI_ISteamFriends_SetPersonaName");
 
 final _getPersonaState = dl.lookupFunction<
     EPersonaStateAliasC Function(
@@ -469,14 +459,6 @@ final _getClanOfficerByIndex = dl.lookupFunction<
       int,
     )>("SteamAPI_ISteamFriends_GetClanOfficerByIndex");
 
-final _getUserRestrictions = dl.lookupFunction<
-    UnsignedInt Function(
-      Pointer<ISteamFriends>,
-    ),
-    int Function(
-      Pointer<ISteamFriends>,
-    )>("SteamAPI_ISteamFriends_GetUserRestrictions");
-
 final _setRichPresence = dl.lookupFunction<
     Bool Function(
       Pointer<ISteamFriends>,
@@ -892,14 +874,6 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
         this,
       );
 
-  SteamApiCall setPersonaName(
-    Pointer<Utf8> personaName,
-  ) =>
-      _setPersonaName.call(
-        this,
-        personaName,
-      );
-
   EPersonaState getPersonaState() => EPersonaState.fromValue(
         _getPersonaState.call(
           this,
@@ -1248,10 +1222,6 @@ extension ISteamFriendsExtensions on Pointer<ISteamFriends> {
         this,
         steamIdClan,
         iOfficer,
-      );
-
-  int getUserRestrictions() => _getUserRestrictions.call(
-        this,
       );
 
   bool setRichPresence(

@@ -135,6 +135,8 @@ enum EResult {
   kEResultPhoneNumberIsVOIp(127),
   eResultNotSupported(128),
   eResultFamilySizeLimitExceeded(129),
+  eResultOfflineAppCacheInvalid(130),
+  eResultTryLater(131),
   ;
 
   final int value;
@@ -401,6 +403,10 @@ enum EResult {
         return EResult.eResultNotSupported;
       case 129:
         return EResult.eResultFamilySizeLimitExceeded;
+      case 130:
+        return EResult.eResultOfflineAppCacheInvalid;
+      case 131:
+        return EResult.eResultTryLater;
       default:
         throw UnknownEnumValueException(
           "Unknown value for 'EResult'. The value was: '$value'",

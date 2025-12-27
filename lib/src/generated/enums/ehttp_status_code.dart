@@ -43,14 +43,28 @@ enum EHttpStatusCode {
   statusCode416RequestedRangeNotSatisfiable(416),
   statusCode417ExpectationFailed(417),
   statusCode4xxUnknown(418),
+  statusCode421MisdirectedRequest(421),
+  statusCode422UnprocessableContent(422),
+  statusCode423Locked(423),
+  statusCode424FailedDependency(424),
+  statusCode425TooEarly(425),
+  statusCode426UpgradeRequired(426),
+  statusCode428PreconditionRequired(428),
   statusCode429TooManyRequests(429),
+  statusCode431RequestHeaderFieldsTooLarge(431),
   statusCode444ConnectionClosed(444),
+  statusCode451UnavailableForLegalReasons(451),
   statusCode500InternalServerError(500),
   statusCode501NotImplemented(501),
   statusCode502BadGateway(502),
   statusCode503ServiceUnavailable(503),
   statusCode504GatewayTimeout(504),
   statusCode505HttpVersionNotSupported(505),
+  statusCode506VariantAlsoNegotiates(506),
+  statusCode507InsufficientStorage(507),
+  statusCode508LoopDetected(508),
+  statusCode510NotExtended(510),
+  statusCode511NetworkAuthenticationRequired(511),
   statusCode5xxUnknown(599),
   ;
 
@@ -134,10 +148,28 @@ enum EHttpStatusCode {
         return EHttpStatusCode.statusCode417ExpectationFailed;
       case 418:
         return EHttpStatusCode.statusCode4xxUnknown;
+      case 421:
+        return EHttpStatusCode.statusCode421MisdirectedRequest;
+      case 422:
+        return EHttpStatusCode.statusCode422UnprocessableContent;
+      case 423:
+        return EHttpStatusCode.statusCode423Locked;
+      case 424:
+        return EHttpStatusCode.statusCode424FailedDependency;
+      case 425:
+        return EHttpStatusCode.statusCode425TooEarly;
+      case 426:
+        return EHttpStatusCode.statusCode426UpgradeRequired;
+      case 428:
+        return EHttpStatusCode.statusCode428PreconditionRequired;
       case 429:
         return EHttpStatusCode.statusCode429TooManyRequests;
+      case 431:
+        return EHttpStatusCode.statusCode431RequestHeaderFieldsTooLarge;
       case 444:
         return EHttpStatusCode.statusCode444ConnectionClosed;
+      case 451:
+        return EHttpStatusCode.statusCode451UnavailableForLegalReasons;
       case 500:
         return EHttpStatusCode.statusCode500InternalServerError;
       case 501:
@@ -150,6 +182,16 @@ enum EHttpStatusCode {
         return EHttpStatusCode.statusCode504GatewayTimeout;
       case 505:
         return EHttpStatusCode.statusCode505HttpVersionNotSupported;
+      case 506:
+        return EHttpStatusCode.statusCode506VariantAlsoNegotiates;
+      case 507:
+        return EHttpStatusCode.statusCode507InsufficientStorage;
+      case 508:
+        return EHttpStatusCode.statusCode508LoopDetected;
+      case 510:
+        return EHttpStatusCode.statusCode510NotExtended;
+      case 511:
+        return EHttpStatusCode.statusCode511NetworkAuthenticationRequired;
       case 599:
         return EHttpStatusCode.statusCode5xxUnknown;
       default:

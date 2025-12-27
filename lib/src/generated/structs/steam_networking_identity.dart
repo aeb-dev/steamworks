@@ -113,24 +113,6 @@ final _getPsnId = dl.lookupFunction<
       Pointer<SteamNetworkingIdentity>,
     )>("SteamAPI_SteamNetworkingIdentity_GetPSNID");
 
-final _setStadiaId = dl.lookupFunction<
-    Void Function(
-      Pointer<SteamNetworkingIdentity>,
-      UnsignedLongLong,
-    ),
-    void Function(
-      Pointer<SteamNetworkingIdentity>,
-      int,
-    )>("SteamAPI_SteamNetworkingIdentity_SetStadiaID");
-
-final _getStadiaId = dl.lookupFunction<
-    UnsignedLongLong Function(
-      Pointer<SteamNetworkingIdentity>,
-    ),
-    int Function(
-      Pointer<SteamNetworkingIdentity>,
-    )>("SteamAPI_SteamNetworkingIdentity_GetStadiaID");
-
 final _setIpAddr = dl.lookupFunction<
     Void Function(
       Pointer<SteamNetworkingIdentity>,
@@ -328,18 +310,6 @@ extension SteamNetworkingIdentityExtensions
       );
 
   int getPsnId() => _getPsnId.call(
-        this,
-      );
-
-  void setStadiaId(
-    int id,
-  ) =>
-      _setStadiaId.call(
-        this,
-        id,
-      );
-
-  int getStadiaId() => _getStadiaId.call(
         this,
       );
 

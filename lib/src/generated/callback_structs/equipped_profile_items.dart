@@ -28,6 +28,9 @@ final class EquippedProfileItems extends Struct {
 
   @Bool()
   external bool hasMiniProfileBackground;
+
+  @Bool()
+  external bool fromCache;
 }
 
 extension EquippedProfileItemsExtensions on Pointer<EquippedProfileItems> {
@@ -44,4 +47,6 @@ extension EquippedProfileItemsExtensions on Pointer<EquippedProfileItems> {
   bool get hasProfileBackground => ref.hasProfileBackground;
 
   bool get hasMiniProfileBackground => ref.hasMiniProfileBackground;
+
+  bool get fromCache => ref.fromCache;
 }

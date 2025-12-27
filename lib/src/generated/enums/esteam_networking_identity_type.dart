@@ -14,7 +14,6 @@ enum ESteamNetworkingIdentityType {
   steamId(16),
   xboxPairwiseId(17),
   sonyPsn(18),
-  googleStadia(19),
   force32bit(2147483647),
   ;
 
@@ -40,8 +39,6 @@ enum ESteamNetworkingIdentityType {
         return ESteamNetworkingIdentityType.xboxPairwiseId;
       case 18:
         return ESteamNetworkingIdentityType.sonyPsn;
-      case 19:
-        return ESteamNetworkingIdentityType.googleStadia;
       case 2147483647:
         return ESteamNetworkingIdentityType.force32bit;
       default:

@@ -67,10 +67,6 @@ class SteamClient extends SteamBase {
   Pointer<ISteamMatchmakingServers> get steamMatchmakingServers =>
       ISteamMatchmakingServers.userInstance;
 
-  /// Accesses user instance of [ISteamGameSearch]
-  Pointer<ISteamGameSearch> get steamGameSearch =>
-      ISteamGameSearch.userInstance;
-
   /// Accesses user instance of [ISteamParties]
   Pointer<ISteamParties> get steamParties => ISteamParties.userInstance;
 
@@ -94,10 +90,6 @@ class SteamClient extends SteamBase {
 
   /// Accesses user instance of [ISteamMusic]
   Pointer<ISteamMusic> get steamMusic => ISteamMusic.userInstance;
-
-  /// Accesses user instance of [ISteamMusicRemote]
-  Pointer<ISteamMusicRemote> get steamMusicRemote =>
-      ISteamMusicRemote.userInstance;
 
   /// Accesses user instance of [ISteamHttp]
   Pointer<ISteamHttp> get steamHttp => ISteamHttp.userInstance;

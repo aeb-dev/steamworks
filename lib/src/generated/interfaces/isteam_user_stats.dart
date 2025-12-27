@@ -12,19 +12,11 @@ import "../structs/leaderboard_entry.dart";
 import "../typedefs.dart";
 
 final _steamUserStats = dl.lookupFunction<Pointer<ISteamUserStats> Function(),
-    Pointer<ISteamUserStats> Function()>("SteamAPI_SteamUserStats_v012");
+    Pointer<ISteamUserStats> Function()>("SteamAPI_SteamUserStats_v013");
 
 final class ISteamUserStats extends Opaque {
   static Pointer<ISteamUserStats> get userInstance => _steamUserStats();
 }
-
-final _requestCurrentStats = dl.lookupFunction<
-    Bool Function(
-      Pointer<ISteamUserStats>,
-    ),
-    bool Function(
-      Pointer<ISteamUserStats>,
-    )>("SteamAPI_ISteamUserStats_RequestCurrentStats");
 
 final _getStatInt32 = dl.lookupFunction<
     Bool Function(
@@ -569,10 +561,6 @@ final _getAchievementProgressLimitsFloat = dl.lookupFunction<
     )>("SteamAPI_ISteamUserStats_GetAchievementProgressLimitsFloat");
 
 extension ISteamUserStatsExtensions on Pointer<ISteamUserStats> {
-  bool requestCurrentStats() => _requestCurrentStats.call(
-        this,
-      );
-
   bool getStatInt32(
     Pointer<Utf8> name,
     Pointer<Int> pData,

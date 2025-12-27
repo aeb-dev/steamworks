@@ -23,6 +23,7 @@ enum EMarketNotAllowedReasonFlags {
   newPaymentMethodCannotBeVerified(8192),
   noRecentPurchases(16384),
   acceptedWalletGift(32768),
+  tradeCooldown(65536),
   ;
 
   final int value;
@@ -65,6 +66,8 @@ enum EMarketNotAllowedReasonFlags {
         return EMarketNotAllowedReasonFlags.noRecentPurchases;
       case 32768:
         return EMarketNotAllowedReasonFlags.acceptedWalletGift;
+      case 65536:
+        return EMarketNotAllowedReasonFlags.tradeCooldown;
       default:
         throw UnknownEnumValueException(
           "Unknown value for 'EMarketNotAllowedReasonFlags'. The value was: '$value'",

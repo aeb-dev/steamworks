@@ -5,10 +5,11 @@ import "package:ffi/ffi.dart";
 
 import "../dl.dart";
 import "../enums/esteam_device_form_factor.dart";
+import "../structs/remote_play_input.dart";
 import "../typedefs.dart";
 
 final _steamRemotePlay = dl.lookupFunction<Pointer<ISteamRemotePlay> Function(),
-    Pointer<ISteamRemotePlay> Function()>("SteamAPI_SteamRemotePlay_v002");
+    Pointer<ISteamRemotePlay> Function()>("SteamAPI_SteamRemotePlay_v003");
 
 final class ISteamRemotePlay extends Opaque {
   static Pointer<ISteamRemotePlay> get userInstance => _steamRemotePlay();
@@ -76,15 +77,13 @@ final _bGetSessionClientResolution = dl.lookupFunction<
       Pointer<Int>,
     )>("SteamAPI_ISteamRemotePlay_BGetSessionClientResolution");
 
-final _bStartRemotePlayTogether = dl.lookupFunction<
+final _showRemotePlayTogetherUI = dl.lookupFunction<
     Bool Function(
       Pointer<ISteamRemotePlay>,
-      Bool,
     ),
     bool Function(
       Pointer<ISteamRemotePlay>,
-      bool,
-    )>("SteamAPI_ISteamRemotePlay_BStartRemotePlayTogether");
+    )>("SteamAPI_ISteamRemotePlay_ShowRemotePlayTogetherUI");
 
 final _bSendRemotePlayTogetherInvite = dl.lookupFunction<
     Bool Function(
@@ -95,6 +94,92 @@ final _bSendRemotePlayTogetherInvite = dl.lookupFunction<
       Pointer<ISteamRemotePlay>,
       CSteamId,
     )>("SteamAPI_ISteamRemotePlay_BSendRemotePlayTogetherInvite");
+
+final _bEnableRemotePlayTogetherDirectInput = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamRemotePlay>,
+    ),
+    bool Function(
+      Pointer<ISteamRemotePlay>,
+    )>("SteamAPI_ISteamRemotePlay_BEnableRemotePlayTogetherDirectInput");
+
+final _disableRemotePlayTogetherDirectInput = dl.lookupFunction<
+    Void Function(
+      Pointer<ISteamRemotePlay>,
+    ),
+    void Function(
+      Pointer<ISteamRemotePlay>,
+    )>("SteamAPI_ISteamRemotePlay_DisableRemotePlayTogetherDirectInput");
+
+final _getInput = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamRemotePlay>,
+      Pointer<RemotePlayInput>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamRemotePlay>,
+      Pointer<RemotePlayInput>,
+      int,
+    )>("SteamAPI_ISteamRemotePlay_GetInput");
+
+final _setMouseVisibility = dl.lookupFunction<
+    Void Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+      Bool,
+    ),
+    void Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+      bool,
+    )>("SteamAPI_ISteamRemotePlay_SetMouseVisibility");
+
+final _setMousePosition = dl.lookupFunction<
+    Void Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+      Float,
+      Float,
+    ),
+    void Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+      double,
+      double,
+    )>("SteamAPI_ISteamRemotePlay_SetMousePosition");
+
+final _createMouseCursor = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamRemotePlay>,
+      Int,
+      Int,
+      Int,
+      Int,
+      Pointer<Void>,
+      Int,
+    ),
+    RemotePlayCursorId Function(
+      Pointer<ISteamRemotePlay>,
+      int,
+      int,
+      int,
+      int,
+      Pointer<Void>,
+      int,
+    )>("SteamAPI_ISteamRemotePlay_CreateMouseCursor");
+
+final _setMouseCursor = dl.lookupFunction<
+    Void Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+      UnsignedInt,
+    ),
+    void Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+      RemotePlayCursorId,
+    )>("SteamAPI_ISteamRemotePlay_SetMouseCursor");
 
 extension ISteamRemotePlayExtensions on Pointer<ISteamRemotePlay> {
   int getSessionCount() => _getSessionCount.call(
@@ -147,12 +232,8 @@ extension ISteamRemotePlayExtensions on Pointer<ISteamRemotePlay> {
         pnResolutionY,
       );
 
-  bool bStartRemotePlayTogether(
-    bool showOverlay,
-  ) =>
-      _bStartRemotePlayTogether.call(
+  bool showRemotePlayTogetherUI() => _showRemotePlayTogetherUI.call(
         this,
-        showOverlay,
       );
 
   bool bSendRemotePlayTogetherInvite(
@@ -161,5 +242,75 @@ extension ISteamRemotePlayExtensions on Pointer<ISteamRemotePlay> {
       _bSendRemotePlayTogetherInvite.call(
         this,
         steamIdFriend,
+      );
+
+  bool bEnableRemotePlayTogetherDirectInput() =>
+      _bEnableRemotePlayTogetherDirectInput.call(
+        this,
+      );
+
+  void disableRemotePlayTogetherDirectInput() =>
+      _disableRemotePlayTogetherDirectInput.call(
+        this,
+      );
+
+  int getInput(
+    Pointer<RemotePlayInput> pInput,
+    int maxEvents,
+  ) =>
+      _getInput.call(
+        this,
+        pInput,
+        maxEvents,
+      );
+
+  void setMouseVisibility(
+    RemotePlaySessionId sessionId,
+    bool visible,
+  ) =>
+      _setMouseVisibility.call(
+        this,
+        sessionId,
+        visible,
+      );
+
+  void setMousePosition(
+    RemotePlaySessionId sessionId,
+    double normalizedX,
+    double normalizedY,
+  ) =>
+      _setMousePosition.call(
+        this,
+        sessionId,
+        normalizedX,
+        normalizedY,
+      );
+
+  RemotePlayCursorId createMouseCursor(
+    int nWidth,
+    int nHeight,
+    int nHotX,
+    int nHotY,
+    Pointer<Void> pBGRA,
+    int nPitch,
+  ) =>
+      _createMouseCursor.call(
+        this,
+        nWidth,
+        nHeight,
+        nHotX,
+        nHotY,
+        pBGRA,
+        nPitch,
+      );
+
+  void setMouseCursor(
+    RemotePlaySessionId sessionId,
+    RemotePlayCursorId cursorId,
+  ) =>
+      _setMouseCursor.call(
+        this,
+        sessionId,
+        cursorId,
       );
 }

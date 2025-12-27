@@ -60,7 +60,9 @@ class SteamConstants {
   static SteamInventoryUpdateHandle get steamInventoryUpdateHandleInvalid =>
       0xffffffffffffffff;
   static int get maxTimelinePriority => 1000;
+  static int get timelinePriorityKeepCurrentValue => 1000000;
   static double get maxTimelineEventDuration => 6000;
+  static int get maxPhaseIdLength => 64;
   static HSteamNetConnection get hSteamNetConnectionInvalid => 0;
   static HSteamListenSocket get hSteamListenSocketInvalid => 0;
   static HSteamNetPollGroup get hSteamNetPollGroupInvalid => 0;

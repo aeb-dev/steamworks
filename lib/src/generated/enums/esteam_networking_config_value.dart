@@ -58,6 +58,13 @@ enum ESteamNetworkingConfigValue {
   recvMaxSegmentsPerPacket(50),
   outOfOrderCorrectionWindowMicroseconds(51),
   ipLocalHostAllowWithoutAuth(52),
+  fakePacketJitterSendAvg(53),
+  fakePacketJitterSendMax(54),
+  fakePacketJitterSendPct(55),
+  fakePacketJitterRecvAvg(56),
+  fakePacketJitterRecvMax(57),
+  fakePacketJitterRecvPct(58),
+  sendTimeSincePreviousPacket(59),
   sdrClientLimitPingProbesToNearestN(60),
   p2pSTUNServerList(103),
   p2pTransportIceEnable(104),
@@ -190,6 +197,20 @@ enum ESteamNetworkingConfigValue {
             .outOfOrderCorrectionWindowMicroseconds;
       case 52:
         return ESteamNetworkingConfigValue.ipLocalHostAllowWithoutAuth;
+      case 53:
+        return ESteamNetworkingConfigValue.fakePacketJitterSendAvg;
+      case 54:
+        return ESteamNetworkingConfigValue.fakePacketJitterSendMax;
+      case 55:
+        return ESteamNetworkingConfigValue.fakePacketJitterSendPct;
+      case 56:
+        return ESteamNetworkingConfigValue.fakePacketJitterRecvAvg;
+      case 57:
+        return ESteamNetworkingConfigValue.fakePacketJitterRecvMax;
+      case 58:
+        return ESteamNetworkingConfigValue.fakePacketJitterRecvPct;
+      case 59:
+        return ESteamNetworkingConfigValue.sendTimeSincePreviousPacket;
       case 60:
         return ESteamNetworkingConfigValue.sdrClientLimitPingProbesToNearestN;
       case 103:

@@ -7,6 +7,8 @@ import "callback_structs/app_resuming_from_suspend.dart";
 import "callback_structs/associate_with_clan_result.dart";
 import "callback_structs/available_beacon_locations_updated.dart";
 import "callback_structs/avatar_image_loaded.dart";
+import "callback_structs/broadcast_upload_start.dart";
+import "callback_structs/broadcast_upload_stop.dart";
 import "callback_structs/change_num_open_slots_callback.dart";
 import "callback_structs/check_file_signature.dart";
 import "callback_structs/clan_officer_list_response.dart";
@@ -20,7 +22,6 @@ import "callback_structs/download_clan_activity_counts_result.dart";
 import "callback_structs/download_item_result.dart";
 import "callback_structs/duration_control.dart";
 import "callback_structs/encrypted_app_ticket_response.dart";
-import "callback_structs/end_game_result_callback.dart";
 import "callback_structs/equipped_profile_items.dart";
 import "callback_structs/equipped_profile_items_changed.dart";
 import "callback_structs/favorites_list_accounts_updated.dart";
@@ -109,20 +110,6 @@ import "callback_structs/lobby_match_list.dart";
 import "callback_structs/low_battery_power.dart";
 import "callback_structs/market_eligibility_response.dart";
 import "callback_structs/micro_txn_authorization_response.dart";
-import "callback_structs/music_player_remote_to_front.dart";
-import "callback_structs/music_player_remote_will_activate.dart";
-import "callback_structs/music_player_remote_will_deactivate.dart";
-import "callback_structs/music_player_selects_playlist_entry.dart";
-import "callback_structs/music_player_selects_queue_entry.dart";
-import "callback_structs/music_player_wants_looped.dart";
-import "callback_structs/music_player_wants_pause.dart";
-import "callback_structs/music_player_wants_play.dart";
-import "callback_structs/music_player_wants_play_next.dart";
-import "callback_structs/music_player_wants_play_previous.dart";
-import "callback_structs/music_player_wants_playing_repeat_status.dart";
-import "callback_structs/music_player_wants_shuffled.dart";
-import "callback_structs/music_player_wants_volume.dart";
-import "callback_structs/music_player_will_quit.dart";
 import "callback_structs/new_url_launch_parameters.dart";
 import "callback_structs/number_of_current_players.dart";
 import "callback_structs/overlay_browser_protocol_navigation.dart";
@@ -130,8 +117,6 @@ import "callback_structs/p2p_session_connect_fail.dart";
 import "callback_structs/p2p_session_request.dart";
 import "callback_structs/persona_state_change.dart";
 import "callback_structs/playback_status_has_changed.dart";
-import "callback_structs/ps3_trophies_installed.dart";
-import "callback_structs/psn_game_boot_invite_result.dart";
 import "callback_structs/remote_storage_delete_published_file_result.dart";
 import "callback_structs/remote_storage_download_ugc_result.dart";
 import "callback_structs/remote_storage_enumerate_published_files_by_user_action_result.dart";
@@ -159,15 +144,9 @@ import "callback_structs/remote_storage_update_user_published_item_vote_result.d
 import "callback_structs/remote_storage_user_vote_details.dart";
 import "callback_structs/remove_app_dependency_result.dart";
 import "callback_structs/remove_ugc_dependency_result.dart";
-import "callback_structs/request_players_for_game_final_result_callback.dart";
-import "callback_structs/request_players_for_game_progress_callback.dart";
-import "callback_structs/request_players_for_game_result_callback.dart";
 import "callback_structs/reservation_notification_callback.dart";
 import "callback_structs/screenshot_ready.dart";
 import "callback_structs/screenshot_requested.dart";
-import "callback_structs/search_for_game_progress_callback.dart";
-import "callback_structs/search_for_game_result_callback.dart";
-import "callback_structs/set_persona_name_response.dart";
 import "callback_structs/set_user_item_vote_result.dart";
 import "callback_structs/socket_status_callback.dart";
 import "callback_structs/start_playtime_tracking_result.dart";
@@ -196,12 +175,13 @@ import "callback_structs/steam_server_connect_failure.dart";
 import "callback_structs/steam_servers_connected.dart";
 import "callback_structs/steam_servers_disconnected.dart";
 import "callback_structs/steam_shutdown.dart";
+import "callback_structs/steam_timeline_event_recording_exists.dart";
+import "callback_structs/steam_timeline_game_phase_recording_exists.dart";
 import "callback_structs/steam_ugc_query_completed.dart";
 import "callback_structs/steam_ugc_request_ugc_details_result.dart";
 import "callback_structs/stop_playtime_tracking_result.dart";
 import "callback_structs/store_auth_url_response.dart";
 import "callback_structs/submit_item_update_result.dart";
-import "callback_structs/submit_player_result_result_callback.dart";
 import "callback_structs/timed_trial_status.dart";
 import "callback_structs/unread_chat_messages_changed.dart";
 import "callback_structs/user_achievement_icon_fetched.dart";
@@ -248,7 +228,6 @@ Map<Type, int> callbackIdMapByType = {
   FriendsGetFollowerCount: FriendsGetFollowerCount.callbackId,
   FriendsIsFollowing: FriendsIsFollowing.callbackId,
   FriendsEnumerateFollowingList: FriendsEnumerateFollowingList.callbackId,
-  SetPersonaNameResponse: SetPersonaNameResponse.callbackId,
   UnreadChatMessagesChanged: UnreadChatMessagesChanged.callbackId,
   OverlayBrowserProtocolNavigation: OverlayBrowserProtocolNavigation.callbackId,
   EquippedProfileItemsChanged: EquippedProfileItemsChanged.callbackId,
@@ -273,18 +252,7 @@ Map<Type, int> callbackIdMapByType = {
   LobbyMatchList: LobbyMatchList.callbackId,
   LobbyKicked: LobbyKicked.callbackId,
   LobbyCreated: LobbyCreated.callbackId,
-  PsnGameBootInviteResult: PsnGameBootInviteResult.callbackId,
   FavoritesListAccountsUpdated: FavoritesListAccountsUpdated.callbackId,
-  SearchForGameProgressCallback: SearchForGameProgressCallback.callbackId,
-  SearchForGameResultCallback: SearchForGameResultCallback.callbackId,
-  RequestPlayersForGameProgressCallback:
-      RequestPlayersForGameProgressCallback.callbackId,
-  RequestPlayersForGameResultCallback:
-      RequestPlayersForGameResultCallback.callbackId,
-  RequestPlayersForGameFinalResultCallback:
-      RequestPlayersForGameFinalResultCallback.callbackId,
-  SubmitPlayerResultResultCallback: SubmitPlayerResultResultCallback.callbackId,
-  EndGameResultCallback: EndGameResultCallback.callbackId,
   JoinPartyCallback: JoinPartyCallback.callbackId,
   CreateBeaconCallback: CreateBeaconCallback.callbackId,
   ReservationNotificationCallback: ReservationNotificationCallback.callbackId,
@@ -347,7 +315,6 @@ Map<Type, int> callbackIdMapByType = {
   GlobalAchievementPercentagesReady:
       GlobalAchievementPercentagesReady.callbackId,
   LeaderboardUgcSet: LeaderboardUgcSet.callbackId,
-  Ps3TrophiesInstalled: Ps3TrophiesInstalled.callbackId,
   GlobalStatsReceived: GlobalStatsReceived.callbackId,
   DlcInstalled: DlcInstalled.callbackId,
   NewUrlLaunchParameters: NewUrlLaunchParameters.callbackId,
@@ -361,21 +328,6 @@ Map<Type, int> callbackIdMapByType = {
   ScreenshotRequested: ScreenshotRequested.callbackId,
   PlaybackStatusHasChanged: PlaybackStatusHasChanged.callbackId,
   VolumeHasChanged: VolumeHasChanged.callbackId,
-  MusicPlayerRemoteWillActivate: MusicPlayerRemoteWillActivate.callbackId,
-  MusicPlayerRemoteWillDeactivate: MusicPlayerRemoteWillDeactivate.callbackId,
-  MusicPlayerRemoteToFront: MusicPlayerRemoteToFront.callbackId,
-  MusicPlayerWillQuit: MusicPlayerWillQuit.callbackId,
-  MusicPlayerWantsPlay: MusicPlayerWantsPlay.callbackId,
-  MusicPlayerWantsPause: MusicPlayerWantsPause.callbackId,
-  MusicPlayerWantsPlayPrevious: MusicPlayerWantsPlayPrevious.callbackId,
-  MusicPlayerWantsPlayNext: MusicPlayerWantsPlayNext.callbackId,
-  MusicPlayerWantsShuffled: MusicPlayerWantsShuffled.callbackId,
-  MusicPlayerWantsLooped: MusicPlayerWantsLooped.callbackId,
-  MusicPlayerWantsVolume: MusicPlayerWantsVolume.callbackId,
-  MusicPlayerSelectsQueueEntry: MusicPlayerSelectsQueueEntry.callbackId,
-  MusicPlayerSelectsPlaylistEntry: MusicPlayerSelectsPlaylistEntry.callbackId,
-  MusicPlayerWantsPlayingRepeatStatus:
-      MusicPlayerWantsPlayingRepeatStatus.callbackId,
   HttpRequestCompleted: HttpRequestCompleted.callbackId,
   HttpRequestHeadersReceived: HttpRequestHeadersReceived.callbackId,
   HttpRequestDataReceived: HttpRequestDataReceived.callbackId,
@@ -434,8 +386,14 @@ Map<Type, int> callbackIdMapByType = {
       SteamInventoryStartPurchaseResult.callbackId,
   SteamInventoryRequestPricesResult:
       SteamInventoryRequestPricesResult.callbackId,
+  SteamTimelineGamePhaseRecordingExists:
+      SteamTimelineGamePhaseRecordingExists.callbackId,
+  SteamTimelineEventRecordingExists:
+      SteamTimelineEventRecordingExists.callbackId,
   GetVideoUrlResult: GetVideoUrlResult.callbackId,
   GetOpfSettingsResult: GetOpfSettingsResult.callbackId,
+  BroadcastUploadStart: BroadcastUploadStart.callbackId,
+  BroadcastUploadStop: BroadcastUploadStop.callbackId,
   SteamParentalSettingsChanged: SteamParentalSettingsChanged.callbackId,
   SteamRemotePlaySessionConnected: SteamRemotePlaySessionConnected.callbackId,
   SteamRemotePlaySessionDisconnected:

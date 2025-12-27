@@ -316,13 +316,11 @@ final _setDlcContext = dl.lookupFunction<
 final _getNumBetas = dl.lookupFunction<
     Int Function(
       Pointer<ISteamApps>,
-      UnsignedInt,
       Pointer<Int>,
       Pointer<Int>,
     ),
     int Function(
       Pointer<ISteamApps>,
-      AppId,
       Pointer<Int>,
       Pointer<Int>,
     )>("SteamAPI_ISteamApps_GetNumBetas");
@@ -330,7 +328,6 @@ final _getNumBetas = dl.lookupFunction<
 final _getBetaInfo = dl.lookupFunction<
     Bool Function(
       Pointer<ISteamApps>,
-      UnsignedInt,
       Int,
       Pointer<UnsignedInt>,
       Pointer<UnsignedInt>,
@@ -341,7 +338,6 @@ final _getBetaInfo = dl.lookupFunction<
     ),
     bool Function(
       Pointer<ISteamApps>,
-      AppId,
       int,
       Pointer<UnsignedInt>,
       Pointer<UnsignedInt>,
@@ -354,12 +350,10 @@ final _getBetaInfo = dl.lookupFunction<
 final _setActiveBeta = dl.lookupFunction<
     Bool Function(
       Pointer<ISteamApps>,
-      UnsignedInt,
       Pointer<Utf8>,
     ),
     bool Function(
       Pointer<ISteamApps>,
-      AppId,
       Pointer<Utf8>,
     )>("SteamAPI_ISteamApps_SetActiveBeta");
 
@@ -583,19 +577,16 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
       );
 
   int getNumBetas(
-    AppId appId,
     Pointer<Int> pnAvailable,
     Pointer<Int> pnPrivate,
   ) =>
       _getNumBetas.call(
         this,
-        appId,
         pnAvailable,
         pnPrivate,
       );
 
   bool getBetaInfo(
-    AppId appId,
     int iBetaIndex,
     Pointer<UnsignedInt> flags,
     Pointer<UnsignedInt> buildId,
@@ -606,7 +597,6 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
   ) =>
       _getBetaInfo.call(
         this,
-        appId,
         iBetaIndex,
         flags,
         buildId,
@@ -617,12 +607,10 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
       );
 
   bool setActiveBeta(
-    AppId appId,
     Pointer<Utf8> betaName,
   ) =>
       _setActiveBeta.call(
         this,
-        appId,
         betaName,
       );
 }

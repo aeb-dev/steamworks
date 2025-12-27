@@ -392,7 +392,96 @@ enum EControllerActionOrigin {
   ps5RightGrip(383),
   ps5LeftFn(384),
   ps5RightFn(385),
-  count(386),
+  horipadM1(386),
+  horipadM2(387),
+  horipadL4(388),
+  horipadR4(389),
+  lenovoLegionGoA(390),
+  lenovoLegionGoB(391),
+  lenovoLegionGoX(392),
+  lenovoLegionGoY(393),
+  lenovoLegionGoLB(394),
+  lenovoLegionGoRB(395),
+  lenovoLegionGoMenu(396),
+  lenovoLegionGoView(397),
+  lenovoLegionGoLeftPadTouch(398),
+  lenovoLegionGoLeftPadSwipe(399),
+  lenovoLegionGoLeftPadClick(400),
+  lenovoLegionGoLeftPadDPadNorth(401),
+  lenovoLegionGoLeftPadDPadSouth(402),
+  lenovoLegionGoLeftPadDPadWest(403),
+  lenovoLegionGoLeftPadDPadEast(404),
+  lenovoLegionGoRightPadTouch(405),
+  lenovoLegionGoRightPadSwipe(406),
+  lenovoLegionGoRightPadClick(407),
+  lenovoLegionGoRightPadDPadNorth(408),
+  lenovoLegionGoRightPadDPadSouth(409),
+  lenovoLegionGoRightPadDPadWest(410),
+  lenovoLegionGoRightPadDPadEast(411),
+  lenovoLegionGoLTSoftPull(412),
+  lenovoLegionGoLT(413),
+  lenovoLegionGoRTSoftPull(414),
+  lenovoLegionGoRT(415),
+  lenovoLegionGoLeftStickMove(416),
+  lenovoLegionGoLS(417),
+  lenovoLegionGoLeftStickDPadNorth(418),
+  lenovoLegionGoLeftStickDPadSouth(419),
+  lenovoLegionGoLeftStickDPadWest(420),
+  lenovoLegionGoLeftStickDPadEast(421),
+  lenovoLegionGoRightStickMove(422),
+  lenovoLegionGoRS(423),
+  lenovoLegionGoRightStickDPadNorth(424),
+  lenovoLegionGoRightStickDPadSouth(425),
+  lenovoLegionGoRightStickDPadWest(426),
+  lenovoLegionGoRightStickDPadEast(427),
+  lenovoLegionGoY1(428),
+  lenovoLegionGoY2(429),
+  lenovoLegionGoDPadMove(430),
+  lenovoLegionGoDPadNorth(431),
+  lenovoLegionGoDPadSouth(432),
+  lenovoLegionGoDPadWest(433),
+  lenovoLegionGoDPadEast(434),
+  lenovoLegionGoGyroMove(435),
+  lenovoLegionGoGyroPitch(436),
+  lenovoLegionGoGyroYaw(437),
+  lenovoLegionGoGyroRoll(438),
+  lenovoLegionGoReserved1(439),
+  lenovoLegionGoReserved2(440),
+  lenovoLegionGoReserved3(441),
+  lenovoLegionGoReserved4(442),
+  lenovoLegionGoReserved5(443),
+  lenovoLegionGoReserved6(444),
+  lenovoLegionGoReserved7(445),
+  lenovoLegionGoReserved8(446),
+  lenovoLegionGoReserved9(447),
+  lenovoLegionGoReserved10(448),
+  lenovoLegionGoReserved11(449),
+  lenovoLegionGoReserved12(450),
+  lenovoLegionGoReserved13(451),
+  lenovoLegionGoReserved14(452),
+  lenovoLegionGoReserved15(453),
+  lenovoLegionGoReserved16(454),
+  lenovoLegionGoReserved17(455),
+  lenovoLegionGoReserved18(456),
+  lenovoLegionGoReserved19(457),
+  lenovoLegionGoReserved20(458),
+  genericL4(459),
+  genericR4(460),
+  genericL5(461),
+  genericR5(462),
+  genericPL(463),
+  genericPR(464),
+  genericC(465),
+  genericZ(466),
+  genericMISC1(467),
+  genericMISC2(468),
+  genericMISC3(469),
+  genericMISC4(470),
+  genericMISC5(471),
+  genericMISC6(472),
+  genericMISC7(473),
+  genericMISC8(474),
+  count(475),
   maximumPossibleValue(32767),
   ;
 
@@ -1175,6 +1264,184 @@ enum EControllerActionOrigin {
       case 385:
         return EControllerActionOrigin.ps5RightFn;
       case 386:
+        return EControllerActionOrigin.horipadM1;
+      case 387:
+        return EControllerActionOrigin.horipadM2;
+      case 388:
+        return EControllerActionOrigin.horipadL4;
+      case 389:
+        return EControllerActionOrigin.horipadR4;
+      case 390:
+        return EControllerActionOrigin.lenovoLegionGoA;
+      case 391:
+        return EControllerActionOrigin.lenovoLegionGoB;
+      case 392:
+        return EControllerActionOrigin.lenovoLegionGoX;
+      case 393:
+        return EControllerActionOrigin.lenovoLegionGoY;
+      case 394:
+        return EControllerActionOrigin.lenovoLegionGoLB;
+      case 395:
+        return EControllerActionOrigin.lenovoLegionGoRB;
+      case 396:
+        return EControllerActionOrigin.lenovoLegionGoMenu;
+      case 397:
+        return EControllerActionOrigin.lenovoLegionGoView;
+      case 398:
+        return EControllerActionOrigin.lenovoLegionGoLeftPadTouch;
+      case 399:
+        return EControllerActionOrigin.lenovoLegionGoLeftPadSwipe;
+      case 400:
+        return EControllerActionOrigin.lenovoLegionGoLeftPadClick;
+      case 401:
+        return EControllerActionOrigin.lenovoLegionGoLeftPadDPadNorth;
+      case 402:
+        return EControllerActionOrigin.lenovoLegionGoLeftPadDPadSouth;
+      case 403:
+        return EControllerActionOrigin.lenovoLegionGoLeftPadDPadWest;
+      case 404:
+        return EControllerActionOrigin.lenovoLegionGoLeftPadDPadEast;
+      case 405:
+        return EControllerActionOrigin.lenovoLegionGoRightPadTouch;
+      case 406:
+        return EControllerActionOrigin.lenovoLegionGoRightPadSwipe;
+      case 407:
+        return EControllerActionOrigin.lenovoLegionGoRightPadClick;
+      case 408:
+        return EControllerActionOrigin.lenovoLegionGoRightPadDPadNorth;
+      case 409:
+        return EControllerActionOrigin.lenovoLegionGoRightPadDPadSouth;
+      case 410:
+        return EControllerActionOrigin.lenovoLegionGoRightPadDPadWest;
+      case 411:
+        return EControllerActionOrigin.lenovoLegionGoRightPadDPadEast;
+      case 412:
+        return EControllerActionOrigin.lenovoLegionGoLTSoftPull;
+      case 413:
+        return EControllerActionOrigin.lenovoLegionGoLT;
+      case 414:
+        return EControllerActionOrigin.lenovoLegionGoRTSoftPull;
+      case 415:
+        return EControllerActionOrigin.lenovoLegionGoRT;
+      case 416:
+        return EControllerActionOrigin.lenovoLegionGoLeftStickMove;
+      case 417:
+        return EControllerActionOrigin.lenovoLegionGoLS;
+      case 418:
+        return EControllerActionOrigin.lenovoLegionGoLeftStickDPadNorth;
+      case 419:
+        return EControllerActionOrigin.lenovoLegionGoLeftStickDPadSouth;
+      case 420:
+        return EControllerActionOrigin.lenovoLegionGoLeftStickDPadWest;
+      case 421:
+        return EControllerActionOrigin.lenovoLegionGoLeftStickDPadEast;
+      case 422:
+        return EControllerActionOrigin.lenovoLegionGoRightStickMove;
+      case 423:
+        return EControllerActionOrigin.lenovoLegionGoRS;
+      case 424:
+        return EControllerActionOrigin.lenovoLegionGoRightStickDPadNorth;
+      case 425:
+        return EControllerActionOrigin.lenovoLegionGoRightStickDPadSouth;
+      case 426:
+        return EControllerActionOrigin.lenovoLegionGoRightStickDPadWest;
+      case 427:
+        return EControllerActionOrigin.lenovoLegionGoRightStickDPadEast;
+      case 428:
+        return EControllerActionOrigin.lenovoLegionGoY1;
+      case 429:
+        return EControllerActionOrigin.lenovoLegionGoY2;
+      case 430:
+        return EControllerActionOrigin.lenovoLegionGoDPadMove;
+      case 431:
+        return EControllerActionOrigin.lenovoLegionGoDPadNorth;
+      case 432:
+        return EControllerActionOrigin.lenovoLegionGoDPadSouth;
+      case 433:
+        return EControllerActionOrigin.lenovoLegionGoDPadWest;
+      case 434:
+        return EControllerActionOrigin.lenovoLegionGoDPadEast;
+      case 435:
+        return EControllerActionOrigin.lenovoLegionGoGyroMove;
+      case 436:
+        return EControllerActionOrigin.lenovoLegionGoGyroPitch;
+      case 437:
+        return EControllerActionOrigin.lenovoLegionGoGyroYaw;
+      case 438:
+        return EControllerActionOrigin.lenovoLegionGoGyroRoll;
+      case 439:
+        return EControllerActionOrigin.lenovoLegionGoReserved1;
+      case 440:
+        return EControllerActionOrigin.lenovoLegionGoReserved2;
+      case 441:
+        return EControllerActionOrigin.lenovoLegionGoReserved3;
+      case 442:
+        return EControllerActionOrigin.lenovoLegionGoReserved4;
+      case 443:
+        return EControllerActionOrigin.lenovoLegionGoReserved5;
+      case 444:
+        return EControllerActionOrigin.lenovoLegionGoReserved6;
+      case 445:
+        return EControllerActionOrigin.lenovoLegionGoReserved7;
+      case 446:
+        return EControllerActionOrigin.lenovoLegionGoReserved8;
+      case 447:
+        return EControllerActionOrigin.lenovoLegionGoReserved9;
+      case 448:
+        return EControllerActionOrigin.lenovoLegionGoReserved10;
+      case 449:
+        return EControllerActionOrigin.lenovoLegionGoReserved11;
+      case 450:
+        return EControllerActionOrigin.lenovoLegionGoReserved12;
+      case 451:
+        return EControllerActionOrigin.lenovoLegionGoReserved13;
+      case 452:
+        return EControllerActionOrigin.lenovoLegionGoReserved14;
+      case 453:
+        return EControllerActionOrigin.lenovoLegionGoReserved15;
+      case 454:
+        return EControllerActionOrigin.lenovoLegionGoReserved16;
+      case 455:
+        return EControllerActionOrigin.lenovoLegionGoReserved17;
+      case 456:
+        return EControllerActionOrigin.lenovoLegionGoReserved18;
+      case 457:
+        return EControllerActionOrigin.lenovoLegionGoReserved19;
+      case 458:
+        return EControllerActionOrigin.lenovoLegionGoReserved20;
+      case 459:
+        return EControllerActionOrigin.genericL4;
+      case 460:
+        return EControllerActionOrigin.genericR4;
+      case 461:
+        return EControllerActionOrigin.genericL5;
+      case 462:
+        return EControllerActionOrigin.genericR5;
+      case 463:
+        return EControllerActionOrigin.genericPL;
+      case 464:
+        return EControllerActionOrigin.genericPR;
+      case 465:
+        return EControllerActionOrigin.genericC;
+      case 466:
+        return EControllerActionOrigin.genericZ;
+      case 467:
+        return EControllerActionOrigin.genericMISC1;
+      case 468:
+        return EControllerActionOrigin.genericMISC2;
+      case 469:
+        return EControllerActionOrigin.genericMISC3;
+      case 470:
+        return EControllerActionOrigin.genericMISC4;
+      case 471:
+        return EControllerActionOrigin.genericMISC5;
+      case 472:
+        return EControllerActionOrigin.genericMISC6;
+      case 473:
+        return EControllerActionOrigin.genericMISC7;
+      case 474:
+        return EControllerActionOrigin.genericMISC8;
+      case 475:
         return EControllerActionOrigin.count;
       case 32767:
         return EControllerActionOrigin.maximumPossibleValue;
