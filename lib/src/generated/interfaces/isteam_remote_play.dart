@@ -9,7 +9,7 @@ import "../structs/remote_play_input.dart";
 import "../typedefs.dart";
 
 final _steamRemotePlay = dl.lookupFunction<Pointer<ISteamRemotePlay> Function(),
-    Pointer<ISteamRemotePlay> Function()>("SteamAPI_SteamRemotePlay_v003");
+    Pointer<ISteamRemotePlay> Function()>("SteamAPI_SteamRemotePlay_v004");
 
 final class ISteamRemotePlay extends Opaque {
   static Pointer<ISteamRemotePlay> get userInstance => _steamRemotePlay();
@@ -33,6 +33,16 @@ final _getSessionId = dl.lookupFunction<
       int,
     )>("SteamAPI_ISteamRemotePlay_GetSessionID");
 
+final _bSessionRemotePlayTogether = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+    ),
+    bool Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+    )>("SteamAPI_ISteamRemotePlay_BSessionRemotePlayTogether");
+
 final _getSessionSteamId = dl.lookupFunction<
     UnsignedLongLong Function(
       Pointer<ISteamRemotePlay>,
@@ -42,6 +52,46 @@ final _getSessionSteamId = dl.lookupFunction<
       Pointer<ISteamRemotePlay>,
       RemotePlaySessionId,
     )>("SteamAPI_ISteamRemotePlay_GetSessionSteamID");
+
+final _getSessionGuestId = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+    )>("SteamAPI_ISteamRemotePlay_GetSessionGuestID");
+
+final _getSmallSessionAvatar = dl.lookupFunction<
+    Int Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+    )>("SteamAPI_ISteamRemotePlay_GetSmallSessionAvatar");
+
+final _getMediumSessionAvatar = dl.lookupFunction<
+    Int Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+    )>("SteamAPI_ISteamRemotePlay_GetMediumSessionAvatar");
+
+final _getLargeSessionAvatar = dl.lookupFunction<
+    Int Function(
+      Pointer<ISteamRemotePlay>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamRemotePlay>,
+      RemotePlaySessionId,
+    )>("SteamAPI_ISteamRemotePlay_GetLargeSessionAvatar");
 
 final _getSessionClientName = dl.lookupFunction<
     Pointer<Utf8> Function(
@@ -194,10 +244,50 @@ extension ISteamRemotePlayExtensions on Pointer<ISteamRemotePlay> {
         iSessionIndex,
       );
 
+  bool bSessionRemotePlayTogether(
+    RemotePlaySessionId sessionId,
+  ) =>
+      _bSessionRemotePlayTogether.call(
+        this,
+        sessionId,
+      );
+
   CSteamId getSessionSteamId(
     RemotePlaySessionId sessionId,
   ) =>
       _getSessionSteamId.call(
+        this,
+        sessionId,
+      );
+
+  int getSessionGuestId(
+    RemotePlaySessionId sessionId,
+  ) =>
+      _getSessionGuestId.call(
+        this,
+        sessionId,
+      );
+
+  int getSmallSessionAvatar(
+    RemotePlaySessionId sessionId,
+  ) =>
+      _getSmallSessionAvatar.call(
+        this,
+        sessionId,
+      );
+
+  int getMediumSessionAvatar(
+    RemotePlaySessionId sessionId,
+  ) =>
+      _getMediumSessionAvatar.call(
+        this,
+        sessionId,
+      );
+
+  int getLargeSessionAvatar(
+    RemotePlaySessionId sessionId,
+  ) =>
+      _getLargeSessionAvatar.call(
         this,
         sessionId,
       );

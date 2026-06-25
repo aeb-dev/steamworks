@@ -168,6 +168,7 @@ import "callback_structs/steam_networking_messages_session_failed.dart";
 import "callback_structs/steam_networking_messages_session_request.dart";
 import "callback_structs/steam_parental_settings_changed.dart";
 import "callback_structs/steam_relay_network_status.dart";
+import "callback_structs/steam_remote_play_session_avatar_loaded.dart";
 import "callback_structs/steam_remote_play_session_connected.dart";
 import "callback_structs/steam_remote_play_session_disconnected.dart";
 import "callback_structs/steam_remote_play_together_guest_invite.dart";
@@ -400,6 +401,8 @@ Map<Type, int> callbackIdMapByType = {
       SteamRemotePlaySessionDisconnected.callbackId,
   SteamRemotePlayTogetherGuestInvite:
       SteamRemotePlayTogetherGuestInvite.callbackId,
+  SteamRemotePlaySessionAvatarLoaded:
+      SteamRemotePlaySessionAvatarLoaded.callbackId,
   SteamNetworkingMessagesSessionRequest:
       SteamNetworkingMessagesSessionRequest.callbackId,
   SteamNetworkingMessagesSessionFailed:

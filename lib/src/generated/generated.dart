@@ -168,6 +168,7 @@ export "callback_structs/steam_networking_messages_session_failed.dart";
 export "callback_structs/steam_networking_messages_session_request.dart";
 export "callback_structs/steam_parental_settings_changed.dart";
 export "callback_structs/steam_relay_network_status.dart";
+export "callback_structs/steam_remote_play_session_avatar_loaded.dart";
 export "callback_structs/steam_remote_play_session_connected.dart";
 export "callback_structs/steam_remote_play_session_disconnected.dart";
 export "callback_structs/steam_remote_play_together_guest_invite.dart";

@@ -45,7 +45,10 @@ final class SteamNetConnectionRealTimeStatus extends Struct {
   @LongLong()
   external SteamNetworkingMicroseconds queueTime;
 
-  @Array<UnsignedInt>(16)
+  @Int()
+  external int maxJitter;
+
+  @Array<UnsignedInt>(15)
   external Array<UnsignedInt> reserved;
 }
 
@@ -77,6 +80,8 @@ extension SteamNetConnectionRealTimeStatusExtensions
   int get sentUnackedReliableSize => ref.sentUnackedReliableSize;
 
   SteamNetworkingMicroseconds get queueTime => ref.queueTime;
+
+  int get maxJitter => ref.maxJitter;
 
   Array<UnsignedInt> get reserved => ref.reserved;
 }

@@ -1272,6 +1272,36 @@ final _setSubscriptionsLoadOrder = dl.lookupFunction<
       int,
     )>("SteamAPI_ISteamUGC_SetSubscriptionsLoadOrder");
 
+final _markDownloadedItemAsUnused = dl.lookupFunction<
+    Bool Function(
+      Pointer<ISteamUgc>,
+      UnsignedLongLong,
+    ),
+    bool Function(
+      Pointer<ISteamUgc>,
+      PublishedFileId,
+    )>("SteamAPI_ISteamUGC_MarkDownloadedItemAsUnused");
+
+final _getNumDownloadedItems = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamUgc>,
+    ),
+    int Function(
+      Pointer<ISteamUgc>,
+    )>("SteamAPI_ISteamUGC_GetNumDownloadedItems");
+
+final _getDownloadedItems = dl.lookupFunction<
+    UnsignedInt Function(
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      UnsignedInt,
+    ),
+    int Function(
+      Pointer<ISteamUgc>,
+      Pointer<UnsignedLongLong>,
+      int,
+    )>("SteamAPI_ISteamUGC_GetDownloadedItems");
+
 extension ISteamUgcExtensions on Pointer<ISteamUgc> {
   UgcQueryHandle createQueryUserUgcRequest(
     AccountId accountId,
@@ -2318,5 +2348,27 @@ extension ISteamUgcExtensions on Pointer<ISteamUgc> {
         this,
         publishedFileIds,
         numPublishedFileIds,
+      );
+
+  bool markDownloadedItemAsUnused(
+    PublishedFileId nPublishedFileId,
+  ) =>
+      _markDownloadedItemAsUnused.call(
+        this,
+        nPublishedFileId,
+      );
+
+  int getNumDownloadedItems() => _getNumDownloadedItems.call(
+        this,
+      );
+
+  int getDownloadedItems(
+    Pointer<UnsignedLongLong> publishedFileIds,
+    int cMaxEntries,
+  ) =>
+      _getDownloadedItems.call(
+        this,
+        publishedFileIds,
+        cMaxEntries,
       );
 }

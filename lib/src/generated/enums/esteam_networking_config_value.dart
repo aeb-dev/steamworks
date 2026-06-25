@@ -81,6 +81,7 @@ enum ESteamNetworkingConfigValue {
   callbackMessagesSessionFailed(205),
   callbackCreateConnectionSignaling(206),
   callbackFakeIpResult(207),
+  sdrClientEnableTOSProbes(998),
   ecn(999),
   ;
 
@@ -243,6 +244,8 @@ enum ESteamNetworkingConfigValue {
         return ESteamNetworkingConfigValue.callbackCreateConnectionSignaling;
       case 207:
         return ESteamNetworkingConfigValue.callbackFakeIpResult;
+      case 998:
+        return ESteamNetworkingConfigValue.sdrClientEnableTOSProbes;
       case 999:
         return ESteamNetworkingConfigValue.ecn;
       default:

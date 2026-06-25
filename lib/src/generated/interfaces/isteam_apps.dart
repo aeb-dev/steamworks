@@ -5,7 +5,7 @@ import "../dl.dart";
 import "../typedefs.dart";
 
 final _steamApps = dl.lookupFunction<Pointer<ISteamApps> Function(),
-    Pointer<ISteamApps> Function()>("SteamAPI_SteamApps_v008");
+    Pointer<ISteamApps> Function()>("SteamAPI_SteamApps_v009");
 
 final class ISteamApps extends Opaque {
   static Pointer<ISteamApps> get userInstance => _steamApps();
@@ -335,6 +335,7 @@ final _getBetaInfo = dl.lookupFunction<
       Int,
       Pointer<Utf8>,
       Int,
+      Pointer<UnsignedInt>,
     ),
     bool Function(
       Pointer<ISteamApps>,
@@ -345,6 +346,7 @@ final _getBetaInfo = dl.lookupFunction<
       int,
       Pointer<Utf8>,
       int,
+      Pointer<UnsignedInt>,
     )>("SteamAPI_ISteamApps_GetBetaInfo");
 
 final _setActiveBeta = dl.lookupFunction<
@@ -594,6 +596,7 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
     int cchBetaName,
     Pointer<Utf8> description,
     int cchDescription,
+    Pointer<UnsignedInt> lastUpdated,
   ) =>
       _getBetaInfo.call(
         this,
@@ -604,6 +607,7 @@ extension ISteamAppsExtensions on Pointer<ISteamApps> {
         cchBetaName,
         description,
         cchDescription,
+        lastUpdated,
       );
 
   bool setActiveBeta(
