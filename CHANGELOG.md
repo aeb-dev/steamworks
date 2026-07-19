@@ -1,3 +1,7 @@
+## 0.4.10
+
+- Export error types
+
 ## 0.4.9
 
 - Steamworks SDK 1.64
